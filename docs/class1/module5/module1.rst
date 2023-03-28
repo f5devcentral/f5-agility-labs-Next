@@ -1,7 +1,5 @@
-Module 1: The Basic's
-=====================
-
-Here we'll start with the basics of platform setup, editing, and building.
+Module 5: Modify templates to add security policy
+=================================================
 
 .. toctree::
    :maxdepth: 1

@@ -1,7 +1,6 @@
-Module 1: The Basic's
-=====================
+Module 2: Discover nodes with Central Manager
+=============================================
 
-Here we'll start with the basics of platform setup, editing, and building.
 
 .. toctree::
    :maxdepth: 1
