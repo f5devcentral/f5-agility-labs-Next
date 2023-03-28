@@ -1,7 +1,6 @@
-Module 1: The Basic's
-=====================
+Module 4: Import App from UCS
+=============================
 
-Here we'll start with the basics of platform setup, editing, and building.
 
 .. toctree::
    :maxdepth: 1

@@ -1,7 +1,5 @@
-Module 1: The Basic's
-=====================
-
-Here we'll start with the basics of platform setup, editing, and building.
+Module 3: Deploy and operate Applications
+=========================================
 
 .. toctree::
    :maxdepth: 1
