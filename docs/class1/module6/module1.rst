@@ -2,7 +2,7 @@ Module 6: Node Lifecycle
 ========================
 
 .. toctree::
-   :maxdepth: 1
-   :glob:
+   :titlesonly:
 
-   lab*
+   lab1.rst
+   lab6a1-cm_template-present-layer.rst
