@@ -18,8 +18,8 @@ After logging into BIG-IP Next CM, click on  **"+Add Application"** on the upper
 
 Select **"New Migration"** and enter the following information in General Propoerties:
 
-    * Session Name - **config-import**
-    * Description - **Agility2023 BIG-IP Next Lab**
+* Session Name - **config-import**
+* Description - **Agility2023 BIG-IP Next Lab**
 
 Click **"Save & Continue"**
 
@@ -29,7 +29,7 @@ Click **"Save & Continue"**
 
 On the next step, you will select the the UCS file stored in the UCS folder on the Desktop as the Source
 
-* Leave the **Master Key** and **Encrypred UCS Archives** options disabled.
+* Leave the **Master Key** and **Encrypted UCS Archives** options disabled.
 
 Click **"Save & Continue"** 
 
