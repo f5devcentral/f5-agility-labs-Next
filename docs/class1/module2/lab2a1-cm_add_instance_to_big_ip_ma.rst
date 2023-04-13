@@ -14,8 +14,8 @@ Prerequisites
 =============
 Before you add an instance to BIG-IP Next Central Manager, you must have the instance's:
 
-- IP address
-- Admin username and password
+- IP address (In this lab, we'll use 10.1.1.7)
+- Admin username and password (In this lab, we'll use admin:Welcome123!)
 
 
 Procedure
