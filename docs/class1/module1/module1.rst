@@ -1,7 +1,8 @@
-Module 1: The Basic's
-=====================
+Module 1: Introduction to the lab
+=================================
 
-Here we'll start with the basics of platform setup, editing, and building.
+In this lab we wil be utilizing the Unified Demo Framework (UDF) to learn about BIG-IP Next and 
+BIG-IP Next Central Manager
 
 .. toctree::
    :maxdepth: 1
