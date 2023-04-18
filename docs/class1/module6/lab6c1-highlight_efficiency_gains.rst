@@ -9,9 +9,9 @@ Having completed some work with BIG-IP Next instance management, review the bene
 Benefits
 =========
 
-#. Central Management as standard management model, as compared with instnace by instance management with optional bolt-on Central Management with BIG-IQ
-#. Simplied addition of new instances via Central Manager 
-#. Central Management can orchestrate upgrade of HA pair (upgrade standby first, initiate failover, upgrade original active, automatic failback if desired); rollback if upgrade fails.
+#. Central Management as standard management model, as compared with instance by instance management with optional bolt-on Central Management with BIG-IQ
+#. Simplified addition of new instances via Central Manager 
+#. Central Management can orchestrate upgrades of HA pairs (upgrade standby first, initiate failover, upgrade original active, automatic failback if desired); rollback if upgrade fails.
 
 Summary
 ======

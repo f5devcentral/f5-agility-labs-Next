@@ -22,9 +22,14 @@ Before you can create a BIG-IP Next HA instance, you must have two standalone in
 ---------
 Procedure
 ---------
+#. Add a second BIG-IP Next instance to your infrastructure
+.. image:: lab6_img01_add_second_instance.png
+   :scale: 25%
+
 #. Click the mode link of the standalone BIG-IP Next instance you want to become the active node in the BIG-IP Next HA instance.
 
    The High Availability panel opens.
+
 #. Click the **Enable HA** button.
 
    The HA Nodes panel opens.
