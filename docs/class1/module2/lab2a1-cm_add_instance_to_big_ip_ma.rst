@@ -21,6 +21,10 @@ Before you add an instance to BIG-IP Next Central Manager, you must have the ins
 Procedure
 =========
 #. Log in to BIG-IP Next Central Manager as admin, click the workspace switcher next to the F5 icon, and click **Infrastructure**.
+.. image:: lab2_img01_login_to_next_central_manager.png
+.. image:: lab2_img02_navigation_to_infrastructure.png
+.. image:: lab2_img02_navigation_to_infrastructure2.png
+
 #. At the top of the screen, click **+ Start Adding Instances**.
 #. Type the IP address for the BIG-IP Next instance and click **Enter**.
 	 You must use port `5443`.
