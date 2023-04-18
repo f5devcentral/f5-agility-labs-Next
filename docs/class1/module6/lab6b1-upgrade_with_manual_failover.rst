@@ -6,6 +6,8 @@
 How to: Upgrade a BIG-IP Next HA instance on VE from BIG-IP Next Central Manager with manual failover
 =====================================================================================================
 
+**THIS SECTION INCOMPLETE** - Chad Jenison
+
 Overview
 ========
 Use this procedure to upgrade the software for a BIG-IP Next HA instance on VE from BIG-IP Next Central Manager using the manual failover method. For this procedure, you upgrade the standby node first, and then the active node.
