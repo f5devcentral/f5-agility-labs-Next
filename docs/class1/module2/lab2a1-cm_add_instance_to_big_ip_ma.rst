@@ -56,7 +56,7 @@ Procedure
 
 #. After completing this procedure, you'll now see a new instances in the **My Instances** list.
 
-.. image:: lab2_img09_my_instances_list_3_instances.png
+.. image:: lab2_img09_instances_list_3_instances.png
 	:scale: 25%
 
 
