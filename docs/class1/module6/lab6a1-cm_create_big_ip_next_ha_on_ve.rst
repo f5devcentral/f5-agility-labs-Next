@@ -35,8 +35,9 @@ Follow procedure that was used to onboard initial device with instance 2. Upon c
 Click the mode link (the word "Standalone" under the "Mode" column) of the standalone BIG-IP Next instance (big-ip-next-01.f5demo.com) you want to become the active node in the BIG-IP Next HA instance.
 
 .. image:: lab6_img03_enable_ha_on_instance1.png
+   :scale: 25%
 
-   The High Availability panel opens.
+The High Availability panel opens.
 
 Click the **Enable HA** button.
 
@@ -47,7 +48,7 @@ The HA Nodes panel opens.
 
 The name and IP address for the BIG-IP Next instance that you selected displays.
 
-   This will be the active node in the BIG-IP Next HA instance after it’s created.
+This will be the active node in the BIG-IP Next HA instance after it’s created.
 
 From the **Available Standby Instances** list, select the BIG-IP Next instance (big-ip-next-02) you want to designate as the standby node in the BIG-IP Next HA instance, and click the **Next** button.
 
@@ -94,7 +95,7 @@ Click **Next**.
 
 The Traffic VLANs panel opens and displays the VLANs you specified for traffic.
 
-.. image:: lab6_img12_traffic_vlans_unconfigured.png
+.. image:: lab6_img12_traffic_vlan_unconfigured.png
    :scale: 25%
 
 You can have only one IP address for each active and standby node, but you can add additional floating IP addresses by clicking on the VLAN name.
