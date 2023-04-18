@@ -26,12 +26,10 @@ Procedure
 
 .. image:: lab6_img01_add_second_instance.png
    :scale: 25%
-
 #. Follow procedure that was used to onboard initial device with instance 2. Upon completion you should have four total instances as shown in below screenshot.
 
 .. image:: lab6_img02_my_instances_list_4_instances.png
    :scale: 25%
-
 #. Click the mode link (the word "Standalone" under the "Mode" column) of the standalone BIG-IP Next instance (big-ip-next-01.f5demo.com) you want to become the active node in the BIG-IP Next HA instance.
 
 .. image:: lab6_img03_enable_ha_on_instance1.png
