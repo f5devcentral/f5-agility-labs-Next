@@ -28,28 +28,28 @@ Deploy a HTTPS load balancer with a WAF policy
  
  * Option 1: Navigate to your UDF deployment and select the "GUI" ACCESS method for the "BIG-IP Next Central Manager" and login with the username/password provided under DETAILS.
   
-   .. image:: ../module2/pictures/cm_login.png 
+   .. image:: ./pictures/cm_login.png 
 
  * Option 2: Go to the "Windows Jump Host" you've logged in before, start the Chrome browser and select the "Central Manager" Favorite using the same credentials as mentioned in Option 1
-   .. image:: ../module2/pictures/cm_login_jumphost.png
+   .. image:: ./pictures/cm_login_jumphost.png
 
 |
 
 **2. From "My Apps" click on "+ Add Application"**
 
- .. image:: ../module2/pictures/add-application.png
+ .. image:: ./pictures/add-application.png
 
 |
 
 **3. Click on "Create"**
 
- .. image:: ../module2/pictures/create-application.png
+ .. image:: ./pictures/create-application.png
 
 |
 
 **4. Choose the "WAF-Secure-Load-Balancing-Service Application Template and click on "Start Creating"**
 
- .. image:: ../module2/pictures/application_template.png
+ .. image:: ./pictures/application_template.png
 
 |
 
