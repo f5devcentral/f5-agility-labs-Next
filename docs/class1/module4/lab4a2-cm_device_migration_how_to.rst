@@ -113,8 +113,8 @@ Objects or entities that are not supported on BIG-IP Next are automatically modi
    #. Click **Add**. The services are added to the Application Migration list.
    #. Click **Save & Continue**.
 
-You have completed the migration process, and are now ready for `pre-deployment <#deploy-migrated-applications>`_. You can migrate each selected application service on
-a `FAST template](#application-templates-fast-migration) or all selected application services on an [AS3 declaration <#as3-application-migration>`_.
+You have completed the migration process, and are now ready for :ref:`Deploy migrated applications`. You can migrate each selected application service on
+a :ref:`Application templates (FAST) deployment` or all selected application services on an :ref:`AS3 application deployment`.
 
 
 .. _Deploy migrated applications:
