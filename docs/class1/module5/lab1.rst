@@ -60,14 +60,14 @@ Deploy a HTTPS load balancer with a WAF policy
  * Virtual Address: 10.1.10.140
  * Virtual Port: 443 
 
- .. image:: ../module2/pictures/create_application_properties.png
+ .. image:: ./pictures/create_application_properties.png
 |
 
 **6. Select Endpoints (Pool Members)**
 
  Click on "+ Create" and add the pool member IP address 10.1.20.100 and the port number 3000 and click "Next".
 
- .. image:: ../module2/pictures/create_application_endpoints.png
+ .. image:: ./pictures/create_application_endpoints.png
 
 |
 
@@ -75,13 +75,13 @@ Deploy a HTTPS load balancer with a WAF policy
 
  1. Choose the certificate "self_demo.f5.com"
 
- .. image:: ../module2/pictures/choose_cert.png
+ .. image:: ./pictures/choose_cert.png
 
  2. Click "+ Create" and enter the new policy name "juice_lab_policy" in the new window as shown in the picture below.
    
  |
 
- .. image:: ../module2/pictures/create_application_create_policy.png
+ .. image:: ./pictures/create_application_create_policy.png
     
  **Note:** Bot Defense, L7 DoS Protection, Threat Campaigns and IP Intelligence are enabled by default but some of them may require additional licenses when BIG-IP Next WAF reaches GA.
 
@@ -89,7 +89,7 @@ Deploy a HTTPS load balancer with a WAF policy
 
  3. Enable "Advanced View" to show that by default the Rating-Based-Template and UTF-8 is configured. We will create another policy with a different template in a following lab.
    
- .. image:: ../module2/pictures/policy_advanced_view.png
+ .. image:: ./pictures/policy_advanced_view.png
 
  4. Click "Save" and you will get back to the previous screen as shown below.
 
@@ -97,38 +97,38 @@ Deploy a HTTPS load balancer with a WAF policy
    
  **Note:**  Make sure all bullets on the left are marked in green. If not, go back to the section which is not marked in green and check if everything is filled correctly or re-select it in case it is a drop down menu.
 
- .. image:: ../module2/pictures/policy_created.png
+ .. image:: ./pictures/policy_created.png
 
 |
 
 **8. Click on "Next" to see the Summary screen below**
  
- .. image:: ../module2/pictures/validate.png
+ .. image:: ./pictures/validate.png
 
 |
 
 **9. Click on "Validate" and you should see the "Success!" message below**
 
- .. image:: ../module2/pictures/success.png
+ .. image:: ./pictures/success.png
   
 |
 
 **10. Click on "View deployment validation results" to show the declaration**
 
- .. image:: ../module2/pictures/declaration.png
+ .. image:: ./pictures/declaration.png
 
 
  Click on "Exit" to go back to the previous screen.
 
  |
 
- .. image:: ../module2/pictures/success1.png
+ .. image:: ./pictures/success1.png
   
 |
 
 **11. Finally click on "Deploy" and you should see the application and the WAF policy deployed**
 
- .. image:: ../module2/pictures/successful_deployed.png
+ .. image:: ./pictures/successful_deployed.png
   
 |
 
@@ -136,13 +136,13 @@ Deploy a HTTPS load balancer with a WAF policy
     
  Open Chrome, go to https://10.1.10.140 and you should see the Juice Shop app.
 
- .. image:: ../module2/pictures/final_check.png
+ .. image:: ./pictures/final_check.png
 
  |
 
  Enter https://10.1.10.140/a=<script> and you should see the blocking page.
 
- .. image:: ../module2/pictures/block_check.png
+ .. image:: ./pictures/block_check.png
 
 |
 
