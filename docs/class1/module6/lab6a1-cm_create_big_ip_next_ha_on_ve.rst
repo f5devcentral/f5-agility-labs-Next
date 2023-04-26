@@ -100,7 +100,7 @@ The Traffic VLANs panel opens and displays the VLANs you specified for traffic.
 
 You can have only one IP address for each active and standby node, but you can add additional floating IP addresses by clicking on the VLAN name.
 
-Click each VLAN to open a panel to add the respective Active, Standby, and Floating IP addresses.
+Click each VLAN to open a panel to add the respective Active, Standby, and Floating IP addresses. You may need to reassign the IP address that shows up when you first enter the page from a Floating Self-IP to the Active Self-IP.
 
 .. image:: lab6_img13_add_ha_traffic_vlans_external.png
    :scale: 25%
@@ -120,7 +120,7 @@ The Summary screen opens to display the BIG-IP Next HA configuration you specifi
 .. image:: lab6_img16_add_ha_summary.png
    :scale: 25%
 
-Click **Deploy to HA**.
+Click **Deploy to HA**. If Deploy to HA is not available, you may need to revisit the HA VLANs section of the HA Parameters panel (if there is not a green checkmark next to HA VLANs; workaround the missing green checkmark by pulling down each of the VLAN selections).
 You'll be prompted to confirm the deployment.
 
 .. image:: lab6_img17_add_ha_deploy_to_ha_confirm.png
