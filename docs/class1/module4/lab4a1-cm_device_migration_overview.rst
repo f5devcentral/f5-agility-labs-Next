@@ -66,7 +66,7 @@ This deployment method allows you to select one deployment location (BIG-IP Next
 ----------------------------
 Secure application migration
 ----------------------------
-THis version of BIP-Next supports deployment of HTTPS applications using AS#. Due to the secure nature of HTTPS applications, you will only be able to view the certificates and keys within the declaration after conversion. You can download the AS3 JSON declaration containing the embedded certificate and key pair information before deployment, or once you have deployed the applications onto BIG-IP Next Central Manager.
+This version of BIP-Next supports deployment of HTTPS applications using AS3. Due to the secure nature of HTTPS applications, you will only be able to view the certificates and keys within the declaration after conversion. You can download the AS3 JSON declaration containing the embedded certificate and key pair information before deployment, or once you have deployed the applications onto BIG-IP Next Central Manager.
 
 
 .. _Automatic object conversion:
