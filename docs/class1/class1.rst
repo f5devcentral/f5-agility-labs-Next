@@ -7,4 +7,10 @@ Introduction to Next
    :maxdepth: 1
    :glob:
 
-   module*/module*
+   module1/module*
+   module2/module*
+   module3/module*
+   module4/module*
+   module5/module*
+   module6/module*
+
