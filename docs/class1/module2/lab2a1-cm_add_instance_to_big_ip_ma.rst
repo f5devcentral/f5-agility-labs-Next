@@ -30,8 +30,7 @@ Procedure
 #. At the top of the screen, click **+ Add**.
     .. image:: lab2_img04_my_instances_list_add.png
 		:scale: 25%
-#. Type the IP address (10.1.1.7) for the BIG-IP Next instance and click **Connect**. You can ignore the top option for Creating a new instance.
-	You must use port `5443`.
+#. Type the IP address (10.1.1.7) for the BIG-IP Next instance and click **Connect**. You can ignore the top option for Creating a new instance. You must use port `5443`.
 	.. image:: lab2_img05_add_instance_dialog_1.png
 		:scale: 25%
 #. For the Management Credentials, in the **Username** and **Password** fields, enter the username and password that were used to login to the BIG-IP Next Central Manager. (admin:Welcome123!)
