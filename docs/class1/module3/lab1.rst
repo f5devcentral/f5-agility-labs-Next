@@ -1,6 +1,18 @@
 Lab 3.1 - Deploy and operate Applications
 =========================================
 
+This section of the lab will utilize the "Applications" section of Central Manager.
+
+If you are not already in Applications you can reach this section by clicking the top left of the screen.
+
+.. image:: top-left.png
+  :scale: 50%
+
+Then clicking on "Applications"
+
+.. image:: central-manager-menu.png
+  :scale: 50%
+
 From "My Apps" click on "+Add Application"
 
 .. image:: add-application.png
