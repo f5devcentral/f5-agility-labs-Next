@@ -57,7 +57,7 @@ Deploy a HTTPS load balancer with a WAF policy
    
  * Location: Choose e.g. big-ip-next-03.f5demo.com
  * Application Name: juice_lab
- * Virtual Address: 10.1.10.140
+ * Virtual Address: 10.1.10.203
  * Virtual Port: 443 
 
  .. image:: ./pictures/create_application_properties.png
@@ -87,7 +87,7 @@ Deploy a HTTPS load balancer with a WAF policy
 
  |
 
- 3. Enable "Advanced View" to show that by default the Rating-Based-Template and UTF-8 is configured. We will create another policy with a different template in a following lab.
+ 3. Enable "Advanced View" to show that by default the Rating-Based-Template and UTF-8 is configured.
    
  .. image:: ./pictures/policy_advanced_view.png
 
@@ -153,5 +153,3 @@ Deploy a HTTPS load balancer with a WAF policy
 Next: |signup|
 
 .. |signup| raw:: html
-
-            <a href="https://github.com/f5devcentral/f5-big-ip-next-waf-lab/blob/main/labs/module2/lab1.rst" target="_blank">Module 2: Signatures and Threat Campaigns Update</a>
