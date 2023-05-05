@@ -58,7 +58,7 @@ Add the following endpoint address (no need to specify name)
 
 * 10.1.20.100
 
-Click on "Ok"
+Click on "Save"
 
 Change "Service Port" from 443 to 8080
 
@@ -68,9 +68,9 @@ For the Certificate select "self_demo.f5.com"
 
 Click on "Next"
 
-Click on "Validate Deployment"
+Click on "Validate"
 
-Click on "View Validation Results"
+Click on "View deployment validation results"
 
 You will see a preview of the AS3 declaration that will be created by the template.
 
