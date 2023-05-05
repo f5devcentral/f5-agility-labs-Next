@@ -1,11 +1,9 @@
 Module 3: Deploy and operate Applications
 =========================================
-Eric is doing this
+
+In this lab you will utilize Central Manager to deploy and operate applications.
+
 .. toctree::
    :titlesonly:
 
    lab1.rst
-   lab3a1-cm_create_delete_apps.rst
-   lab3a2-cm_application_observability_overview.rst
-   lab3b1-cm_irules_create_how_to.rst
-   lab3b2-cm_irules_deploy_how_to.rst
