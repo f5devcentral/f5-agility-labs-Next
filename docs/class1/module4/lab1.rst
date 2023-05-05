@@ -30,6 +30,8 @@ Click **"Save & Continue"**
 
 On the next step, you will select the the UCS file stored in the UCS folder on the Desktop as the Source
 
+*Note: You can directly download the UCS file from the Ubuntu Jump Host via Access Method*
+
 * Leave the **Master Key** and **Encrypted UCS Archives** options disabled.
 
 Click **"Save & Continue"** 
