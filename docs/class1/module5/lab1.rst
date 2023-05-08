@@ -47,7 +47,7 @@ Deploy a HTTPS load balancer with a WAF policy
 
 |
 
-**4. Choose the "WAF-Secure-Load-Balancing-Service Application Template and click on "Start Creating"**
+**4. Choose the "http" Template and click on "Start Creating"** (the http template is a unified template that allows you to enable/disable capabilities)
 
  .. image:: ./pictures/application_template.png
 
@@ -121,7 +121,7 @@ Deploy a HTTPS load balancer with a WAF policy
 
  |
 
- .. image:: ./pictures/success1.png
+ .. image:: ./pictures/success.png
   
 |
 
