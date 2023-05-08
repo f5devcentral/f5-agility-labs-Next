@@ -56,7 +56,7 @@ Deploy a HTTPS load balancer with a WAF policy
 **5. Enter the following values in the template wizard for Properties as shown in the picture below and click "Next"**
    
  * Location: Choose e.g. big-ip-next-03.f5demo.com
- * Application Name: juice_lab
+ * Application Name: waf-app
  * Virtual Address: 10.1.10.203
  * Virtual Port: 443 
 
@@ -77,9 +77,8 @@ Deploy a HTTPS load balancer with a WAF policy
 
  .. image:: ./pictures/choose_cert.png
 
- 2. Click "+ Create" and enter the new policy name "juice_lab_policy" in the new window as shown in the picture below.
+ 2. Click "+ Create" and enter the new policy name "waf-policy" in the new window as shown in the picture below.
    
- |
 
  .. image:: ./pictures/create_application_create_policy.png
     
@@ -87,9 +86,9 @@ Deploy a HTTPS load balancer with a WAF policy
 
  |
 
- 3. Enable "Advanced View" to show that by default the Rating-Based-Template and UTF-8 is configured.
-   
- .. image:: ./pictures/policy_advanced_view.png
+ 3. Create waf-policy using Unified HTTP Template
+
+ .. image:: ./pictures/create_application_create_policy.png
 
  4. Click "Save" and you will get back to the previous screen as shown below.
 
@@ -134,13 +133,13 @@ Deploy a HTTPS load balancer with a WAF policy
 
 **12. Now let's go to the Windows Jump Host and check it out**
     
- Open Chrome, go to https://10.1.10.140 and you should see the Juice Shop app.
+ Open Chrome, go to https://10.1.10.203 and you should see the Juice Shop app.
 
  .. image:: ./pictures/final_check.png
 
  |
 
- Enter https://10.1.10.140/a=<script> and you should see the blocking page.
+ Enter https://10.1.10.203/a=<script> and you should see the blocking page.
 
  .. image:: ./pictures/block_check.png
 
