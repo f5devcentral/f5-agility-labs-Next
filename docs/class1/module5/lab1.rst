@@ -55,7 +55,7 @@ Deploy a HTTPS load balancer with a WAF policy
 
 **5. Enter the following values in the template wizard for Properties as shown in the picture below and click "Next"**
    
- * Location: Choose e.g. big-ip-next-03.f5demo.com
+ * Location: Choose e.g. big-ip-next-01.f5demo.com
  * Application Name: waf-app
  * Virtual Address: 10.1.10.203
  * Virtual Port: 443 
@@ -73,11 +73,13 @@ Deploy a HTTPS load balancer with a WAF policy
 
 **7. Select Security**
 
- 1. Choose the certificate "self_demo.f5.com"
+ 1. Toggle on "Enable HTTPS (TLS Server)"
+ 2. Choose the certificate "self_demo.f5.com"
 
  .. image:: ./pictures/choose_cert.png
 
- 2. Click "+ Create" and enter the new policy name "waf-policy" in the new window as shown in the picture below.
+ 3. Toggle on "Use a WAF Policy"
+ 4. Click "+ Create" and enter the new policy name "waf-policy" in the new window as shown in the picture below.
    
 
  .. image:: ./pictures/create_application_create_policy.png
@@ -86,13 +88,12 @@ Deploy a HTTPS load balancer with a WAF policy
 
  |
 
- 3. Create waf-policy using Unified HTTP Template
-
  .. image:: ./pictures/create_application_create_policy.png
 
- 4. Click "Save" and you will get back to the previous screen as shown below.
 
- |
+ 5. Click "Save" and you will get back to the previous screen as shown below.
+
+ 6. Click on "Next" to skip past iRules
    
  **Note:**  Make sure all bullets on the left are marked in green. If not, go back to the section which is not marked in green and check if everything is filled correctly or re-select it in case it is a drop down menu.
 
@@ -145,10 +146,34 @@ Deploy a HTTPS load balancer with a WAF policy
 
 |
 
-.. add go to the dashboard and show the violation
+**13. You can see your block requested by visiting the WAF dashbaord**
 
+From Central Manager click on the top left menu to select the Security menu.
 
+ .. image:: ./pictures/security-menu.png
+  :scale: 50%
 
-Next: |signup|
+From the WAF Dashboard click on the down arrow and select your "waf-policy".
 
-.. |signup| raw:: html
+ .. image:: ./pictures/waf-dashboard-select-policy.png
+
+You can now view your "good" and "bad" requests 
+
+.. note:: The "Lab Progress" app will also make "bad" requests in the background
+
+**14. (Optional)  WAF Event Logs**
+
+.. note:: This next exercise is optional (if you are doing this as part of internal F5 training and are part of the "Security" track, please skip in favor of your dedicated "Security" lab)
+
+Copy the "Support ID" that is displayed when you triggered a WAF block.
+
+ .. image:: ./pictures/get-support-id.png
+  
+Next click "Event Logs" and enter the support ID into the filter text box
+
+ .. image:: ./pictures/waf-events-search-support-id.png
+
+You can then click on the URI to view more details
+
+ .. image:: ./pictures/waf-events-details.png
+
