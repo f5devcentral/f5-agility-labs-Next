@@ -146,6 +146,34 @@ Deploy a HTTPS load balancer with a WAF policy
 
 |
 
-.. add go to the dashboard and show the violation
+**13. You can see your block requested by visiting the WAF dashbaord**
 
+From Central Manager click on the top left menu to select the Security menu.
+
+ .. image:: ./pictures/security-menu.png
+  :scale: 50%
+
+From the WAF Dashboard click on the down arrow and select your "waf-policy".
+
+ .. image:: ./pictures/waf-dashboard-select-policy.png
+
+You can now view your "good" and "bad" requests 
+
+.. note:: The "Lab Progress" app will also make "bad" requests in the background
+
+**14. (Optional)  WAF Event Logs**
+
+.. note:: This next exercise is optional (if you are doing this as part of internal F5 training and are part of the "Security" track, please skip in favor of your dedicated "Security" lab)
+
+Copy the "Support ID" that is displayed when you triggered a WAF block.
+
+ .. image:: ./pictures/get-support-id.png
+  
+Next click "Event Logs" and enter the support ID into the filter text box
+
+ .. image:: ./pictures/waf-events-search-support-id.png
+
+You can then click on the URI to view more details
+
+ .. image:: ./pictures/waf-events-details.png
 
