@@ -22,6 +22,7 @@ Before you can create a BIG-IP Next HA instance, you must have two standalone in
 ---------
 Procedure
 ---------
+#. Navigate back to the **Infrastructure** page of BIG-IP Next Central Manager that was used during module 2.
 #. Add a second BIG-IP Next instance to your infrastructure (the second instance is at 10.1.1.8)
    
    .. image:: ./lab6_img01_add_second_instance.png
@@ -32,7 +33,7 @@ Procedure
       :scale: 25%
 #. Click the mode link (the word "Standalone" under the "Mode" column) of the standalone BIG-IP Next instance (big-ip-next-01.f5demo.com) you want to become the active node in the BIG-IP Next HA instance.
    
-      .. image:: ./lab6_img03_enable_ha_on_instance1.png
+   .. image:: ./lab6_img03_enable_ha_on_instance1.png
       :scale: 25%
 #. The High Availability panel opens.
 #. Click the **Enable HA** button.
@@ -71,7 +72,7 @@ Procedure
 #. Enter the **HA Management (Floating) IP Address** (should be 10.1.1.9) for use when failing over to the standby node.
 #. Enter the **Control Plane** and **Data Plane IP** addresses that the active and standby nodes use for communication with each other. (See screenshot for suggested IP addresses)
    Address for big-ip-next-01.f5demo.com: control plane: 10.1.1.77/24; data plane: 10.1.40.7/24 and big-ip-next-02.f5demo.com: control plane: 10.1.1.88/24; data plane: 10.1.40.8/24
-#. The CIDR must be unique for each IP address and must use the same interface.
+#. The subnet for the data plane address should not be shared with either management or control plane addresses. Management and control plane can share a common subnet or they can each use unique subnets. The addresses for the nodes in an HA pair must use corresponding subnets for management, control plane and data plane.
    
    .. image:: ./lab6_img11_add_ha_properties_configured.png
       :scale: 25%
