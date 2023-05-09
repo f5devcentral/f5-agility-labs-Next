@@ -22,11 +22,11 @@ Before you can create a BIG-IP Next HA instance, you must have two standalone in
 ---------
 Procedure
 ---------
-#. Add a second BIG-IP Next instance to your infrastructure (the second instance is at 10.1.1.9)
+#. Add a second BIG-IP Next instance to your infrastructure (the second instance is at 10.1.1.8)
    
    .. image:: ./lab6_img01_add_second_instance.png
       :scale: 25%
-#. Follow procedure that was used to onboard initial device with instance 2 (10.1.1.9). Upon completion you should have four total instances as shown in below screenshot.
+#. Follow procedure that was used to onboard initial device with instance 2 (10.1.1.8). Upon completion you should have four total instances as shown in below screenshot.
    
    .. image:: ./lab6_img02_my_instances_list_4_instances.png
       :scale: 25%
