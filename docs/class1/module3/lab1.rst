@@ -3,84 +3,90 @@ Lab 3.1 - Deploy and operate Applications
 
 This section of the lab will utilize the "Applications" section of Central Manager.
 
-If you are not already in Applications you can reach this section by clicking the top left of the screen.
+#. Navigate to Applications
 
-.. image:: top-left.png
-  :scale: 50%
 
-Then clicking on "Applications"
+    Navigate to Applications by clicking the workspace switcher next to the F5 icon
 
-.. image:: central-manager-menu.png
-  :scale: 50%
+    .. image:: top-left.png
+      :scale: 50%
 
-From "My Apps" click on "+Add Application"
+    Then click on "Applications"
 
-.. image:: add-application.png
-  :scale: 25%
+    .. image:: central-manager-menu.png
+      :scale: 50%
 
-Click on "Create"
+#. Create Application
+    
+    From "My Apps" click on "+Add Application"
 
-.. image:: create-application.png
-  :scale: 25%
+    .. image:: add-application.png
+      :scale: 25%
 
-Select "HTTPS-Load-Balancing-Service"
+    Click on "Create"
 
-.. image:: select-https-app.png
-  :scale: 25%
+    .. image:: create-application.png
+      :scale: 25%
 
-Use the following inputs to create the app on the first screen.
+#. Select "HTTPS-Load-Balancing-Service"
 
-.. note:: If you were unable to add big-ip-next-01 in the previous lab you can use big-ip-next-03 instead
+    .. image:: select-https-app.png
+      :scale: 25%
 
-=========================== ==========================
-Name                        Value
---------------------------- --------------------------
-Location                    big-ip-next-01.f5demo.com
---------------------------- --------------------------
-Application Name            https-app
---------------------------- --------------------------
-Virtual Address             10.1.10.200
---------------------------- --------------------------
-Virtual Port                443
-=========================== ==========================
+#. Use the following inputs to create the app on the first screen.
 
-.. image:: create-application-tab1.png
-  :scale: 25%
+    .. note:: If you were unable to add big-ip-next-01 in the previous lab you can use big-ip-next-03 instead
 
-Click on "Next" to add endpoints (pool members) for the application.
+    =========================== ==========================
+    Name                        Value
+    --------------------------- --------------------------
+    Location                    big-ip-next-01.f5demo.com
+    --------------------------- --------------------------
+    Application Name            https-app
+    --------------------------- --------------------------
+    Virtual Address             10.1.10.200
+    --------------------------- --------------------------
+    Virtual Port                443
+    =========================== ==========================
 
-Click on "Add Endpoints"
+    .. image:: create-application-tab1.png
+      :scale: 25%
 
-.. image:: click-add-endpints.png
-  :scale: 25%
+#. Click on "Next" to add endpoints (pool members) for the application.
 
-Add the following endpoint address (no need to specify name)
+#. Click on "Add Endpoints"
 
-* 10.1.20.100
+    .. image:: click-add-endpints.png
+      :scale: 25%
 
-Click on "Save"
+#. Add the following endpoint address (optionally add a name)
 
-Change "Service Port" from 443 to 8080
+    * Address: 10.1.20.100
+    * Name: node1 (optional)
 
-Click on "Next"
+#. Click on "Save"
 
-For the Certificate select "self_demo.f5.com"
+#. Change "Service Port" from 443 to 8080
 
-Click on "Next"
+#. Click on "Next"
 
-Click on "Validate"
+#. For the Certificate select "self_demo.f5.com"
 
-Click on "View deployment validation results"
+#. Click on "Next"
 
-You will see a preview of the AS3 declaration that will be created by the template.
+#. Click on "Validate"
 
-Click on "Exit" to leave the preview of the AS3 declaration
+#. Click on "View deployment validation results"
 
-Click on "Deploy"
+#. You will see a preview of the AS3 declaration that will be created by the template.
 
-Open a new browser tab in the RDP client and go to https://10.1.10.200 (you will need to click past the cert errors)
+#. Click on "Exit" to leave the preview of the AS3 declaration
 
-You should now see the demo app
+#. Click on "Deploy"
+
+#. Open a new browser tab in the RDP client and go to https://10.1.10.200 (you will need to click past the cert errors)
+
+#. You should now see the demo app
 
 .. image:: https-app-deployed.png
   :scale: 25%

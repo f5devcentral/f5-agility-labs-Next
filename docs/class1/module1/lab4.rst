@@ -1,33 +1,35 @@
-Lab 1.4 - Lab Progress
-======================
+Lab 1.4 - Accessing Central Manager
+===================================
 
-During this lab you can track your progress and your peers via the "Lab Progress"
-application.
+During this lab we will primarily be using BIG-IP Next Central Manager 
 
-It is accessible under the "Ubuntu" device Access methods
+#. Launch Google Chrome
+    
+    .. image:: chrome-icon.png
+      :scale: 50%
+    
+    From the Windows RDP Desktop Find the Google Chrome icon and double click on it
+    
+#. Once Chrome is open click on the "Central Manager" bookmark
+    
+    
+    .. image:: central-manager-bookmark.png
+      :scale: 50%
+    
+#. Certificate errors
+    
+    You will see certificate errors 
 
-.. image:: access-method-lab-progress.png
-    :scale: 50%
+    You can click on "advanced" followed by "proceed"
 
-You will see your progress highlighted in gray.  
+    .. image:: central-manager-cert-errors.png
+        :scale: 50%
+#. Login to Central Manager
+    
+    You can login using the username "admin" and password "Welcome123!"
 
-.. image:: lab-progress-list.png
-    :scale: 75%
+    .. image:: central-manager-login-screen.png
+        :scale: 50%
 
-You optionally change the unique userid to your name by clicking on "Profile"
-
-.. image:: lab-progress-profile.png
-    :scale: 40%
-
-To see your detailed progress click on "Status" or "View" from the Home page next to your userid
-
-.. image:: lab-progress-details.png
-    :scale: 40%
-
-Your progress is updated every 10 minutes.  If you would like to refresh your status faster you can click on "Check Status"
-
-Once you complete the lab you will have my respect and admiration.
-
-.. image:: lab-progress-completed.png
-    :scale: 75%
-
+    .. image:: central-manager-desktop.png
+        :scale: 50%
