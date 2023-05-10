@@ -68,17 +68,32 @@ This section of the lab will utilize the "Applications" section of Central Manag
 
 #. Change "Service Port" from 443 to 8080
 
+    .. image:: service-port.png
+      :scale: 50%
+
 #. Click on "Next"
 
 #. For the Certificate select "self_demo.f5.com"
+
+    .. image:: select-self-cert.png
+      :scale: 50%
 
 #. Click on "Next"
 
 #. Click on "Validate"
 
+    .. image:: validating.png
+      :scale: 50%
+
 #. Click on "View deployment validation results"
 
+    .. image:: view-deployment-vaidation.png
+      :scale: 50%
+
 #. You will see a preview of the AS3 declaration that will be created by the template.
+
+    .. image:: as3-preview.png
+      :scale: 50%
 
 #. Click on "Exit" to leave the preview of the AS3 declaration
 
