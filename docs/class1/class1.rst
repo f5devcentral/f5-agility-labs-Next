@@ -1,7 +1,7 @@
-Class 1: Introduction to Next
-=============================
+Class 1: Introduction to BIG-IP Next
+====================================
 
-Introduction to Next
+Introduction to BIG-IP Next
 
 .. toctree::
    :maxdepth: 1

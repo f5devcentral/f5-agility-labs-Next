@@ -1,5 +1,5 @@
-F5 Agility Labs Getting Started Doc
-===================================
+F5 BIG-IP Next Introduction
+===========================
 
 Welcome to the |classbold| for F5 Agility |year|
 
