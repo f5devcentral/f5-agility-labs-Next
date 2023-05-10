@@ -3,6 +3,8 @@ Lab 1.4 - Accessing Central Manager
 
 During this lab we will primarily be using BIG-IP Next Central Manager 
 
+.. warning:: It can take 10-15 minutes for Central Manager to completely start after you start the lab.  If you see a connection error, please try waiting.
+
 #. Launch Google Chrome
     
     .. image:: chrome-icon.png
