@@ -31,6 +31,7 @@ Deploy a HTTPS load balancer with a WAF policy
    .. image:: ./pictures/cm_login.png 
 
  * Option 2: Go to the "Windows Jump Host" you've logged in before, start the Chrome browser and select the "Central Manager" Favorite using the same credentials as mentioned in Option 1
+ 
    .. image:: ./pictures/cm_login_jumphost.png
 
 |
@@ -65,7 +66,9 @@ Deploy a HTTPS load balancer with a WAF policy
 
 **6. Select Endpoints (Pool Members)**
 
- Click on "+ Create" and add the pool member IP address 10.1.20.100 and the port number 3000 and click "Next".
+ On the Pool Properties page, leave the defaults of round-robin for Load-Balancing Mode and http for Monitor Type then click "Next".
+ 
+ On the "Pool Members" page Click "Add New Endpoint" and input the pool member IP address 10.1.20.100 and click save.  You'll now see the IP address below the filter box, but now change the Service Port to 3000 and click "Next".
 
  .. image:: ./pictures/create_application_endpoints.png
 
@@ -78,8 +81,9 @@ Deploy a HTTPS load balancer with a WAF policy
 
  .. image:: ./pictures/choose_cert.png
 
- 3. Toggle on "Use a WAF Policy"
- 4. Click "+ Create" and enter the new policy name "waf-policy" in the new window as shown in the picture below.
+ 3. Select "Next"
+ 4. On the "Security Policies" page Toggle on "Use a WAF Policy"
+ 5. Click "+ Create" and enter the new policy name "waf-policy" in the new window as shown in the picture below.
    
 
  .. image:: ./pictures/create_application_create_policy.png
@@ -93,7 +97,7 @@ Deploy a HTTPS load balancer with a WAF policy
 
  5. Click "Save" and you will get back to the previous screen as shown below.
 
- 6. Click on "Next" to skip past iRules
+ 6. Click on "Deploy" to skip past iRules
    
  **Note:**  Make sure all bullets on the left are marked in green. If not, go back to the section which is not marked in green and check if everything is filled correctly or re-select it in case it is a drop down menu.
 
@@ -101,13 +105,13 @@ Deploy a HTTPS load balancer with a WAF policy
 
 |
 
-**8. Click on "Next" to see the Summary screen below**
+**8. Click on "Validate" to run the deployment validation**
  
  .. image:: ./pictures/validate.png
 
 |
 
-**9. Click on "Validate" and you should see the "Success!" message below**
+**9. After running the validation you'll see a screen like below showing"Success!"**
 
  .. image:: ./pictures/success.png
   
