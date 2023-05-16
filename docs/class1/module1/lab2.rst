@@ -1,48 +1,32 @@
-Lab 1.2 - Accessing the Lab Environment
-=======================================
+Lab 1.2 - Access Windows RDP Host
+=================================
 
-This is a multi-step process that will involve:
+You can interact with the lab environment via a Windows RDP client.
 
-1. Finding email invite to lab
-2. Creating F5 account (If you don't have one already)
-3. Setting up MFA for your F5 account (If you haven't already)
-4. Signing into the lab environment
+If you are unable to use RDP on your device please contact a lab assistant for alternate access methods
 
-You should have received an email invitation to join the lab
-
-.. image:: email-invite.png
+1. Locate the Windows RDP Host
+  From the course page click on the "Deployments" tab at the top left of the page.
+  
+  .. image:: main-course-page.png
     :scale: 25%
-
-Click on the link below "You can login to the UDF here"
-
-If you do not already have an F5 account you will be prompted to create one.
-
-.. image:: create-account.png
+  
+  Find the "Windows" host and click on the 
+  
+  .. image:: select-rdp-1080p.png
     :scale: 25%
-
-You should receive a new email to activate your account.
-
-.. image:: activate-account.png
+    
+2. Launch the RDP client  
+  Launch the .rdp file.  You will need to login with username and password of "user" and "user".
+  
+  You may need to click on "more choices" to select "Use a different username"
+  
+  .. image:: rdp-more-choices.png
     :scale: 25%
-
-After you click on 'Activate Account' you should see the following screen.
-
-.. image:: account-activated.png
-    :scale: 25%
-
-You should next go to https://udf.f5.com (Yes, I know this is a lot of steps, sorry!)
-
-.. image:: udf-login.png
-    :scale: 25%
-
-Click on "Invited Users"
-
-You will now be prompte to setup MFA access to the lab environment (required)
-
-.. image:: mfa-setup.png
-    :scale: 25%
-
-After you complete your setup (click on "Finish") you will be able to launch this course.
-
-.. image:: launch-course.png
+  
+  .. note:: You will see warning messages about certificates that you can click past.  We use a self-signed certificate for RDP in this lab
+  
+  You may also need to re-size the window to better match the resolution of your display.
+  
+  .. image:: rdp-re-size.png
     :scale: 25%
