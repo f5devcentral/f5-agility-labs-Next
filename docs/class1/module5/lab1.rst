@@ -92,14 +92,10 @@ Deploy a HTTPS load balancer with a WAF policy
     
  **Note:** Bot Defense, L7 DoS Protection, Threat Campaigns and IP Intelligence are enabled by default but some of them may require additional licenses when BIG-IP Next WAF reaches GA.
 
- |
 
- .. image:: ./pictures/create_application_create_policy.png
+ 1. Click "Save" and you will get back to the previous screen as shown below.
 
-
- 5. Click "Save" and you will get back to the previous screen as shown below.
-
- 6. Click on "Deploy" to skip past iRules
+ 2. Click on "Next" to skip past iRules
    
  **Note:**  Make sure all bullets on the left are marked in green. If not, go back to the section which is not marked in green and check if everything is filled correctly or re-select it in case it is a drop down menu.
 
