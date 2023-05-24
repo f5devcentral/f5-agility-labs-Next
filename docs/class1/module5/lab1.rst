@@ -5,9 +5,6 @@ Lab 5.1 - Modify templates to add security policy
 * Show versioning of the template
 * Deploy app again using the new template
 
-.. warning:: We have had reports from students that the UI may revert settings if you try and edit the application after deploying.  Please take care to ensure that you have the correct inputs.  We are investigating the reports of issues to determine the root cause, but you should be able to complete this lab.  If you encounter any issues, please let us know.
-
-
 Deploy an application with a WAF policy using FAST template
 ###########################################################
 This part of the lab covers how to create and deploy an application and protect it with a WAF policy using the FAST template and the WAF violation rating based template with the focus on ease of use.

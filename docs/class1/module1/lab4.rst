@@ -1,37 +1,44 @@
-Lab 1.4 - Accessing Central Manager
-===================================
+Lab 1.5 - Lab Progress
+======================
 
-During this lab we will primarily be using BIG-IP Next Central Manager 
+During this lab you can track your progress and your peers via the "Lab Progress"
+application.
 
-.. warning:: It can take 10-15 minutes for Central Manager to completely start after you start the lab.  If you see a connection error, please try waiting.
+#. Open the "Lab Progress Application"
 
-#. Launch Google Chrome
-    
-    .. image:: chrome-icon.png
-      :scale: 50%
-    
-    From the Windows RDP Desktop Find the Google Chrome icon and double click on it
-    
-#. Once Chrome is open click on the "Central Manager" bookmark
-    
-    
-    .. image:: central-manager-bookmark.png
-      :scale: 50%
-    
-#. Certificate errors
-    
-    You will see certificate errors 
 
-    You can click on "advanced" followed by "proceed"
+    It is accessible under the "Ubuntu Jump Host" device Access methods
 
-    .. image:: central-manager-cert-errors.png
-        :scale: 50%
-#. Login to Central Manager
-    
-    You can login using the username "admin" and password "Welcome123!"
-
-    .. image:: central-manager-login-screen.png
+    .. image:: access-method-lab-progress.png
         :scale: 50%
 
-    .. image:: central-manager-desktop.png
-        :scale: 50%
+    You will see your progress highlighted in gray.  
+
+    .. image:: lab-progress-list.png
+        :scale: 75%
+
+#. Change your userid to your name
+
+
+    You optionally change the unique userid to your name by clicking on "Profile"
+
+    .. image:: lab-progress-profile.png
+        :scale: 40%
+
+#. View your detailed progress
+
+
+    To see your detailed progress click on "Status" or "View" from the Home page next to your userid
+
+    .. image:: lab-progress-details.png
+        :scale: 40%
+
+    Your progress is updated every 10 minutes.  If you would like to refresh your status faster you can click on "Check Status"
+
+#. Completing the lab
+
+    Once you complete the lab you will have my respect and admiration.
+
+    .. image:: lab-progress-completed.png
+        :scale: 75%
+
