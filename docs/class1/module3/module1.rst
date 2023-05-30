@@ -8,3 +8,4 @@ In this lab you will utilize Central Manager to deploy and operate applications.
 
    lab1.rst
    lab2.rst
+   lab3.rst
