@@ -94,9 +94,6 @@ In this exercise we will "roll over" a bad version.  This is not a "roll back", 
         :scale: 50%
     
 #. Click on "Commit Changes"
-    
-    .. image:: irules-v2.png
-        :scale: 50%
             
 #. Click on "more commit options"
     
