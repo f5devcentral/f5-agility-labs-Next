@@ -1,9 +1,9 @@
 Lab 3.3 - Customizing a Template
 ================================
 
-In the previous 3.1 lab exercise we need to change the "Service Port" to 8080 from 443.
+In the previous 3.1 lab exercise we needed to change the "Service Port" to 8080 from 443.
 
-In this lab exercise we will clone the template from the previous lab exercise and make the following Changes
+In this lab exercise we will clone the template from the previous lab exercise and make the following changes
 
 * Change default "Service Port" from 443 to 8080
 * Change the UI title from "Service Port" to "Pool Member Port"
