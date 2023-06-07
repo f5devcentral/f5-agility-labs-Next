@@ -21,9 +21,12 @@ We recommend that you use Google Chrome when using this lab environment.
     You can login using the username "admin" and password "Welcome123!"
         Username:
             .. code-block:: console
+
                 admin
+
         Password:
             .. code-block:: console
+
                 Welcome123!
 
     .. image:: central-manager-login-screen.png
