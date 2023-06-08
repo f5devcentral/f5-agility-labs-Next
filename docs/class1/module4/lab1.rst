@@ -2,19 +2,19 @@
 Lab 4.1 - Import App from UCS
 =============================
 
-First, access the Windows Jump Host via RDP.
+ **Login to BIG-IP Next Central Manager in UDF**
+ 
+  **Preferred Method:** Navigate to your UDF deployment and select the "GUI" ACCESS method for the "BIG-IP Next Central Manager" and login with the username/password provided under DETAILS.
+  
+   .. image:: ./cm_login.png 
 
-.. image:: ./lab4-desktop.png
+  Option 2: Use RDP access method on Windows Jump Host
+   .. image:: ./rdp-access-windows.png
         :scale: 25%
 
-Launch Google Chrome to access BIG-IP Next CM 
+After logging into BIG-IP Next CM, click on  **"+Add Application"** 
 
-.. image:: ./lab4-NextCM.png
- :scale: 25%
-
-After logging into BIG-IP Next CM, click on  **"+Add Application"** on the upper right
-
-.. image:: ./lab4-add_app_NextCM.png
+.. image:: ./lab4-add-application.png
  :scale: 25%
 
 Select **"New Migration"** and enter the following information in General Propoerties:
@@ -28,17 +28,17 @@ Click **"Save & Continue"**
  :scale: 25%
 
 
-On the next step, you will select the the UCS file stored in the UCS folder on the Desktop as the Source
+On the next step, you will select the the UCS file from the Ubuntu Jump Host Access Method
 
-*Note: You can directly download the UCS file from the Ubuntu Jump Host via Access Method*
+.. image:: ./lab4-ucs-file.png
+        :scale: 25%
+.. image:: ./lab4-downloads-ucs.png
+        :scale: 25%
 
 * Leave the **Master Key** and **Encrypted UCS Archives** options disabled.
 
 Click **"Save & Continue"** 
 
-
-.. image:: ./lab4-ucs-import.png
- :scale: 25%
 UCS file uploaded successful and click **"Save & Continue"**
 
 
@@ -56,14 +56,19 @@ At the Application Migration menu, verify the 2 applications and click on **"Sav
 
 .. image:: ./lab4-app-migration-verify.png
  :scale: 25%
-For Deployment Method, select the **API** option and for "Deploy Location" select **big-ip-next-03.f5demo.com (10.1.1.10)**
+
+
+For the 2 application services, make sure the "Deploy Location" is set for  **big-ip-next-03.f5demo.com**
+
+.. image:: ./lab4-deploy-location.png
+ :scale: 25%
 
 Then select **"Deploy"** and after about 30 seconds, both applications should showcase a green successful status icon.
 
-.. image:: ./lab4-select-Next03.png
+.. image:: ./success-deployment-lab4.png
  :scale: 25%
 
-Click **Finish & Exit** and now at the My Apps screen you will be able to see the 2 new apps that you have imported.
+Click **Finish** and now at the My Apps screen you will be able to see the 2 new apps that you have imported.
 
-.. image:: ./lab4-import-finish.png
+.. image:: ./lab4-summary-final.png
  :scale: 25%
