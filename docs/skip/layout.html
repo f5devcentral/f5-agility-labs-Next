@@ -3,7 +3,7 @@
   {{ super() }}
 
 
-
+<!--
 {% set css_files = css_files +
   [ "_static/css/bootstrap.min.css",
     "_static/css/f5.css",
@@ -11,12 +11,13 @@
     "_static/css/CoveoFullSearch.css",
     "_static/css/custom.css",
     "https://use.fontawesome.com/21fb8a09c3.css" ] %}
+--> 
 
 {% set script_files = script_files + [
   "https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.js"
   ]%}
 
-{% include "head.html" %}
+<!-- {% include "head.html" %} -->
 
 <!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PPZPQ6" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -58,7 +59,7 @@
         <span class="nav-sidebartoc">
             {{ toctree(includehidden=True, collapse=True) }}
         </span>
-      {%- include "extralinks.html" %}
+      <!-- {%- include "extralinks.html" %} -->
       </nav>
     </div>
 
@@ -85,7 +86,7 @@
     <article class="docs-container site-article-inner">
 
       {%- block breadcrumb %}
-      {% include "breadcrumb.html" %}
+      <!-- {% include "breadcrumb.html" %} -->
       {% endblock %}
 
 
