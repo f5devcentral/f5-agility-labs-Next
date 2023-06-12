@@ -50,6 +50,18 @@ Procedure
    .. image:: ./lab6_img06_add_ha_vlan_config.png
       :scale: 25%
    Use the name "control-plane-vlan" for this and Tag "3999"
+
+   VLAN Name:
+
+   .. code-block:: console
+
+      control-plane-vlan
+
+   Tag:
+
+   .. code-block:: console
+
+      3999
    
    .. image:: ./lab6_img07_add_ha_create_controlplane_vlan.png
       :scale: 25%
@@ -59,6 +71,18 @@ Procedure
    .. image:: ./lab6_img08_add_ha_vlan_data_plane.png
       :scale: 25%
    Use the name "data-plane-vlan" for this and select Untagged Interface: "1.3"
+
+   VLAN Name:
+
+   .. code-block:: console
+
+      data-plane-vlan
+   
+   Untagged Interface:
+
+   .. code-block:: console
+
+      1.3
    
    .. image:: ./lab6_img09_add_ha_create_dataplane_vlan.png
       :scale: 25%
@@ -69,9 +93,48 @@ Procedure
       :scale: 25%
 #. The HA Properties panel opens.
 #. Enter the **HA Name** (example: ha1) for this high availability pair of nodes. This name should be unique for each pair managed by the Next Central Manager instance.
+
+Name:
+
+.. code-block:: console
+
+   ha1
+
 #. Enter the **HA Management (Floating) IP Address** (should be 10.1.1.9) for use when failing over to the standby node.
+
+HA Management IP:
+
+.. code-block:: console
+
+   10.1.1.9
+
 #. Enter the **Control Plane** and **Data Plane IP** addresses that the active and standby nodes use for communication with each other. (See screenshot for suggested IP addresses)
    Address for big-ip-next-01.f5demo.com: control plane: 10.1.1.77/24; data plane: 10.1.40.7/24 and big-ip-next-02.f5demo.com: control plane: 10.1.1.88/24; data plane: 10.1.40.8/24
+
+big-ip-next-01 control plane IP:
+
+.. code-block:: console
+
+   10.1.1.77/24
+
+big-ip-next-01 data plane IP:
+
+.. code-block:: console
+
+   10.1.40.7/24
+
+big-ip-next-02 control plane IP:
+
+.. code-block:: console
+
+   10.1.1.88/24
+
+big-ip-next-02 data plane IP:
+
+.. code-block:: console
+
+   10.1.40.8/24
+
 #. The subnet for the data plane address should not be shared with either management or control plane addresses. Management and control plane can share a common subnet or they can each use unique subnets. The addresses for the nodes in an HA pair must use corresponding subnets for management, control plane and data plane.
    
    .. image:: ./lab6_img11_add_ha_properties_configured.png
@@ -86,12 +149,46 @@ Procedure
    
    .. image:: ./lab6_img13_add_ha_traffic_vlans_external.png
       :scale: 25%
-   Active Node IP Address: 10.1.10.7/24; Standby Node IP Address: 10.1.10.8/24; Floating IP Address: 10.1.10.9/24
+
+   Active Node IP Address:
+
+   .. code-block:: console
+
+      10.1.10.7/24
+   
+   Standby Node IP Address:
+
+   .. code-block:: console
+
+      10.1.10.8/24
+
+   Floating IP Address:
+   
+   .. code-block:: console
+
+      10.1.10.9/24
+
    Click **Save**
    
    .. image:: ./lab6_img14_add_ha_traffic_vlans_internal.png
       :scale: 25%
-   Active Node IP Address: 10.1.20.7/24; Standby Node IP Address: 10.1.20.8/24; Floating IP Address: 10.1.20.9/24
+
+   Active Node IP Address:
+   
+   .. code-block:: console
+      10.1.20.7/24
+
+   Standby Node IP Address:
+   
+   .. code-block:: console
+      10.1.20.8/24
+
+   Floating IP Address:
+   
+   .. code-block:: console
+
+      10.1.20.9/24
+
    Click **Save**
 #. When each VLAN displays a green check mark, you can proceed.
    
@@ -102,7 +199,11 @@ Procedure
    
    .. image:: ./lab6_img16_add_ha_summary.png
       :scale: 25%
-   Click **Deploy to HA**. If Deploy to HA is not available, you may need to revisit the HA VLANs section of the HA Parameters panel (if there is not a green checkmark next to HA VLANs; workaround the missing green checkmark by pulling down each of the VLAN selections and re-selecting the items already selected; after this, you can return to the Summary Page to Deploy to HA).
+   Click **Deploy to HA**.
+
+   .. note::
+      If Deploy to HA is not available, you may need to revisit the HA VLANs section of the HA Parameters panel (if there is not a green checkmark next to HA VLANs; workaround the missing green checkmark by pulling down each of the VLAN selections and re-selecting the items already selected; after this, you can return to the Summary Page to Deploy to HA).
+
 #. You'll be prompted to confirm the deployment.
    
    .. image:: ./lab6_img17_add_ha_deploy_to_ha_confirm.png

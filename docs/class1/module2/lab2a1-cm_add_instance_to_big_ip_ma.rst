@@ -21,10 +21,13 @@ Before you add an instance to BIG-IP Next Central Manager, you must have the ins
 
 - Admin username and password (In this lab, we'll use admin:Welcome123!)
 	Username:
+
 	.. code-block:: console
 		
 		admin
+
 	Password:
+
 	.. code-block:: console
 		
 		Welcome123!
@@ -43,25 +46,30 @@ Procedure
     .. image:: ./lab2_img04_my_instances_list_add.png
 		:scale: 25%
 #. Type the IP address (10.1.1.7) for the BIG-IP Next instance and click **Connect**. You can ignore the top option for Creating a new instance. You must use port `5443`.
+
     .. code-block:: console
 
 		10.1.1.7
 
 	.. image:: ./lab2_img05_add_instance_dialog_1.png
 		:scale: 25%
+
 #. For the Management Credentials, in the **Username** and **Password** fields, enter the username and password that were used to login to the BIG-IP Next Central Manager and click **Submit**. (admin:Welcome123!)
     Username:
+
     .. code-block:: console
 
 		admin
 
 	Password:
+
 	.. code-block:: console
 
 		Welcome123!
 
     .. image:: ./lab2_img06_login_to_instance.png
 		:scale: 25%
+
 #. Once you have authenticated to the instance, you'll see a dialog prompting you to supply new Management Credentials. We suggest accepting the pre-populated username (admin-cm) and re-using the same password that has been used so far in the lab (Welcome123!). Enter the password twice (in the **Password** and **Confirm Password** fields). You'll use this username and password to manage the BIG-IP Next instance and click **Add Instance**.
     Password:
 	.. code-block:: console

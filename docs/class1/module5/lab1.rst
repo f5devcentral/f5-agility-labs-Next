@@ -60,6 +60,30 @@ Deploy a HTTPS load balancer with a WAF policy
  * Virtual Address: 10.1.10.203
  * Virtual Port: 443 
 
+ Location:
+
+.. code-block:: console
+
+    big-ip-next-01.f5demo.com
+
+Application Name:
+
+.. code-block:: console
+
+    waf-app
+
+Virtual Address:
+
+.. code-block:: console
+
+    10.1.10.203
+
+Virtual Port:
+
+.. code-block:: console
+
+    443
+
  .. image:: ./pictures/create_application_properties.png
 |
 
@@ -68,6 +92,11 @@ Deploy a HTTPS load balancer with a WAF policy
  On the Pool Properties page, leave the defaults of round-robin for Load-Balancing Mode and http for Monitor Type then click "Next".
  
  On the "Pool Members" page Click "Add New Endpoint" and input the pool member IP address 10.1.20.100 and click save.  You'll now see the IP address below the filter box, but now change the Service Port to 3000 and click "Next".
+
+ IP:
+
+ .. code-block:: console
+    10.1.20.100
 
  .. image:: ./pictures/create_application_endpoints.png
 
@@ -140,6 +169,12 @@ Deploy a HTTPS load balancer with a WAF policy
  |
 
  Enter https://10.1.10.203/a=<script> and you should see the blocking page.
+
+ URL:
+
+ .. code-block:: console
+  
+      https://10.1.10.203/a=<script>
 
  .. image:: ./pictures/block_check.png
 

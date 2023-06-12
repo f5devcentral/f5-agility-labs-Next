@@ -23,11 +23,13 @@ Procedure
    
    .. image:: ./lab6_upgrade_img02_initial.png
       :scale: 25%
+
 #. For the image file, click **Select file** and then navigate to the available upgrade file available on the instance.
 #. For the signature file, click **Select file** and then navigate to the available signature file available on the instance.
    
    .. image:: ./lab6_upgrade_img03_selected_file_upgrade_signature_file.png
       :scale: 25%
+
 #. Click the **Upgrade** button.
 #. You'll see an Upgrade Instance confirmation dialog come up. Click **Upgrade**.
    
