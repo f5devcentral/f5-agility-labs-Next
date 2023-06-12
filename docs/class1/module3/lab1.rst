@@ -49,6 +49,30 @@ This section of the lab will utilize the "Applications" section of Central Manag
     Virtual Port                443
     =========================== ==========================
 
+    Location:
+
+    .. code-block:: console
+        
+      big-ip-next-01.f5demo.com
+    
+    Application Name:
+
+    .. code-block:: console
+
+      https-app
+
+    Virtual Address:
+
+    .. code-block:: console 
+      
+      10.1.10.200
+    
+    Virtual Port:
+
+    .. code-block:: console
+
+          443
+
     .. image:: create-application-tab1.png
       :scale: 25%
 
@@ -61,8 +85,17 @@ This section of the lab will utilize the "Applications" section of Central Manag
 
 #. Add the following endpoint address (optionally add a name)
 
-    * Address: 10.1.20.100
-    * Name: node1 (optional)
+    Address:
+
+    .. code-block:: console
+
+      10.1.20.100
+
+    Name:
+
+    .. code-block:: console
+
+      node1
 
 #. Click on "Save"
 
