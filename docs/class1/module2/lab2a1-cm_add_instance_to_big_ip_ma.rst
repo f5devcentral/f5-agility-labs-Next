@@ -15,11 +15,13 @@ Prerequisites
 Before you add an instance to BIG-IP Next Central Manager, you must have the instances:
 
 - IP address (In this lab, we'll use 10.1.1.7)
+
     .. code-block:: console
 
 		10.1.1.7
 
 - Admin username and password (In this lab, we'll use admin:Welcome123!)
+
 	Username:
 
 	.. code-block:: console
@@ -47,8 +49,6 @@ Procedure
 		:scale: 25%
 #. Type the IP address (10.1.1.7) for the BIG-IP Next instance and click **Connect**. You can ignore the top option for Creating a new instance. You must use port `5443`.
 
-	IP Address:
-
     .. code-block:: console
 
 		10.1.1.7
@@ -57,29 +57,19 @@ Procedure
 		:scale: 25%
 
 #. For the Management Credentials, in the **Username** and **Password** fields, enter the username and password that were used to login to the BIG-IP Next Central Manager and click **Submit**. (admin:Welcome123!)
-
     Username:
-
-    .. code-block:: console
-
-		admin
-
+    	.. code-block:: console
+			admin
 	Password:
-
-	.. code-block:: console
-
-		Welcome123!
-
+		.. code-block:: console
+			Welcome123!
     .. image:: ./lab2_img06_login_to_instance.png
 		:scale: 25%
 
 #. Once you have authenticated to the instance, you'll see a dialog prompting you to supply new Management Credentials. We suggest accepting the pre-populated username (admin-cm) and re-using the same password that has been used so far in the lab (Welcome123!). Enter the password twice (in the **Password** and **Confirm Password** fields). You'll use this username and password to manage the BIG-IP Next instance and click **Add Instance**.
     Password:
-
-	.. code-block:: console
-
-		Welcome123!
-
+		.. code-block:: console
+			Welcome123!
     .. image:: ./lab2_img07_add_instance_dialog_2.png
 		:scale: 25%
 #. You'll be asked to confirm Central Management of the instance. BIG-IP Next Central Manager removes all locally-configured users from the BIG-IP Next instance you are adding. If, for any reason, disablement of users on the local BIG-IP Next instance fails, adding the BIG-IP Next instance to BIG-IP Next Central Manager is halted and all users are re-enabled on the local BIG-IP Next instance. You should click **Add** at this confirmation dialog.
