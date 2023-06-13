@@ -103,7 +103,7 @@ automatically uploaded to the iHealth account listed in the request. Ensure that
 
 * `instance_id` - To view a full list  of managed instances, send the following get request: 
    
-   .. code-block::console
+   .. code-block:: console
       
       ``GET https://{{bigip_next_cm_mgmt_ip}}/api/device/inventory``
 
@@ -111,7 +111,7 @@ automatically uploaded to the iHealth account listed in the request. Ensure that
 * `ihealth_user` and `ihealth_password` - Have your iHealth account credentials ready. To check if your credentials are valid use the OpenAPI for QKView: `F5 BIG-IP Next API Specification - QKView Feature <https://clouddocs.f5.com/products/big-iq/mgmt-api/v0.0.1/ApiReferences/bigip_public_api_ref/r_openapi-next.html#tag/QkviewFeature>`_.
 * `f5_support_case` - (Optional) you can add an F5 support case number to iHealth and share with the listed case owner.
 
-.. code-block::console
+.. code-block:: console
 
    ``POST https://{{bigip_next_cm_mgmt_ip}}/api/qkview/v1/qkviews``
 
