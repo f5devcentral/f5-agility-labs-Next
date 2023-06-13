@@ -113,7 +113,7 @@ automatically uploaded to the iHealth account listed in the request. Ensure that
 
 .. code-block:: console
 
-   ``POST https://{{bigip_next_cm_mgmt_ip}}/api/qkview/v1/qkviews``
+   POST https://{{bigip_next_cm_mgmt_ip}}/api/qkview/v1/qkviews
 
 Request body example with iHealth credentials and F5 Support case number:
 ..  what is visible in gui?
@@ -194,17 +194,17 @@ Once you have successfully generated a QKView file, you can download it to your 
 * `qkview_id` - The ID number created when the file was generated. For a list of all QKView file information send the following get request:
    .. code-block:: console
    
-      ``GET https://{{bigip_next_cm_mgmt_ip}}/api/qkview/v1/qkviews``
+      GET https://{{bigip_next_cm_mgmt_ip}}/api/qkview/v1/qkviews
 
 .. code-block:: console
 
-   ``GET https://{{bigip_next_cm_mgmt_ip}}/api/qkview/v1/files/{id}/download``
+   GET https://{{bigip_next_cm_mgmt_ip}}/api/qkview/v1/files/{id}/download
 
 To upload the downloaded QKView file to iHealth use the following post request:
 
    .. code-block:: console
    
-      ``POST https://{{bigip_next_cm_mgmt_ip}}/api/qkview/v1/files/{id}/upload``
+      POST https://{{bigip_next_cm_mgmt_ip}}/api/qkview/v1/files/{id}/upload
 
 Request body example:
 
@@ -262,10 +262,10 @@ Ensure you have the following information:
 * `qkview_id` - The ID number created when the file was generated. For a list of all QKView file information send the following get request:
    .. code-block:: console
    
-      ``GET https://{{bigip_next_cm_mgmt_ip}}/api/qkview/v1/qkviews``
+      GET https://{{bigip_next_cm_mgmt_ip}}/api/qkview/v1/qkviews
 
 Use the following delete request to remove the QKView file from the instance log:
 
    .. code-block:: console
    
-      ``DELETE https://{{bigip_next_cm_mgmt_ip}}/api/qkview/v1/files/{id}``
+      DELETE https://{{bigip_next_cm_mgmt_ip}}/api/qkview/v1/files/{id}

@@ -39,7 +39,9 @@ Initial Setup BIG-IP Next Instance(s) VE > Setup Dataplane-debug (ONLY for Stand
 
 #. Enable debug sidecar (Postman: **PUT Enable Dataplane-debug Setup**)
 
-   ``PUT https://{{BIGIP_MGMT_ADDR}}:{{BIGIP_MGMT_PORT}}/api/v1/actions/systems/{systemId}/dataplane-debug/enable``
+   .. code-block:: console
+
+      PUT https://{{BIGIP_MGMT_ADDR}}:{{BIGIP_MGMT_PORT}}/api/v1/actions/systems/{systemId}/dataplane-debug/enable
 
    .. code-block::
 
@@ -58,11 +60,15 @@ Initial Setup BIG-IP Next Instance(s) VE > Setup Dataplane-debug (ONLY for Stand
 
 #. Log in to the debug sidecar
 
-   ``$ ssh <username>@<management IP address> -p <port number>``
+   .. code-block:: console
+
+      ssh <username>@<management IP address> -p <port number>
 
    **Example**
 
-   ``$ ssh david@10.144.191.#. -p 5444``
+   .. code-block:: console
+
+      ssh david@10.144.191.#. -p 5444
 
 
 #. Run a debug sidecar command line tool
@@ -71,11 +77,14 @@ Initial Setup BIG-IP Next Instance(s) VE > Setup Dataplane-debug (ONLY for Stand
 
    **Example**
 
+   .. code-block:: console
 
-   ``/traceroute google.com``
+      traceroute google.com
 
    <output>
 
 #. Disable debug sidecar (Postman: **PUT Disable Dataplane-debug Setup**)
 
-   ``PUT https://10.0.0.122:5443/api/v1/actions/systems/{systemId}/dataplane-debug/disable``
+   .. code-block:: console
+
+      PUT https://10.0.0.122:5443/api/v1/actions/systems/{systemId}/dataplane-debug/disable
