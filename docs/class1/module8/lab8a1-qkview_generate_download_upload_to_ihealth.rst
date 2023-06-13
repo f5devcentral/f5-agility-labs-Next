@@ -102,10 +102,10 @@ Send a post request to generate a QKView file for a BIG-IP Next instance. The ge
 automatically uploaded to the iHealth account listed in the request. Ensure that you have the following information available:
 
 * `instance_id` - To view a full list  of managed instances, send the following get request: 
-
-.. code-block::console
-
-   GET https://{{bigip_next_cm_mgmt_ip}}/api/device/inventory
+   
+   .. code-block::console
+      
+      ``GET https://{{bigip_next_cm_mgmt_ip}}/api/device/inventory``
 
 * `filename` - Add a unique file name to identify the QKView file.
 * `ihealth_user` and `ihealth_password` - Have your iHealth account credentials ready. To check if your credentials are valid use the OpenAPI for QKView: `F5 BIG-IP Next API Specification - QKView Feature <https://clouddocs.f5.com/products/big-iq/mgmt-api/v0.0.1/ApiReferences/bigip_public_api_ref/r_openapi-next.html#tag/QkviewFeature>`_.
