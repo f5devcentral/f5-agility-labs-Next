@@ -103,12 +103,17 @@ automatically uploaded to the iHealth account listed in the request. Ensure that
 
 * `instance_id` - To view a full list  of managed instances, send the following get request: 
 
-  ``GET https://{{bigip_next_cm_mgmt_ip}}/api/device/inventory``
+  .. code-block::console
+
+     ``GET https://{{bigip_next_cm_mgmt_ip}}/api/device/inventory``
+
 * `filename` - Add a unique file name to identify the QKView file.
 * `ihealth_user` and `ihealth_password` - Have your iHealth account credentials ready. To check if your credentials are valid use the OpenAPI for QKView: `F5 BIG-IP Next API Specification - QKView Feature <https://clouddocs.f5.com/products/big-iq/mgmt-api/v0.0.1/ApiReferences/bigip_public_api_ref/r_openapi-next.html#tag/QkviewFeature>`_.
 * `f5_support_case` - (Optional) you can add an F5 support case number to iHealth and share with the listed case owner.
 
-``POST https://{{bigip_next_cm_mgmt_ip}}/api/qkview/v1/qkviews``
+.. code-block::console
+
+   ``POST https://{{bigip_next_cm_mgmt_ip}}/api/qkview/v1/qkviews``
 
 Request body example with iHealth credentials and F5 Support case number:
 ..  what is visible in gui?
@@ -186,13 +191,20 @@ The QKView file is downloaded to your local system's downloads. You can manually
 ------------------------------------------------------
 Once you have successfully generated a QKView file, you can download it to your local system. Ensure you have the following information: 
 
-* `qkview_id` - The ID number created when the file was generated. For a list of all QKView file information send the following get request: ``GET https://{{bigip_next_cm_mgmt_ip}}/api/qkview/v1/qkviews``
+* `qkview_id` - The ID number created when the file was generated. For a list of all QKView file information send the following get request:
+   .. code-block::console
+   
+      ``GET https://{{bigip_next_cm_mgmt_ip}}/api/qkview/v1/qkviews``
 
-``GET https://{{bigip_next_cm_mgmt_ip}}/api/qkview/v1/files/{id}/download``
+.. code-block::console
+
+   ``GET https://{{bigip_next_cm_mgmt_ip}}/api/qkview/v1/files/{id}/download``
 
 To upload the downloaded QKView file to iHealth use the following post request:
 
-``POST https://{{bigip_next_cm_mgmt_ip}}/api/qkview/v1/files/{id}/upload``
+   .. code-block::console
+   
+      ``POST https://{{bigip_next_cm_mgmt_ip}}/api/qkview/v1/files/{id}/upload``
 
 Request body example:
 
@@ -247,8 +259,13 @@ The QKView file log entry is removed from the list.
 ----------------------------------------
 Ensure you have the following information: 
 
-* `qkview_id` - The ID number created when the file was generated. For a list of all QKView file information send the following get request: ``GET https://{{bigip_next_cm_mgmt_ip}}/api/qkview/v1/qkviews``
+* `qkview_id` - The ID number created when the file was generated. For a list of all QKView file information send the following get request:
+   .. code-block::console
+   
+      ``GET https://{{bigip_next_cm_mgmt_ip}}/api/qkview/v1/qkviews``
 
 Use the following delete request to remove the QKView file from the instance log:
 
-``DELETE https://{{bigip_next_cm_mgmt_ip}}/api/qkview/v1/files/{id}``
+   .. code-block::console
+   
+      ``DELETE https://{{bigip_next_cm_mgmt_ip}}/api/qkview/v1/files/{id}``

@@ -62,25 +62,25 @@ Deploy a HTTPS load balancer with a WAF policy
 
  Location:
 
-.. code-block:: console
+ .. code-block:: console
 
-    big-ip-next-01.f5demo.com
+   big-ip-next-01.f5demo.com
 
-Application Name:
+ Application Name:
 
-.. code-block:: console
+ .. code-block:: console
 
     waf-app
 
-Virtual Address:
+ Virtual Address:
 
-.. code-block:: console
+ .. code-block:: console
 
     10.1.10.203
 
-Virtual Port:
+ Virtual Port:
 
-.. code-block:: console
+ .. code-block:: console
 
     443
 
@@ -96,6 +96,7 @@ Virtual Port:
  IP:
 
  .. code-block:: console
+
     10.1.20.100
 
  .. image:: ./pictures/create_application_endpoints.png
@@ -174,7 +175,7 @@ Virtual Port:
 
  .. code-block:: console
   
-      https://10.1.10.203/a=<script>
+    https://10.1.10.203/a=<script>
 
  .. image:: ./pictures/block_check.png
 
