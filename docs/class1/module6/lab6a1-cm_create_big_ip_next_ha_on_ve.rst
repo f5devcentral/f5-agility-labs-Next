@@ -153,7 +153,7 @@ big-ip-next-02 data plane IP:
    Active Node IP Address:
 
    .. code-block:: console
-
+      
       10.1.10.7/24
    
    Standby Node IP Address:
@@ -176,11 +176,13 @@ big-ip-next-02 data plane IP:
    Active Node IP Address:
    
    .. code-block:: console
+
       10.1.20.7/24
 
    Standby Node IP Address:
    
    .. code-block:: console
+
       10.1.20.8/24
 
    Floating IP Address:

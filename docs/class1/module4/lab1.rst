@@ -20,12 +20,16 @@ After logging into BIG-IP Next CM, click on  **"+Add Application"**
 Select **"New Migration"** and enter the following information in General Propoerties:
 
 * Session Name -
+
 .. code-block:: console
-        config-import
+
+   config-import
 
 * Description -
+
 .. code-block:: console
-        Agility2023 BIG-IP Next Lab
+
+   Agility2023 BIG-IP Next Lab
 
 Click **"Save & Continue"**
 
