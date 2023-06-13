@@ -192,17 +192,17 @@ The QKView file is downloaded to your local system's downloads. You can manually
 Once you have successfully generated a QKView file, you can download it to your local system. Ensure you have the following information: 
 
 * `qkview_id` - The ID number created when the file was generated. For a list of all QKView file information send the following get request:
-   .. code-block::console
+   .. code-block:: console
    
       ``GET https://{{bigip_next_cm_mgmt_ip}}/api/qkview/v1/qkviews``
 
-.. code-block::console
+.. code-block:: console
 
    ``GET https://{{bigip_next_cm_mgmt_ip}}/api/qkview/v1/files/{id}/download``
 
 To upload the downloaded QKView file to iHealth use the following post request:
 
-   .. code-block::console
+   .. code-block:: console
    
       ``POST https://{{bigip_next_cm_mgmt_ip}}/api/qkview/v1/files/{id}/upload``
 
@@ -260,12 +260,12 @@ The QKView file log entry is removed from the list.
 Ensure you have the following information: 
 
 * `qkview_id` - The ID number created when the file was generated. For a list of all QKView file information send the following get request:
-   .. code-block::console
+   .. code-block:: console
    
       ``GET https://{{bigip_next_cm_mgmt_ip}}/api/qkview/v1/qkviews``
 
 Use the following delete request to remove the QKView file from the instance log:
 
-   .. code-block::console
+   .. code-block:: console
    
       ``DELETE https://{{bigip_next_cm_mgmt_ip}}/api/qkview/v1/files/{id}``
