@@ -18,7 +18,7 @@ Before you add an instance to BIG-IP Next Central Manager, you must have the ins
 
     .. code-block:: console
 
-		10.1.1.7
+       10.1.1.7
 
 - Admin username and password (In this lab, we'll use admin:Welcome123!)
 
