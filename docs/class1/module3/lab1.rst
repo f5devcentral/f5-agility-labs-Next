@@ -132,10 +132,25 @@ This section of the lab will utilize the "Applications" section of Central Manag
 
 #. Click on "Deploy"
 
-#. Open a new browser tab in the RDP client and go to https://10.1.10.200 (you will need to click past the cert errors)
+#. Go to the "Firefox" access method that is under the "Ubuntu Jump Host"
+
+    This will open an embedded Firefox browser session that is running inside the lab environment.
+
+    .. image:: access-method-firefox.png
+      :scale: 75%
+
+#. Inside the Firefox browser session go to https://10.1.10.200 
+
+    .. image:: access-method-firefox-url.png
+      :scale: 75%
+
+#. You will need to click past the cert errors by clicking on "Advanced" -> "Accept the risk and continue"
+
+    .. image:: access-method-firefox-accept-the-risk.png
+      :scale: 75%
 
 #. You should now see the demo app
 
-.. image:: https-app-deployed.png
-  :scale: 25%
+    .. image:: https-app-deployed.png
+      :scale: 50%
     
