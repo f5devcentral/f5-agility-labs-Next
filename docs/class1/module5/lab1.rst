@@ -91,7 +91,7 @@ Deploy a HTTPS load balancer with a WAF policy
 
  On the Pool Properties page, leave the defaults of round-robin for Load-Balancing Mode and http for Monitor Type then click "Next".
  
- On the "Pool Members" page Click "Add New Endpoint" and input the pool member IP address 10.1.20.100 and click save.  You'll now see the IP address below the filter box, but now change the Service Port to 3000 and click "Next".
+ On the "Pool Members" page Click "Add New Endpoint" and input the pool member name (required) and pool member IP address 10.1.20.100 then click save.  You'll now see the IP address below the filter box, but now change the Service Port to 3000 and click "Next".
 
  IP:
 
