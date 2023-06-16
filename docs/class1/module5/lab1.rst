@@ -161,9 +161,9 @@ Deploy a HTTPS load balancer with a WAF policy
   
 |
 
-**12. Now let's go to the Windows Jump Host and check it out**
+**12. Let's validate the application through the UDF Firefox**
     
- Open Chrome, go to https://10.1.10.203 and you should see the Juice Shop app.
+ On the lab components, select "Access" under the "Ubuntu Jump Host" and select "Firefox."  Within this proxied Firefox, go to https://10.1.10.203 and you should see the Juice Shop app.
 
  .. image:: ./pictures/final_check.png
 
@@ -200,11 +200,11 @@ You can now view your "good" and "bad" requests
 
 .. note:: This next exercise is optional (if you are doing this as part of internal F5 training and are part of the "Security" track, please skip in favor of your dedicated "Security" lab)
 
-Copy the "Support ID" that is displayed when you triggered a WAF block.
+The Firefox copy and paste function doesn't often work, so remember the first few digits of the blocking "Support ID" when you triggered a WAF block.
 
  .. image:: ./pictures/get-support-id.png
   
-Next click "Event Logs" and enter the support ID into the filter text box
+Next click "Event Logs" and enter the "Support ID" into the filter text box.
 
  .. image:: ./pictures/waf-events-search-support-id.png
 
