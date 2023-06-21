@@ -29,4 +29,4 @@ To access the lab, return to the UDF Components tab, and click on "Access" under
    .. image:: ./Optional_WAF_Lab.png
    :scale: 25%
 
-*** Note the lab guide is fully intended to not overlap with the work done for the Agility lab.  You willl be creating separate resources that will not impact your exiting lab progress.
+**Note:** the lab guide is fully intended to not overlap with the work done for the Agility lab.  You willl be creating separate resources that will not impact your exiting lab progress.
