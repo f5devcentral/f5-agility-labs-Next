@@ -27,6 +27,6 @@ If you're able to finish the lab in sufficient time, there is an optional WAF la
 To access the lab, return to the UDF Components tab, and click on "Access" under the Ubuntu Jump Host and select "WAF Lab Guide (optional lab exercises) as seen in the screenshot below.
 
    .. image:: ./Optional_WAF_Lab.png
-   :scale: 25%
+      :scale: 25%
 
 **Note:** the lab guide is fully intended to not overlap with the work done for the Agility lab.  You willl be creating separate resources that will not impact your exiting lab progress.
