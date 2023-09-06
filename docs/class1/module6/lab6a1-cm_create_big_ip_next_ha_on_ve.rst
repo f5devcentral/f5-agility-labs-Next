@@ -10,7 +10,7 @@ A BIG-IP Next HA instance consists of an active and a standby node. Create a BIG
 
 Prerequisites
 =============
-Before you can create a BIG-IP Next HA instance, you must have two standalone instances already onboarded to BIG-IP Next Central Manager. Refer to `How to: Onboard BIG-IP Next (GUI) <../configure_new_big_ip_ma_instance>`_ for details.
+Before you can create a BIG-IP Next HA instance, you must have two standalone instances already onboarded to BIG-IP Next Central Manager. Refer to `How to: Onboard BIG-IP Next (GUI) <../module2/lab2a1-cm_add_instance_to_big_ip_ma.html`_ for details.
 
 - Two standalone BIG-IP Next instances running the same software version in the same provider (VE) and in a healthy state.
 - A license for the BIG-IP Next instance you want to designate as the active node.
