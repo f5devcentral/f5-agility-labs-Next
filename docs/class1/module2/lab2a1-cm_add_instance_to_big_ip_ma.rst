@@ -37,12 +37,12 @@ Before you add an instance to BIG-IP Next Central Manager, you must have the ins
 
 Procedure
 =========
-#. Log in to BIG-IP Next Central Manager as admin, click the workspace switcher next to the F5 icon, and click **Infrastructure**.
-    .. image:: ./lab2_img01_login_to_next_central_manager.png
+#. Log in to BIG-IP Next Central Manager as admin, you'll arrive at the Central Manager "Home" page and then navigate to the workspace switcher at the top left next to the F5 logo, and click **Infrastructure**.
+    .. image:: ./lab2_next_cm_home.png
 		:scale: 10%
-    .. image:: ./lab2_img02_navigation_to_infrastructure1.png
+    .. image:: ./lab2_next_cm_workplace_switcher.png
 		:scale: 25%
-    .. image:: ./lab2_img03_navigation_to_infrastructure2.png
+    .. image:: ./lab2_next_cm_infrastructure.png
 		:scale: 25%
 #. At the top of the screen, click **+ Add**.
     .. image:: ./lab2_img04_my_instances_list_add.png
