@@ -84,4 +84,82 @@ To set a Master-Key on the BIG-IP system you can login to the console via the UD
 
 
 
-Go to the **Systems -> Archive** page in the BIG-IP GUI and click the **Create** button to cretae a new UCS archive file. When creating the UCS archive 
+Go to the **Systems -> Archive** page in the BIG-IP GUI and click the **Create** button to cretae a new UCS archive file. When creating the UCS archive
+
+
+Import UCS into Central Manager
+===============================
+
+Log into Central Manager and click on the **Go to Applications Workspace** button. You will be taken to the Applications main page, where you can then click the **Add Application** button.
+
+.. image:: ./images/central-manager-add-apps.png
+ :scale: 25%
+
+Here you can either create a brand new application, create a new migration, or resume an existing migration that you have started previously. Under the **Migrate Application(s)** section select **New Migration**.
+
+.. image:: ./images/new-migration.png
+ :scale: 25%
+
+Give the migration a Name and Description as seen below:
+
+.. image:: ./images/first-migration.png
+ :scale: 25%
+
+Here you'll need to upload the UCS archive file you exported from your BIG-IP system. Click on the area noted below, and a screen will pop up allowing you to select the UCS file from your local computer.
+
+.. image:: ./images/ucs-file.png
+ :scale: 25%
+
+Master Key and Passphrase
+=========================
+
+
+
+.. image:: ./images/ucs-master-key.png
+ :scale: 25%
+
+
+Grouping of Application Services
+================================
+
+
+Central Manager provides two options for grouping application services. You may group them by **IP Addresses (Recommended)** or by **Virtual Server**.
+Grouping by IP addresses is recommended because it will group and migrate all services that use the same virtual IP address together. It would be very difficult to migrate services that use the same IP address but separate ports at different times, because typically the IP address will move from the source device to the target device during the migration. 
+
+
+.. image:: ./images/ucs-grouping.png
+ :scale: 25%
+
+
+Analyze Configuration
+=====================
+
+After filling in the source BIG-IP information and loading the UCS file, a list of **Applications** will be displayed. Depending on the type of grouping selected, and how the applications are configured, you may see a sinlge service per application, or you may see multiple services if grouping by IP Addresses was selected. Each application service will display the virtual server address, port, a color coded status indicating its eligibility for migration, and a security status column. You can hover over the Status icon for each application to get more detail on its migration eligibility.
+
+
+.. image:: ./images/icon-hover.png
+ :scale: 25%
+
+Here you can selct individual applications to analyze them to see if they are eligble to be migrated to BIG-IP Next. Not all BIG-IP features are supported, and there will be a phasing of some configuration objects. 
+
+To see if an application is eligble for migration, click the application name as well as the virtual service underneath it and then click the **Analyze** button in the top right-hand corner off the screen.
+
+.. image:: ./images/analyze.png
+ :scale: 25%
+
+
+ This will open the **Configuration Analyzer** page and you will see the BIG-IP configuration display from different files such as bigip.conf, or some of the default profile and monitor files. Each file will have a status associated with it indicating if there is a migration issue or not.
+
+.. image:: ./images/analyzer-green-files.png
+ :scale: 25%
+ 
+ You can browse the configuration of each file for and any unsupported items, or items that may need adjusting, they will be highlighted with a red line. You can also see this on the summary preview on the left hand side of the display to zoom in on where in the file the problem may be.
+
+
+
+
+Migrate Applications to BIG-IP Next
+===================================
+
+
+
