@@ -84,7 +84,7 @@ To set a Master-Key on the BIG-IP system you can login to the console via the UD
 
 
 
-Go to the **Systems -> Archive** page in the BIG-IP GUI and click the **Create** button to cretae a new UCS archive file. When creating the UCS archive
+Go to the **Systems -> Archive** page in the BIG-IP GUI and click the **Create** button to create a new UCS archive file. When creating the UCS archive
 
 
 Import UCS into Central Manager
@@ -134,15 +134,15 @@ Grouping by IP addresses is recommended because it will group and migrate all se
 Analyze Configuration
 =====================
 
-After filling in the source BIG-IP information and loading the UCS file, a list of **Applications** will be displayed. Depending on the type of grouping selected, and how the applications are configured, you may see a sinlge service per application, or you may see multiple services if grouping by IP Addresses was selected. Each application service will display the virtual server address, port, a color coded status indicating its eligibility for migration, and a security status column. You can hover over the Status icon for each application to get more detail on its migration eligibility.
+After filling in the source BIG-IP information and loading the UCS file, a list of **Applications** will be displayed. Depending on the type of grouping selected, and how the applications are configured, you may see a single service per application, or you may see multiple services if grouping by IP Addresses was selected. Each application service will display the virtual server address, port, a color coded status indicating its eligibility for migration, and a security status column. You can hover over the Status icon for each application to get more detail on its migration eligibility.
 
 
 .. image:: ./images/icon-hover.png
  :scale: 25%
 
-Here you can selct individual applications to analyze them to see if they are eligble to be migrated to BIG-IP Next. Not all BIG-IP features are supported, and there will be a phasing of some configuration objects. 
+Here you can select individual applications to analyze them to see if they are eligible to be migrated to BIG-IP Next. Not all BIG-IP features are supported, and there will be a phasing of some configuration objects. 
 
-To see if an application is eligble for migration, click the application name as well as the virtual service underneath it and then click the **Analyze** button in the top right-hand corner off the screen.
+To see if an application is eligible for migration, click the application name as well as the virtual service underneath it and then click the **Analyze** button in the top right-hand corner off the screen.
 
 .. image:: ./images/analyze.png
  :scale: 25%
