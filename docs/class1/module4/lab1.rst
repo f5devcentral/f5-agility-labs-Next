@@ -12,10 +12,12 @@ Lab 4.1 - Import App from UCS
    .. image:: ./rdp-access-windows.png
         :scale: 25%
 
-After logging into BIG-IP Next CM, click on  **"+Add Application"** 
+After logging into BIG-IP Next CM, click on  **"Application Workspace"** 
 
-.. image:: ./lab4-add-application.png
+.. image:: ./lab4-app-workspace.png
  :scale: 25%
+
+Then select **"Add Application"**
 
 Select **"New Migration"** and enter the following information in General Propoerties:
 
@@ -36,13 +38,14 @@ On the next step, you will select the the UCS file from the Ubuntu Jump Host Acc
         :scale: 25%
 
 * Leave the **Master Key** and **Encrypted UCS Archives** options disabled.
+* Make sure to select **Group by IP Addresses** as the group for Application Services.
 
-Click **"Save & Continue"** 
+Click **"Next"** 
 
 UCS file uploaded successful and click **"Save & Continue"**
 
 
-.. image:: ./lab4-ucs-success.png
+.. image:: ./lab4-ucs-upload.png
  :scale: 25%
 Select **"Add Application"** to import the applications from the UCS
 
@@ -52,7 +55,7 @@ Select the 2 applications and click on **"Add"**
 
 .. image:: ./lab4-select2-apps.png
  :scale: 25%
-At the Application Migration menu, verify the 2 applications and click on **"Save & Continue"**
+At the Application Migration menu, verify the 2 applications and click on **"Next"**
 
 .. image:: ./lab4-app-migration-verify.png
  :scale: 25%
