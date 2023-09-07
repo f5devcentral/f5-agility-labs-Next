@@ -116,7 +116,7 @@ Previously we updated the application from the "iRules" menu.  We will next upda
 
 #. Click on "My Apps" under "Applications" and click on the "irule_demo_app" application
     
-    .. image:: irules-demo-app.png
+    .. image:: irules-demo-app-new.png
         :scale: 50%
     
 #. Click on "iRules" under App Settings and then select "v3" under Version
