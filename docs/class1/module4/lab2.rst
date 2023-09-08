@@ -2,7 +2,7 @@
 Lab 4.2 - Migration from BIG-IP to BIG-IP Next
 ==============================================
 
-In this lab you will create a UCS archive from a BIG-IP instance and then import it into Central Manager. Then, you will ananlyze applications to determine their eligibility to migrate to BIG-IP Next. Then you will inport shared objects, and select individual applications to migrate, and then migrate them to a BIG-IP Next instance. 
+In this lab you will create a UCS archive from a BIG-IP instance and then import it into Central Manager. Then you will ananlyze applications to determine their eligibility to migrate to BIG-IP Next. Next, you will import shared objects, and select individual applications to migrate, save them as a draft migration, and then migrate them to a BIG-IP Next instance. 
 
 In the UDF Blueprint there is a BIG-IP running version 15.1 that has a number of applications defined. Go to the UDF blueprint **Components** page and look for the item labeled **BIG-IP 15.1.x**  under the **F5 Products** column. Select the drop down menu next to **Access**, and then select **TMUI**. Log in with the credentials admin/admin.
 
@@ -13,9 +13,9 @@ In the UDF Blueprint there is a BIG-IP running version 15.1 that has a number of
 Create BIG-IP UCS File 
 ======================
 
-In order to migrate this BIG-IP configuration to BIG-IP Next, you'll need to create a UCS archive file on the BIG-IP and export it. Then you will import the UCS into Central Manager to view, analyze and migrate applications. Central Manager performs migrations at the application-level which allows customers to gradually migrate to BIG-IP Next. This is different than the traditional UCS based migration where an entire BIG-IP device, vCMP guest or Virtual Edition are migrated all at once. Since features are being phased into BIG-IP next it may not be possible to move all applications to BIG-IP Next initially. The per-app migration capbility allows customers to identify which applications are ready to migrate to Next, and provides workflows to move individual applications. If all applications are eligble for migration then they can all be migrated at one time. In many customers it is expected that the migration to BIG-IP Next will be gradual, and BIG-IP and BIG-IP Next will co-exist for some time during the migration process.
+In order to migrate this BIG-IP configuration to BIG-IP Next, you'll need to create a UCS archive file on the BIG-IP and export it. Then you will import the UCS into Central Manager to view, analyze and migrate applications. Central Manager performs migrations at the application-level which allows customers to gradually migrate to BIG-IP Next. This is different than the traditional UCS based migration where an entire BIG-IP device, vCMP guest or Virtual Edition are migrated all at once. Since features are being phased into BIG-IP Next, it may not be possible to move all applications to BIG-IP Next initially. The per-app migration capability allows customers to identify which applications are ready to migrate to Next, and provides workflows to move individual applications. If all applications are eligble for migration, then they can all be migrated at one time. In many customers, it is expected that the migration to BIG-IP Next will be gradual, and BIG-IP and BIG-IP Next will co-exist for some time during the migration process.
 
-Review the current configuration of the BIG-IP, click on the **Local Traffic -> Virtual Servers** page an review the different types of virtual servers and their configuration. There is a mix of virtual server types, and each is using different types of profiles, and some have iRules, some have certificates, and others have WAF policies. Because of the limited resources within UDF these virtual servers will all use the same pool on the backend.
+Review the current configuration of the BIG-IP, click on the **Local Traffic -> Virtual Servers** page an review the different types of virtual servers and their configuration. There is a mix of virtual server types, and each is using different types of profiles, some have iRules, some have certificates, and others have WAF policies. Because of the limited resources within UDF these virtual servers will all use the same pool on the backend.
 
 
 .. image:: ./images/big-ip-udf-virtual-servers.png
@@ -23,12 +23,13 @@ Review the current configuration of the BIG-IP, click on the **Local Traffic -> 
   :scale: 75%
 
 
-Since the archive file may have sensitive information such as certificates/keys it is recommended you use the Master Key functionality in BIG-IP to allow for a secure export of this type of information. In this lab, we will set the Master-Key password on the BIG-IP instance before creating an archive file. You'll then need to supply this information to Central Manager so that it can decrypt sensitive information and migrate it to a BIG-IP Next instance.
+Since the archive file may have sensitive information such as certificates/keys it is recommended that you use the Master Key functionality in BIG-IP to allow for a secure export of this type of information. In this lab, we will retrieve the Master-Key on the BIG-IP instance before creating an archive file. You'll then need to supply this information to Central Manager so that it can decrypt sensitive information and migrate it to a BIG-IP Next instance. Some background information on Master-Keys on the BIG-IP is provided below.
 
-https://techdocs.f5.com/en-us/bigip-13-1-0/big-ip-secure-vault-administration/working-with-master-keys.html
-https://my.f5.com/manage/s/article/K13132
+`Working with Master Keys <https://techdocs.f5.com/en-us/bigip-13-1-0/big-ip-secure-vault-administration/working-with-master-keys.html>`_
 
-To obtain the master-key from the source BIG-IP system, go to the main UDF screen and go to the **F5 Products** column and select the drop down menu for *Access** under the **BIG-IP 15.1.x** item. Select **Console** to attach the the BIG-IP console. Alternatively, if you have loaded your ssh keys into UDF, you can attach via SSH so its easier to copy the master key. When using consle there is no copy functinoality so you will have to write it down and enter it manaully when importing the UCS into Central Manager. 
+`K13132: Backing up and restoring BIG-IP configuration files with a UCS archive <https://my.f5.com/manage/s/article/K13132>`_
+
+To obtain the master-key from the source BIG-IP system, go to the main UDF screen and go to the **F5 Products** column and select the drop down menu for **Access** under the **BIG-IP 15.1.x** item. Select **Console** to attach the the BIG-IP console. Alternatively, if you have loaded your ssh keys into UDF, you can attach via SSH so its easier to copy the master key. When using the embedded console in UDF, there is no copy capability so you will have to write down the master-key and enter it manaully when importing the UCS into Central Manager. 
 
 .. image:: ./images/big-ip-console.png
   :align: center
@@ -62,7 +63,7 @@ Your achive file should be displayed in the summary, click on it.
   :align: center
   :scale: 75%
 
-You should see something similart to the output below. Click the Download option to download the UCS file to your local machine. 
+You should see something similar to the output below. Click the Download option to download the UCS file to your local machine. 
 
 .. image:: ./images/download-archive.png
   :align: center
@@ -98,15 +99,9 @@ Here you'll need to upload the UCS archive file you exported from your BIG-IP sy
 Master Key and Passphrase
 =========================
 
-Since the archive file may have sensitive information such as certificates/keys it is recommended you use the Master Key functionality in BIG-IP to allow for a secure export of this type of information. In this lab, we will set the Master-Key password on the BIG-IP instance before creating an archive file. You'll then need to supply this information to Central Manager so that it can decrypt sensitive information and migrate it to a BIG-IP Next instance.
+Since the archive file may have sensitive information such as certificates/keys it is recommended you use the Master Key functionality in BIG-IP to allow for a secure export of this type of information. In this lab, we will use the Master-Key from the BIG-IP instance that you viewed before creating an archive file. You'll then need to supply this information to Central Manager so that it can decrypt sensitive information and migrate it to a BIG-IP Next instance.
 
-
-`Working with Master Keys <https://techdocs.f5.com/en-us/bigip-13-1-0/big-ip-secure-vault-administration/working-with-master-keys.html>`_
-
-`K13132: Backing up and restoring BIG-IP configuration files with a UCS archive <https://my.f5.com/manage/s/article/K13132>`_
-
-https://my.f5.com/manage/s/article/K13132
-
+Enter the **Master-Key** that you obtained from your BIG-IP, and then enable **Encrypted UCS Archive** enter the **Passphrase** you entered when creating the UCS archive in the **Password** field. 
 
 .. image:: ./images/ucs-master-key.png
   :align: center
@@ -117,8 +112,7 @@ Grouping of Application Services
 ================================
 
 
-Central Manager provides two options for grouping application services. You may group them by **IP Addresses (Recommended)** or by **Virtual Server**.
-Grouping by IP addresses is recommended because it will group and migrate all services that use the same virtual IP address together. It would be very difficult to migrate services that use the same IP address but separate ports at different times, because typically the IP address will move from the source device to the target device during the migration. 
+Central Manager provides two options for grouping application services. You may group them by **IP Addresses (Recommended)** or by **Virtual Server**. Grouping by IP addresses is recommended because it will group and migrate all services that use the same virtual IP address together. It would be very difficult to migrate services that use the same IP address but separate ports at different times, because typically the IP address will move from the source device to the target device during the migration. Choose **Group by Addresses (Recommended)**.
 
 
 .. image:: ./images/ucs-grouping.png
@@ -129,23 +123,23 @@ Grouping by IP addresses is recommended because it will group and migrate all se
 Analyze Configuration
 =====================
 
-After filling in the source BIG-IP information and loading the UCS file, a list of **Applications** will be displayed. Depending on the type of grouping selected, and how the applications are configured, you may see a single service per application, or you may see multiple services if grouping by IP Addresses was selected. Each application service will display the virtual server address, port, a color coded status indicating its eligibility for migration, and a security status column. You can hover over the Status icon for each application to get more detail on its migration eligibility.
+After filling in the source BIG-IP information and loading the UCS file, a list of **Applications** will be displayed. Depending on the type of grouping selected, and how the applications are configured, you may see a single virtual service per application, or you may see multiple virtual services if grouping by IP Addresses was selected and an application has more than one port. Each application service will display the virtual server address, port, a color coded status indicating its eligibility for migration, and a security status column. You can hover over the Status icon for each application to get more detail on its migration eligibility.
 
 
 .. image:: ./images/icon-hover.png
   :align: center
   :scale: 75%
 
-Here you can select individual applications to analyze them to see if they are eligible to be migrated to BIG-IP Next. Not all BIG-IP features are supported, and there will be a phasing of some configuration objects. 
+Here you can select individual applications to analyze them to see if they are eligible to be migrated to BIG-IP Next. Not all BIG-IP features are currenlty supported, and there will be a phasing of support for some configuration objects. 
 
-To see if an application is eligible for migration, click the application name as well as the virtual service underneath it and then click the **Analyze** button in the top right-hand corner off the screen.
+To see if an application is eligible for migration, click the application name as well as the virtual service underneath it and then click the **Analyze** button in the top right-hand corner off the screen. Note: You can only analyze one application service at a time. 
 
 .. image:: ./images/analyze.png
   :align: center
   :scale: 50%
 
 
-This will open the **Configuration Analyzer** page and you will see the BIG-IP configuration display from different files such as bigip.conf, or some of the default profile and monitor files. Each file will have a status associated with it indicating if there is a migration issue or not.
+This will open the **Configuration Analyzer** page and you will see the BIG-IP configuration display from different files such as bigip.conf, or some of the default profile and monitor files. Each file will have a status associated with it indicating if there is a migration issue or not. Note: There is an enhancement logged to update the status icons of each file individually, right now some files are being grouped together, when there is not an issue in that particular file. 
 
 .. image:: ./images/analyzer-green-files.png
   :align: center
@@ -163,7 +157,7 @@ You can click on the red line in the scroll bar and it will take you to the part
   :align: center
   :scale: 100%
 
-You can hover over the red squiggly line to get more details about the unsupported object. 
+You can hover over the red squiggly line to get more details about the unsupported object. You can also click the **View Problem** message for addtional details.
 
 .. image:: ./images/squiggly-line3.png
   :align: center
@@ -174,7 +168,7 @@ Using the Configuration Analyzer you can make a determination if an application 
 Migrate Applications to BIG-IP Next
 ===================================
 
-Applications with status indicating a yellow triangle or blue information icon may not be ready for migration, or may need some changes to fully migrate to BIG-IP Next. A red icon is an unsupported object and cannot be migrated to BIG-IP Next. For this lab, we will attempt to migrate all the green application services to BIG-IP Next. Before migrating the applications it is a good idea to rename each application service to use a name that better represents the application instead of the genneric style names (application_1, application_2 etc...). Go ahead and rename each application, try and use the name nested underneath the application service name, so its clear what the applications are configured for, as the names are descriptive of the use case.
+Applications with status indicating a yellow triangle or blue information icon may not be ready for migration, or may need some changes to fully migrate to BIG-IP Next. A red icon is an unsupported object and cannot be migrated to BIG-IP Next. For this lab, we will attempt to migrate all the green application services to BIG-IP Next. Before migrating the applications, it is a good idea to rename each application service to use a name that better represents the application instead of the genneric style names (application_1, application_2 etc...). Go ahead and rename each application, try and use the name nested underneath the application service name, so its clear what the applications are configured for, as the names are descriptive of the use case.
 
 .. image:: ./images/rename-applications.png
   :align: center
@@ -198,19 +192,20 @@ After all the application services have been renamed, select all the green statu
   :align: center
   :scale: 100%
 
-the next screen will present an Application Migration summary. Here you can review the applications that you wish to move forward with, or you can remove an application from the migration, this doesn't delete the application, it is still in the UCS and you can go back later and add it again. If you forgot an application you can click the **Add** button, to go back to the remaining applications and add other apps if you wish. Once you are satisfied with the summary of applications click **Next**.
+the next screen will present an Application Migration summary. Here you can review the applications that you wish to move forward with, or you can remove an application from the migration. This doesn't delete the application, it is still in the UCS and you can go back later and add it again. If you forgot an application, you can click the **Add** button to go back to the remaining applications and add other apps if you wish. Once you are satisfied with the summary of applications, click **Next**.
 
 .. image:: ./images/app-migration-summary.png
   :align: center
   :scale: 100%
 
-The next phase is the **Pre Deployment**, here you can **Import** shared configration objects associated with the application into Central Manager. Examples of shared objects would be iRules, WAF policies, Certificates etc... These objects are treated differently than the rest of the configuration because they are managed centrally and not specific to any one device. As an example, in BIG-IP iRules are managed on a device-by-device basis, there is no central iRule management. Central Manager addresses this issue and allows iRules to be imported and treated as shared objects, meaning they can be shared and deployed to more than one device. Central Manager manages the entire iRule lifecycle including deployment and versioning. This is huge improvement over traditional BIG-IP iRule management. Other shared objects such as WAF policies enjoy similar benefits of centralized mangement, versioning, and full lifecycle management. 
+The next phase is the **Pre Deployment**, here you can **Import** shared configration objects associated with the application into Central Manager. Examples of shared objects would be iRules, WAF policies, Certificates etc... These objects are treated differently than the rest of the configuration because they are managed centrally and not specific to any one device, or in the case of certificates Central Manager is managing those centrally. As an example, in traditional BIG-IP management, iRules are managed on a device-by-device basis, there is no central iRule management. Central Manager addresses this issue and allows iRules to be imported and treated as shared objects, meaning they can be shared and deployed to more than one device. Central Manager manages the entire iRule lifecycle including deployment and versioning. This is huge improvement over traditional BIG-IP iRule management. Other shared objects such as WAF policies enjoy similar benefits of centralized mangement, versioning, and full lifecycle management. 
+
 
 .. image:: ./images/pre-deployment.png
   :align: center
   :scale: 100%
 
-To understand what the shared object is, click on number under the **Shared Objects column. A flyout window will appear with more information about that shared object.
+To understand what the shared object is, click on number under the **Shared Objects** column. A flyout window will appear with more information about that shared object.
 
 .. image:: ./images/import-details.png
   :align: center
@@ -218,7 +213,7 @@ To understand what the shared object is, click on number under the **Shared Obje
 
 You'll also have the ability to select on a per-application basis whether the migration is saved as a **Draft** application or whether it is deployed to a specfic BIG-IP Next instance. For now, we will leave all Locations for **Save as Draft**. Click the **Import** buttons for the applications that have shared objects. After the imports have finished click the **Deploy** button. The name of the button is current misleading for this use case because you aren't really deploying the applications, you are saving them as draft applications. We will likely update the button name to reflect this in a future release. 
 
-After hitting *Deploy** you will see status of the applications being deployed, and finally a status of **Successful**. Click the **Finish** button to complete saving the draft application migrations.
+After hitting **Deploy** you will see status of the applications being deployed, and finally a status of **Successful**. Click the **Finish** button to complete saving the draft application migrations.
 
 .. image:: ./images/deployment-summary.png
   :align: center
@@ -236,7 +231,7 @@ If you click on one of the draft applications you will be able to view the AS3 d
   :align: center
   :scale: 100%
 
-Next, you can review the shared objects that you previosuly imported into Central Manager from the draft applications. Click on the **iRules** menu item on the left-hand side of the page. Note that some of the iRules have **migrated_** prepended to the iRule name. This lets you know that the iRule was imported via the migration process. You can click on the iRule hyperlink to get more details, and to view the actual iRule.
+Next, you can review the shared objects that you previosuly imported into Central Manager from the draft applications. Click on the **iRules** menu item on the left-hand side of the page. Note that some of the iRules have **migrated_** prepended to the iRule name. This lets you know that the iRule was imported via the migration process. You can click on the iRule hyperlink to get more details, and to view the actual iRule. Here you could also edit the AS3 delcaration before deploying, but for now click the **Cancel & Exit** button.
 
 .. image:: ./images/irules-prepend.png
   :align: center
@@ -249,17 +244,26 @@ You can also click on the **Certificates & Keys** menu item on the left-hand sid
   :scale: 100%
 
 
-  Performing the Migration
-  ========================
+Performing the Migration
+========================
 
-When migrating between BIG-IP and BIG-IP Next there are a number of ways to decomission applications from BIG-IP, and move them over to BIG-IP Next. Central Manager will perform all the necasarry steps to convert the configuration, but some coordination will be needed to to ensure no duplicate IP addresses are on the network, or to ensure the virtual server IP addresses are changed when they are migrated to BIG-IP Next. Some customers wil prefer to preserve the current IP addresses when applications move over to BIG-IP Next, while other may want to supply new IP addresses, and update their DNS infrastructure to point to the new IP addresses. There are pros and cons to each approach. Currently, Central Manager assumes the IP adddresses will stay the same, but it does not offer any means for coordintating the transition / deocmissioning of IP addresses. This is something that will likely be enhanced to offer more support in this area. For this lab we will assume the IP addresses for the virtual servers are going to change. This is also an area that is currently very manual that could be enhanced in the future. Your feedback on migration enhancements is welcome. 
+When migrating between BIG-IP and BIG-IP Next there are a number of ways to decomission applications from BIG-IP, and move them over to BIG-IP Next. Central Manager will perform all the necasarry steps to convert the configuration, but some coordination will be needed to to ensure no duplicate IP addresses are on the network, or to ensure the virtual server IP addresses are changed when they are migrated to BIG-IP Next. Some customers wil prefer to preserve the current IP addresses when applications move over to BIG-IP Next, while others may want to supply new IP addresses, and update their DNS infrastructure to point to the new IP addresses. There are pros and cons to each approach. Currently, Central Manager assumes the IP adddresses will stay the same (but you can manually edit the config to change them), but it does not offer any means for coordintating the transition / deocmissioning of IP addresses. This is something that will likely be enhanced to offer more support in this area in the future. For this lab, we will assume the IP addresses for the virtual servers are going to change. This is also an area that is currently very manual that could be enhanced in the future. Your feedback on migration enhancements is welcome. 
 
-You can click on any of the draft applications and edit the AS3 declaration to alter the virtual server IP address, and then deploy the application to the new instance. This would allow the application to exist on both BIG-IP and BIG-IP Next at the same time, and DNS could cooriinate the swing of traffic to BIG-IP Next. This could be done all at once, or gradually though GSLB policies. 
+You can click on any of the draft applications and edit the AS3 declaration to alter the virtual server IP address, and then deploy the application to the new instance. This would allow the application to exist on both BIG-IP and BIG-IP Next at the same time, and DNS could coordiinate the swing of traffic to BIG-IP Next. This could be done all at once, or gradually through GSLB policies. 
 
-Alter the draft applications virtual server addresses by replacing the last octet so that instead of it being 10.1.10.5x it is now 10.1.10.6x where x is consistent. As an example, if the virtual server address is 10.1.10.51, change it to 10.1.10.61. Then click **Save & Deploy**.
+Alter the draft applications virtual server addresses by replacing the last octet so that instead of it being 10.1.10.5x it is now 10.1.10.6x where x is consistent. As an example, if the virtual server address is 10.1.10.51, change it to 10.1.10.61. Then click **Save & Deploy**. This will migrate the application to BIG-IP Next.
 
 .. image:: ./images/edit-vs.png
   :align: center
   :scale: 100%
 
 You'll then be prompted for a deploy location. Select 10.1.1.10 and select **Yes, Deploy**. NOTE: An enhancement has been filed to provide hostnames of the BIG-IP Next instances instead of IP addresses.
+
+.. image:: ./images/deploy-ip.png
+  :align: center
+  :scale: 100%
+
+
+Migrating WAF Applications
+==========================
+
