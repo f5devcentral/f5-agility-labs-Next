@@ -2,13 +2,20 @@
 Lab 4.2 - Migration from BIG-IP to BIG-IP Next
 ==============================================
 
+In this lab you will create a UCS archive from a BIG-IP instance and then import it into Central Manager. Then, you will ananlyze applications to determine their eligibility to migrate to BIG-IP Next. Then you will inport shared objects, and select individual applications to migrate, and then migrate them to a BIG-IP Next instance. 
+
 In the UDF Blueprint there is a BIG-IP running version 15.1 that has a number of applications defined. Go to the UDF blueprint **Components** page and look for the item labeled **BIG-IP 15.1.x**  under the **F5 Products** column. Select the drop down menu next to **Access**, and then select **TMUI**. Log in with the credentials admin/admin.
 
 .. image:: ./images/big-ip-udf.png
   :align: center
   :scale: 75%
 
-Review the current configuration of the BIG-IP, click on the **Local Traffic -> Virtual Servers** page an review the different types of virtual servers and their configuration. There is a mix of different virtual server types, and each is using different types of profiles, and some have iRules. Because of the limited resources within UDF these virtual servers will all use the same pool on the backend.
+Create BIG-IP UCS File 
+======================
+
+In order to migrate this BIG-IP configuration to BIG-IP Next, you'll need to create a UCS archive file on the BIG-IP and export it. Then you will import the UCS into Central Manager to view, analyze and migrate applications. Central Manager performs migrations at the application-level which allows customers to gradually migrate to BIG-IP Next. This is different than the traditional UCS based migration where an entire BIG-IP device, vCMP guest or Virtual Edition are migrated all at once. Since features are being phased into BIG-IP next it may not be possible to move all applications to BIG-IP Next initially. The per-app migration capbility allows customers to identify which applications are ready to migrate to Next, and provides workflows to move individual applications. If all applications are eligble for migration then they can all be migrated at one time. In many customers it is expected that the migration to BIG-IP Next will be gradual, and BIG-IP and BIG-IP Next will co-exist for some time during the migration process.
+
+Review the current configuration of the BIG-IP, click on the **Local Traffic -> Virtual Servers** page an review the different types of virtual servers and their configuration. There is a mix of virtual server types, and each is using different types of profiles, and some have iRules, some have certificates, and others have WAF policies. Because of the limited resources within UDF these virtual servers will all use the same pool on the backend.
 
 
 .. image:: ./images/big-ip-udf-virtual-servers.png
@@ -16,76 +23,50 @@ Review the current configuration of the BIG-IP, click on the **Local Traffic -> 
   :scale: 75%
 
 
-In order to migrate this BIG-IP configuration to BIG-IP Next, you'll need to create a UCS archive file on the BIG-IP and export it. Then you will import the UCS into Central Manager to view, analyze and migrate configurations. 
-
-
 Since the archive file may have sensitive information such as certificates/keys it is recommended you use the Master Key functionality in BIG-IP to allow for a secure export of this type of information. In this lab, we will set the Master-Key password on the BIG-IP instance before creating an archive file. You'll then need to supply this information to Central Manager so that it can decrypt sensitive information and migrate it to a BIG-IP Next instance.
 
 https://techdocs.f5.com/en-us/bigip-13-1-0/big-ip-secure-vault-administration/working-with-master-keys.html
 https://my.f5.com/manage/s/article/K13132
 
+To obtain the master-key from the source BIG-IP system, go to the main UDF screen and go to the **F5 Products** column and select the drop down menu for *Access** under the **BIG-IP 15.1.x** item. Select **Console** to attach the the BIG-IP console. Alternatively, if you have loaded your ssh keys into UDF, you can attach via SSH so its easier to copy the master key. When using consle there is no copy functinoality so you will have to write it down and enter it manaully when importing the UCS into Central Manager. 
 
-To set a Master-Key on the BIG-IP system you can login to the console via the UDF interface. 
+.. image:: ./images/big-ip-console.png
+  :align: center
+  :scale: 75%
 
-.. code-block:: bash
-
-    root@(00deb7be-684a-4c52-856a-7335ef06a216)(cfg-sync Standalone)(Active)(/Common)(tmos)# show sys crypto 
-    0 certificates found
-    0 certificate revocation lists found
-    0 CSRs found
-    0 keys found
-    FIPS 140 is not licensed.
-
-    --------------------------------------
-    Sys::Crypto Acceleration Distribution:
-    --------------------------------------
-    Primitive           Forced CPU  Total
-    ECDH                         0      0
-    ECDSA Sign                   0      0
-    RSA encrypt/verify           0      0
-
-    -------------------------------------------------------------------
-    Sys::Encrypted Attributes
-    Object Type                Object Name  Attribute  Valid Encryption
-    -------------------------------------------------------------------
-    profile_sctp               sctp         secret     1
-    -----------------------------------------------------------------------------------------------------------
-    Sys::Master-Key
-    -----------------------------------------------------------------------------------------------------------
-    master-key hash  <eT5Xc1cftojVy+TCU4qlazGE7jc5qgvwzD0gmACUD7d947X4Apq4o+us2cM4wju4K2b36Wv4VYOdDf5bvWOKmA==>
-    previous hash    <eT5Xc1cftojVy+TCU4qlazGE7jc5qgvwzD0gmACUD7d947X4Apq4o+us2cM4wju4K2b36Wv4VYOdDf5bvWOKmA==>
-
-    root@(00deb7be-684a-4c52-856a-7335ef06a216)(cfg-sync Standalone)(Active)(/Common)(tmos)# 
+Login with the credentials root/default, and then enter the command **f5mku -K** to get the BIG-IP's master-key. Now, copy or write down the master-key as you will need this when importing the UCS into Central Manager.
 
 
 .. code-block:: bash
 
-    root@(00deb7be-684a-4c52-856a-7335ef06a216)(cfg-sync Standalone)(Active)(/Common)(tmos)#  modify sys crypto master-key prompt-for-password
-    enter password: 
-    password again: 
-    root@(00deb7be-684a-4c52-856a-7335ef06a216)(cfg-sync Standalone)(Active)(/Common)(tmos)# 
-
-.. code-block:: bash
-
-    root@(00deb7be-684a-4c52-856a-7335ef06a216)(cfg-sync Standalone)(Active)(/Common)(tmos)# save sys config
-    Saving running configuration...
-    /config/bigip.conf
-    /config/bigip_base.conf
-    /config/bigip_script.conf
-    /config/bigip_user.conf
-    Saving Ethernet map ...done
-    Saving PCI map ...
-    - verifying checksum .../var/run/f5pcimap: OK
-    done
-    - saving ...done
-    root@(00deb7be-684a-4c52-856a-7335ef06a216)(cfg-sync Standalone)(Active)(/Common)(tmos)# 
+    [root@ce6e127b-032e-496c-afb5-b303545907ef:Active:Standalone] config # f5mku -K
+    cgGaYTNid4Gvqdelf/85cw==
+    [root@ce6e127b-032e-496c-afb5-b303545907ef:Active:Standalone] config #
 
 
+In the BIG-IP webUI, go to the **Systems -> Archive** page and click the **Create** button to create a new UCS archive file. 
 
+.. image:: ./images/export-ucs-webui.png
+  :align: center
+  :scale: 75%
 
+When creating the UCS archive supply a Name, enable Ecryption, then supply a passphrase (that you will remmeber), and confirm the passphrase. Then click **Finished**. Click **OK** after the archive has completed. 
 
-Go to the **Systems -> Archive** page in the BIG-IP GUI and click the **Create** button to create a new UCS archive file. When creating the UCS archive
+.. image:: ./images/archive-passphrase.png
+  :align: center
+  :scale: 75%
 
+Your achive file should be displayed in the summary, click on it.
+
+.. image:: ./images/export-summary.png
+  :align: center
+  :scale: 75%
+
+You should see something similart to the output below. Click the Download option to download the UCS file to your local machine. 
+
+.. image:: ./images/download-archive.png
+  :align: center
+  :scale: 75%
 
 Import UCS into Central Manager
 ===============================
@@ -102,7 +83,7 @@ Here you can either create a brand new application, create a new migration, or r
   :align: center
   :scale: 50%
 
-Give the migration a Name and Description as seen below:
+Give the migration a **Session Name** and **Description** as seen below, then click **Next**.
 
 .. image:: ./images/first-migration.png
   :align: center
@@ -117,6 +98,14 @@ Here you'll need to upload the UCS archive file you exported from your BIG-IP sy
 Master Key and Passphrase
 =========================
 
+Since the archive file may have sensitive information such as certificates/keys it is recommended you use the Master Key functionality in BIG-IP to allow for a secure export of this type of information. In this lab, we will set the Master-Key password on the BIG-IP instance before creating an archive file. You'll then need to supply this information to Central Manager so that it can decrypt sensitive information and migrate it to a BIG-IP Next instance.
+
+
+`Working with Master Keys <https://techdocs.f5.com/en-us/bigip-13-1-0/big-ip-secure-vault-administration/working-with-master-keys.html>`_
+
+`K13132: Backing up and restoring BIG-IP configuration files with a UCS archive <https://my.f5.com/manage/s/article/K13132>`_
+
+https://my.f5.com/manage/s/article/K13132
 
 
 .. image:: ./images/ucs-master-key.png
