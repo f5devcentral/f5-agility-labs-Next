@@ -123,10 +123,17 @@ Previously we updated the application from the "iRules" menu.  We will next upda
 
    .. image:: irules_demo_app-edit-application-services-properties.png
         :scale: 50%
-# Click on the edit icon next to iRules
+
+#. Click on the edit icon next to iRules
 
     .. image:: irules-application-service-properties-edit-irule.png
+
+#. Change the version from v2 to v3 and click "Save"
         
-#. Click on "Next" to view the Summary and then click on "Deploy"
+#. Click on "Review & Deploy"
+
+#. Click on "Deploy Changes"
+
+#. You will be prompted to confirm your changes, click on "Yes, Deploy"
 
 You have now "rolled over" the bad "v2" to a good "v3".  Yes, it's possible to have selected "v1" again, but by "rolling over" we ensure that the latest version is the correct version.
