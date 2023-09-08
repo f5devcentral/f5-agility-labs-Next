@@ -7,13 +7,13 @@ In the UDF Blueprint there is a BIG-IP running version 15.1 that has a number of
 
 
 .. image:: ./images/big-ip-udf.png
- :scale: 25%
+ :scale: 75%
 
  Review the current configuration of the BIG-IP, click on the **Local Traffic -> Virtual Servers** page an review the different types of virtual servers and their configuration. There is a mix of different virtual server types, and each is using different types of profiles, and some have iRules. Because of the limited resources within UDF these virtual servers will all use the same pool on the backend.
 
 
 .. image:: ./images/big-ip-udf-virtual-servers.png
- :scale: 25%
+ :scale: 75%
 
 
 In order to migrate this BIG-IP configuration to BIG-IP Next, you'll need to create a UCS archive file on the BIG-IP and export it. Then you will import the UCS into Central Manager to view, analyze and migrate configurations. 
@@ -93,22 +93,22 @@ Import UCS into Central Manager
 Log into Central Manager and click on the **Go to Applications Workspace** button. You will be taken to the Applications main page, where you can then click the **Add Application** button.
 
 .. image:: ./images/central-manager-add-apps.png
- :scale: 25%
+ :scale: 75%
 
 Here you can either create a brand new application, create a new migration, or resume an existing migration that you have started previously. Under the **Migrate Application(s)** section select **New Migration**.
 
 .. image:: ./images/new-migration.png
- :scale: 25%
+ :scale: 75%
 
 Give the migration a Name and Description as seen below:
 
 .. image:: ./images/first-migration.png
- :scale: 25%
+ :scale: 75%
 
 Here you'll need to upload the UCS archive file you exported from your BIG-IP system. Click on the area noted below, and a screen will pop up allowing you to select the UCS file from your local computer.
 
 .. image:: ./images/ucs-file.png
- :scale: 25%
+ :scale: 75%
 
 Master Key and Passphrase
 =========================
@@ -116,7 +116,7 @@ Master Key and Passphrase
 
 
 .. image:: ./images/ucs-master-key.png
- :scale: 25%
+ :scale: 75%
 
 
 Grouping of Application Services
@@ -128,7 +128,7 @@ Grouping by IP addresses is recommended because it will group and migrate all se
 
 
 .. image:: ./images/ucs-grouping.png
- :scale: 25%
+ :scale: 75%
 
 
 Analyze Configuration
@@ -138,28 +138,62 @@ After filling in the source BIG-IP information and loading the UCS file, a list 
 
 
 .. image:: ./images/icon-hover.png
- :scale: 25%
+ :scale: 75%
 
 Here you can select individual applications to analyze them to see if they are eligible to be migrated to BIG-IP Next. Not all BIG-IP features are supported, and there will be a phasing of some configuration objects. 
 
 To see if an application is eligible for migration, click the application name as well as the virtual service underneath it and then click the **Analyze** button in the top right-hand corner off the screen.
 
 .. image:: ./images/analyze.png
- :scale: 25%
+ :scale: 75%
 
 
- This will open the **Configuration Analyzer** page and you will see the BIG-IP configuration display from different files such as bigip.conf, or some of the default profile and monitor files. Each file will have a status associated with it indicating if there is a migration issue or not.
+This will open the **Configuration Analyzer** page and you will see the BIG-IP configuration display from different files such as bigip.conf, or some of the default profile and monitor files. Each file will have a status associated with it indicating if there is a migration issue or not.
 
 .. image:: ./images/analyzer-green-files.png
- :scale: 25%
+ :scale: 75%
  
- You can browse the configuration of each file for and any unsupported items, or items that may need adjusting, they will be highlighted with a red line. You can also see this on the summary preview on the left hand side of the display to zoom in on where in the file the problem may be.
+You can browse the configuration of each file for and any unsupported items, or items that may need adjusting, they will be highlighted with a squiggly red line. You can also see this on the summary preview on the left hand side of the display, it will allow you to quickly zoom in to where the problem may be in the file. Below is an example of a file with a migration issue and the squiggly red line notes where the issue is in both the summary and in the scroll bar.
 
+.. image:: ./images/squiggly-line1.png
+ :scale: 75%
 
+You can click on the red line in the scroll bar and it will take you to the part of the file that has the migration issue. The squiggly red line will note the configuration object that is not supported. 
 
+.. image:: ./images/squiggly-line2.png
+ :scale: 75%
+
+You can hover over the red squiggly line to get more details about the unsupported object. 
+
+.. image:: ./images/squiggly-line3.png
+ :scale: 75%
+
+Using the Configuration Analyzer you can make a determination if an application service is ready for migration, or if you may have to wait until additional functionality is integrated into BIG-IP Next. BIG-IP Next is on a much more rapid release schedule than TMOS, so new features are being integrated on regular invtervals.
 
 Migrate Applications to BIG-IP Next
 ===================================
+
+Applications with status indicating a yellow triangle or blue information icon may not be ready for migration, or may need some changes to fully migrate. While a red icon is an unsupported object and cannot be migrated to BIG-IP Next. For this lab we will attempt to migrate all the green application services to BIG-IP Next. Before Migratin the applications it is a good idea to rename each application service to use a name that better represents the application instead of the genneric style names (application_1, application_2 etc...).
+
+.. image:: ./images/rename-applications.png
+ :scale: 75%
+
+.. image:: ./images/rename-applications-2.png
+ :scale: 75%
+
+
+.. image:: ./images/rename-applications-3.png
+ :scale: 75%
+
+.. image:: ./images/add-applications.png
+ :scale: 75%
+
+.. image:: ./images/app-migration-summary.png
+ :scale: 75%
+
+
+.. image:: ./images/pre-deployment.png
+ :scale: 75%
 
 
 
