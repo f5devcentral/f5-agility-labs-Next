@@ -19,6 +19,9 @@ After logging into BIG-IP Next CM, click on  **"Application Workspace"**
 
 Then select **"Add Application"**
 
+.. image:: ./lab4-add-applications.png
+ :scale: 25%
+
 Select **"New Migration"** and enter the following information in General Propoerties:
 
 * Session Name -
@@ -47,12 +50,9 @@ On the next step, you will select the the UCS file from the Ubuntu Jump Host Acc
         :scale: 25%
 
 * Leave the **Master Key** and **Encrypted UCS Archives** options disabled.
-* Make sure to select **Group by IP Addresses** as the group for Application Services.
+* Make sure to select **Group by IP Addresses** as the group for Application Services and then Click **Next**
 
-Click **"Next"** 
-
-UCS file uploaded successful and click **"Save & Continue"**
-
+The UCS file uploaded successful and you are redirected to the **Appllication Migration** section
 
 .. image:: ./lab4-ucs-upload.png
  :scale: 25%
