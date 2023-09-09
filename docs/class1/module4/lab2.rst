@@ -278,6 +278,30 @@ You'll then be prompted for a deploy location. Select 10.1.1.10 and select **Yes
   :scale: 100%
 
 
+Migrating Applications with Certifictaes and Keys
+=================================================
+
+Applications with Ceritifcates and Keys are currently migrated in a slightly different manner. They will be noted by a blue circle information icon. If you hover over the blue circle you will see thext explaining: **Avialable for deployment. Unsupported objects are highlighted and will be automatically removed when deployed. Unsupoorted certificates and keys are highlighted and will be automatically replaced with a default HTTPS profile.**
+
+
+.. image:: ./images/blue-circle.png
+  :align: center
+  :scale: 100%
+
+If you then analyze that application you'll see the finer details of which certificates are being highlighted. 
+
+.. image:: ./images/ssl-cert-and-key.png
+  :align: center
+  :scale: 100%
+
+Manual edit
+
+.. image:: ./images/ssl-cert-and-key-manual-edit.png
+  :align: center
+  :scale: 100%
+
+
+
 Migrating WAF Applications
 ==========================
 
