@@ -119,18 +119,32 @@ Central Manager provides two options for grouping application services. You may 
   :align: center
   :scale: 50%
 
+Click **Next** and the UCS file will be uploaded and analyzed.
 
 Analyze Configuration
 =====================
 
-After filling in the source BIG-IP information and loading the UCS file, a list of **Applications** will be displayed. Depending on the type of grouping selected, and how the applications are configured, you may see a single virtual service per application, or you may see multiple virtual services if grouping by IP Addresses was selected and an application has more than one port. Each application service will display the virtual server address, port, a color coded status indicating its eligibility for migration, and a security status column. You can hover over the Status icon for each application to get more detail on its migration eligibility.
+After filling in the source BIG-IP information and loading the UCS file, an **Application Migration** page will be displayed. Click **Add Application**.
+
+.. image:: ./images/application-page.png
+  :align: center
+  :scale: 50%
+
+The applications from your BIG-IP will now be displated as Application Services.
+
+.. image:: ./images/big-ip-app-services.png
+  :align: center
+  :scale: 50%
+
+
+Depending on the type of grouping selected, and how the applications are configured, you may see a single virtual service per application, or you may see multiple virtual services if grouping by IP Addresses was selected and an application has more than one port. Each application service will display the virtual server address, port, a color coded status indicating its eligibility for migration, and a security status column. You can hover over the Status icon for each application to get more detail on its migration eligibility.
 
 
 .. image:: ./images/icon-hover.png
   :align: center
   :scale: 75%
 
-Here you can select individual applications to analyze them to see if they are eligible to be migrated to BIG-IP Next. Not all BIG-IP features are currenlty supported, and there will be a phasing of support for some configuration objects. 
+Here you can select individual applications to analyze them to see if they are eligible to be migrated to BIG-IP Next. Not all BIG-IP features are currenlty supported on Next. There will be a phasing of support for some configuration objects so it is expected that some applications cannot migrate at the current time. 
 
 To see if an application is eligible for migration, click the application name as well as the virtual service underneath it and then click the **Analyze** button in the top right-hand corner off the screen. Note: You can only analyze one application service at a time. 
 
@@ -145,13 +159,13 @@ This will open the **Configuration Analyzer** page and you will see the BIG-IP c
   :align: center
   :scale: 75%
  
-You can browse the configuration of each file for and any unsupported items, or items that may need adjusting, they will be highlighted with a squiggly red line. You can also see this on the summary preview on the left hand side of the display, it will allow you to quickly zoom in to where the problem may be in the file. Below is an example of a file with a migration issue and the squiggly red line notes where the issue is in both the summary and in the scroll bar.
+You can browse the configuration of each file for and any unsupported items, or items that may need adjusting, they will be highlighted with a squiggly yellow line. You can also see this on the summary preview on the left hand side of the display, it will allow you to quickly zoom in to where the problem may be in the file. Below is an example of a file with a migration issue and the squiggly yellow line notes where the issue is in both the summary and in the scroll bar.
 
 .. image:: ./images/squiggly-line1.png
   :align: center
   :scale: 100%
 
-You can click on the red line in the scroll bar and it will take you to the part of the file that has the migration issue. The squiggly red line will note the configuration object that is not supported. 
+You can click on the yellow line in the scroll bar and it will take you to the part of the file that has the migration issue. The squiggly yellow line will note the configuration object that is not supported. 
 
 .. image:: ./images/squiggly-line2.png
   :align: center
@@ -186,7 +200,7 @@ After renaming the application services, the new names should be reflected in th
   :align: center
   :scale: 100%
 
-After all the application services have been renamed, select all the green status services and then select the **Add** button. This will indicate that you are either ready to migrate these services, or you are going to save them as a draft application service. After adding these applications you'll have more options on the next screen before making a decision.
+After all the application services have been renamed, select all the green status services and then select the **Add** button. This will indicate that you are either ready to migrate these services, or that you are going to save them as a draft application service. After adding these applications you'll have more options on the next screen before making a decision.
 
 .. image:: ./images/add-applications.png
   :align: center
@@ -205,13 +219,13 @@ The next phase is the **Pre Deployment**, here you can **Import** shared configr
   :align: center
   :scale: 100%
 
-To understand what the shared object is, click on number under the **Shared Objects** column. A flyout window will appear with more information about that shared object.
+To understand what the shared object is, click on the number under the **Shared Objects** column. A flyout window will appear with more information about that shared object.
 
 .. image:: ./images/import-details.png
   :align: center
   :scale: 100%
 
-You'll also have the ability to select on a per-application basis whether the migration is saved as a **Draft** application or whether it is deployed to a specfic BIG-IP Next instance. For now, we will leave all Locations for **Save as Draft**. Click the **Import** buttons for the applications that have shared objects. After the imports have finished click the **Deploy** button. The name of the button is current misleading for this use case because you aren't really deploying the applications, you are saving them as draft applications. We will likely update the button name to reflect this in a future release. 
+You'll also have the ability to select on a per-application basis whether the migration is saved as a **Draft** application or whether it is deployed to a specfic BIG-IP Next instance. For now, we will leave all Locations for **Save as Draft**. Click the **Import** buttons for the applications that have shared objects. After the imports have finished click the **Deploy** button. The name of the button is currently misleading for this use case because you aren't really deploying the applications, you are saving them as draft applications. We will likely update the button name to reflect this in a future release. 
 
 After hitting **Deploy** you will see status of the applications being deployed, and finally a status of **Successful**. Click the **Finish** button to complete saving the draft application migrations.
 
