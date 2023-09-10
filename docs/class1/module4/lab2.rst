@@ -281,32 +281,46 @@ You'll then be prompted for a deploy location. Select 10.1.1.10 and select **Yes
 Migrating Applications with Certifictaes and Keys
 =================================================
 
-Applications with Ceritifcates and Keys are currently migrated in a slightly different manner. They will be noted by a blue circle information icon. If you hover over the blue circle you will see text explaining: **Avialable for deployment. Unsupported objects are highlighted and will be automatically removed when deployed. Unsuporrted certificates and keys are highlighted and will be automatically replaced with a default HTTPS profile.** Go back into your previous migration via the **Resume Migration** option. after clicking **Add Application**. When the Application Migration page opens click **Add** to see all the applications again.
+Go back into your previous migration via the **Resume Migration** option. after clicking **Add Application**. When the Application Migration page opens click **Add** to see all the applications again. Applications with Ceritifcates and Keys are currently migrated in a slightly different manner. They will be noted by a blue circle information icon. If you hover over the blue circle you will see text explaining: **Available for deployment. Unsupported objects are highlighted and will be automatically removed when deployed. Unsuporrted certificates and keys are highlighted and will be automatically replaced with a default HTTPS profile.** 
 
 .. image:: ./images/blue-circle.png
   :align: center
   :scale: 100%
 
-If you then **Analyze** that application you'll see the finer details of which certificates are being highlighted. 
+If you then **Analyze** that application you'll see the finer details of which certificates are being highlighted. Search for the blue squiggly line, to see the items that have issues. There is a known issue with the passphrase not being obsfucated properly (it should be hidden beneath the red boxes), this will be addressed shortly.
 
 .. image:: ./images/ssl-cert-and-key.png
   :align: center
   :scale: 100%
 
+Click **Add** to add the SSL_OFFLOAD application, and then click **Next**.
 
+
+.. image:: ./images/ssl-offload-summary.png
+  :align: center
+  :scale: 100%
+
+You'll see the pre-deploytment summary, and the application has one shared object. Click on the shared object to see finer details.  Note the Certificate **Import Status** is skipped. The current version of the migration manager will not directly import the certificates into Central Manager, so they are skipped. In the future these certificates would be imported and managed by Central Manager, but for now there is a manual import process with the current release. 
+
+.. image:: ./images/cert-predeployment.png
+  :align: center
+  :scale: 100%
+
+ Click **Exit**, and then ensure the Deploy Location is **Save as Draft**, and then click **Deploy**. After a brief moment, you will see a susccessful deployment, at this time click **Finish**.
 
 .. image:: ./images/import-summary-cert.png
   :align: center
   :scale: 100%
 
-Manual edit
+Now click on the SSL_OFFLOAD application. You can now view and edit the AS3 declaration. The Private Key and Certiciate will have to be manaully added into the AS3 delcaration before deploying as highlighted below. As mentioned above this would be a temporary solution until the certifcate import is fully implemented. This is expected to be available in the general release of BIG-IP Next. 
 
 .. image:: ./images/ssl-cert-and-key-manual-edit.png
   :align: center
   :scale: 100%
 
-
+We won't migrate this configuration completely, as the workflow will be changing shortly. Click **Cancel & Exit**.
 
 Migrating WAF Applications
 ==========================
 
+Laslty, we will migrate applications that have WAF policies associated with the virtual servers. Go back into your previous migration via the **Resume Migration** option. after clicking **Add Application**. When the Application Migration page opens click **Add** to see all the applications again.
