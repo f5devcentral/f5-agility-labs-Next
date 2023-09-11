@@ -38,6 +38,8 @@ Deploy a HTTPS load balancer with a WAF policy
 
 **3. Click on "Create"**
 
+   * Application Service Name is "waf-app."  Click on "From Template" and then "Select Template"
+  
  .. image:: ./pictures/create-application.png
 
 |
@@ -47,18 +49,20 @@ ose the "http" Template and click on "Start Creating"** (the http template is a 
  .. image:: ./pictures/application_template.png
 
 |
- .. image:: ./pictures/app_start_creating.png
 
-|
-
-**5. Click on the "Pools" and create the following Pool:**
+**5. Under the "waf-app," click on "Pools" and enter the following values in the template wizard as shown in the picture below**
   
+   .. image:: ./pictures/waf-app-virtual-addition.png
+
    * Pool Name: waf-app-pool
    * Service Port: 3000
    * Leave other options the same
- .. image:: ./pictures/waf-app-pool.png
 
-**6. Click on "Vritual Servers" and modify the following fields**
+
+**6. Under the waf-app," click on "Virtual Servers" and enter the following values in the template wizard for Properties as shown in the picture below and then click "Next."**
+
+   .. image:: ./pictures/waf-app-pool.png
+
 
    * Virtual Server Name: m-waf-app
    * Pool: Select "waf-app-pool" from the drop-down
@@ -67,6 +71,7 @@ ose the "http" Template and click on "Start Creating"** (the http template is a 
 **7. Press the edit button under "Protocols and Profiles" (adjacent to "SNAT" and "MIRRORING")**
 
    * Press "Enable HTTPS (Client-Side TLS)" and choose the "self_demo.f5.com" certificate
+ 
  .. image:: ./pictures/choose_cert.png
 
 **8. Select the edit button under "Security Policies" 
@@ -75,42 +80,39 @@ ose the "http" Template and click on "Start Creating"** (the http template is a 
    2. Click on "+ Create"
    3. Name:  waf-policy, leave all other items as default and click "Save" and then "Save" again.
 
-**8. Pressing "Review and Deploy" will take you to the "Deploy" page.  Select "Start Adding" and select big-ip-next-01.f5demo.com as the instance to deploy to and then click "+ Add to List."**
+**9. Pressing "Review and Deploy" will take you to the "Deploy" page.  Select "Start Adding" and select big-ip-next-01.f5demo.com as the instance to deploy to and then click "+ Add to List."**
 
    * The Deploy tab is the first place you'll actually define a virtual server.  The screens before were defining things like virtual server and pool names which will then be consistent as you deploy across infrastructure.  Imagine a global app that is deployed and a site is added.  The definition will already be in Central Manager and all you will need to define is a small subset of data (IP and pool members) and you will have a functional application that matches exactly the rest of your infrastructure.
  .. image:: ./pictures/
 
-**9. Add the IP of 10.1.10.203 to the "Virtual Address" box, and then click the down arrow and select "+ Pool Members." **
+**10. Add the IP of 10.1.10.203 to the "Virtual Address" box, and then click the down arrow and select "+ Pool Members." **
 
  .. image:: ./pictures/IP_for_VIP.png
 
-**10. Click on "+ Add Row" on the right and fill in "m_10.1.20.100" for the Name and "10.1.20.100" for the IP Address.  Click "Save"
+**11. Click on "+ Add Row" on the right and fill in "m_10.1.20.100" for the Name and "10.1.20.100" for the IP Address.  Click "Save"
 
  .. image:: ./pictures/pool_member_add.png
    
-**11. Click on "Validate All" to run the deployment validation.  When the validation is complete, you will see a icon and status next to the deployment, such as the green icon and "Validated" in the picture below**
+**12. Click on "Validate All" to run the deployment validation.  When the validation is complete, you will see a icon and status next to the deployment, such as the green icon and "Validated" in the picture below**
  
  .. image:: ./pictures/validate.png
 
-**12. Click on "View deployment validation results" to show the declaration**
+**13. Click on "View deployment validation results" to show the declaration**
 
  .. image:: ./pictures/declaration.png
 
 
  Click on "Exit" to go back to the previous screen.
 
-
-
- .. image:: ./pictures/success.png
   
-**13. Finally click on "Deploy" after which you will be prompted to confirm the deployment or cancel.  Click "Yes, Deploy" and you should see the application and the WAF policy deployed**
+**14. Finally click on "Deploy" after which you will be prompted to confirm the deployment or cancel.  Click "Yes, Deploy" and you should see the application and the WAF policy deployed**
 
  .. image:: ./pictures/successful_deployed.png
   
 
 
 
-**14. Let's validate the application through the UDF Firefox**
+**15. Let's validate the application through the UDF Firefox**
     
  On the lab components, select "Access" under the "Ubuntu Jump Host" and select "Firefox."  Within this proxied Firefox, go to https://10.1.10.203 and you should see the Juice Shop app.
 
@@ -130,7 +132,7 @@ ose the "http" Template and click on "Start Creating"** (the http template is a 
 
 |
 
-**15. You can see your block requested by visiting the WAF dashbaord**
+**16. You can see your block requested by visiting the WAF dashbaord**
 
 From Central Manager click on the top left menu to select the Security menu.
 
@@ -145,7 +147,7 @@ You can now view your "good" and "bad" requests
 
 .. note:: The "Lab Progress" app will also make "bad" requests in the background
 
-**16. (Optional)  WAF Event Logs**
+**17. (Optional)  WAF Event Logs**
 
 .. note:: This next exercise is optional (if you are doing this as part of internal F5 training and are part of the "Security" track, please skip in favor of your dedicated "Security" lab)
 
