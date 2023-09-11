@@ -312,15 +312,15 @@ You'll see the pre-deploytment summary, and the application will have one shared
   :align: center
   :scale: 100%
 
-Now click on the SSL_OFFLOAD application. You can now view and edit the AS3 declaration. The Private Key and Certiciate will have to be manaully added into the AS3 delcaration before deploying as highlighted below. As mentioned above this would be a temporary solution until the certifcate import is fully implemented. This is expected to be available in the general release of BIG-IP Next. 
+Now click on the SSL_OFFLOAD application. You can now view and edit the AS3 declaration. The Private Key and Certiciate will have to be manaully added into the AS3 delcaration before deploying as highlighted below. As mentioned above, this would be a temporary solution until the certificate import is fully implemented. This is expected to be available in the general release of BIG-IP Next. 
 
 .. image:: ./images/ssl-cert-and-key-manual-edit.png
   :align: center
   :scale: 100%
 
-We won't migrate this configuration completely, as the workflow will be changing shortly. Click **Cancel & Exit**.
+We won't migrate this application at the current time, as the workflow will be changing shortly to allow for the import of certificates and keys into the shared objects. Click **Cancel & Exit**.
 
 Migrating WAF Applications
 ==========================
 
-Laslty, we will migrate applications that have WAF policies associated with the virtual servers. Go back into your previous migration via the **Resume Migration** option. after clicking **Add Application**. When the Application Migration page opens click **Add** to see all the applications again.
+Laslty, you will migrate applications that have WAF policies associated with the virtual servers. Go back into your previous migration via the **Resume Migration** option. after clicking **Add Application**. When the Application Migration page opens click **Add** to see all the applications again.
