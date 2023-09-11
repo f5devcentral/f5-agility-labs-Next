@@ -300,7 +300,7 @@ Click **Add** to add the SSL_OFFLOAD application, and then click **Next**.
   :align: center
   :scale: 100%
 
-You'll see the pre-deploytment summary, and the application has one shared object. Click on the shared object to see finer details.  Note the Certificate **Import Status** is skipped. The current version of the migration manager will not directly import the certificates into Central Manager, so they are skipped. In the future these certificates would be imported and managed by Central Manager, but for now there is a manual import process with the current release. 
+You'll see the pre-deploytment summary, and the application will have one shared object. Click on the shared object to see the details.  Note, the Certificate **Import Status** is skipped. The current version of the migration manager will not directly import the certificates into Central Manager, so they are skipped. In the future these certificates would be imported and managed by Central Manager, but for now there is a manual import process with the current release. 
 
 .. image:: ./images/cert-predeployment.png
   :align: center
