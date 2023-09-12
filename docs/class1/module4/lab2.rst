@@ -130,7 +130,7 @@ After filling in the source BIG-IP information and loading the UCS file, an **Ap
   :align: center
   :scale: 50%
 
-The applications from your BIG-IP will now be displated as Application Services.
+The applications from your BIG-IP will now be displayed as Application Services.
 
 .. image:: ./images/big-ip-app-services.png
   :align: center
@@ -159,30 +159,30 @@ This will open the **Configuration Analyzer** page and you will see the BIG-IP c
   :align: center
   :scale: 75%
  
-You can browse the configuration of each file for and any unsupported items, or items that may need adjusting, they will be highlighted with a squiggly yellow line. You can also see this on the summary preview on the left hand side of the display, it will allow you to quickly zoom in to where the problem may be in the file. Below is an example of a file with a migration issue and the squiggly yellow line notes where the issue is in both the summary and in the scroll bar.
+You can browse the configuration of each file for and any unsupported items, or items that may need adjusting, they will be highlighted with a squiggly yellow, red, or blue line. You can also see this on the summary preview on the left hand side of the display, it will allow you to quickly zoom in to where the problem may be in the file. Below is an example of a file with a migration issue and the squiggly yellow line notes where the issue is in both the summary and in the scroll bar.
 
 .. image:: ./images/squiggly-line1.png
   :align: center
-  :scale: 100%
+  :scale: 75%
 
 You can click on the yellow line in the scroll bar and it will take you to the part of the file that has the migration issue. The squiggly yellow line will note the configuration object that is not supported. 
 
 .. image:: ./images/squiggly-line2.png
   :align: center
-  :scale: 100%
+  :scale: 75%
 
-You can hover over the red squiggly line to get more details about the unsupported object. You can also click the **View Problem** message for addtional details.
+You can hover over the squiggly line to get more details about the unsupported object. You can also click the **View Problem** message for addtional details.
 
 .. image:: ./images/squiggly-line3.png
   :align: center
-  :scale: 100%
+  :scale: 75%
 
 Using the Configuration Analyzer you can make a determination if an application service is ready for migration, or if you may have to wait until additional functionality is integrated into BIG-IP Next. BIG-IP Next is on a much more rapid release schedule than TMOS, so new features are being integrated on regular invtervals.
 
 Migrate Applications to BIG-IP Next
 ===================================
 
-Applications with status indicating a yellow triangle or blue information icon may not be ready for migration, or may need some changes to fully migrate to BIG-IP Next. A red icon is an unsupported object and cannot be migrated to BIG-IP Next. For this lab, we will attempt to migrate all the green application services to BIG-IP Next. Before migrating the applications, it is a good idea to rename each application service to use a name that better represents the application instead of the genneric style names (application_1, application_2 etc...). Go ahead and rename each application, try and use the name nested underneath the application service name, so its clear what the applications are configured for, as the names are descriptive of the use case.
+Applications with status indicating a yellow triangle or blue information icon may not be ready for migration, or may need some changes to fully migrate to BIG-IP Next. A red icon is an unsupported object and cannot be migrated to BIG-IP Next. For this lab, we will first attempt to migrate all the green application services to BIG-IP Next. Before migrating the applications, it is a good idea to rename each application service to use a name that better represents the application instead of the genneric style names (application_1, application_2 etc...). Go ahead and rename each application, try and use the name nested underneath the application service name, so its clear what the applications are configured for, as the names are descriptive of the use case.
 
 .. image:: ./images/rename-applications.png
   :align: center
@@ -198,26 +198,26 @@ After renaming the application services, the new names should be reflected in th
 
 .. image:: ./images/rename-applications-3.png
   :align: center
-  :scale: 100%
+  :scale: 75%
 
 After all the application services have been renamed, select all the green status services and then select the **Add** button. This will indicate that you are either ready to migrate these services, or that you are going to save them as a draft application service. After adding these applications you'll have more options on the next screen before making a decision.
 
 .. image:: ./images/add-applications.png
   :align: center
-  :scale: 100%
+  :scale: 75%
 
-the next screen will present an Application Migration summary. Here you can review the applications that you wish to move forward with, or you can remove an application from the migration. This doesn't delete the application, it is still in the UCS and you can go back later and add it again. If you forgot an application, you can click the **Add** button to go back to the remaining applications and add other apps if you wish. Once you are satisfied with the summary of applications, click **Next**.
+The next screen will present an Application Migration summary. Here, you can review the applications that you wish to move forward with, or you can remove an application from the migration. This doesn't delete the application, it is still in the UCS and you can go back later and add it again. If you forgot an application, you can click the **Add** button to go back to the remaining applications and add other apps if you wish. Once you are satisfied with the summary of applications, click **Next**.
 
 .. image:: ./images/app-migration-summary.png
   :align: center
-  :scale: 100%
+  :scale: 75%
 
 The next phase is the **Pre Deployment**, here you can **Import** shared configration objects associated with the application into Central Manager. Examples of shared objects would be iRules, WAF policies, Certificates etc... These objects are treated differently than the rest of the configuration because they are managed centrally and not specific to any one device, or in the case of certificates Central Manager is managing those centrally. As an example, in traditional BIG-IP management, iRules are managed on a device-by-device basis, there is no central iRule management. Central Manager addresses this issue and allows iRules to be imported and treated as shared objects, meaning they can be shared and deployed to more than one device. Central Manager manages the entire iRule lifecycle including deployment and versioning. This is huge improvement over traditional BIG-IP iRule management. Other shared objects such as WAF policies enjoy similar benefits of centralized mangement, versioning, and full lifecycle management. 
 
 
 .. image:: ./images/pre-deployment.png
   :align: center
-  :scale: 100%
+  :scale: 75%
 
 To understand what the shared object is, click on the number under the **Shared Objects** column. A flyout window will appear with more information about that shared object.
 
@@ -225,47 +225,49 @@ To understand what the shared object is, click on the number under the **Shared 
   :align: center
   :scale: 100%
 
-You'll also have the ability to select on a per-application basis whether the migration is saved as a **Draft** application or whether it is deployed to a specfic BIG-IP Next instance. For now, we will leave all Locations for **Save as Draft**. Click the **Import** buttons for the applications that have shared objects. After the imports have finished click the **Deploy** button. The name of the button is currently misleading for this use case because you aren't really deploying the applications, you are saving them as draft applications. We will likely update the button name to reflect this in a future release. 
+You'll also have the ability to select on a per-application basis whether the migration is saved as a **Draft** application or whether it is deployed to a specific BIG-IP Next instance. For now, we will leave all Locations for **Save as Draft**. Click the **Import** buttons for the applications that have shared objects. After the imports have finished click the **Deploy** button. The name of the button is currently misleading for this use case because you aren't really deploying the applications, you are saving them as draft applications. We will likely update the button name to reflect this in a future release. 
 
 After hitting **Deploy** you will see status of the applications being deployed, and finally a status of **Successful**. Click the **Finish** button to complete saving the draft application migrations.
 
 .. image:: ./images/deployment-summary.png
   :align: center
-  :scale: 100%
+  :scale: 75%
 
 The draft applications are added into the application dashboard, but are tagged in a **Draft** status as seen below.
 
 .. image:: ./images/draft-application-dashboard.png
   :align: center
-  :scale: 100%
+  :scale: 75%
 
-If you click on one of the draft applications you will be able to view the AS3 declaration for the migrated application. Central Manager converts existing BIG-IP configurations into AS3 before moving the application over to BIG-IP Next.
+If you click on one of the draft applications you will be able to view the AS3 declaration for the migrated application. Central Manager converts existing BIG-IP configurations into AS3 before moving the application over to BIG-IP Next. Click **Cancel & Exit**.
 
 .. image:: ./images/as3-declaration.png
   :align: center
   :scale: 100%
 
-Next, you can review the shared objects that you previosuly imported into Central Manager from the draft applications. Click on the **iRules** menu item on the left-hand side of the page. Note that some of the iRules have **migrated_** prepended to the iRule name. This lets you know that the iRule was imported via the migration process. You can click on the iRule hyperlink to get more details, and to view the actual iRule. Here you could also edit the AS3 delcaration before deploying, but for now click the **Cancel & Exit** button.
+Next, you can review the shared objects that you previosuly imported into Central Manager from the draft applications. Click on the **iRules** menu item on the left-hand side of the page. Note that some of the iRules have **migrated_** prepended to the iRule name. This lets you know that the iRule was imported via the migration process. You can click on the iRule hyperlink to get more details, and to view the actual iRule. Here, you could also edit the AS3 delcaration before deploying, but for now click the **Cancel & Exit** button.
 
 .. image:: ./images/irules-prepend.png
   :align: center
-  :scale: 100%
+  :scale: 75%
 
 You can also click on the **Certificates & Keys** menu item on the left-hand side of the page. Any certs & keys imported during the migration process will also have **migrated_** prepended to the name. 
 
 .. image:: ./images/certs-and-keys.png
   :align: center
-  :scale: 100%
+  :scale: 75%
 
 
 Performing the Migration
 ========================
 
-When migrating between BIG-IP and BIG-IP Next there are a number of ways to decomission applications from BIG-IP, and move them over to BIG-IP Next. Central Manager will perform all the necasarry steps to convert the configuration, but some coordination will be needed to to ensure no duplicate IP addresses are on the network, or to ensure the virtual server IP addresses are changed when they are migrated to BIG-IP Next. Some customers wil prefer to preserve the current IP addresses when applications move over to BIG-IP Next, while others may want to supply new IP addresses, and update their DNS infrastructure to point to the new IP addresses. There are pros and cons to each approach. Currently, Central Manager assumes the IP adddresses will stay the same (but you can manually edit the config to change them), but it does not offer any means for coordintating the transition / deocmissioning of IP addresses. This is something that will likely be enhanced to offer more support in this area in the future. For this lab, we will assume the IP addresses for the virtual servers are going to change. This is also an area that is currently very manual that could be enhanced in the future. Your feedback on migration enhancements is welcome. 
+When migrating between BIG-IP and BIG-IP Next there are a number of ways to decomission applications from BIG-IP and move them over to BIG-IP Next. Central Manager will perform all the necasarry steps to convert the configuration, but some coordination will be needed to to ensure no duplicate IP addresses are on the network, or to ensure the virtual server IP addresses are changed when they are migrated to BIG-IP Next. Some customers wil prefer to preserve the current IP addresses when applications move over to BIG-IP Next, while others may want to supply new IP addresses, and update their DNS infrastructure to point to the new IP addresses. There are pros and cons to each approach. 
+
+Currently, Central Manager assumes the IP adddresses will stay the same (but you can manually edit the config to change them), but it does not offer any means for coordintating the transition / deocmissioning of IP addresses. This is something that will likely be enhanced to offer more support in this area in the future. For this lab, we will assume the IP addresses for the virtual servers are going to change. This is also an area that is currently very manual that could be enhanced in the future. Your feedback on migration enhancements is welcome. 
 
 You can click on any of the draft applications and edit the AS3 declaration to alter the virtual server IP address, and then deploy the application to the new instance. This would allow the application to exist on both BIG-IP and BIG-IP Next at the same time, and DNS could coordiinate the swing of traffic to BIG-IP Next. This could be done all at once, or gradually through GSLB policies. 
 
-Alter the draft applications virtual server addresses by replacing the last octet so that instead of it being 10.1.10.5x it is now 10.1.10.6x where x is consistent. As an example, if the virtual server address is 10.1.10.51, change it to 10.1.10.61. Then click **Save & Deploy**. This will migrate the application to BIG-IP Next.
+Alter the draft applications virtual server addresses by replacing the last octet so that instead of it being 10.1.10.5x it is now 20 digits higher As an example, if the virtual server address is 10.1.10.51, change it to 10.1.10.71 (20 digits higher). Then click **Save & Deploy**. This will migrate the application to BIG-IP Next.
 
 .. image:: ./images/edit-vs.png
   :align: center
@@ -277,11 +279,36 @@ You'll then be prompted for a deploy location. Select 10.1.1.10 and select **Yes
   :align: center
   :scale: 100%
 
+Repeat this process for each application you saved as a Draft. not that some applications may have more than one virtual that needs to be edited:
+
+.. image:: ./images/ssl-offload-2virtuals.png
+  :align: center
+  :scale: 100%
+
+You can now test each virtaul server by going to the original virtual server IP addresss on BIG-IP, and then connecting to the new virtual server IP address on BIG-IP Next. In the main UDF page, go to the Ubuntu server, and in the **Access** drop down slection selct **Firefox**.
+
+Try and connect to the following virtual servers on BIG-IP first:
+
+- FASTL4-VS - http://10.1.10.51
+- STANDARD-VS-W-TCP-PROG-VS - http://10.1.10.52:8080
+- SSL-OFFLOAD-VS - http://10.1.10.53 
+- SSL-OFFLOAD-VS - https://10.1.10.53 <----Will fail due to self-signed cert
+- iRule-pool-slection-VS - http://10.1.10.54
+- LTM-POLCY-VS - http://10.1.10.55
+
+Now try an connect to the virtuals on BIG-IP Next:
+
+- FASTL4-VS - http://10.1.10.71
+- STANDARD-VS-W-TCP-PROG-VS - http://10.1.10.72:8080
+- SSL-OFFLOAD-VS - http://10.1.10.73 
+- SSL-OFFLOAD-VS - https://10.1.10.73 <----Will fail due to self-signed cert
+- iRule-pool-slection-VS - http://10.1.10.74
+- LTM-POLCY-VS - http://10.1.10.75
 
 Migrating Applications with Certifictaes and Keys
 =================================================
 
-Go back into your previous migration via the **Resume Migration** option. after clicking **Add Application**. When the Application Migration page opens click **Add** to see all the applications again. Applications with Ceritifcates and Keys are currently migrated in a slightly different manner. They will be noted by a blue circle information icon. If you hover over the blue circle you will see text explaining: **Available for deployment. Unsupported objects are highlighted and will be automatically removed when deployed. Unsuporrted certificates and keys are highlighted and will be automatically replaced with a default HTTPS profile.** 
+Go back into your previous migration via the **Resume Migration** option, after clicking **Add Application**. When the Application Migration page opens click **Add** to see all the applications again. Applications with Ceritifcates and Keys are currently migrated in a slightly different manner. They will be noted by a blue circle information icon. If you hover over the blue circle you will see text explaining: **Available for deployment. Unsupported objects are highlighted and will be automatically removed when deployed. Unsuporrted certificates and keys are highlighted and will be automatically replaced with a default HTTPS profile.** 
 
 .. image:: ./images/blue-circle.png
   :align: center
@@ -323,4 +350,4 @@ We won't migrate this application at the current time, as the workflow will be c
 Migrating WAF Applications
 ==========================
 
-Laslty, you will migrate applications that have WAF policies associated with the virtual servers. Go back into your previous migration via the **Resume Migration** option. after clicking **Add Application**. When the Application Migration page opens click **Add** to see all the applications again.
+Lastly, you will migrate applications that have WAF policies associated with the virtual servers. Go back into your previous migration via the **Resume Migration** option, after clicking **Add Application**. When the Application Migration page opens click **Add** to see all the applications again.
