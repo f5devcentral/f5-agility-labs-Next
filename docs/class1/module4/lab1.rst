@@ -4,13 +4,10 @@ Lab 4.1 - Import App from UCS
 
  **Login to BIG-IP Next Central Manager in UDF**
  
-  **Preferred Method:** Navigate to your UDF deployment and select the "GUI" ACCESS method for the "BIG-IP Next Central Manager" and login with the username/password provided under DETAILS.
+  Navigate to your UDF deployment and select the "GUI" ACCESS method for the "BIG-IP Next Central Manager" and login with the username/password provided under DETAILS.
   
-   .. image:: ./cm_login.png 
-
-  Option 2: Use RDP access method on Windows Jump Host
-   .. image:: ./rdp-access-windows.png
-        :scale: 25%
+   .. image:: ./cm_login.png
+        :scale: 25% 
 
 After logging into BIG-IP Next CM, click on  **"Application Workspace"** 
 
@@ -36,7 +33,7 @@ Select **"New Migration"** and enter the following information in General Propoe
 
    Agility2023 BIG-IP Next Lab
 
-Click **"Save & Continue"**
+Click **"Next"**
 
 .. image:: ./lab4-new-app-migration.png
  :scale: 25%
