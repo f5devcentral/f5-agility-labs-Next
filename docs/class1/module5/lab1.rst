@@ -1,5 +1,5 @@
 =============================
-Lab 5.1 - Modify templates to add security policy
+Lab 5.1 - Modify templates to add security policy (Basic WAF Lab)
 =============================
 
 * Show versioning of the template
