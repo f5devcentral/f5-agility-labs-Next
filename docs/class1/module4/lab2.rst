@@ -233,7 +233,7 @@ Before migrating the applications to BIG-IP Next, lets ensure that each applicat
   :align: center
   :scale: 75%
 
-Open up the RDP shortcut to connect to the Windows Jumphost. change the username to **f5access\user** and the password to **user** and log in.
+Open up the RDP shortcut to connect to the Windows Jumphost. change the username to f5access\user and the password to **user** and log in.
 
 .. image:: ./images/f5access-user.png
   :align: center
