@@ -272,7 +272,7 @@ All Virtual Addresses should now show in the **Disabled** state.
   :align: center
   :scale: 75% 
 
-You can re-run the curl commands on the Windows jump host to ensure the virtual addresses are unrepsonsive. Now go back to the Central Manager pre-migration screen. For now, we will set all Locations for the green applications to **big-ip-next-03-f5demo.com**. Then click **Deploy**.
+You can re-run the curl commands on the Windows jump host to ensure the virtual addresses are unresponsive. Now go back to the Central Manager pre-migration screen. For now, we will set all Locations for the green applications to **big-ip-next-03-f5demo.com**. Then click **Deploy**.
 
 .. image:: ./images/deploy-green-apps-to-next-03.png
   :align: center
@@ -292,7 +292,7 @@ To verify the applications migrated successfully, go back to the Windows jumphos
 
 Next, you'll go back to the saved migration and move some additional applications. Click the **Add Applications** button on the Applications Summary screen.
 
-.. image:: ./images/add-apps2.png
+.. image:: ./images/add-apps-2.png
   :align: center
   :scale: 75%
 
@@ -308,7 +308,7 @@ Then click on the UCS Name hyperlink to open the migration back up. Here, you wi
   :align: center
   :scale: 75%
 
-Click the **Back button once more.
+Click the **Back** button once more.
 
 .. image:: ./images/back-once-more.png
   :align: center
@@ -320,7 +320,7 @@ Then click the **Add** button to see all the apps.
   :align: center
   :scale: 75%
 
-Next we will stage a draft migration, and demonstrate the capability of editing the configuration before migrating. Unselect all the green apps that have migrated to BIG-IP Next already, then sleect all 3 WAF applications, and the SSL-OFFLOAD-W-PASSWORD application. Then click **Add*. 
+Next we will stage a draft migration, and demonstrate the capability of editing the configuration before migrating. Unselect all the green apps that have migrated to BIG-IP Next already, then sleect all 3 WAF applications, and the SSL-OFFLOAD-W-PASSWORD application. Then click **Add**. 
 
 .. image:: ./images/add-waf-apps.png
   :align: center
@@ -332,13 +332,13 @@ Confirm the summary of applications, and then click **Next**.
   :align: center
   :scale: 75%
 
-Review the shared objects either already imported, or that need to be imported by clicking on the nnumber under the *8Shared Objects** column. Then Import andny required shared objects. We will leave all Locations as **Save as Draft**, meaning they will be staged so that changes can be made, but not actually migrated yet. Click **Deploy** to stage the draft changes.
+Review the shared objects either already imported, or that need to be imported by clicking on the number under the **Shared Objects** column. Then Import any required shared objects. Leave all Locations as **Save as Draft**, meaning they will be staged so that changes can be made, but not actually migrated yet. Click **Deploy** to stage the draft changes.
 
 .. image:: ./images/pre-deploy-waf.png
   :align: center
   :scale: 75%
 
-Here, you can see the apps that are in Draft status as well as the applications that have been successfully mmigrated. Click **Finsih**.
+Here, you can see the apps that are in Draft status as well as the applications that have been successfully migrated. Click **Finsih**.
 
 .. image:: ./images/combined-deployments.png
   :align: center
@@ -356,7 +356,7 @@ Click on the Draft application WAF-DOS-PROFILE-VS.
   :align: center
   :scale: 75%
 
-This will bring up the AS3 Declaration that is used to migrate the application. Note that here you can review the configuration that will be deployed to BIG-IP Next, and you could also make edits (Don't do that now). As an exmaple, maybe you want to change the Virtual server address before migrating, you could do that here if needed. For now just review the application take note of the virtual server address, and then click the **Save and Deploy** button.
+This will bring up the AS3 Declaration that is used to migrate the application. Note that here you can review the configuration that will be deployed to BIG-IP Next, and you could also make edits (Don't do that now). As an exmaple, maybe you want to change the Virtual server address before migrating, you could do that here if needed. For now just review the application, take note of the virtual server address, and then click the **Save and Deploy** button.
 
 .. image:: ./images/save-and-deploy-waf-apps.png
   :align: center
@@ -370,10 +370,6 @@ You'll then be prompted for a deploy location. Select 10.1.1.10 and select **Yes
 
 Repeat this process for each WAF application you saved as a Draft. Do not migrate the SSL OFFLOAD app yet.
 
-.. image:: ./images/ssl-offload-2virtuals.png
-  :align: center
-  :scale: 100%
-
 
 Now test that the WAF applications have been migrated over to BIG-IP Next. From the Windows jumphost, open a Chrome browser window and then enter in the following to ensre you reach the back-end application.
 
@@ -381,17 +377,17 @@ Now test that the WAF applications have been migrated over to BIG-IP Next. From 
 - DOS WAF - https://10.1.10.57
 - BOT WAF - https://10.1.10.56
 
-After acceptring the security/certifcate warning you should see the Next Lab page in the browser indicating successfull connection to the app, and a successfull migration of the WAF apps to BIG-IP Next.
+After accepting the security/certifcate warning you should see the Next Lab page in the browser indicating successfull connection to the app, and a successfull migration of the WAF apps to BIG-IP Next.
 
 .. image:: ./images/waf-apps-browser.png
   :align: center
   :scale: 100%
 
-Lastly click on the SSL OFFLOAD Draft application and review the AS3 declaration. Note that the certs and keys that are pasword protected are not currently migrated automatically. You would need to add thos certs and keys manually. This is being addressed in a subsequnt release.
+Lastly, click on the SSL OFFLOAD Draft application and review the AS3 declaration. Note that the certs and keys that are pasword protected are not currently migrated automatically. You would need to add those certs and keys manually. This is being addressed in a subsequnt release.
 
 .. image:: ./images/ssl-certs-future.png
   :align: center
   :scale: 100%
 
-This complete the migration lab.
+This completes the migration lab.
 
