@@ -20,12 +20,15 @@ Procedure
     .. image:: ./click-on-big-ip-next-01.png
         :scale: 50%
 
-#. Next click on the "Licensing" setting.  You should see that the status is "Inactive"
+#. Next click on the **Licensing** setting.  You should see that the status is "Inactive"
     .. image:: ./click-on-licensing-tab.png
         :scale: 50%
-#. Click on "Activate License" and select an "Existing Token" and select the token named "test"
+#. Click on "Activate License" and you'll be presented an overview of Licensing Requirements (if this is the first time you're going through the license activation workflow)
+    .. image:: ./activate_license_what_youll_need.png
+        :scale: 50%
+#. Click on **Next** and select an **Existing Token** and select the token named "test". Click **Activate**
     .. image:: ./select-existing-token.png
         :scale: 50%
-#. Click on "Activate".  The status should change to "Active"
+#. Click on "Activate".  The status should change to "Active". Click **Cancel & Exit** to return to My Instances
     .. image:: ./central-manager-active-license.png
         :scale: 50%
