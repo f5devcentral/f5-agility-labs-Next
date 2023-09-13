@@ -36,7 +36,7 @@ Deploy a HTTPS load balancer with a WAF policy
 
 |
 
-**3. Click on "Create"**
+**3. For the "Application Service Name" fill in waf-app.  Select "From Template" and then click on "Select Template." Choose the "http" Template and click on "Start Creating"** (the http template is a unified template that allows you to enable/disable capabilities)
 
    * Application Service Name is "waf-app."  Click on "From Template" and then "Select Template"
   
@@ -44,15 +44,15 @@ Deploy a HTTPS load balancer with a WAF policy
 
 |
 
-**4. For the "Application Service Name" fill in waf-app.  Select "From Template" and then click on "Select Template." Cho
-ose the "http" Template and click on "Start Creating"** (the http template is a unified template that allows you to enable/disable capabilities)
+**4. Select the "http" Application Template and when the waf-app APplication Service Properties comes up, click "Start Creating"
+
  .. image:: ./pictures/application_template.png
 
 |
 
 **5. Under the "waf-app," click on "Pools" and enter the following values in the template wizard as shown in the picture below**
   
-   .. image:: ./pictures/waf-app-virtual-addition.png
+     .. image:: ./pictures/waf-app-pool.png
 
    * Pool Name: waf-app-pool
    * Service Port: 3000
@@ -61,10 +61,9 @@ ose the "http" Template and click on "Start Creating"** (the http template is a 
 
 **6. Under the waf-app," click on "Virtual Servers" and enter the following values in the template wizard for Properties as shown in the picture below and then click "Next."**
 
-   .. image:: ./pictures/waf-app-pool.png
+   .. image:: ./pictures/waf-app-virtual-addition.png
 
-
-   * Virtual Server Name: m-waf-app
+   * Virtual Server Name: waf-app-vs
    * Pool: Select "waf-app-pool" from the drop-down
    * Port:  443
 
@@ -83,6 +82,7 @@ ose the "http" Template and click on "Start Creating"** (the http template is a 
 **9. Pressing "Review and Deploy" will take you to the "Deploy" page.  Select "Start Adding" and select big-ip-next-01.f5demo.com as the instance to deploy to and then click "+ Add to List."**
 
    * The Deploy tab is the first place you'll actually define a virtual server.  The screens before were defining things like virtual server and pool names which will then be consistent as you deploy across infrastructure.  Imagine a global app that is deployed and a site is added.  The definition will already be in Central Manager and all you will need to define is a small subset of data (IP and pool members) and you will have a functional application that matches exactly the rest of your infrastructure.
+ 
  .. image:: ./pictures/
 
 **10. Add the IP of 10.1.10.203 to the "Virtual Address" box, and then click the down arrow and select "+ Pool Members." **
@@ -139,7 +139,7 @@ From Central Manager click on the top left menu to select the Security menu.
  .. image:: ./pictures/security-menu.png
   :scale: 50%
 
-From the WAF Dashboard click on the down arrow and select your "waf-policy".
+From the WAF Dashboard under the Policies box, click on the three dots next to "waf-policy" and select "Filter by Policy Name".
 
  .. image:: ./pictures/waf-dashboard-select-policy.png
 
