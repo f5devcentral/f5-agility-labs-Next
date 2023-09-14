@@ -227,7 +227,16 @@ To understand what the shared object is, click on the number under the **Shared 
 
 Click the **Import** buttons for the applications that have shared objects. You'll also have the ability to select on a per-application basis whether the migration is saved as a **Draft** application (so you can save for later) or whether it is deployed to a specific BIG-IP Next instance. You will come back to this page momentarily.
 
-Before migrating the applications to BIG-IP Next, lets ensure that each application is working on BIG-IP from the Windows client. Log into the Windows Jumphost using the **RDP** option in the main UDF screen. This will download an RDP shortcut to your machine. 
+Before migrating the applications to BIG-IP Next, lets ensure that each application is working on BIG-IP from a client. There are two choices for clients that can be used, as not all attendees will be able to use Remote Desktop.
+
+1.) Log into the Windows Jumphost using the **RDP** option in the main UDF screen. 
+2.) Use the Guacamole HTML based RDP client on the Ubuntu Jumphost (recommended for those that cannot install RDP.
+
+
+
+**For Windows RDP users:**
+
+Go to the main UDF screen, and select the Window Jumphost. Then select the **Access** dropdown and select **RDP**. This will download an RDP shortcut to your machine. 
 
 .. image:: ./images/windows-jump-rdp.png
   :align: center
@@ -238,6 +247,26 @@ Open up the RDP shortcut to connect to the Windows Jumphost. change the username
 .. image:: ./images/f5access-user.png
   :align: center
   :scale: 75%
+
+**For Guacamole (Non RDP) users:** Go to the main UDF screen, and select the Ubuntu Jumphost. Then select the **Access** dropdown and select **Guacamole**. This will dopen an HTML based RDP client.
+
+.. image:: ./images/guacamole.png
+  :align: center
+  :scale: 75%
+
+Enter the credentials user/user.
+
+.. image:: ./images/guacamole-login.png
+  :align: center
+  :scale: 75%
+
+Then select the Windows Jumphost option.
+
+.. image:: ./images/guacamole-windows.png
+  :align: center
+  :scale: 75%
+
+**Test the connection to the applications**
 
 On the Windows jumphost open a **cmd** window. You will now test to ensure the source BIG-IP virtual servers are responding.
 
@@ -371,7 +400,19 @@ You'll then be prompted for a deploy location. Select 10.1.1.10 and select **Yes
 Repeat this process for each WAF application you saved as a Draft. Do not migrate the SSL OFFLOAD app yet.
 
 
-Now test that the WAF applications have been migrated over to BIG-IP Next. From the Windows jumphost, open a Chrome browser window and then enter in the following to ensre you reach the back-end application.
+Now test that the WAF applications have been migrated over to BIG-IP Next. You can either utilize the Windows jumphost, and open a Chrome browser window and then enter in the following links to ensure you reach the back-end application. 
+
+- Vanilla WAF - https://10.1.10.59
+- DOS WAF - https://10.1.10.57
+- BOT WAF - https://10.1.10.56
+
+Or if you are unable to run RDP, you can use the built-in Guacamole HMTL based RDP client in UDF. Go to the main UDF page, and select the **Access** dropdown under the Ubuntu Jumphost. Then Select **Guacamole** as seen below.
+
+.. image:: ./images/guacamole.png
+  :align: center
+  :scale: 100%
+
+This will open up an HTML based RDP client that will allow you to access the Windows desktop. From here you can open a Chrome browser window and then enter in the following links to ensure you reach the back-end application. 
 
 - Vanilla WAF - https://10.1.10.59
 - DOS WAF - https://10.1.10.57
