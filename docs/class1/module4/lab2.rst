@@ -188,11 +188,11 @@ Applications with status indicating a yellow triangle or blue information icon m
   :align: center
   :scale: 100%
 
-Below is an exmaple of the pop-up that will appear when you try and rename an application service.
+Below is an example of the pop-up that will appear when you try and rename an application service.
 
 .. image:: ./images/rename-applications-2.png
   :align: center
-  :scale: 100%
+  :scale: 50%
 
 After renaming the application services, the new names should be reflected in the output as seen below. Do this for every application.
 
@@ -230,7 +230,8 @@ Click the **Import** buttons for the applications that have shared objects. You'
 Before migrating the applications to BIG-IP Next, lets ensure that each application is working on BIG-IP from a client. There are two choices for clients that can be used, as not all attendees will be able to use Remote Desktop.
 
 1.) Log into the Windows Jumphost using the **RDP** option in the main UDF screen. 
-2.) Use the Guacamole HTML based RDP client on the Ubuntu Jumphost (recommended for those that cannot install RDP.
+
+2.) Use the Guacamole HTML based RDP client on the Ubuntu Jumphost (recommended for those that cannot install RDP).
 
 
 
@@ -240,7 +241,7 @@ Go to the main UDF screen, and select the Window Jumphost. Then select the **Acc
 
 .. image:: ./images/windows-jump-rdp.png
   :align: center
-  :scale: 75%
+  :scale: 50%
 
 Open up the RDP shortcut to connect to the Windows Jumphost. change the username to f5access \ user and the password to **user** and log in.
 
@@ -252,19 +253,19 @@ Open up the RDP shortcut to connect to the Windows Jumphost. change the username
 
 .. image:: ./images/guacamole.png
   :align: center
-  :scale: 75%
+  :scale: 50%
 
 Enter the credentials user/user.
 
 .. image:: ./images/guacamole-login.png
   :align: center
-  :scale: 75%
+  :scale: 50%
 
 Then select the Windows Jumphost option.
 
 .. image:: ./images/guacamole-windows.png
   :align: center
-  :scale: 75%
+  :scale: 50%
 
 **Test the connection to the applications**
 
@@ -406,11 +407,11 @@ Now test that the WAF applications have been migrated over to BIG-IP Next. You c
 - DOS WAF - https://10.1.10.57
 - BOT WAF - https://10.1.10.56
 
-Or if you are unable to run RDP, you can use the built-in Guacamole HMTL based RDP client in UDF. Go to the main UDF page, and select the **Access** dropdown under the Ubuntu Jumphost. Then Select **Guacamole** as seen below.
+Or if you are unable to run RDP, you can use the built-in Guacamole HMTL based RDP client in UDF. Go to the main UDF page, and select the **Access** dropdown under the Ubuntu Jumphost. Then Select **Guacamole** as seen below. Then login with the credntials user/user, and slect the Windows Jumphost.
 
 .. image:: ./images/guacamole.png
   :align: center
-  :scale: 100%
+  :scale: 50%
 
 This will open up an HTML based RDP client that will allow you to access the Windows desktop. From here you can open a Chrome browser window and then enter in the following links to ensure you reach the back-end application. 
 
