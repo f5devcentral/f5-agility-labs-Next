@@ -83,7 +83,7 @@ Deploy a HTTPS load balancer with a WAF policy
 
    * The Deploy tab is the first place you'll actually define a virtual server.  The screens before were defining things like virtual server and pool names which will then be consistent as you deploy across infrastructure.  Imagine a global app that is deployed and a site is added.  The definition will already be in Central Manager and all you will need to define is a small subset of data (IP and pool members) and you will have a functional application that matches exactly the rest of your infrastructure.
  
- .. image:: ./pictures/
+ .. image:: ./pictures/instances-add-to-list.png
 
 **10. Add the IP of 10.1.10.203 to the "Virtual Address" box, and then click the down arrow and select "+ Pool Members." **
 
