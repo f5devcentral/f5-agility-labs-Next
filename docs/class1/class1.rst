@@ -12,5 +12,6 @@ Introduction to BIG-IP Next
    module3/module*
    module4/module*
    module5/module*
+   module8/module*   
    module6/module*
 
