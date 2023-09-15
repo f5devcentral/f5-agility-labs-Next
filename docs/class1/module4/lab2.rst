@@ -10,8 +10,8 @@ In the UDF Blueprint there is a BIG-IP running version 15.1 that has a number of
   :align: center
   :scale: 75%
 
-Create BIG-IP UCS File 
-======================
+4.2.1 Create BIG-IP UCS File 
+=============================
 
 In order to migrate this BIG-IP configuration to BIG-IP Next, you'll need to create a UCS archive file on the BIG-IP and export it. Then you will import the UCS into Central Manager to view, analyze and migrate applications. Central Manager performs migrations at the application-level which allows customers to gradually migrate to BIG-IP Next. This is different than the traditional UCS based migration where an entire BIG-IP device, vCMP guest or Virtual Edition are migrated all at once. Since features are being phased into BIG-IP Next, it may not be possible to move all applications to BIG-IP Next initially. The per-app migration capability allows customers to identify which applications are ready to migrate to Next, and provides workflows to move individual applications. If all applications are eligble for migration, then they can all be migrated at one time. In many customers, it is expected that the migration to BIG-IP Next will be gradual, and BIG-IP and BIG-IP Next will co-exist for some time during the migration process.
 
@@ -69,8 +69,8 @@ You should see something similar to the output below. Click the Download option 
   :align: center
   :scale: 75%
 
-Import UCS into Central Manager
-===============================
+4.2.2 Import UCS into Central Manager
+=====================================
 
 Log into Central Manager and click on the **Go to Applications Workspace** button. You will be taken to the Applications main page, where you can then click the **Add Application** button.
 
@@ -96,8 +96,8 @@ Here you'll need to upload the UCS archive file you exported from your BIG-IP sy
   :align: center
   :scale: 50%
 
-Master Key and Passphrase
-=========================
+4.2.3 Master Key and Passphrase
+===============================
 
 Since the archive file may have sensitive information such as certificates/keys it is recommended you use the Master Key functionality in BIG-IP to allow for a secure export of this type of information. In this lab, we will use the Master-Key from the BIG-IP instance that you viewed before creating an archive file. You'll then need to supply this information to Central Manager so that it can decrypt sensitive information and migrate it to a BIG-IP Next instance.
 
@@ -108,8 +108,8 @@ Enter the **Master-Key** that you obtained from your BIG-IP, and then enable **E
   :scale: 50%
 
 
-Grouping of Application Services
-================================
+4.2.4 Grouping of Application Services
+=======================================
 
 
 Central Manager provides two options for grouping application services. You may group them by **IP Addresses (Recommended)** or by **Virtual Server**. Grouping by IP addresses is recommended because it will group and migrate all services that use the same virtual IP address together. It would be very difficult to migrate services that use the same IP address but separate ports at different times, because typically the IP address will move from the source device to the target device during the migration. Choose **Group by Addresses (Recommended)**.
@@ -121,8 +121,8 @@ Central Manager provides two options for grouping application services. You may 
 
 Click **Next** and the UCS file will be uploaded and analyzed.
 
-Analyze Configuration
-=====================
+4.2.5 Analyze Configuration
+===========================
 
 After filling in the source BIG-IP information and loading the UCS file, an **Application Migration** page will be displayed. Click **Add Application**.
 
@@ -179,8 +179,8 @@ You can hover over the squiggly line to get more details about the unsupported o
 
 Using the Configuration Analyzer you can make a determination if an application service is ready for migration, or if you may have to wait until additional functionality is integrated into BIG-IP Next. BIG-IP Next is on a much more rapid release schedule than TMOS, so new features are being integrated on regular invtervals.
 
-Migrate Applications to BIG-IP Next
-===================================
+4.2.6 Migrate Applications to BIG-IP Next
+=========================================
 
 Applications with status indicating a yellow triangle or blue information icon may not be ready for migration, or may need some changes to fully migrate to BIG-IP Next. A red icon is an unsupported object and cannot be migrated to BIG-IP Next. For this lab, we will first attempt to migrate all the green application services to BIG-IP Next. Before migrating the applications, it is a good idea to rename each application service to use a name that better represents the application instead of the genneric style names (application_1, application_2 etc...). Go ahead and rename each application, try and use the name nested underneath the application service name, so its clear what the applications are configured for, as the names are descriptive of the use case.
 

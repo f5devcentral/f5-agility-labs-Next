@@ -140,7 +140,7 @@ Previously we updated the application from the "iRules" menu.  We will next upda
     .. image:: irules-demo-app-new.png
         :scale: 50%
     
-#. Click on edit icon in the top left of the screen to modify the Application Service Properties
+#. Click on edit icon in the top right of the screen to modify the Application Service Properties
 
    .. image:: irules_demo_app-edit-application-services-properties.png
         :scale: 50%
