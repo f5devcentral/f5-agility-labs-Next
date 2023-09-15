@@ -35,19 +35,19 @@ After you have defined the properties that you want for your application, you wi
     .. image:: add-application.png
       :scale: 25%
 
-    Enter your application name of "https-app"
+    Enter your application name of "https-app" and select "From Template"
 
-    .. image:: application-service-name.png
+    .. image:: app-create-inone.png
       :scale: 75%
 
-#. Select "From Template"
+    Click on "Select Template"
 
 #. Select "HTTPS-Load-Balancing-Service"
 
     .. note:: This is a customized template that was created specifically for this lab.  It is not included in a default installation of Central Manager
 
     .. image:: select-https-app.png
-      :scale: 25%
+      :scale: 50%
 
     Then click on "Start Creating"
 

@@ -74,21 +74,42 @@ There are two different ways that you can attach an iRule to an application.  In
 
 Congratulations you have deploy v2 of your iRule.  Notice that you had the option to select which application(s) you wanted to attach the iRule to.
 
-In the next exercise we will learn how to "roll over" a bad version.
+3.2.3 - Viewing the differences between versions of an iRule
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-3.2.3 - Rolling Over Bad Changes
+When troubleshooting an iRule it can be useful to compare it to a previous version. This can also be done prior to deploying as a peer review step.
+
+#. Select the "v2" at the top of the page and change it back to "v1" in order to see the first version of this iRule.
+
+   .. image:: irules-select-v1.png
+       :scale: 50%
+
+#. Select "iRule" on the left side to open the preview window.
+
+   .. image:: irules-preview-select.png
+       :scale: 50%
+
+#. Update the "Mode" dropdown to "Compare (Diff)".
+
+   .. image:: irules-compare-diff.png
+
+In this view you are able to identify exact changes within the iRule from **v1** and **v2**.
+
+In the next exercise we will learn how to "roll over" a bad version if there was a change you were not expecting.
+
+3.2.4 - Rolling Over Bad Changes
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 In this exercise we will "roll over" a bad version.  This is not a "roll back", but instead we will update the latest version with the last known "good" version.
 
-#. From the previous exercise you should still be on the "Properties" page for your v2 iRule.  You can re-open the iRule as needed.
-#. Click on the "v2" at the top and select "v1"
-    
-    .. image:: irules-select-v1.png
-        :scale: 50%
+#. From the previous exercise you should still be on the "iRule" page for your v1 iRule.  You can re-open the iRule as needed.
 
-#. You should now see the original v1 iRule without your changes.
-#. Click on the "v1" at the top and select "Stage from this version"
+#. Switch the "Mode" back to "Single Edit"
+
+   .. image:: irules-single-edit.png
+       :scale: 50%
+
+#. Click on the "v1" at the top and select "Stage from this version". This will base the new updates to the irule on the original **v1** version. 
     
     .. image:: irules-v1-stage-from-version-to-v3.png
         :scale: 50%
@@ -109,7 +130,7 @@ In this exercise we will "roll over" a bad version.  This is not a "roll back", 
     
     .. image:: irules-v3.png
     
-3.2.4 - Updating Application iRule version
+3.2.5 - Updating Application iRule version
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Previously we updated the application from the "iRules" menu.  We will next update the iRule version from the "My Apps" menu
