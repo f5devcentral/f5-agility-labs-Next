@@ -1,78 +1,79 @@
-Lab 3.2 - Deploy new iRule version and "rollback"
-=================================================
+Lab 3.2 - Deploy and Roll Back New iRule Version 
+================================================
 
-In this lab exercise you will learn about how to deploy a new iRule version
+In this lab exercise you will learn about how to deploy and roll back a new iRule version.
 
 3.2.1 - Create iRule v2
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 First we will create a new version of our iRule
 
-#. Navigate to Applications
+#. Navigate to **Applications**
 
-
-    Navigate to Applications by clicking the workspace switcher next to the F5 icon
+    Navigate to **Applications** by clicking the workspace switcher next to the F5 icon
 
     .. image:: top-left.png
       :scale: 50%
 
-    Then click on "Applications"
+    Then click on **Applications**
 
     .. image:: central-manager-menu.png
       :scale: 50%
          
-#. Click on "iRules" followed by "udf_demo_xff"
+#. Click on **iRules** followed by **udf_demo_xff**
     
     .. image:: irules-menu.png
         :scale: 50%
             
-#. You will need to next click on the "v1" at the top of the screen and select "Stage from this version"
+#. You will need to next click on the **v1** at the top of the screen and select **Stage from this version**
     
     .. image:: irules-stage-from-this-version.png
         :scale: 50%
             
-#. Using the built-in text editor modify the iRule to add "2" after "Test Page" then click on "Commit Changes"
+#. Using the built-in text editor modify the iRule to add "2" after "Test Page" then click on **Commit Changes**
     
     .. image:: irules-v2.png
         :scale: 50%
             
-#. Click on "more commit options"
+#. Click on **More Commit options**
     
     .. image:: irules-more-commit-options.png
         :scale: 50%
             
-#. Click on "Commit without any attached applications." then click on "Yes, Commit"
+#. Click on **Commit without any attached applications.** then click on **Yes, Commit**
     
     .. image:: irules-commit-with-any-attached-applications.png
         :scale: 50%
 
-Congratulations you have created a new version of your iRule.  Note that this iRule has not been deployed yet, continue to learn about how to deploy your new version.
+Congratulations! You have created a new version of your iRule.  Note that this iRule has not been deployed yet. Continue the lab to learn about how to deploy your new version.
 
-3.2.2 - Deploying a new iRule version from iRules
+3.2.2 - Deploying a New iRule Version from iRules
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 There are two different ways that you can attach an iRule to an application.  In this next exercise we will attach the iRule to the application from the iRule itself.
 
-#. Start on the "Properties" page of your iRule.  You should already be on this screen from the previous lab exercise.  If you can re-open the iRule as needed.
+#. Start on the **Properties** page of your iRule.  You should already be on this screen from the previous lab exercise.  If not, you can re-open the iRule as needed.
     
     .. image:: irules-attach-v2-to-application.png
         :scale: 50%
 
-    make sure that the version is "v2" and that you can see "Attach Applications" (you may need to scroll the window to see the button) and click on "Attach Applications"
+    Please ensure the selected version is **v2** and that you can see **Attach Applications** (you may need to scroll the window to see the button).
+    
+    Select **Attach Applications**
 
-#. You should only see one available application "irule_demo_app".  Click on the checkbox next to the name and then click on "Attach"
+#. You should only see one available application: "irule_demo_app".  Click on the checkbox next to the name and then select **Attach**
     
     .. image:: irules-attach-v2-to-application-attach.png
         :scale: 50%
     
-#. On the next screen you should see a warning and a button to "Deploy Changes" click on the "Deploy Changes" button
+#. On the next screen you should see a warning and a button to **Deploy Changes**. Click on **Deploy Changes**.
     
     .. image:: irules-v2-deploy-changes.png
         :scale: 50%
     
-#. You will be asked to confirm the change, click on "Yes, Continue"
+#. You will be asked to confirm the change. Click on **Yes, Continue**
 
-Congratulations you have deploy v2 of your iRule.  Notice that you had the option to select which application(s) you wanted to attach the iRule to.
+Congratulations! You have deployed version 2 of your iRule.  Notice that you had the option to select which application(s) you wanted attached to the iRule.
 
 3.2.3 - Viewing the differences between versions of an iRule
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
