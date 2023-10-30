@@ -1,7 +1,7 @@
-Lab 3.2 - Deploy and Roll Back New iRule Version 
+Lab 3.2 - Deploy and Roll Over New iRule Version 
 ================================================
 
-In this lab exercise you will learn about how to deploy and roll back a new iRule version.
+In this lab exercise you will learn about how to deploy and roll over a new iRule version.
 
 3.2.1 - Create iRule v2
 ~~~~~~~~~~~~~~~~~~~~~~~
@@ -78,19 +78,19 @@ Congratulations! You have deployed version 2 of your iRule.  Notice that you had
 3.2.3 - Viewing the differences between versions of an iRule
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-When troubleshooting an iRule it can be useful to compare it to a previous version. This can also be done prior to deploying as a peer review step.
+When troubleshooting an iRule, it can be useful to compare it to a previous version. This can also be done prior to deploying as a peer review step.
 
-#. Select the "v2" at the top of the page and change it back to "v1" in order to see the first version of this iRule.
+#. Select the **v2** at the top of the page and change it back to **v1** in order to see the first version of this iRule.
 
    .. image:: irules-select-v1.png
        :scale: 50%
 
-#. Select "iRule" on the left side to open the preview window.
+#. Select **iRule** on the left side to open the preview window.
 
    .. image:: irules-preview-select.png
        :scale: 50%
 
-#. Update the "Mode" dropdown to "Compare (Diff)".
+#. Update the **Mode** dropdown to **Compare (Diff)**.
 
    .. image:: irules-compare-diff.png
 
@@ -101,42 +101,42 @@ In the next exercise we will learn how to "roll over" a bad version if there was
 3.2.4 - Rolling Over Bad Changes
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-In this exercise we will "roll over" a bad version.  This is not a "roll back", but instead we will update the latest version with the last known "good" version.
+In this exercise we will "roll over" a bad version.  This is not a "roll back"; instead we will update the latest version with the last known "good" version.
 
-#. From the previous exercise you should still be on the "iRule" page for your v1 iRule.  You can re-open the iRule as needed.
+#. From the previous exercise you should still be on the **iRule** page for version 1 of your iRule.  You can re-open the iRule as needed.
 
-#. Switch the "Mode" back to "Single Edit"
+#. Switch the **Mode** back to **Single Edit**
 
    .. image:: irules-single-edit.png
        :scale: 50%
 
-#. Click on the "v1" at the top and select "Stage from this version". This will base the new updates to the irule on the original **v1** version. 
+#. Click on the **v1** at the top and select **Stage from this version**. This will base the new updates to the iRule on the original **v1** version. 
     
     .. image:: irules-v1-stage-from-version-to-v3.png
         :scale: 50%
     
-#. Click on "Commit Changes"
+#. Click on **Commit Changes**
             
-#. Click on "more commit options"
+#. Click on **More Commit options**
     
     .. image:: irules-more-commit-options.png
         :scale: 50%
             
-#. Click on "Commit without any attached applications." then click on "Yes, Commit"
+#. Click on **Commit without any attached applications**, then click on **Yes, Commit**
     
     .. image:: irules-commit-with-any-attached-applications.png
         :scale: 50%
 
-#. You should now see "v3" (ignore any warnings about viewing an older version of the iRule)
+#. You should now see **v3** (ignore any warnings about viewing an older version of the iRule)
     
     .. image:: irules-v3.png
     
 3.2.5 - Updating Application iRule version
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Previously we updated the application from the "iRules" menu.  We will next update the iRule version from the "My Apps" menu
+Previously we updated the application from the **iRules** menu.  We will next update the iRule version from the **My Apps** menu
 
-#. Click on "My Apps" under "Applications" and click on the "irule_demo_app" application
+#. Click on **My Apps** under **Applications** and click on the **irule_demo_app** application
     
     .. image:: irules-demo-app-new.png
         :scale: 50%
@@ -144,18 +144,17 @@ Previously we updated the application from the "iRules" menu.  We will next upda
 #. Click on edit icon in the top right of the screen to modify the Application Service Properties
 
    .. image:: irules_demo_app-edit-application-services-properties.png
-        :scale: 50%
 
-#. Click on the edit icon next to iRules
+#. Click on the edit icon next to **iRules**
 
     .. image:: irules-application-service-properties-edit-irule.png
 
-#. Change the version from v2 to v3 and click "Save"
+#. Change the version from **v2** to **v3** and click **Save**
         
-#. Click on "Review & Deploy"
+#. Click on **Review & Deploy**
 
-#. Click on "Deploy Changes"
+#. Click on **Deploy Changes**
 
-#. You will be prompted to confirm your changes, click on "Yes, Deploy"
+#. You will be prompted to confirm your changes. Click on **Yes, Deploy**
 
-You have now "rolled over" the bad "v2" to a good "v3".  Yes, it's possible to have selected "v1" again, but by "rolling over" we ensure that the latest version is the correct version.
+You have now "rolled over" the bad "v2" version to "v3".  Yes, it's possible to have selected "v1" again, but by "rolling over" we ensure that the latest version is the correct version.
