@@ -1,12 +1,13 @@
 =============================
-Lab 5.1 - Modify templates to add security policy (Basic WAF Lab)
+Lab 5.1 - Modify Templates to Add Security Policy (Basic WAF Lab)
 =============================
 
 * Show versioning of the template
 * Deploy app again using the new template
 
 Deploy an application with a WAF policy using FAST template
-###########################################################
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 This part of the lab covers how to create and deploy an application and protect it with a WAF policy using the FAST template and the WAF violation rating based template with the focus on ease of use.
 
 **Note:** The violation rating based template follows the same concept as you may know already from NGINX App Protect, which is low false positives with little policy maintenance and therefore the Policy Builder is not supported with the violation rating based template.
