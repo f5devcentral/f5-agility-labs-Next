@@ -1,100 +1,121 @@
-=============================
 Lab 5.1 - Modify Templates to Add Security Policy (Basic WAF Lab)
-=============================
+=================================================================
 
 * Show versioning of the template
 * Deploy app again using the new template
 
-Deploy an application with a WAF policy using FAST template
+Deploy an Application with a WAF Policy Using a FAST Template
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-This part of the lab covers how to create and deploy an application and protect it with a WAF policy using the FAST template and the WAF violation rating based template with the focus on ease of use.
+This part of the lab covers how to create and deploy an application and protect it with a WAF policy using the FAST template and the WAF violation rating based template, with the focus on ease of use.
 
-**Note:** The violation rating based template follows the same concept as you may know already from NGINX App Protect, which is low false positives with little policy maintenance and therefore the Policy Builder is not supported with the violation rating based template.
-
-|
+.. note:: The violation rating based template follows the same concept as you may know already from NGINX App Protect, which is low false positives with little policy maintenance and therefore the Policy Builder is not supported with the violation rating based template.
 
 Backend web apps available on the internal network running on the **Ubuntu Jump Host**:
 
-* OWASP Juice Shop: 10.1.20.100, 10.1.20.101, 10.1.20.102, 10.1.20.103 on port 3000.
-* Simple F5 demo web app 10.1.20.100, 10.1.20.101, 10.1.20.102, 10.1.20.103 on port 8080.
+* OWASP Juice Shop:
 
-|
+  * 10.1.20.100:3000
+  * 10.1.20.101:3000
+  * 10.1.20.102:3000
+  * 10.1.20.103:3000
 
-Deploy a HTTPS load balancer with a WAF policy
+* Simple F5 demo web app:
+
+  * 10.1.20.100:8080
+  * 10.1.20.101:8080
+  * 10.1.20.102:8080
+  * 10.1.20.103:8080
+
+Deploy an HTTPS Load Balancer with a WAF Policy
 **********************************************
 
-**1. Login to BIG-IP Next Central Manager in UDF**
+1. Log in to BIG-IP Next Central Manager in UDF
  
- Navigate to your UDF deployment and select the "GUI" ACCESS method for the "BIG-IP Next Central Manager" and login with the username/password provided under DETAILS.
+ Navigate to your UDF deployment and select the **GUI** Access method for **BIG-IP Next Central Manager** and log in with the username/password provided within Details.
   
-   .. image:: ./pictures/cm_login.png 
+ .. image:: ./pictures/cm_login.png 
 
 
-**2. From "My Apps" click on "+ Add Application"**
+2. From **My Apps** click on **+ Add Application"**
 
  .. image:: ./pictures/add-application.png
 
-|
 
-**3. For the "Application Service Name" fill in waf-app.  Select "From Template" and then click on "Select Template." Choose the "http" Template and click on "Start Creating"** (the http template is a unified template that allows you to enable/disable capabilities)
+3. Provide an *Application Service Name* of "waf-app".  Select **From Template** and then click on **Select Template**.
 
-   * Application Service Name is "waf-app."  Click on "From Template" and then "Select Template"
+  .. note:: The http template is a unified template that allows you to enable/disable capabilities
   
  .. image:: ./pictures/create-application.png
 
-|
-
-**4. Select the "http" Application Template and when the waf-app APplication Service Properties comes up, click "Start Creating"
+4. Choose the *http* template and select **Start Creating**
 
  .. image:: ./pictures/application_template.png
 
-|
+5. From within the "waf-app" application service, click the **Pools** tab and enter the following values in the template wizard as shown in the picture below:
 
-**5. Under the "waf-app," click on "Pools" and enter the following values in the template wizard as shown in the picture below**
+	Pool Name:
+
+	.. code-block:: console
+
+		waf-app-pool
+
+	Service Port:
+
+	.. code-block:: console
+
+		3000
+
+   * Leave other options as is
   
      .. image:: ./pictures/waf-app-pool.png
 
-   * Pool Name: waf-app-pool
-   * Service Port: 3000
-   * Leave other options the same
+6. Navigate back to the **Virtual Servers** tab and enter the following values in the template wizard for Properties as shown in the picture below, then select **Next**
 
+	Virtual Server Name:
 
-**6. Under the waf-app," click on "Virtual Servers" and enter the following values in the template wizard for Properties as shown in the picture below and then click "Next."**
+	.. code-block:: console
+
+		waf-app-vs
+
+	Pool:
+
+	.. code-block:: console
+
+		waf-app-pool
+
+	Port:
+
+	.. code-block:: console
+
+		443
 
    .. image:: ./pictures/waf-app-virtual-addition.png
 
-   * Virtual Server Name: waf-app-vs
-   * Pool: Select "waf-app-pool" from the drop-down
-   * Port:  443
+7. Select the edit button under the "Protocols and Profiles" column (adjacent to "SNAT" and "MIRRORING"), followed by **Enable HTTPS (Client-Side TLS)**, and then choose the "self_demo.f5.com" certificate.
 
-**7. Press the edit button under "Protocols and Profiles" (adjacent to "SNAT" and "MIRRORING")**
-
-   * Press "Enable HTTPS (Client-Side TLS)" and choose the "self_demo.f5.com" certificate
- 
  .. image:: ./pictures/choose_cert.png
 
-**8. Select the edit button under "Security Policies" 
+8. Select the edit button under **Security Policies**. Next, select **Use a WAF Policy**. Click on **+ Create**. Provide a name of "waf-policy", leave all other items as default, click **Save**, and then **Save** again.
 
-   1. Select "Use a WAF Policy"
-   2. Click on "+ Create"
-   3. Name:  waf-policy, leave all other items as default and click "Save" and then "Save" again.
+9. Clicking **Review and Deploy** will take you to the **Deploy** page.  Select **Start Adding**, then select "big-ip-next-01.f5demo.com" as the instance for deployment and click **+ Add to List**
 
-**9. Pressing "Review and Deploy" will take you to the "Deploy" page.  Select "Start Adding" and select big-ip-next-01.f5demo.com as the instance to deploy to and then click "+ Add to List."**
-
-   * The Deploy tab is the first place you'll actually define a virtual server.  The screens before were defining things like virtual server and pool names which will then be consistent as you deploy across infrastructure.  Imagine a global app that is deployed and a site is added.  The definition will already be in Central Manager and all you will need to define is a small subset of data (IP and pool members) and you will have a functional application that matches exactly the rest of your infrastructure.
+  .. note::
+     The Deploy stage is the first place you'll actually define a virtual server. The process leading up to deployment involved defining things like virtual server and pool names, which will be consistent as you deploy across infrastructure.
+   
+     Imagine a globally-deployed app and you add a new site. The application service definition will already be in Central Manager and all you will need to define is a small subset of data (IP and pool members) in order to have a functional application that matches exactly the rest of your infrastructure.
  
  .. image:: ./pictures/instances-add-to-list.png
 
-**10. Add the IP of 10.1.10.203 to the "Virtual Address" box, and then click the down arrow and select "+ Pool Members." **
+10. Add the IP of "10.1.10.203" to the **Virtual Address** box, then click the down arrow and select **+ Pool Members.**
 
  .. image:: ./pictures/IP_for_VIP.png
 
-**11. Click on "+ Add Row" on the right and fill in "m_10.1.20.100" for the Name and "10.1.20.100" for the IP Address.  Click "Save"
+11. Click on **+ Add Row** and fill in "m_10.1.20.100" for the Name and "10.1.20.100" for the IP Address. Select **Save**.
 
  .. image:: ./pictures/pool_member_add.png
    
-**12. Click on "Validate All" to run the deployment validation.  When the validation is complete, you will see a icon and status next to the deployment, such as the green icon and "Validated" in the picture below**
+12. Click on **Validate All** to run the deployment validation. When the validation is complete, you will see an icon and status next to the deployment, such as the green icon and "Validated" in the picture below
  
  .. image:: ./pictures/validate.png
 
