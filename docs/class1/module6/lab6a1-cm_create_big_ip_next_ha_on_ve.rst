@@ -1,7 +1,6 @@
 ..  Author: Tami Skelton 09/15/2022
 
-===============================================================================
-How to: Create a BIG-IP Next HA instance on VE from BIG-IP Next Central Manager
+How to: Create a BIG-IP Next HA Instance on VE from BIG-IP Next Central Manager
 ===============================================================================
 
 Overview
@@ -31,7 +30,7 @@ Procedure
    
    .. image:: ./lab6_next_cm_instances_list_4_instances.png
       :scale: 25%
-#. Click the mode link (the word "Standalone" under the "Mode" column) of the standalone BIG-IP Next instance (big-ip-next-01.f5demo.com) you want to become the active node in the BIG-IP Next HA instance.
+#. Click the **Mode** link (the word "Standalone" under the "Mode" column) of the standalone BIG-IP Next instance (big-ip-next-01.f5demo.com) you want to become the active node in the BIG-IP Next HA instance.
    
    .. image:: ./lab6_next_cm_enable_ha_on_instance1.png
       :scale: 25%
@@ -68,7 +67,7 @@ Procedure
    Click **Save**
 #. From the **Data Plane VLAN** list for this BIG-IP Next HA instance, you'll need to create a new Data Plane VLAN by clicking the **Create VLAN** link.
    
-   .. image:: ./lab6_img08_add_ha_vlan_config_needs_dataplane_vlan.png
+   .. image:: ./lab6_add_ha_vlan_config_needs_dataplane_vlan.png
       :scale: 25%
    Use the name "data-plane-vlan" for this and select Untagged Interface: "1.3"
 
