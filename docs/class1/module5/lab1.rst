@@ -119,30 +119,22 @@ Deploy an HTTPS Load Balancer with a WAF Policy
  
  .. image:: ./pictures/validate.png
 
-**13. Click on "View deployment validation results" to show the declaration**
+13. Click on **View Results** to show the declaration
 
  .. image:: ./pictures/declaration.png
 
+ Select "Exit" to go back to the previous screen.
 
- Click on "Exit" to go back to the previous screen.
-
-  
-**14. Finally click on "Deploy" after which you will be prompted to confirm the deployment or cancel.  Click "Yes, Deploy" and you should see the application and the WAF policy deployed**
+14. Finally, click on **Deploy**, after which you will be prompted to confirm or cancel the deployment.  Select **Yes, Deploy** and you should see the application and the WAF policy deployed.
 
  .. image:: ./pictures/successful_deployed.png
   
 
-
-
-**15. Let's validate the application through the UDF Firefox**
-    
- On the lab components, select "Access" under the "Ubuntu Jump Host" and select "Firefox."  Within this proxied Firefox, go to https://10.1.10.203 and you should see the Juice Shop app.
+15. Let's validate the application through Firefox in UDF. From within the UDF lab components, select **Access** under the **Ubuntu Jump Host** and then **Firefox**. Within this proxied Firefox browser, go to https://10.1.10.203 and you should see the Juice Shop app.
 
  .. image:: ./pictures/final_check.png
 
- |
-
- Enter https://10.1.10.203/a=<script> and you should see the blocking page.
+ Browse to the URL shown below and you should see the blocking page.
 
  URL:
 
@@ -152,16 +144,12 @@ Deploy an HTTPS Load Balancer with a WAF Policy
 
  .. image:: ./pictures/block_check.png
 
-|
-
-**16. You can see your block requested by visiting the WAF dashbaord**
-
-From Central Manager click on the top left menu to select the Security menu.
+16. You can see your block requested by visiting the WAF dashbaord. From Central Manager, click on the top left menu to select the **Security** menu.
 
  .. image:: ./pictures/security-menu.png
   :scale: 50%
 
-From the WAF Dashboard under the Policies box, click on the three dots next to "waf-policy" and select "Filter by Policy Name".
+From the WAF Dashboard under the **Policies** box, click on the three dots next to "waf-policy" and select **Filter by Policy Name**.
 
  .. image:: ./pictures/waf-dashboard-select-policy.png
 
@@ -169,7 +157,7 @@ You can now view your "good" and "bad" requests
 
 .. note:: The "Lab Progress" app will also make "bad" requests in the background
 
-**17. (Optional)  WAF Event Logs**
+17. (Optional)  WAF Event Logs
 
 .. note:: This next exercise is optional (if you are doing this as part of internal F5 training and are part of the "Security" track, please skip in favor of your dedicated "Security" lab)
 
@@ -177,11 +165,11 @@ The Firefox copy and paste function doesn't often work, so remember the first fe
 
  .. image:: ./pictures/get-support-id.png
   
-Next click "Event Logs" and enter the "Support ID" into the filter text box.
+Next click **Event Logs** and enter the *Support ID* into the filter text box.
 
  .. image:: ./pictures/waf-events-search-support-id.png
 
-You can then click on the URI to view more details
+You can then click on the URI to view more details.
 
  .. image:: ./pictures/waf-events-details.png
 
