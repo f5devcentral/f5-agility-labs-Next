@@ -276,3 +276,5 @@ In the following exercise we will review how you can use ping, tcpdump, and view
 #. Go back to Central Manager and click on **Stop Debug Session**
 
     This should cause your Putty session to end
+
+**This concludes the BIG-IP Next opertional debugging lab. Thank you!**
