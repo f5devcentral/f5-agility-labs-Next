@@ -4,11 +4,11 @@ How to: Create a BIG-IP Next HA Instance on VE from BIG-IP Next Central Manager
 ===============================================================================
 
 Overview
-========
+~~~~~~~~
 A BIG-IP Next HA instance consists of an active and a standby node. Create a BIG-IP Next HA instance to safe-guard your applications and traffic in the event there is an issue with the provider the BIG-IP Next is installed on. In such an event, the active node in your BIG-IP Next HA instance will failover to the standby node with no disruption to current traffic or applications.
 
 Prerequisites
-=============
+~~~~~~~~~~~~~
 Before you can create a BIG-IP Next HA instance, you must have two standalone instances already onboarded to BIG-IP Next Central Manager. Refer to `How to: Onboard BIG-IP Next (GUI) <../module2/lab2a1-cm_add_instance_to_big_ip_ma.html>`_ for details.
 
 - Two standalone BIG-IP Next instances running the same software version in the same provider (VE) and in a healthy state.
@@ -18,9 +18,8 @@ Before you can create a BIG-IP Next HA instance, you must have two standalone in
 - Control Plane HA VLAN - One IP address for each BIG-IP Next instance (by default, this VLAN will use two additional IP addresses on the management network, but you have the option to create a separate VLAN)
 - Data Plane HA VLAN - One IP address for each BIG-IP Next instance
 
----------
 Procedure
----------
+~~~~~~~~~
 #. Navigate back to the **Infrastructure** page of BIG-IP Next Central Manager that was used during module 2.
 #. Add a second BIG-IP Next instance to your infrastructure (the second instance is at 10.1.1.8)
    
@@ -217,8 +216,7 @@ big-ip-next-02 data plane IP:
    .. image:: ./lab6_my_instances_list_ha_complete.png
       :scale: 25%
 
-------
 Result
-------
+~~~~~~
 BIG-IP Next Central Manager converts the standalone BIG-IP Next instance to a BIG-IP Next HA instance.
 
