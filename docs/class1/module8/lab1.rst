@@ -8,21 +8,21 @@ In this lab exercise we will use a pre-created SSH key to configure a Debug Sess
 Once connected to the Debug Session we will inspect some basic network configuration, examine the isolation of the data plane process, and run some commands to observe live network traffic and logs.
 
 8.1.1 - Start Debug Session
-============================
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 #. Click the workspace switcher next to the F5 icon, and click **Infrastructure**.
 
     .. image:: ../module2/lab2_img03_navigation_to_infrastructure2.png
 		:scale: 25%
 
-#. Click on the Name of the instance  "big-ip-next-03.f5demo.com"
+#. Click on the Name of BIG-IP Next instance "big-ip-next-03.f5demo.com"
 
-#. Click on the "Debug" tab (you may need to scroll the window down to see Debug)
+#. Click on the **Debug** tab (you may need to scroll the window down to see Debug)
 
     .. image:: ./instance-3-select-debug.png
       :scale: 50%
 
-#. You will see a screen that lists the requirements.  Click on "Proceed"
+#. You will see a screen that lists the requirements.  Click on **Proceed**
 
 #. Enter the following SSH key (you can click on the Copy icon if you float your mouse to the top right of the text)
 
@@ -42,13 +42,13 @@ Once connected to the Debug Session we will inspect some basic network configura
 
     .. warning:: Verify that you only paste a single line into the text box.  A newline character will cause a format error.  Only a single SSH key can be entered
 
-#. Click on "Start Debug Session"
+#. Click on **Start Debug Session**
 
     .. warning:: Only a single Debug Session can run on an instance at a time.  
 
-#. You should see a Prompt to SSH
+#. You should see a Prompt to SSH. We will be using the Putty SSH client to connect later in this lab from the Windows host in the lab environment.
 
-    *You should see the following* We will be using the Putty SSH client to connect later in this lab from the Windows host in the lab environment.
+    *You should see the following*
 
     .. code-block:: 
 
@@ -56,72 +56,93 @@ Once connected to the Debug Session we will inspect some basic network configura
 
     
 8.1.2 - Connect to Windows Host
-===============================
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 We will use a Putty SSH client that has been pre-configured with the SSH key that was previously used to start the Debug Session
 
 To connect to the Windows Host there are two choices for clients that can be used, as not all attendees will be able to use Remote Desktop.
 
-1.) Log into the Windows Jumphost using the **RDP** option in the main UDF screen. 
+**Option 1.)** Log into the Windows Jumphost using the **RDP** option in the main UDF screen. 
 
-2.) Use the Guacamole HTML based RDP client on the Ubuntu Jumphost (recommended for those that cannot install RDP).
+**Option 2.)** Use the Guacamole HTML based RDP client on the Ubuntu Jumphost (recommended for those that cannot install RDP).
 
 
 **For Windows RDP users:**
 
-Go to the main UDF screen, and select the Window Jumphost. Then select the **Access** dropdown and select **RDP**. This will download an RDP shortcut to your machine. 
+Go to the UDF Deployment screen and select the **Access** dropdown for **Windows Jumphost**, then **RDP**. This will download an RDP shortcut to your machine. 
 
 .. image:: ../module4/images/windows-jump-rdp.png
   :align: center
   :scale: 50%
 
-Open up the RDP shortcut to connect to the Windows Jumphost. change the username to f5access \ user and the password to **user** and log in.
+Open the RDP shortcut to connect to the Windows Jumphost. Provide the credentials shown below and log in.
+
+Username
+
+.. code-block::
+
+    f5access\user
+
+Password
+
+.. code-block::
+
+    user
 
 .. image:: ../module4/images/f5access-user.png
   :align: center
   :scale: 75%
 
-**For Guacamole (Non RDP) users:** Go to the main UDF screen, and select the Ubuntu Jumphost. Then select the **Access** dropdown and select **Guacamole**. This will dopen an HTML based RDP client.
+**For Guacamole (Non RDP) users:**
+
+Go to the UDF Deployment screen, and select the **Access** dropdown for **Ubuntu Jumphost**, then **Guacamole**. This will open an HTML-based RDP client.
 
 .. image:: ../module4/images/guacamole.png
   :align: center
   :scale: 50%
 
-Enter the credentials user/user.
+Provide the credentials shown below and log in.
+
+Username
+
+.. code-block::
+
+    user
+
+Password
+
+.. code-block::
+
+    user
 
 .. image:: ../module4/images/guacamole-login.png
   :align: center
   :scale: 50%
 
-Then select the Windows Jumphost option.
+Then select the **Windows Jumphost** option.
 
 .. image:: ../module4/images/guacamole-windows.png
   :align: center
   :scale: 50%
 
 8.1.3 - Connect to Debug Session
-================================
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-#. Launch Putty
-
-    The Putty SSH client can be located on the bottom left of the screen.
+#. Launch Putty. The Putty SSH client should be located on the bottom left of the screen.
 
     .. image:: launch-putty.png
       :scale: 50%
 
-#. Select and Load the big-ip-next-instance-3-debug profile
-
-    *This session has been pre-configured with the SSH key that was used to start the Debug Session and to connect to instance 3 at the IP address 10.1.1.10 and the port 2222.*
+#. Select and load the *big-ip-next-instance-3-debug* profile. This session has been pre-configured with the SSH key that was used to start the Debug Session and to connect to instance 3 at the IP address 10.1.1.10 via port 2222.
 
     .. image:: ./load-putty-session.png
       :scale: 50%
 
-#. Click on "Open"
-#. Accept SSH Host Key (click on Accept)
+#. Click on **Open**
 
-    *You will need to accept the SSH Host key to connect*
+#. Accept SSH Host Key (click on Accept). You must accept the SSH Host key to connect.
 
-#. You should now see the following
+#. You should now see the following:
 
     .. code-block::
       
@@ -136,11 +157,11 @@ Then select the Windows Jumphost option.
       /
 
 8.1.3 - Debug Session Isolation
-===============================
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The debug session runs in an isolated environment that has limited visibility to the platform.
 
-#. Run the command ``ps aux`` you should see a limited number of processes.
+#. Run the command ``ps aux`` and you should see a limited number of processes.
 
     .. code-block:: bash
       
@@ -162,15 +183,15 @@ The debug session runs in an isolated environment that has limited visibility to
       /
 
 8.1.3 - Debug Session View Config
-=================================
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The Debug Session has access to viewing information about the data-plane
+The Debug Session has access to viewing information about the data-plane.
 
 #. Run the command ``ip a``
 
-    You will see an output that includes the data-plane VLANs and self-ips that have been configure on this device.
+    You will see an output that includes the data-plane VLANs and self-IPs that have been configure on this device.
 
-    *Note that this is an interpretation of what the data-plane process sees and not all counters may reflect true values like MTU and state*
+      .. note:: This is an interpretation of what the data-plane process sees and not all counters may reflect true values like MTU and state.
 
     .. code-block:: bash
       
@@ -194,7 +215,7 @@ The Debug Session has access to viewing information about the data-plane
             valid_lft forever preferred_lft forever
 
 8.1.4 - Debug Session Basic Commands
-====================================
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 In the following exercise we will review how you can use ping, tcpdump, and view logs from the data-plane (TMM)
 
@@ -250,8 +271,8 @@ In the following exercise we will review how you can use ping, tcpdump, and view
     .. tip:: You could also use ``tail -f`` to see a live / streaming view of the logs
 
 8.1.5 - Stop Debug Session
-============================
+~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-#. Go back to Central Manager and click on "Stop Debug Session"
+#. Go back to Central Manager and click on **Stop Debug Session**
 
     This should cause your Putty session to end
