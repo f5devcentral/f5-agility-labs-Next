@@ -5,9 +5,9 @@ This section of the lab will utilize the "Applications" section of Central Manag
 
 When you create an application it happens in two steps.
 
-Step #1:
+Step 1:
 
-When you deploy an application you will start with selecting a template, this will determine what type of features you will need (i.e. HTTPS, WAF, etc...).  Some templates can be built to allow you to toggle features on/off (the template that ships with Central Manager includes the ability toggle on/off WAF, iRules, etc...).
+When you deploy an application you will start by selecting a template. This will determine what type of features you will need (i.e. HTTPS, WAF, etc...).  Some templates can be built to allow you to toggle features on/off (the template that ships with Central Manager includes the ability to toggle on/off WAF, iRules, etc...).
 
 Once you have selected your template you will need to define the name of your virtual server (destination of where you want your clients to connect) and information about the pools (backend servers).  This includes information like the port numbers that should be used.  
 
@@ -35,7 +35,7 @@ After you have defined the properties that you want for your application, you wi
     .. image:: add-application.png
       :scale: 25%
 
-    Enter your application name of "https-app" and select "From Template"
+    Enter your application name of "https_app" and select "From Template"
 
     .. image:: app-create-inone.png
       :scale: 75%
@@ -69,7 +69,7 @@ After you have defined the properties that you want for your application, you wi
 
     In a later lab we will modify this to create a new template that uses TLS to connect to the backend server
 
-    Click on "Save" to return to the previous "Application Service Properties" screen
+    Click on "Cancel" to return to the previous "Application Service Properties" screen
 
 #. Review and Deploy
 
@@ -95,7 +95,7 @@ After you have defined the properties that you want for your application, you wi
 
 #. Virtual Address
 
-    You can now enter your Virtual Address.  Use the IP Address of "10.1.10.200"
+    You can now enter your Virtual Address.  Use the IP Address "10.1.10.200"
 
     .. image:: deploy-to-virtual-address.png
     
@@ -108,7 +108,7 @@ After you have defined the properties that you want for your application, you wi
     .. image:: deploy-to-pool-members-plus.png
       :scale: 75%
 
-    On the Pool Members screen then click on the "Add Row" that is in the lower right
+    On the Pool Members screen click on "Add Row" that is in the lower right
 
     .. image:: deploy-to-pool-members-add-row.png
     
@@ -126,7 +126,7 @@ After you have defined the properties that you want for your application, you wi
 
     Then click on "Save"
 #. Validate 
-    You can now validate your chnages before deploying them.
+    You can now validate your changes before deploying them.
 
     Click on "Validate All"
 
