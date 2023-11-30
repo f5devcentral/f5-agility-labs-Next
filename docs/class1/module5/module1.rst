@@ -18,5 +18,5 @@ The "Enhanced WAF Lab" (Lab 2.1 that is part of the "Optional WAF Lab") that is 
 .. raw:: html
 
    <ul>
-   <li><strong>[WARNING: Will take you to a separate Optional WAF Lab]</strong> <a href="/waf-labs/labs/module2/lab1/lab1.html" target="_blank"> Lab 2.1 - Deploy an application using FAST template and the WAF Violation Rating policy template (Enhanced WAF Lab ,only do Lab 2.1 then return to this lab)</a></li>
+   <li><strong>[WARNING: Will take you to a separate Optional WAF Lab]</strong> <a href="/training/community/Next-WAF/html/labs/module2/lab1/lab1.html" target="_blank"> Lab 2.1 - Deploy an application using FAST template and the WAF Violation Rating policy template (Enhanced WAF Lab ,only do Lab 2.1 then return to this lab)</a></li>
    </ul>
