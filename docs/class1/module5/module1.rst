@@ -1,4 +1,4 @@
-Module 5: Modify templates to add security policy
+Module 5: Modify Templates to Add Security Policy
 =================================================
 
 There are 2 different WAF labs that you can choose from.
@@ -7,8 +7,6 @@ The "Basic WAF Lab" (Lab 5.1 that is part of this lab) covers the steps of enabl
 
 The "Enhanced WAF Lab" (Lab 2.1 that is part of the "Optional WAF Lab") that is designed for users that want to have a more comprehensive understanding of BIG-IP Next WAF capabilities.  We recommend that you do this if you plan on taking the "Optional WAF Lab" after you complete this lab.
 
-
-   
 
 .. toctree::
    :titlesonly:

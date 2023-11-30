@@ -2,17 +2,16 @@
   Tami Skelton
   Updated: 10/10/2022.
 
-=====================================================================================================
-How to: Upgrade a BIG-IP Next Standalone instance on VE from BIG-IP Next Central Manager
+How to: Upgrade a BIG-IP Next Standalone Instance on VE from BIG-IP Next Central Manager
 =====================================================================================================
 
 Overview
-========
+~~~~~~~~
 Use this procedure to upgrade the software for a BIG-IP Next Standalone instance from BIG-IP Next Central Manager.
 
 Procedure
-=========
-#. Log in to BIG-IP Next Central Manager as admin, click the Workspace icon next to the F5 logo, and click **Infrastructure**.
+~~~~~~~~~
+#. Log in to BIG-IP Next Central Manager as *admin*, click the Workspace icon next to the F5 logo, and click **Infrastructure**.
 #. Select the checkbox next to the BIG-IP Next instance (big-ip-next-04.f5demo.com) you want to upgrade.
 #. At the top right of the screen, click **Actions** and select **Upgrade**.
    
@@ -37,7 +36,7 @@ Procedure
       :scale: 25%
 
 Result
-======
+~~~~~~
 After the upgrade process, the BIG-IP Next instance displays with the new version on the **My Instances** page. While the upgrade process is being performed, you'll see indications of upgrade taking place.
 
 .. image:: ./lab6_upgrade_img05_instances_list_upgrading_instance4.png

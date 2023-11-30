@@ -1,7 +1,7 @@
 F5 BIG-IP Next Introduction
 ===========================
 
-Welcome to the |classbold| for F5 Agility |year|
+Welcome to the |classbold| lab!
 
 .. toctree::
    :maxdepth: 3
