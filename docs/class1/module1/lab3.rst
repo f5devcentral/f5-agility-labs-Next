@@ -9,16 +9,17 @@ During this lab we will primarily be using BIG-IP Next Central Manager
 Accessing Central Manager from Access Method
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-We recommend that you use Google Chrome when using this lab environment.
+We recommend that you use Google Chrome within this lab environment.
 
-#. Find the "BIG-IP Next Central Manager" under your "Deployments" and click on "Access" followed by "GUI"
+#. Find the "BIG-IP Next Central Manager" component under your "Deployments" and click on "Access" followed by "GUI"
     
     .. image:: central-manager-access-method.png
       :scale: 50%
     
-#. Login to Central Manager
+#. Log in to Central Manager
     
-    You can login using the username "admin" and password "Welcome123!"
+    Please use the following credentials:
+
         Username:
             .. code-block:: console
 
@@ -33,4 +34,3 @@ We recommend that you use Google Chrome when using this lab environment.
         :scale: 50%
 
     .. image:: central-manager-desktop.png
-        :scale: 50%

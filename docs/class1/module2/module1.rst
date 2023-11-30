@@ -1,4 +1,4 @@
-Module 2: Discover nodes with Central Manager
+Module 2: Discover Nodes with Central Manager
 =============================================
 
 .. toctree::

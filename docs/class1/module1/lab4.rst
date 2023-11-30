@@ -1,11 +1,10 @@
-Lab 1.5 - Lab Progress
+Lab 1.4 - Lab Progress
 ======================
 
-During this lab you can track your progress and your peers via the "Lab Progress"
+During this lab you can track your progress, along with your peers, via the "Lab Progress"
 application.
 
 #. Open the "Lab Progress Application"
-
 
     It is accessible under the "Ubuntu Jump Host" device Access methods
 
@@ -33,11 +32,11 @@ application.
     .. image:: lab-progress-details.png
         :scale: 40%
 
-    Your progress is updated every 10 minutes.  If you would like to refresh your status faster you can click on "Check Status"
+    Your progress is updated every 10 minutes.  If you would like to refresh your status faster, select "Check Status"
 
 #. Completing the lab
 
-    Once you complete the lab you will have my respect and admiration.
+    Once you complete the lab, you will have our utmost respect and admiration!
 
     .. image:: lab-progress-completed.png
         :scale: 75%

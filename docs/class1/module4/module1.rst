@@ -1,5 +1,5 @@
-Module 4: Migration from BIG-IP to BIG-IP Next
-=============================
+Module 4: Migration from Classic BIG-IP to BIG-IP Next
+======================================================
 
 .. toctree::
    :titlesonly:
