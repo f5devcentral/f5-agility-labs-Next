@@ -6,6 +6,7 @@ This section of the lab will utilize the "Applications" section of BIG-IP Next C
 When creating an application service, it happens in two steps.
 
 Step 1:
+Step 1:
 
 Start by selecting a template, which will determine what type of features you will need (i.e. HTTPS, WAF, etc...). Some templates can be built to allow you to toggle features on/off (the template that ships with Central Manager includes the ability to toggle on/off WAF, iRules, etc...).
 
@@ -95,7 +96,7 @@ After you have defined the properties for your application, you will need to sel
 
 #. Virtual Address
 
-    You can now enter your Virtual Address.  Use the IP Address of "10.1.10.200"
+    You can now enter your Virtual Address.  Use the IP Address "10.1.10.200"
 
     .. image:: deploy-to-virtual-address.png
     
