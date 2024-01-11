@@ -20,7 +20,7 @@ First we will create a new version of our iRule
     .. image:: central-manager-menu.png
       :scale: 50%
          
-#. Click on **iRules** followed by **udf_demo_xff**
+#. Click on **iRules** followed by **insert_xff_iRule**
     
     .. image:: irules-menu.png
         :scale: 50%
@@ -30,7 +30,13 @@ First we will create a new version of our iRule
     .. image:: irules-stage-from-this-version.png
         :scale: 50%
             
-#. Using the built-in text editor modify the iRule to add "2" after "Test Page" then click on **Commit Changes**
+#. Using the built-in text editor modify the iRule to add the following of the 4th line then click on **Commit Changes**
+    
+    .. code-block:: text
+
+            } else {
+                HTTP::header insert "X-Forwarded-For" [IP::client_addr]
+            }
     
     .. image:: irules-v2.png
         :scale: 50%

@@ -63,14 +63,16 @@ After you have defined the properties for your application, you will need to sel
 
 #. Protocols and Profiles
 
-    Here you can see the TLS options, the template has also pre-selected the "self_demo.f5.com" Certificate
+    Here you can see the TLS options, click on "Add" under "No Client-Side TLS"
 
-    .. image:: protocols-and-profiles.png
+    .. image:: add-client-tls.png
       :scale: 50%
 
-    In a later lab we will modify this to create a new template that uses TLS to connect to the backend server
+#. Client-Side TLS
 
-    Click on **Cancel and Exit** to return to the previous "Application Service Properties" screen
+  Enter a name of "www", select the certificate "www.example.com", and leave "Use Default Server" selected.
+
+  Then click on "Save" and "Save" again to return to the Application Service Properties screen.
 
 #. Review and Deploy
 
@@ -87,7 +89,7 @@ After you have defined the properties for your application, you will need to sel
 
 #. Select Location
 
-    You will need to select **big-ip-next-01.f5demo.com** and then click on **Add to List**
+    You will need to select **big-ip-next-01.example.com** and then click on **Add to List**
 
     .. warning:: You may need to adjust the zoom setting on your browser window to see the "Add to List" button
 
@@ -166,13 +168,9 @@ After you have defined the properties for your application, you will need to sel
 
     .. image:: access-method-firefox.png
 
-#. Inside the Firefox browser session go to https://10.1.10.200 
+#. Inside the Firefox browser session go to https://www.example.com
 
     .. image:: access-method-firefox-url.png
-
-#. You will need to click past the cert errors by clicking on **Advanced** -> **Accept the risk and continue**
-
-    .. image:: access-method-firefox-accept-the-risk.png
 
 #. You should now see the demo app
 
