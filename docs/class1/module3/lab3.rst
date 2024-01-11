@@ -3,7 +3,6 @@ Lab 3.3 - Customizing a Template
 
 In this exercise we will modify our previous HTTPS-Load-Balancing-Service template to perform TLS re-encryption to the backend server.
 
-* Change virtual server port from 443 to 8443 (to avoid port conflicts in the lab environment)
 * Change the pool member monitor from http to https
 * Change the pool member port from 8080 to 8443
 * Enable TLS encryption between the BIG-IP Next instance and the backend pool members
