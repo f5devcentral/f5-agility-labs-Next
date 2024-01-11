@@ -35,20 +35,14 @@ Now that you have cloned the template, you will make the following changes:
 
 #. Click on **clone_HTTPS-Load-Balancing-Service** and then click on the **Template** tab
 
-#. Search for "virtualPort" (CTRL-F in your browser or scroll ~50% of the page) 
-    
-    .. image:: fast-template-template-body.png
-        :scale: 80%
-    
-#. Change the value of the default from "443" to "8443" (without quotes)
-#. Next, search for "pools:" and change the default to use an https monitor and connect on port 8443. The completed change should look like this:
+#. Search for "pools:"  (CTRL-F in your browser or scroll ~50% of the page)  and change the default to use an https monitor and connect on port 8443. The completed change should look like this:
     
     .. code-block:: yaml
 
         pools: # Do not remove and do not change the property name. This is used to take pools information
             type: array
             default:
-            -  {"loadBalancingMode": "round-robin","monitorType": ["https"],"poolName": "my_pool","servicePort": 8443} 
+            -  {"loadBalancingMode": "round-robin","monitorType": ["https"],"poolName": "my_pool","servicePort": 8443}
             
 #. Next, search for "enable_TLS_Server:" and change the default to "true". The completed change should look like this:
     
@@ -72,12 +66,8 @@ Next we will verify that your changes are present in the cloned template.
 #. Select **From Template**
 #. Select **clone_HTTPS-Load-Balancing-Service** template
 #. Click on **Start Creating**
-#. Verify that the Virtual Port is now "8443" and that you see "TLS" under **Protocols & Profiles**
     
-    .. image:: cloned-virtuals.png
-        :scale: 75%
-    
-#. Next click on the **Pools** tab and verify that the monitor is now "https" and the service port is "8443"
+#. Click on the **Pools** tab and verify that the monitor is now "https" and the service port is "8443"
     
     .. image:: cloned-pools.png
         :scale: 75%
