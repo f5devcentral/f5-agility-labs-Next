@@ -221,7 +221,7 @@ Below is an example of the pop-up that will appear when you renaming an applicat
 
 .. image:: ./images/rename-applications-2.png
   :align: center
-  :scale: 50%
+  :scale: 80%
 
 After renaming the application services, the new names should be reflected in the output as seen below. Do this for every application.
 
@@ -343,12 +343,8 @@ On the Windows jumphost open a **cmd** window. You will now test to ensure the s
 
 		curl 10.1.10.53 -I
 
-- IRULE_DATAGRP
-	.. code-block:: console
 
-		curl 10.1.10.57 -I
-
-They should all respond with a **200 OK** message, as seen below.
+The first two virtuals should respond with a **200 OK** message, and the 3rd virtual will respond with a **302 Moved Temporarily** message indicating a redirect as seen below.
 
 .. image:: ./images/curl-bigip.png
   :align: center
@@ -446,7 +442,7 @@ Select **Add** to see all the apps.
 .. image:: ./images/click-add-to-see-apps.png
   :align: center
 
-Next we will stage a draft migration and demonstrate the capability of editing the configuration before migrating. Deselect all the green apps that have migrated to BIG-IP Next already, then select all 3 WAF applications and the SSL_OFFLOAD_W_PASSWORD and the LTM_POLICY_VS application.
+Next you will stage a draft migration and demonstrate the capability of editing the configuration before migrating. Deselect all the green apps that have migrated to BIG-IP Next already, then select all 3 WAF applications and the SSL_OFFLOAD_W_PASSWORD and the LTM_POLICY_VS application.
 
 Click **Add**. 
 
@@ -552,7 +548,7 @@ After accepting the security/certifcate warning you should see the Next Lab page
 .. image:: ./images/waf-apps-browser.png
   :align: center
 
-The LTM_POICY_VS application was flagged as yellow because ltm polices are not currently supported in BIG-IP Next. Click on this application to review the AS3 declration, and notice the application will be deployed without the LTM policies in the current release.
+The LTM_POICY_VS application was flagged as yellow because LTM polices are not currently supported in BIG-IP Next. Click on this application to review the AS3 declration, and notice the application will be deployed without the LTM policies in the current release. Go ahead and click **Save & Deploy**.
 
 .. image:: ./images/ltm-policy-migration-as3.png
   :align: center
