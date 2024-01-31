@@ -43,7 +43,7 @@ Now that you have cloned the template, you will make the following changes:
             default:
             -  {"loadBalancingMode": "round-robin","monitorType": ["https"],"poolName": "my_pool","servicePort": 8443}
             
-#. Next, search for "enable_TLS_Server:" and change the default to "true". The completed change should look like this:
+#. Next, search for "enable_TLS_Server:" and change the default to "true". The stanza will begin with “enable_TLS_Server:” and look like the following once you have changed the value to true:
     
     .. code-block:: yaml
 
@@ -63,7 +63,8 @@ Next we will verify that your changes are present in the cloned template.
 #. Under Applications go back to **My Application Services** and click on **+ Add Application**
 #. Enter the Application Service name of "https-re-encrypt"
 #. Select **From Template**
-#. Select **clone_HTTPS-Load-Balancing-Service** template
+#. Click **Select Template**
+#. In the flyout window, under Application Template, select **clone_HTTPS-Load-Balancing-Service** template
 #. Click on **Start Creating**
     
 #. Click on the **Pools** tab and verify that the monitor is now "https" and the service port is "8443"
