@@ -86,7 +86,7 @@ Enter the command **f5mku -K** to get the BIG-IP's master-key. Now, copy or writ
     [root@ce6e127b-032e-496c-afb5-b303545907ef:Active:Standalone] config #
 
 
-In the BIG-IP webUI, go to the **Systems -> Archive** page and click the **Create** button to create a new UCS archive file. 
+In the BIG-IP webUI, go to the **System -> Archives** page and click the **Create** button to create a new UCS archive file. 
 
 .. image:: ./images/export-ucs-webui.png
   :align: center
