@@ -30,13 +30,12 @@ First we will create a new version of our iRule
     .. image:: irules-stage-from-this-version.png
         :scale: 50%
             
-#. Using the built-in text editor modify the iRule to add the following of the 4th line then click on **Commit Changes**
+#. Using the built-in text editor, modify the iRule to add the following lines after the 4th line, and click **Commit Changes**
     
     .. code-block:: text
 
             } else {
                 HTTP::header insert "X-Forwarded-For" [IP::client_addr]
-            }
     
     .. image:: irules-v2.png
         :scale: 50%
