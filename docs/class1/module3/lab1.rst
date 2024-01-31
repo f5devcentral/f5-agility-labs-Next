@@ -70,8 +70,11 @@ After you have defined the properties for your application, you will need to sel
 
 #. Client-Side TLS
 
-  Under RSA certificate, enter a name of "www", select the certificate "www.example.com", and leave "Use Default Server" selected.
-
+  Under RSA certificate, enter a name of "www", select the certificate "www.example.com" (use RSA Certificate), and leave "Use Default Server" selected.
+  
+  .. image:: add-client-tls-cert.png
+    :scale: 50% 
+  
   Then click on "Save" and "Save" again to return to the Application Service Properties screen.
 
 #. Review and Deploy

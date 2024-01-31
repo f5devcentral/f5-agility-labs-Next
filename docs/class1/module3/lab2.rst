@@ -78,6 +78,11 @@ There are two different ways that you can attach an iRule to an application.  In
     
 #. You will be asked to confirm the change. Click on **Yes, Continue**
 
+    .. image:: irules-v2-attached-applications.png
+        :scale: 50%
+    
+You will see a list of applications that currently have the v2 iRule attached and also it will display the version that was previouslly attached.
+
 Congratulations! You have deployed version 2 of your iRule.  Notice that you had the option to select which application(s) you wanted attached to the iRule.
 
 3.2.3 - Viewing the differences between versions of an iRule
