@@ -63,7 +63,7 @@ Procedure
    
    .. image:: ./lab6_add_ha_create_control_plane_vlan.png
       :scale: 25%
-   Click **Save**
+   Click **Done**
 #. From the **Data Plane VLAN** list for this BIG-IP Next HA instance, you'll need to create a new Data Plane VLAN by clicking the **Create VLAN** link.
    
    .. image:: ./lab6_add_ha_vlan_config_needs_dataplane_vlan.png
@@ -84,7 +84,7 @@ Procedure
    
    .. image:: ./lab6_add_ha_create_data_plane_vlan.png
       :scale: 25%
-   Click **Save**
+   Click **Done**
 #. After you select the VLANs, click the **Next** button.
    
    .. image:: ./lab6_add_ha_vlan_configuration_complete.png
@@ -92,46 +92,46 @@ Procedure
 #. The HA Properties panel opens.
 #. Enter the **HA Name** (example: ha1) for this high availability pair of nodes. This name should be unique for each pair managed by the Next Central Manager instance.
 
-Name:
+   Name:
+   
+   .. code-block:: console
 
-.. code-block:: console
-
-   ha1
+      ha1
 
 #. Enter the **HA Management (Floating) IP Address** (should be 10.1.1.9) for use when failing over to the standby node.
 
-HA Management (Floating) IP Address:
+   HA Management (Floating) IP Address:
+   
+   .. code-block:: console
 
-.. code-block:: console
-
-   10.1.1.9
+      10.1.1.9
 
 #. Enter the **Control Plane** and **Data Plane IP** addresses that the active and standby nodes use for communication with each other. (See screenshot for suggested IP addresses)
    Address for big-ip-next-01.f5demo.com: control plane: 10.1.1.77/24; data plane: 10.1.40.7/24 and big-ip-next-02.f5demo.com: control plane: 10.1.1.88/24; data plane: 10.1.40.8/24
 
-big-ip-next-01 control plane IP:
+   big-ip-next-01 control plane IP:
+   
+   .. code-block:: console
+   
+      10.1.1.77/24
 
-.. code-block:: console
+   big-ip-next-01 data plane IP:
+   
+   .. code-block:: console
+   
+      10.1.40.7/24
 
-   10.1.1.77/24
+   big-ip-next-02 control plane IP:
+   
+   .. code-block:: console
+   
+      10.1.1.88/24
 
-big-ip-next-01 data plane IP:
-
-.. code-block:: console
-
-   10.1.40.7/24
-
-big-ip-next-02 control plane IP:
-
-.. code-block:: console
-
-   10.1.1.88/24
-
-big-ip-next-02 data plane IP:
-
-.. code-block:: console
-
-   10.1.40.8/24
+   big-ip-next-02 data plane IP:
+   
+   .. code-block:: console
+   
+      10.1.40.8/24
 
 #. The subnet for the data plane address should not be shared with either management or control plane addresses. Management and control plane can share a common subnet or they can each use unique subnets. The addresses for the nodes in an HA pair must use corresponding subnets for management, control plane and data plane.
    
@@ -143,7 +143,7 @@ big-ip-next-02 data plane IP:
    .. image:: ./lab6_add_ha_traffic_vlans_unconfigured.png
       :scale: 25%
 #. You can have only one IP address for each active and standby node, but you can add additional floating IP addresses by clicking on the VLAN name.
-#. Click each VLAN to open a panel to add the respective Active, Standby, and Floating IP addresses. You may need to reassign the IP address that shows up when you first enter the page from a Floating Self-IP to the Active Self-IP.
+#. Click each VLAN to open a panel to add the respective Active, Standby, and Floating IP addresses. You may need to reassign the IP address that shows up when you first enter the page from a Floating Self-IP to the Active Self-IP. You will need to click the "+" next to the address twice to add two more address fields (for the standby node and floating IP addresses).
    
    .. image:: ./lab6_add_ha_traffic_vlans_external.png
       :scale: 25%
