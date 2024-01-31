@@ -78,6 +78,7 @@ Log in with the following credentials:
 
 Enter the command **f5mku -K** to get the BIG-IP's master-key. Now, copy or write down the master-key, as you will need this when importing the UCS into Central Manager.
 
+.. note:: the value "cgGaYTNid4Gvqdelf/85cw==" is the same key that is used in the lab environment.  You can copy the value from the lab guide.
 
 .. code-block:: bash
 
