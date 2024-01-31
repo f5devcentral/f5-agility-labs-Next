@@ -1,11 +1,10 @@
-Lab 5.1 - Modify Templates to Add Security Policy (Basic WAF Lab)
+Lab 5.1 - Add Security Policy to Application (Basic WAF Lab)
 =================================================================
 
 .. note:: This is the start of part 2 of the lab.  If you have not previously completed part 1 of the lab with your current deployment, please click on the Module 2 link on the left hand side of the page and complete discovery of big-ip-next-01.example.com as it is required to complete module 5.
+
   .. image:: ./pictures/side_nav_mod_2.png
 
-* Show versioning of the template
-* Deploy app again using the new template
 
 Deploy an Application with a WAF Policy Using a FAST Template
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -45,21 +44,17 @@ Deploy an HTTPS Load Balancer with a WAF Policy
  .. image:: ./pictures/add-application.png
 
 
-3. Provide an *Application Service Name* of "waf-app".  Select **From Template** and then click on **Select Template**.
+3. Provide an *Application Service Name* of "waf-app".  Select **Standard** and then click on **Start Creating**.
 
-  .. note:: The http template is a unified template that allows you to enable/disable capabilities
+  .. note:: The Standard template is a unified template that allows you to enable/disable capabilities
   
  .. image:: ./pictures/create-application.png
 
-4. Choose the *http* template and select **Start Creating**
-
- .. image:: ./pictures/application_template.png
-
-5. Then select "Start Creating" under the "No Virtual Servers Configured" to start creating a new virtual server.
+4. Then select "Start Creating" under the "No Virtual Servers Configured" to start creating a new virtual server.
 
  .. image:: ./pictures/waf-app_add_VS.png
 
-6. From within the "waf-app" application service, click the **Pools** tab, then click **+ Create**, and enter the following values in the template wizard as shown in the picture below:
+5. From within the "waf-app" application service, click the **Pools** tab, then click **+ Create**, and enter the following values in the template wizard as shown in the picture below:
 
 	Pool Name:
 
@@ -77,7 +72,7 @@ Deploy an HTTPS Load Balancer with a WAF Policy
   
      .. image:: ./pictures/waf-app-pool.png
 
-7. Navigate back to the **Virtual Servers** tab and enter the following values in the template wizard for Properties as shown in the picture below, then select **Next**
+6. Navigate back to the **Virtual Servers** tab and enter the following values in the template wizard for Properties as shown in the picture below, then select **Next**
 
 	Virtual Server Name:
 
@@ -99,16 +94,21 @@ Deploy an HTTPS Load Balancer with a WAF Policy
 
    .. image:: ./pictures/waf-app-virtual-addition.png
 
-8. Select the edit button under the "Protocols and Profiles" column (adjacent to "SNAT" and "MIRRORING").  This is a new diaglog for adding a TLS certificate to a virtual server.   Click on **Enable HTTPS (Client-Side TLS)**.  Below click on "Add" under the "No Client-Side TLS" text.
- .. image:: ./pictures/waf-app_clientssl_add.png
+7. Select the edit button under the "Protocols and Profiles" column (adjacent to "SNAT" and "MIRRORING").  
 
-9. For the name of the Client-Side TLS, name is "waf-app.example.com" and under the RSA Certificate, choose the "wildcard.example.com" certificate.  Leave "Use Default Server" under TLS Servers and then push "Save"
+  .. image:: ./pictures/edit-protocols.png
+    
+  This is a new dialog for adding a TLS certificate to a virtual server.   Click on **Enable HTTPS (Client-Side TLS)**.  Below click on "Add" under the "No Client-Side TLS" text.
+
+  .. image:: ./pictures/waf-app_clientssl_add.png
+
+8.  For the name of the Client-Side TLS, name is "waf-app.example.com" and under the RSA Certificate, choose the "wildcard.example.com" certificate.  Leave "Use Default Server" under TLS Servers and then push "Save"
 
  .. image:: ./pictures/choose_cert.png
 
-10. Select the edit button under **Security Policies**. Next, select **Use a WAF Policy**. Click on **+ Create**. Provide a name of "waf-policy", leave all other items as default, click **Save**, and then **Save** again.
+9. Select the edit button under **Security Policies**. Next, select **Use a WAF Policy**. Click on **+ Create**. Provide a name of "waf-policy", leave all other items as default, click **Save**, and then **Save** again.
 
-11. Clicking **Review and Deploy** will take you to the **Deploy** page.  Select **Start Adding**, then select "big-ip-next-01.f5demo.com" as the instance for deployment and click **+ Add to List**
+10. Clicking **Review and Deploy** will take you to the **Deploy** page.  Select **Start Adding**, then select "big-ip-next-01.f5demo.com" as the instance for deployment and click **+ Add to List**
 
   .. note::
      The Deploy stage is the first place you'll actually define a virtual server. The process leading up to deployment involved defining things like virtual server and pool names, which will be consistent as you deploy across infrastructure.
@@ -118,25 +118,25 @@ Deploy an HTTPS Load Balancer with a WAF Policy
  .. image:: ./pictures/instances-add-to-list.png
   :scale: 50%
 
-12. Add the IP of "10.1.10.203" to the **Virtual Address** box, then click the down arrow and select **+ Pool Members.**
+11. Add the IP of "10.1.10.203" to the **Virtual Address** box, then click the down arrow and select **+ Pool Members.**
 
  .. image:: ./pictures/IP_for_VIP.png
 
-13. Click on **+ Add Row** and fill in "m_10.1.20.100" for the Name and "10.1.20.100" for the IP Address. Select **Save**.
+12. Click on **+ Add Row** and fill in "m_10.1.20.100" for the Name and "10.1.20.100" for the IP Address. Select **Save**.
 
  .. image:: ./pictures/pool_member_add.png
    
-14. Click on **Validate All** to run the deployment validation. When the validation is complete, you will see an icon and status next to the deployment, such as the green icon and "Validated" in the picture below
+13. Click on **Validate All** to run the deployment validation. When the validation is complete, you will see an icon and status next to the deployment, such as the green icon and "Validated" in the picture below
  
  .. image:: ./pictures/validate.png
 
-15. Click on **View Results** to show the declaration
+14. Click on **View Results** to show the declaration
 
  .. image:: ./pictures/declaration.png
 
  Select "Exit" to go back to the previous screen.
 
-16. Finally, click on **Deploy Changes**, after which you will be prompted to confirm or cancel the deployment.  Select **Yes, Deploy** and you should see the application and the WAF policy deployed.
+15. Finally, click on **Deploy Changes**, after which you will be prompted to confirm or cancel the deployment.  Select **Yes, Deploy** and you should see the application and the WAF policy deployed.
 
  .. image:: ./pictures/successful_deployed.png
   
