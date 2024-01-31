@@ -59,7 +59,7 @@ Deploy an HTTPS Load Balancer with a WAF Policy
 
  .. image:: ./pictures/waf-app_add_VS.png
 
-6. From within the "waf-app" application service, click the **Pools** tab and enter the following values in the template wizard as shown in the picture below:
+6. From within the "waf-app" application service, click the **Pools** tab, then click **+ Create**, and enter the following values in the template wizard as shown in the picture below:
 
 	Pool Name:
 
@@ -136,7 +136,7 @@ Deploy an HTTPS Load Balancer with a WAF Policy
 
  Select "Exit" to go back to the previous screen.
 
-16. Finally, click on **Deploy**, after which you will be prompted to confirm or cancel the deployment.  Select **Yes, Deploy** and you should see the application and the WAF policy deployed.
+16. Finally, click on **Deploy Changes**, after which you will be prompted to confirm or cancel the deployment.  Select **Yes, Deploy** and you should see the application and the WAF policy deployed.
 
  .. image:: ./pictures/successful_deployed.png
   
@@ -155,7 +155,7 @@ Deploy an HTTPS Load Balancer with a WAF Policy
 
  .. image:: ./pictures/block_check.png
 
-18. You can see your block requested by visiting the WAF dashboard. From Central Manager, click on the top left menu to select the **Security** menu.
+18. You can see your block requested by visiting the WAF dashboard. From Central Manager, click on the top left menu to select the **Security** menu. Then click **WAF Dashboards** under Monitoring in the Security menu on the right.
 
  .. image:: ./pictures/security-menu.png
   :scale: 50%
