@@ -407,6 +407,11 @@ After a bit of time the migration of the applications to BIG-IP Next should comp
 
 Click the **Finish** button.
 
+If you have issues connecting to a virtual address or pinginig a virtual address after migrating to BIG-IP Next, there is likely an ARP issue on the Windows host in the UDF environment. To address this issue, you'll need to clear the ARP cache on the Windows host and then try to reconnect. To clear the ARP cache, you'll need to go to the Search bar on the Windows host and type **cmd**. You'll then see the **Command Prompt**, right-click on Command Prompt and Select **Run as Administrator**. When the cmd window opens, run the command **arp -d** to clear the ARP cache.
+
+.. image:: ./images/right-click-cmd.png
+  :align: center
+
 
 To verify the applications migrated successfully, go back to the Windows jumphost and re-run the curl commands to ensure the applications are live again.
 
