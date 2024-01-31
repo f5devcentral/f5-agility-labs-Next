@@ -116,6 +116,7 @@ Deploy an HTTPS Load Balancer with a WAF Policy
      Imagine a globally-deployed app and you add a new site. The application service definition will already be in Central Manager and all you will need to define is a small subset of data (IP and pool members) in order to have a functional application that matches exactly the rest of your infrastructure.
  
  .. image:: ./pictures/instances-add-to-list.png
+  :scale: 50%
 
 12. Add the IP of "10.1.10.203" to the **Virtual Address** box, then click the down arrow and select **+ Pool Members.**
 
@@ -150,11 +151,11 @@ Deploy an HTTPS Load Balancer with a WAF Policy
 
  .. code-block:: console
   
-    https://10.1.10.203/a=<script>
+    https://waf-app.example.com/a=<script>
 
  .. image:: ./pictures/block_check.png
 
-18. You can see your block requested by visiting the WAF dashbaord. From Central Manager, click on the top left menu to select the **Security** menu.
+18. You can see your block requested by visiting the WAF dashboard. From Central Manager, click on the top left menu to select the **Security** menu.
 
  .. image:: ./pictures/security-menu.png
   :scale: 50%
@@ -171,10 +172,20 @@ You can now view your "good" and "bad" requests
 
 .. note:: This next exercise is optional (if you are doing this as part of internal F5 training and are part of the "Security" track, please skip in favor of your dedicated "Security" lab)
 
-The Firefox copy and paste function doesn't often work, so remember the first few digits of the blocking "Support ID" when you triggered a WAF block.
+The Firefox copy and paste function doesn't often work, so remember the first few digits of the blocking "Support ID" when you triggered a WAF block or use the built-in Firefox copy to clipboard option.
 
  .. image:: ./pictures/get-support-id.png
+
+Next you will need to expand the built-in "copy to clipboard" feature by clicking on the 3 dots to the left.
   
+
+ .. image:: ./pictures/get-support-id2.png
+
+You will then be able to copy the support ID into your browser.
+
+ .. image:: ./pictures/get-support-id3.png
+
+
 Next click **Event Logs** and enter the *Support ID* into the filter text box.
 
  .. image:: ./pictures/waf-events-search-support-id.png
