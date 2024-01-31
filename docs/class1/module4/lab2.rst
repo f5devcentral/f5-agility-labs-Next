@@ -326,7 +326,8 @@ Select the **Windows Jumphost** option.
 
 **Test the connection to the applications**
 
-On the Windows jumphost open a **cmd** window. You will now test to ensure the source BIG-IP virtual servers are responding.
+On the Windows jumphost open a **cmd** window (click on the start menu in the lower-left corner (it looks like a white four-pane window), type "cmd", and click the item called "Command Prompt" from the menu that appears).
+You will now test to ensure the source BIG-IP virtual servers are responding.
 
 - FAST_L4
 	.. code-block:: console
@@ -369,7 +370,7 @@ Login using the credentials below:
 		
 		admin
 
-Got to the **Local Traffic -> Virtual Servers -> Virtual Addresses** page. 
+Go to the **Local Traffic -> Virtual Servers -> Virtual Address List** page. 
 
 .. image:: ./images/virtual-address-list-menu.png
   :align: center
