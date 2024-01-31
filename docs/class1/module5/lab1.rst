@@ -97,7 +97,7 @@ Deploy an HTTPS Load Balancer with a WAF Policy
 7. Select the edit button under the "Protocols and Profiles" column (adjacent to "SNAT" and "MIRRORING").  
 
   .. image:: ./pictures/edit-protocols.png
-    
+
   This is a new dialog for adding a TLS certificate to a virtual server.   Click on **Enable HTTPS (Client-Side TLS)**.  Below click on "Add" under the "No Client-Side TLS" text.
 
   .. image:: ./pictures/waf-app_clientssl_add.png
@@ -108,7 +108,7 @@ Deploy an HTTPS Load Balancer with a WAF Policy
 
 9. Select the edit button under **Security Policies**. Next, select **Use a WAF Policy**. Click on **+ Create**. Provide a name of "waf-policy", leave all other items as default, click **Save**, and then **Save** again.
 
-10. Clicking **Review and Deploy** will take you to the **Deploy** page.  Select **Start Adding**, then select "big-ip-next-01.f5demo.com" as the instance for deployment and click **+ Add to List**
+10. Clicking **Review and Deploy** will take you to the **Deploy** page.  Select **Start Adding**, then select "big-ip-next-01.example.com" as the instance for deployment and click **+ Add to List**
 
   .. note::
      The Deploy stage is the first place you'll actually define a virtual server. The process leading up to deployment involved defining things like virtual server and pool names, which will be consistent as you deploy across infrastructure.
