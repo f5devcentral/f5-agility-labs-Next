@@ -34,7 +34,7 @@ We will use the "dig" utility to verify our DNS records
     
     .. code-block:: shell
       
-      # dig @10.1.10.153 gr.example.com +short
+      dig @10.1.10.153 gr.example.com +short
 
     You should see `10.1.10.154` being returned
 
@@ -110,7 +110,7 @@ We will use the "dig" utility to verify our DNS records
     
     .. code-block:: shell
       
-      # dig @10.1.10.153 gr.example.com +short
+      dig @10.1.10.153 gr.example.com +short
 
 #. repeat the command (you can use the up arrow to auto-complete) several times
     
