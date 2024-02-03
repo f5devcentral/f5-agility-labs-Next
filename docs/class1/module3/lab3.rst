@@ -14,7 +14,7 @@ When a template has been used to deploy an application it will enter a "Publishe
 
 .. note:: The "http" app is shipped with Central Manager.  We have loaded a custom HTTPS-Load-Balancing-Service application into this lab environment.  It is a modified version of the provided "http" template.
 
-#. Under the Applications menu click on **App Templates**
+#. Under the Applications menu click on **Application Templates**
 #. Select the checkbox next to the **HTTPS-Load-Balancing-Service** template
 #. Click on the **Clone** button
     

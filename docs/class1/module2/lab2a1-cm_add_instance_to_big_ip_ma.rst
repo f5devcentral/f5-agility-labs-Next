@@ -5,11 +5,13 @@ This document describes how to add a BIG-IP Next instance to BIG-IP Next Central
 
 Overview
 ~~~~~~~~
-When you add a BIG-IP Next instance to BIG-IP Next Central Manager, all users currently configured on that local BIG-IP Next instance are automatically disabled so management of the instance is done exclusively from BIG-IP Next Central Manager.
+When you add a BIG-IP Next instance to BIG-IP:were Next Central Manager, all users currently configured on that local BIG-IP Next instance are automatically disabled so management of the instance is done exclusively from BIG-IP Next Central Manager.
 
 Prerequisites
 ~~~~~~~~~~~~~
 Before you add an instance to BIG-IP Next Central Manager, please confirm BIG-IP Next instance 1 is running in the UDF deployment.
+
+  .. image:: ./instance1-running.png
 
 - IP Address
 
