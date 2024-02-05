@@ -78,6 +78,7 @@ Log in with the following credentials:
 
 Enter the command **f5mku -K** to get the BIG-IP's master-key. Now, copy or write down the master-key, as you will need this when importing the UCS into Central Manager.
 
+.. note:: the value "cgGaYTNid4Gvqdelf/85cw==" is the same key that is used in the lab environment.  You can copy the value from the lab guide.
 
 .. code-block:: bash
 
@@ -86,7 +87,7 @@ Enter the command **f5mku -K** to get the BIG-IP's master-key. Now, copy or writ
     [root@ce6e127b-032e-496c-afb5-b303545907ef:Active:Standalone] config #
 
 
-In the BIG-IP webUI, go to the **Systems -> Archive** page and click the **Create** button to create a new UCS archive file. 
+In the BIG-IP webUI, go to the **System -> Archives** page and click the **Create** button to create a new UCS archive file. 
 
 .. image:: ./images/export-ucs-webui.png
   :align: center
@@ -172,7 +173,7 @@ Depending on the type of grouping selected, and how the applications are configu
 .. image:: ./images/icon-hover.png
   :align: center
 
-Here you can select individual applications to analyze and see if they are eligible for migration to BIG-IP Next. Not all BIG-IP features are currenlty supported on Next. There will be a phasing of support for some configuration objects, so it is expected that some applications cannot migrate at the current time. 
+Here you can select individual applications to analyze and see if they are eligible for migration to BIG-IP Next. Not all BIG-IP features are currenlty supported on Next. There will be a phasing of support for some configuration objects, so it is expected that some applications cannot migrate at the current time or need modifications in order to migrate. 
 
 To see if an application is eligible for migration, click the application name as well as the virtual service underneath it and then click the **Analyze** button in the top right-hand corner off the screen.
 
@@ -181,7 +182,7 @@ To see if an application is eligible for migration, click the application name a
 .. image:: ./images/analyze.png
   :align: center
 
-This will open the **Configuration Analyzer** page and you will see the BIG-IP configuration display from different files such as bigip.conf, or some of the default profile and monitor files. Each file will have a status associated with it indicating if there is a migration issue or not. Note: There is an enhancement logged to update the status icons of each file individually, right now some files are being grouped together, when there is not an issue in that particular file. 
+This will open the **Configuration Analyzer** page and you will see the BIG-IP configuration display from different files such as bigip.conf, or some of the default profile and monitor files. Each file will have a status associated with it indicating if there is a migration issue or not.
 
 .. image:: ./images/analyzer-green-files.png
   :align: center
@@ -208,7 +209,7 @@ Using the Configuration Analyzer, you can make a determination if an application
 
 Applications with status indicating a yellow triangle or blue information icon may not be ready for migration, or may need some changes to fully migrate to BIG-IP Next.
 
-A red icon is an unsupported object and cannot be migrated to BIG-IP Next.
+A red icon is an unsupported object and cannot be migrated to BIG-IP Next at the current time.
 
 For this lab, we will first attempt to migrate all the green application services to BIG-IP Next. Before migrating the applications, it is a good idea to rename each application service to use a name that better represents the application instead of the generic, auto-generated names (application_1, application_2, etc...).
 
@@ -217,11 +218,11 @@ Go ahead and rename each application, using the name nested underneath the appli
 .. image:: ./images/rename-applications.png
   :align: center
 
-Below is an example of the pop-up that will appear when you renaming an application service.
+Below is an example of the pop-up that will appear when you renaming an application service. Please use underscore instead of dashes when renaming the application for the current release.
 
 .. image:: ./images/rename-applications-2.png
   :align: center
-  :scale: 50%
+  :scale: 80%
 
 After renaming the application services, the new names should be reflected in the output as seen below. Do this for every application.
 
@@ -326,29 +327,26 @@ Select the **Windows Jumphost** option.
 
 **Test the connection to the applications**
 
-On the Windows jumphost open a **cmd** window. You will now test to ensure the source BIG-IP virtual servers are responding.
+On the Windows jumphost open a **cmd** window (click on the start menu in the lower-left corner (it looks like a white four-pane window), type "cmd", and click the item called "Command Prompt" from the menu that appears).
+You will now test to ensure the source BIG-IP virtual servers are responding.
 
-- FASTL4-VS
+- FAST_L4
 	.. code-block:: console
 
 		curl 10.1.10.51 -I
 
-- STANDARD-VS-W-TCP-PROG-VS
+- TCP_PROG
 	.. code-block:: console
 
 		curl 10.1.10.52:8080 -I
 
-- SSL-OFFLOAD-VS
+- SSL_OFFLOAD_VS
 	.. code-block:: console
 
 		curl 10.1.10.53 -I
 
-- LTM-POLCY-VS
-	.. code-block:: console
 
-		curl 10.1.10.55 -I
-
-They should all respond with a **200 OK** message, as seen below.
+The first two virtuals should respond with a **200 OK** message, and the 3rd virtual will respond with a **302 Moved Temporarily** message indicating a redirect as seen below.
 
 .. image:: ./images/curl-bigip.png
   :align: center
@@ -373,7 +371,7 @@ Login using the credentials below:
 		
 		admin
 
-Got to the **Local Traffic -> Virtual Servers -> Virtual Addresses** page. 
+Go to the **Local Traffic -> Virtual Servers -> Virtual Address List** page. 
 
 .. image:: ./images/virtual-address-list-menu.png
   :align: center
@@ -396,16 +394,26 @@ Click **Deploy**.
 .. image:: ./images/deploy-green-apps-to-next-03.png
   :align: center
 
-You may see a temporary **Bad Gateway** message, which is a known issue. After a bit of time the migration of the applications to BIG-IP Next should complete.
+You can monitor the status of the applications as they are migrated.
 
-.. epigraph::
+.. image:: ./images/monitor-status.png
+  :align: center
+
+After a bit of time the migration of the applications to BIG-IP Next should complete.
 
  **You have now migrated your green applications to BIG-IP Next!**
 
-Click the **Finish** button.
-
 .. image:: ./images/successful-migration.png
   :align: center
+
+
+Click the **Finish** button.
+
+If you have issues connecting to a virtual address or pinginig a virtual address after migrating to BIG-IP Next, there is likely an ARP issue on the Windows host in the UDF environment. To address this issue, you'll need to clear the ARP cache on the Windows host and then try to reconnect. To clear the ARP cache, you'll need to go to the Search bar on the Windows host and type **cmd**. You'll then see the **Command Prompt**, right-click on Command Prompt and Select **Run as Administrator**. When the cmd window opens, run the command **arp -d** to clear the ARP cache.
+
+.. image:: ./images/right-click-cmd.png
+  :align: center
+
 
 To verify the applications migrated successfully, go back to the Windows jumphost and re-run the curl commands to ensure the applications are live again.
 
@@ -441,7 +449,7 @@ Select **Add** to see all the apps.
 .. image:: ./images/click-add-to-see-apps.png
   :align: center
 
-Next we will stage a draft migration and demonstrate the capability of editing the configuration before migrating. Deselect all the green apps that have migrated to BIG-IP Next already, then select all 3 WAF applications and the SSL-OFFLOAD-W-PASSWORD application.
+Next you will stage a draft migration and demonstrate the capability of editing the configuration before migrating. Deselect all the green apps that have migrated to BIG-IP Next already, then select all 3 WAF applications and the SSL_OFFLOAD_W_PASSWORD and the LTM_POLICY_VS application.
 
 Click **Add**. 
 
@@ -462,6 +470,12 @@ Click **Deploy** to stage the draft changes.
 .. image:: ./images/pre-deploy-waf.png
   :align: center
 
+You can monitor the status of the save as draft migrations.
+
+.. image:: ./images/save-as-draft-monitor.png
+  :align: center
+
+
 Here, you can see the apps that are in Draft status as well as the applications that have been successfully migrated.
 
 Select **Finish**.
@@ -474,7 +488,7 @@ On the application dashboard you will now see both the migrated and **Draft** ap
 .. image:: ./images/draft-apps-waf.png
   :align: center
 
-Click on the Draft application *WAF-DOS-PROFILE-VS*.
+Click on the Draft application *WAF_DOS_PROFILE application*.
 
 .. image:: ./images/waf-dos-profile.png
   :align: center
@@ -496,23 +510,23 @@ You'll then be prompted for a deploy location. Select *10.1.1.10*, then **Yes, D
   :align: center
   :scale: 100%
 
-Repeat this process for each WAF application you saved as a Draft. Do not migrate the *SSL OFFLOAD* app yet.
+Repeat this process for each WAF application you saved as a Draft. Do not migrate the **SSL_OFFLOAD_W_PASSWORD** or **LTM_POLICY_VS** application yet.
 
 
 Now test that the WAF applications have been migrated over to BIG-IP Next. You can either utilize the Windows jumphost and open a Chrome browser window, then enter in the following links to ensure you reach the back-end application. 
 
-- Vanilla WAF
+- WAF_BOT_DEFENSE
 	.. code-block:: console
 
-		https://10.1.10.59
-- DOS WAF
-	.. code-block:: console
-
-		https://10.1.10.57
-- BOT WAF
+		https://10.1.10.55
+- WAF_DOS_PROFILE
 	.. code-block:: console
 
 		https://10.1.10.56
+- WAF_VANILLA_VS
+	.. code-block:: console
+
+		https://10.1.10.58
 
 Or, if you are unable to run RDP, you can use the built-in HMTL-based RDP client, **Guacamole**, in UDF. Go to the main UDF page, and select the **Access** dropdown under the Ubuntu Jumphost. Then Select **Guacamole** as seen below. Login with the same credentials previously used, and select the Windows Jumphost.
 
@@ -520,27 +534,33 @@ Or, if you are unable to run RDP, you can use the built-in HMTL-based RDP client
   :align: center
   :scale: 50%
 
-From here you can open a Chrome browser window and enter in the following links to ensure reachability to the back-end application. 
+From here you can open a Chrome browser window and enter in the following links to ensure reachability to the back-end applications. 
 
-- Vanilla WAF
+- WAF_BOT_DEFENSE
 	.. code-block:: console
 
-		https://10.1.10.59
-- DOS WAF
-	.. code-block:: console
-
-		https://10.1.10.57
-- BOT WAF
+		https://10.1.10.55
+- WAF_DOS_PROFILE
 	.. code-block:: console
 
 		https://10.1.10.56
+- WAF_VANILLA_VS
+	.. code-block:: console
+
+		https://10.1.10.58
+
 
 After accepting the security/certifcate warning you should see the Next Lab page in the browser indicating successfull connection to the app, and a successful migration of the WAF apps to BIG-IP Next.
 
 .. image:: ./images/waf-apps-browser.png
   :align: center
 
-Lastly, click on the *SSL OFFLOAD* Draft application and review the AS3 declaration. Note that the certs and keys that are password-protected are not currently migrated automatically. You would need to add those certs and keys manually. This is being addressed in a subsequent release.
+The LTM_POICY_VS application was flagged as yellow because LTM polices are not currently supported in BIG-IP Next. Click on this application to review the AS3 declration, and notice the application will be deployed without the LTM policies in the current release. Go ahead and click **Save & Deploy**.
+
+.. image:: ./images/ltm-policy-migration-as3.png
+  :align: center
+
+Lastly, click on the **SSL_OFFLOAD_W_PASSWORD** Draft application and review the AS3 declaration. Note that the certs and keys that are password-protected are not currently migrated automatically. You would need to add those certs and keys into Central Manager manually, and then reference them here as part of the AS3 declaration. 
 
 .. image:: ./images/ssl-certs-future.png
   :align: center

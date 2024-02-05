@@ -5,11 +5,13 @@ This document describes how to add a BIG-IP Next instance to BIG-IP Next Central
 
 Overview
 ~~~~~~~~
-When you add a BIG-IP Next instance to BIG-IP Next Central Manager, all users currently configured on that local BIG-IP Next instance are automatically disabled so management of the instance is done exclusively from BIG-IP Next Central Manager.
+When you add a BIG-IP Next instance to BIG-IP:were Next Central Manager, all users currently configured on that local BIG-IP Next instance are automatically disabled so management of the instance is done exclusively from BIG-IP Next Central Manager.
 
 Prerequisites
 ~~~~~~~~~~~~~
 Before you add an instance to BIG-IP Next Central Manager, please confirm BIG-IP Next instance 1 is running in the UDF deployment.
+
+  .. image:: ./instance1-running.png
 
 - IP Address
 
@@ -61,7 +63,7 @@ Procedure
     .. image:: ./lab2_next_cm_add_instance_dialog.png
       :scale: 25%
 
-#. For the Management Credentials, in the **Username** and **Password** fields, enter the username and password that were used to login to the BIG-IP Next Central Manager and click **Submit**.
+#. For the Management Credentials, in the **Username** and **Password** fields, enter the username and password that were used to login to the BIG-IP Next Central Manager and click **Next**.
 
     Username:
 
@@ -98,6 +100,10 @@ Procedure
 #. You'll be asked to confirm Central Management of the instance. BIG-IP Next Central Manager removes all locally-configured users from the BIG-IP Next instance you are adding. If, for any reason, disablement of users on the local BIG-IP Next instance fails, adding the BIG-IP Next instance to BIG-IP Next Central Manager is halted and all users are re-enabled on the local BIG-IP Next instance. You should click **Add** at this confirmation dialog.
 
     .. image:: ./lab2_img08_central_management_confirmation.png
+
+#. You'll then be presented with the fingerprint of the cert for the instance and to confirm this.
+
+    .. image:: ./lab2_next_cm_confirm_instance_fingerprint.png
 
 #. After completing this procedure, you'll now see a new instances in the **My Instances** list.
 

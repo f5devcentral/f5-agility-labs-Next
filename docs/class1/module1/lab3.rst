@@ -33,4 +33,4 @@ We recommend that you use Google Chrome within this lab environment.
     .. image:: central-manager-login-screen.png
         :scale: 50%
 
-    .. image:: central-manager-desktop.png
+    .. image:: central-manager-home-screen.png
