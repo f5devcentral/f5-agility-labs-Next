@@ -20,7 +20,7 @@ First we will create a new version of our iRule
     .. image:: central-manager-menu.png
       :scale: 50%
          
-#. Click on **iRules** followed by **udf_demo_xff**
+#. Click on **iRules** followed by **insert_xff_iRule**
     
     .. image:: irules-menu.png
         :scale: 50%
@@ -30,7 +30,12 @@ First we will create a new version of our iRule
     .. image:: irules-stage-from-this-version.png
         :scale: 50%
             
-#. Using the built-in text editor modify the iRule to add "2" after "Test Page" then click on **Commit Changes**
+#. Using the built-in text editor, modify the iRule to add the following lines after the 4th line, and click **Commit Changes**
+    
+    .. code-block:: text
+
+            } else {
+                HTTP::header insert "X-Forwarded-For" [IP::client_addr]
     
     .. image:: irules-v2.png
         :scale: 50%
@@ -72,6 +77,11 @@ There are two different ways that you can attach an iRule to an application.  In
         :scale: 50%
     
 #. You will be asked to confirm the change. Click on **Yes, Continue**
+
+    .. image:: irules-v2-attached-applications.png
+        :scale: 50%
+    
+You will see a list of applications that currently have the v2 iRule attached and also it will display the version that was previouslly attached.
 
 Congratulations! You have deployed version 2 of your iRule.  Notice that you had the option to select which application(s) you wanted attached to the iRule.
 

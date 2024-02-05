@@ -24,7 +24,7 @@ Once connected to the Debug Session we will inspect some basic network configura
 
 #. You will see a screen that lists the requirements.  Click on **Proceed**
 
-#. Enter the following SSH key (you can click on the Copy icon if you float your mouse to the top right of the text)
+#. Copy the following SSH key (you can click on the Copy icon if you float your mouse to the top right of the text)
 
     .. code-block::
 
