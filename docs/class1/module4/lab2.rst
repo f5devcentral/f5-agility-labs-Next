@@ -328,7 +328,7 @@ Select the **Windows Jumphost** option.
 **Test the connection to the applications**
 
 On the Windows jumphost open a **cmd** window (click on the start menu in the lower-left corner (it looks like a white four-pane window), type "cmd", and click the item called "Command Prompt" from the menu that appears).
-You will now test to ensure the source BIG-IP virtual servers are responding.
+You will now test to ensure that some of the source BIG-IP virtual servers are responding.
 
 - FAST_L4
 	.. code-block:: console
@@ -345,11 +345,36 @@ You will now test to ensure the source BIG-IP virtual servers are responding.
 
 		curl 10.1.10.53 -I
 
+- REWRITE_VS
+	.. code-block:: console
 
-The first two virtuals should respond with a **200 OK** message, and the 3rd virtual will respond with a **302 Moved Temporarily** message indicating a redirect as seen below.
+		curl 10.1.10.54 -I
+
+- WAF_BOT_DEFENSE
+	.. code-block:: console
+
+		curl https://10.1.10.55 -k -I
+
+- WAF_DOS_PROFILE
+	.. code-block:: console
+
+		curl https://10.1.10.56 -k -I
+
+- SSL_OFFLOAD_VS_W_PASSWORD
+	.. code-block:: console
+
+		curl https://10.1.10.57 -k -I      
+
+- WAF_VANILLA
+	.. code-block:: console
+
+		curl https://10.1.10.58 -k -I
+
+The first two virtuals should respond with a **200 OK** message, and the 3rd virtual will respond with a **302 Moved Temporarily** message indicating a redirect as seen below. All the other virtuals should respond with a **200 OK** message.
 
 .. image:: ./images/curl-bigip.png
   :align: center
+
 
 Because you will preserve the BIG-IP virtual server address as part of the migration, you will need to disable all the source BIG-IP virtual servers to prevent duplicate IP address conflicts.
 
@@ -403,22 +428,51 @@ After a bit of time the migration of the applications to BIG-IP Next should comp
 
  **You have now migrated your green applications to BIG-IP Next!**
 
+
 .. image:: ./images/successful-migration.png
   :align: center
 
 
 Click the **Finish** button.
 
-If you have issues connecting to a virtual address or pinginig a virtual address after migrating to BIG-IP Next, there is likely an ARP issue on the Windows host in the UDF environment. To address this issue, you'll need to clear the ARP cache on the Windows host and then try to reconnect. To clear the ARP cache, you'll need to go to the Search bar on the Windows host and type **cmd**. You'll then see the **Command Prompt**, right-click on Command Prompt and Select **Run as Administrator**. When the cmd window opens, run the command **arp -d** to clear the ARP cache.
+If you have issues connecting to a virtual address or pinging a virtual address after migrating to BIG-IP Next, there is likely an ARP issue on the Windows host in the UDF environment. To address this issue, you'll need to clear the ARP cache on the Windows host and then try to reconnect. To clear the ARP cache, you'll need to go to the Search bar on the Windows host and type **cmd**. You'll then see the **Command Prompt**, right-click on Command Prompt and Select **Run as Administrator**. When the cmd window opens, run the command **arp -d** to clear the ARP cache.
 
 .. image:: ./images/right-click-cmd.png
   :align: center
 
 
-To verify the applications migrated successfully, go back to the Windows jumphost and re-run the curl commands to ensure the applications are live again.
+To verify the applications migrated successfully, go back to the Windows jumphost and re-run the curl commands to ensure the applications are live again, but only for the green applications that have just migrated.
 
-.. image:: ./images/curl-bigip.png
-  :align: center
+- FAST_L4
+  .. code-block:: console
+
+		curl 10.1.10.51 -I
+
+- TCP_PROG
+  .. code-block:: console
+
+		curl 10.1.10.52:8080 -I
+
+- SSL_OFFLOAD_VS
+  .. code-block:: console
+
+		curl 10.1.10.53 -I
+
+- WAF_BOT_DEFENSE
+  .. code-block:: console
+
+		curl https://10.1.10.55 -k -I
+
+- WAF_DOS_PROFILE
+  .. code-block:: console
+
+		curl https://10.1.10.56 -k -I 
+
+- WAF_VANILLA
+  .. code-block:: console
+
+		curl https://10.1.10.58 -k -I
+
 
 Next, you'll go back to the saved migration and move some additional applications.
 
@@ -449,11 +503,11 @@ Select **Add** to see all the apps.
 .. image:: ./images/click-add-to-see-apps.png
   :align: center
 
-Next you will stage a draft migration and demonstrate the capability of editing the configuration before migrating. Deselect all the green apps that have migrated to BIG-IP Next already, then select all 3 WAF applications and the SSL_OFFLOAD_W_PASSWORD and the LTM_POLICY_VS application.
+Next you will stage a draft migration and demonstrate the capability of editing the configuration before migrating. Deselect all the green apps that have migrated to BIG-IP Next already, then select the blue and yellow status applications (SSL_OFFLOAD_W_PASSWORD and the REWRITE_VS).
 
 Click **Add**. 
 
-.. image:: ./images/add-waf-apps.png
+.. image:: ./images/add-yellow-blue-apps.png
   :align: center
 
 Confirm the summary of applications, then click **Next**.
@@ -467,7 +521,7 @@ Leave all Locations as **Save as Draft**, meaning they will be staged so that ch
 
 Click **Deploy** to stage the draft changes.
 
-.. image:: ./images/pre-deploy-waf.png
+.. image:: ./images/pre-deploy-yellow-blue.png
   :align: center
 
 You can monitor the status of the save as draft migrations.
@@ -485,12 +539,12 @@ Select **Finish**.
 
 On the application dashboard you will now see both the migrated and **Draft** applications.
 
-.. image:: ./images/draft-apps-waf.png
+.. image:: ./images/draft-apps-yellow-blue.png
   :align: center
 
-Click on the Draft application *WAF_DOS_PROFILE application*.
+Click on the Draft application *REWRITE_VS* application.
 
-.. image:: ./images/waf-dos-profile.png
+.. image:: ./images/rewrite-draft.png
   :align: center
 
 This will bring up the AS3 Declaration that is used to migrate the application.
@@ -499,34 +553,30 @@ Note that here you can review the configuration that will be deployed to BIG-IP 
 
 For now, just review the application, take note of the virtual server address, and then click the **Save and Deploy** button.
 
-.. image:: ./images/save-and-deploy-waf-apps.png
+.. image:: ./images/save-and-deploy-yellow-blue-apps.png
   :align: center
 
-You'll then be prompted for a deploy location. Select *10.1.1.10*, then **Yes, Deploy**.
-
-.. note:: An enhancement has been filed to provide hostnames of the BIG-IP Next instances instead of IP addresses.
+On the next screen click **Start Adding**, and then select **big-ip-next-03.example.com** then click **Add to List**.. Then click **Deploy**.
 
 .. image:: ./images/deploy-ip.png
   :align: center
   :scale: 100%
 
-Repeat this process for each WAF application you saved as a Draft. Do not migrate the **SSL_OFFLOAD_W_PASSWORD** or **LTM_POLICY_VS** application yet.
+The **REWRITE_VS** application should now show up in the application dashboard, and will no longer be in **Draft** status.
+
+.. image:: ./images/rewrite-nondraft.png
+  :align: center
+  :scale: 100%
+
+Now test that the REWRITE_VS application has been migrated over to BIG-IP Next. You can either utilize the Windows jumphost and open a Chrome browser window, then enter in the following links to ensure you reach the back-end application. 
 
 
-Now test that the WAF applications have been migrated over to BIG-IP Next. You can either utilize the Windows jumphost and open a Chrome browser window, then enter in the following links to ensure you reach the back-end application. 
 
-- WAF_BOT_DEFENSE
-	.. code-block:: console
+- REWRITE_VS
+  .. code-block:: console
 
-		https://10.1.10.55
-- WAF_DOS_PROFILE
-	.. code-block:: console
+		curl 10.1.10.54 -I
 
-		https://10.1.10.56
-- WAF_VANILLA_VS
-	.. code-block:: console
-
-		https://10.1.10.58
 
 Or, if you are unable to run RDP, you can use the built-in HMTL-based RDP client, **Guacamole**, in UDF. Go to the main UDF page, and select the **Access** dropdown under the Ubuntu Jumphost. Then Select **Guacamole** as seen below. Login with the same credentials previously used, and select the Windows Jumphost.
 
@@ -534,35 +584,39 @@ Or, if you are unable to run RDP, you can use the built-in HMTL-based RDP client
   :align: center
   :scale: 50%
 
-From here you can open a Chrome browser window and enter in the following links to ensure reachability to the back-end applications. 
-
-- WAF_BOT_DEFENSE
-	.. code-block:: console
-
-		https://10.1.10.55
-- WAF_DOS_PROFILE
-	.. code-block:: console
-
-		https://10.1.10.56
-- WAF_VANILLA_VS
-	.. code-block:: console
-
-		https://10.1.10.58
+From here you can open a Chrome browser window and enter in the following links to ensure reachability to the back-end application. 
 
 
-After accepting the security/certifcate warning you should see the Next Lab page in the browser indicating successfull connection to the app, and a successful migration of the WAF apps to BIG-IP Next.
+- REWRITE_VS
+  .. code-block:: console
 
-.. image:: ./images/waf-apps-browser.png
+		http://10.1.10.54
+
+
+After connecting you should see the Next Lab page in the browser indicating successful connection to the app, and a successful migration of the REWRITE_VS apps to BIG-IP Next. Because this app was yellow, the objects highlighted in the initial analyzer will be removed as part of the migration.
+
+.. image:: ./images/rewrite-apps-browser.png
   :align: center
 
-The LTM_POICY_VS application was flagged as yellow because LTM polices are not currently supported in BIG-IP Next. Click on this application to review the AS3 declration, and notice the application will be deployed without the LTM policies in the current release. Go ahead and click **Save & Deploy**.
+The REWRITE_VS application was flagged as yellow because the rewrite polices are not currently supported in BIG-IP Next. Click on this application to review the AS3 declaration, and notice the application will be deployed without the rewrite policies in the current release. 
 
-.. image:: ./images/ltm-policy-migration-as3.png
+.. image:: ./images/rewrite-as3.png
   :align: center
 
-Lastly, click on the **SSL_OFFLOAD_W_PASSWORD** Draft application and review the AS3 declaration. Note that the certs and keys that are password-protected are not currently migrated automatically. You would need to add those certs and keys into Central Manager manually, and then reference them here as part of the AS3 declaration. 
+Click on Edit to see the AS3 declaration.
 
-.. image:: ./images/ssl-certs-future.png
+.. image:: ./images/edit-rewrite-as3.png
+  :align: center
+
+
+Lastly, click on the **SSL_OFFLOAD_W_PASSWORD** Draft application and review the AS3 declaration. 
+
+.. image:: ./images/ssl-offload-w-password-migrate.png
+  :align: center
+
+Note that the certs and keys that are password-protected are not currently migrated automatically. You would need to add those certs and keys into Central Manager manually, and then reference them here as part of the AS3 declaration. 
+
+.. image:: ./images/ssl-offload-w-password-migrate-as3.png
   :align: center
 
 This completes the migration lab.
