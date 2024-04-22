@@ -112,7 +112,7 @@ You should see something similar to the output below. Click the **Download** opt
 4.2.2 Import UCS into Central Manager
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Log into Central Manager and click on the **Go to Applications Workspace** button. You will be taken to the Applications main page, where you can then click the **Add Application** button.
+Log into Central Manager using the account admin/Welcome123! and click on the **Go to Applications Workspace** button. You will be taken to the Applications main page, where you can then click the **Add Application** button.
 
 .. image:: ./images/central-manager-add-apps.png
   :align: center
@@ -169,6 +169,10 @@ The applications from your BIG-IP will now be displayed as Application Services.
   :align: center
 
 Depending on the type of grouping selected, and how the applications are configured, you may see a single virtual service per application, or you may see multiple virtual services if grouping by IP Addresses was selected and an application has more than one port. Each application service will display the virtual server address, port, a color coded status indicating its eligibility for migration, and a security status column. You can hover over the Status icon for each application to get more detail on its migration eligibility.
+
+
+.. note:: The application numbers may vary in your lab vs. the examples provide below. Please browse through the applications if needed to find the examples that match the lab. Or you can use the IP address to match the examples below with your lab.
+
 
 .. image:: ./images/icon-hover.png
   :align: center
@@ -443,35 +447,37 @@ If you have issues connecting to a virtual address or pinging a virtual address 
 
 To verify the applications migrated successfully, go back to the Windows jumphost and re-run the curl commands to ensure the applications are live again, but only for the green applications that have just migrated.
 
+
 - FAST_L4
-  .. code-block:: console
+	.. code-block:: console
 
 		curl 10.1.10.51 -I
 
 - TCP_PROG
-  .. code-block:: console
+	.. code-block:: console
 
 		curl 10.1.10.52:8080 -I
 
 - SSL_OFFLOAD_VS
-  .. code-block:: console
+	.. code-block:: console
 
 		curl 10.1.10.53 -I
 
 - WAF_BOT_DEFENSE
-  .. code-block:: console
+	.. code-block:: console
 
 		curl https://10.1.10.55 -k -I
 
 - WAF_DOS_PROFILE
-  .. code-block:: console
+	.. code-block:: console
 
-		curl https://10.1.10.56 -k -I 
+		curl https://10.1.10.56 -k -I    
 
 - WAF_VANILLA
-  .. code-block:: console
+	.. code-block:: console
 
 		curl https://10.1.10.58 -k -I
+
 
 
 Next, you'll go back to the saved migration and move some additional applications.
