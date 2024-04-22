@@ -165,6 +165,8 @@ After filling in the source BIG-IP information and loading the UCS file, an **Ap
 
 The applications from your BIG-IP will now be displayed as Application Services.
 
+.. note:: The application numbers may vary in your lab vs. the examples provide below.
+
 .. image:: ./images/big-ip-app-services.png
   :align: center
 
@@ -484,10 +486,13 @@ Next, you'll go back to the saved migration and move some additional application
 
 Click the **Add Applications** button on the Applications Summary screen.
 
-.. image:: ./images/add-apps-2.png
+.. image:: ./images/add-apps-new.png
   :align: center
 
 Then, select the **Resume Migration** option to go back into the migration you saved previously.
+
+.. image:: ./images/resume-migration-button.png
+  :align: center
 
 .. image:: ./images/resume-migration.png
   :align: center
@@ -499,10 +504,6 @@ Click the **Back** button to see the remaining applications.
 .. image:: ./images/resume-migration-back.png
   :align: center
 
-Click the **Back** button once more.
-
-.. image:: ./images/back-once-more.png
-  :align: center
 
 Select **Add** to see all the apps.
 
@@ -521,7 +522,7 @@ Confirm the summary of applications, then click **Next**.
 .. image:: ./images/confirm-draft-apps.png
   :align: center
 
-Review the shared objects either already imported or that need to be imported by clicking on the number under the **Shared Objects** column. Then Import any required shared objects.
+Review the shared objects either already imported or that need to be imported by clicking on the number under the **Shared Objects** column.
 
 Leave all Locations as **Save as Draft**, meaning they will be staged so that changes can be made, but not actually migrated yet.
 
@@ -557,7 +558,7 @@ This will bring up the AS3 Declaration that is used to migrate the application.
 
 Note that here you can review the configuration that will be deployed to BIG-IP Next, and you could also make edits (don't do that now). As an example, maybe you want to change the Virtual server address before migrating, which could be done here if needed.
 
-For now, just review the application, take note of the virtual server address, and then click the **Save and Deploy** button.
+For now, just review the application, take note of the virtual server address, and then click the **Review and Deploy** button.
 
 .. image:: ./images/save-and-deploy-yellow-blue-apps.png
   :align: center
@@ -614,7 +615,8 @@ Click on Edit to see the AS3 declaration.
 .. image:: ./images/edit-rewrite-as3.png
   :align: center
 
-
+Click on **Cancel & Exit** and then **Exit** to get back to the main applications screen.
+ 
 Lastly, click on the **SSL_OFFLOAD_W_PASSWORD** Draft application and review the AS3 declaration. 
 
 .. image:: ./images/ssl-offload-w-password-migrate.png
