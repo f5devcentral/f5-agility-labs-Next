@@ -444,7 +444,7 @@ If you have issues connecting to a virtual address or pinging a virtual address 
 To verify the applications migrated successfully, go back to the Windows jumphost and re-run the curl commands to ensure the applications are live again, but only for the green applications that have just migrated.
 
 - FAST_L4
-  .. code-block:: console
+	.. code-block:: console
 
 		curl 10.1.10.51 -I
 
