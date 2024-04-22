@@ -580,9 +580,10 @@ Now test that the REWRITE_VS application has been migrated over to BIG-IP Next. 
 
 
 - REWRITE_VS
-  .. code-block:: console
+	.. code-block:: console
 
 		curl 10.1.10.54 -I
+
 
 
 Or, if you are unable to run RDP, you can use the built-in HMTL-based RDP client, **Guacamole**, in UDF. Go to the main UDF page, and select the **Access** dropdown under the Ubuntu Jumphost. Then Select **Guacamole** as seen below. Login with the same credentials previously used, and select the Windows Jumphost.
@@ -595,9 +596,9 @@ From here you can open a Chrome browser window and enter in the following links 
 
 
 - REWRITE_VS
-  .. code-block:: console
+	.. code-block:: console
 
-		http://10.1.10.54
+		curl 10.1.10.54 -I
 
 
 After connecting you should see the Next Lab page in the browser indicating successful connection to the app, and a successful migration of the REWRITE_VS apps to BIG-IP Next. Because this app was yellow, the objects highlighted in the initial analyzer will be removed as part of the migration.
