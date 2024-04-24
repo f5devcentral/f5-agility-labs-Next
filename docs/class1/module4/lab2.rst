@@ -112,7 +112,7 @@ You should see something similar to the output below. Click the **Download** opt
 4.2.2 Import UCS into Central Manager
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Log into Central Manager and click on the **Go to Applications Workspace** button. You will be taken to the Applications main page, where you can then click the **Add Application** button.
+Log into Central Manager using the account admin/Welcome123! and click on the **Go to Applications Workspace** button. You will be taken to the Applications main page, where you can then click the **Add Application** button.
 
 .. image:: ./images/central-manager-add-apps.png
   :align: center
@@ -165,10 +165,16 @@ After filling in the source BIG-IP information and loading the UCS file, an **Ap
 
 The applications from your BIG-IP will now be displayed as Application Services.
 
+.. note:: The application numbers may vary in your lab vs. the examples provide below.
+
 .. image:: ./images/big-ip-app-services.png
   :align: center
 
 Depending on the type of grouping selected, and how the applications are configured, you may see a single virtual service per application, or you may see multiple virtual services if grouping by IP Addresses was selected and an application has more than one port. Each application service will display the virtual server address, port, a color coded status indicating its eligibility for migration, and a security status column. You can hover over the Status icon for each application to get more detail on its migration eligibility.
+
+
+.. note:: The application numbers may vary in your lab vs. the examples provide below. Please browse through the applications if needed to find the examples that match the lab. Or you can use the IP address to match the examples below with your lab.
+
 
 .. image:: ./images/icon-hover.png
   :align: center
@@ -443,45 +449,50 @@ If you have issues connecting to a virtual address or pinging a virtual address 
 
 To verify the applications migrated successfully, go back to the Windows jumphost and re-run the curl commands to ensure the applications are live again, but only for the green applications that have just migrated.
 
+
 - FAST_L4
-  .. code-block:: console
+	.. code-block:: console
 
 		curl 10.1.10.51 -I
 
 - TCP_PROG
-  .. code-block:: console
+	.. code-block:: console
 
 		curl 10.1.10.52:8080 -I
 
 - SSL_OFFLOAD_VS
-  .. code-block:: console
+	.. code-block:: console
 
 		curl 10.1.10.53 -I
 
 - WAF_BOT_DEFENSE
-  .. code-block:: console
+	.. code-block:: console
 
 		curl https://10.1.10.55 -k -I
 
 - WAF_DOS_PROFILE
-  .. code-block:: console
+	.. code-block:: console
 
-		curl https://10.1.10.56 -k -I 
+		curl https://10.1.10.56 -k -I    
 
 - WAF_VANILLA
-  .. code-block:: console
+	.. code-block:: console
 
 		curl https://10.1.10.58 -k -I
+
 
 
 Next, you'll go back to the saved migration and move some additional applications.
 
 Click the **Add Applications** button on the Applications Summary screen.
 
-.. image:: ./images/add-apps-2.png
+.. image:: ./images/add-apps-new.png
   :align: center
 
 Then, select the **Resume Migration** option to go back into the migration you saved previously.
+
+.. image:: ./images/resume-migration-button.png
+  :align: center
 
 .. image:: ./images/resume-migration.png
   :align: center
@@ -493,10 +504,6 @@ Click the **Back** button to see the remaining applications.
 .. image:: ./images/resume-migration-back.png
   :align: center
 
-Click the **Back** button once more.
-
-.. image:: ./images/back-once-more.png
-  :align: center
 
 Select **Add** to see all the apps.
 
@@ -515,7 +522,7 @@ Confirm the summary of applications, then click **Next**.
 .. image:: ./images/confirm-draft-apps.png
   :align: center
 
-Review the shared objects either already imported or that need to be imported by clicking on the number under the **Shared Objects** column. Then Import any required shared objects.
+Review the shared objects either already imported or that need to be imported by clicking on the number under the **Shared Objects** column.
 
 Leave all Locations as **Save as Draft**, meaning they will be staged so that changes can be made, but not actually migrated yet.
 
@@ -551,7 +558,7 @@ This will bring up the AS3 Declaration that is used to migrate the application.
 
 Note that here you can review the configuration that will be deployed to BIG-IP Next, and you could also make edits (don't do that now). As an example, maybe you want to change the Virtual server address before migrating, which could be done here if needed.
 
-For now, just review the application, take note of the virtual server address, and then click the **Save and Deploy** button.
+For now, just review the application, take note of the virtual server address, and then click the **Review and Deploy** button.
 
 .. image:: ./images/save-and-deploy-yellow-blue-apps.png
   :align: center
@@ -573,9 +580,10 @@ Now test that the REWRITE_VS application has been migrated over to BIG-IP Next. 
 
 
 - REWRITE_VS
-  .. code-block:: console
+	.. code-block:: console
 
 		curl 10.1.10.54 -I
+
 
 
 Or, if you are unable to run RDP, you can use the built-in HMTL-based RDP client, **Guacamole**, in UDF. Go to the main UDF page, and select the **Access** dropdown under the Ubuntu Jumphost. Then Select **Guacamole** as seen below. Login with the same credentials previously used, and select the Windows Jumphost.
@@ -588,9 +596,9 @@ From here you can open a Chrome browser window and enter in the following links 
 
 
 - REWRITE_VS
-  .. code-block:: console
+	.. code-block:: console
 
-		http://10.1.10.54
+		curl 10.1.10.54 -I
 
 
 After connecting you should see the Next Lab page in the browser indicating successful connection to the app, and a successful migration of the REWRITE_VS apps to BIG-IP Next. Because this app was yellow, the objects highlighted in the initial analyzer will be removed as part of the migration.
@@ -608,7 +616,8 @@ Click on Edit to see the AS3 declaration.
 .. image:: ./images/edit-rewrite-as3.png
   :align: center
 
-
+Click on **Cancel & Exit** and then **Exit** to get back to the main applications screen.
+ 
 Lastly, click on the **SSL_OFFLOAD_W_PASSWORD** Draft application and review the AS3 declaration. 
 
 .. image:: ./images/ssl-offload-w-password-migrate.png
