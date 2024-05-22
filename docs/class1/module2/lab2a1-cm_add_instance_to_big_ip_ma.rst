@@ -1,6 +1,8 @@
-..  Author: Tami Skelton; revisions by Chad Jenison May 2023 
+..  Author: Tami Skelton; revisions by Chad Jenison May 2023
+
 Lab 2.1 - How to: Add a BIG-IP Next instance to BIG-IP Next Central Manager
 ===========================================================================
+
 This document describes how to add a BIG-IP Next instance to BIG-IP Next Central Manager for centralized management and what happens to local BIG-IP Next instance users when you do that.
 
 Overview
@@ -32,7 +34,7 @@ Before you add an instance to BIG-IP Next Central Manager, please confirm BIG-IP
 	Password:
 
 	.. code-block:: console
-		
+
 		Welcome123!
 
 Procedure

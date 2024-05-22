@@ -1,7 +1,7 @@
 Lab 4.2 - Migration from BIG-IP to BIG-IP Next
 ==============================================
 
-In this lab you will create a UCS archive from a classic BIG-IP instance and import it into BIG-IP Next Central Manager. Then you will analyze applications to determine their eligibility for migration to BIG-IP Next. Post analysis, you will import shared objects, select individual applications to migrate, save them as a draft migration, and migrate them to a BIG-IP Next instance. 
+In this lab you will create a UCS archive from a classic BIG-IP instance and import it into BIG-IP Next Central Manager. Then you will analyze applications to determine their eligibility for migration to BIG-IP Next. Post analysis, you will import shared objects, select individual applications to migrate, save them as a draft migration, and migrate them to a BIG-IP Next instance.
 
 In the UDF Blueprint there is a BIG-IP running version 15.1 which has a number of applications defined.
 
@@ -22,14 +22,14 @@ Log in with the following credentials:
 	Password:
 
 	.. code-block:: console
-		
+
 		admin
 
 .. image:: ./images/big-ip-udf.png
   :align: center
   :scale: 75%
 
-4.2.1 Create BIG-IP UCS File 
+4.2.1 Create BIG-IP UCS File
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 In order to migrate the classic BIG-IP configuration to BIG-IP Next, you'll need to create and export a UCS archive file. You will then import the UCS into Central Manager to view, analyze, and migrate applications.
@@ -54,7 +54,7 @@ To obtain the master-key from the source BIG-IP system, go to the main UDF scree
 
 Alternatively, if you have loaded your ssh keys into UDF, you can attach via SSH so its easier to copy the master key.
 
-When using the embedded console in UDF, there is no copy capability so you will have to write down the master-key and enter it manaully when importing the UCS into Central Manager. 
+When using the embedded console in UDF, there is no copy capability so you will have to write down the master-key and enter it manaully when importing the UCS into Central Manager.
 
 .. image:: ./images/big-ip-console.png
   :align: center
@@ -73,7 +73,7 @@ Log in with the following credentials:
 	Password:
 
 	.. code-block:: console
-		
+
 		default
 
 Enter the command **f5mku -K** to get the BIG-IP's master-key. Now, copy or write down the master-key, as you will need this when importing the UCS into Central Manager.
@@ -87,12 +87,12 @@ Enter the command **f5mku -K** to get the BIG-IP's master-key. Now, copy or writ
     [root@ce6e127b-032e-496c-afb5-b303545907ef:Active:Standalone] config #
 
 
-In the BIG-IP webUI, go to the **System -> Archives** page and click the **Create** button to create a new UCS archive file. 
+In the BIG-IP webUI, go to the **System -> Archives** page and click the **Create** button to create a new UCS archive file.
 
 .. image:: ./images/export-ucs-webui.png
   :align: center
 
-When creating the UCS archive supply a **Name**, enable **Encryption**, then supply and confirm a **Passphrase**. Please take note of the passphrase, as it will be referenced later. Then click **Finished**. Click **OK** after the archive has completed. 
+When creating the UCS archive supply a **Name**, enable **Encryption**, then supply and confirm a **Passphrase**. Please take note of the passphrase, as it will be referenced later. Then click **Finished**. Click **OK** after the archive has completed.
 
 .. image:: ./images/archive-passphrase.png
   :align: center
@@ -103,7 +103,7 @@ Your achive file should be displayed in the summary. Click on it.
 .. image:: ./images/export-summary.png
   :align: center
 
-You should see something similar to the output below. Click the **Download** option to download the UCS file to your local machine. 
+You should see something similar to the output below. Click the **Download** option to download the UCS file to your local machine.
 
 .. image:: ./images/download-archive.png
   :align: center
@@ -135,7 +135,7 @@ Here you'll need to upload the UCS archive file you exported from your BIG-IP sy
 4.2.3 Master Key and Passphrase
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Enter the **Master-Key** that you obtained from your BIG-IP, and then enable **Encrypted UCS Archive** enter the **Passphrase** you entered when creating the UCS archive in the **Password** field. 
+Enter the **Master-Key** that you obtained from your BIG-IP, and then enable **Encrypted UCS Archive** enter the **Passphrase** you entered when creating the UCS archive in the **Password** field.
 
 .. image:: ./images/ucs-master-key.png
   :align: center
@@ -179,11 +179,11 @@ Depending on the type of grouping selected, and how the applications are configu
 .. image:: ./images/icon-hover.png
   :align: center
 
-Here you can select individual applications to analyze and see if they are eligible for migration to BIG-IP Next. Not all BIG-IP features are currenlty supported on Next. There will be a phasing of support for some configuration objects, so it is expected that some applications cannot migrate at the current time or need modifications in order to migrate. 
+Here you can select individual applications to analyze and see if they are eligible for migration to BIG-IP Next. Not all BIG-IP features are currenlty supported on Next. There will be a phasing of support for some configuration objects, so it is expected that some applications cannot migrate at the current time or need modifications in order to migrate.
 
 To see if an application is eligible for migration, click the application name as well as the virtual service underneath it and then click the **Analyze** button in the top right-hand corner off the screen.
 
-.. note:: You can only analyze one application service at a time. 
+.. note:: You can only analyze one application service at a time.
 
 .. image:: ./images/analyze.png
   :align: center
@@ -192,13 +192,13 @@ This will open the **Configuration Analyzer** page and you will see the BIG-IP c
 
 .. image:: ./images/analyzer-green-files.png
   :align: center
- 
+
 You can browse the configuration of each file for any unsupported items or items that may need adjusting. They will be highlighted with a squiggly yellow, red, or blue line. You can also see this within the summary preview on the left-hand side of the display, which allows you to quickly navigate to where the problem may be in the file. Below is an example of a file with a migration issue and the squiggly yellow line notes where the issue is in both the summary and in the scroll bar.
 
 .. image:: ./images/squiggly-line1.png
   :align: center
 
-You can click on the yellow line in the scroll bar and it will take you to the part of the file that has the migration issue. The squiggly yellow line will note the configuration object that is not supported. 
+You can click on the yellow line in the scroll bar and it will take you to the part of the file that has the migration issue. The squiggly yellow line will note the configuration object that is not supported.
 
 .. image:: ./images/squiggly-line2.png
   :align: center
@@ -249,7 +249,7 @@ The next phase is the **Pre Deployment**. Here, you can **Import** shared config
 
 As an example, in traditional BIG-IP management, iRules are managed on a device-by-device basis, there is no central iRule management. Central Manager addresses this issue and allows iRules to be imported and treated as shared objects, meaning they can be shared and deployed to more than one device. Central Manager manages the entire iRule lifecycle including deployment and versioning. This is huge improvement over traditional BIG-IP iRule management.
 
-Other shared objects such as WAF policies enjoy similar benefits of centralized mangement, versioning, and full lifecycle management. 
+Other shared objects such as WAF policies enjoy similar benefits of centralized mangement, versioning, and full lifecycle management.
 
 
 .. image:: ./images/pre-deployment.png
@@ -264,19 +264,19 @@ Click the **Import** buttons for the applications that have shared objects. You'
 
 Before migrating the applications to BIG-IP Next, let's ensure that each application is working on BIG-IP from a client. There are two choices for clients that can be used, as not all attendees will be able to use Remote Desktop.
 
-1.) Log into the **Windows Jumphost** using the **RDP** option in the main UDF screen. 
+1.) Log into the **Windows Jumphost** using the **RDP** option in the main UDF screen.
 
 2.) Use the **Guacamole** HTML-based RDP client on the Ubuntu Jumphost (recommended for those that cannot install RDP).
 
 **For Windows RDP users:**
 
-Go to the main UDF screen, and select the **Window Jumphost**. Then select the **Access** dropdown and select **RDP**. This will download an RDP shortcut to your machine. 
+Go to the main UDF screen, and select the **Window Jumphost**. Then select the **Access** dropdown and select **RDP**. This will download an RDP shortcut to your machine.
 
 .. image:: ./images/windows-jump-rdp.png
   :align: center
   :scale: 50%
 
-Open up the RDP shortcut to connect to the Windows Jumphost. 
+Open up the RDP shortcut to connect to the Windows Jumphost.
 
 Log in with the following credentials:
 
@@ -291,7 +291,7 @@ Log in with the following credentials:
 	Password:
 
 	.. code-block:: console
-		
+
 		user
 
 .. image:: ./images/f5access-user.png
@@ -318,7 +318,7 @@ Log in with the following credentials:
 	Password:
 
 	.. code-block:: console
-		
+
 		user
 
 .. image:: ./images/guacamole-login.png
@@ -369,7 +369,7 @@ You will now test to ensure that some of the source BIG-IP virtual servers are r
 - SSL_OFFLOAD_VS_W_PASSWORD
 	.. code-block:: console
 
-		curl https://10.1.10.57 -k -I      
+		curl https://10.1.10.57 -k -I
 
 - WAF_VANILLA
 	.. code-block:: console
@@ -399,10 +399,10 @@ Login using the credentials below:
 	Password:
 
 	.. code-block:: console
-		
+
 		admin
 
-Go to the **Local Traffic -> Virtual Servers -> Virtual Address List** page. 
+Go to the **Local Traffic -> Virtual Servers -> Virtual Address List** page.
 
 .. image:: ./images/virtual-address-list-menu.png
   :align: center
@@ -473,7 +473,7 @@ To verify the applications migrated successfully, go back to the Windows jumphos
 - WAF_DOS_PROFILE
 	.. code-block:: console
 
-		curl https://10.1.10.56 -k -I    
+		curl https://10.1.10.56 -k -I
 
 - WAF_VANILLA
 	.. code-block:: console
@@ -512,7 +512,7 @@ Select **Add** to see all the apps.
 
 Next you will stage a draft migration and demonstrate the capability of editing the configuration before migrating. Deselect all the green apps that have migrated to BIG-IP Next already, then select the blue and yellow status applications (SSL_OFFLOAD_W_PASSWORD and the REWRITE_VS).
 
-Click **Add**. 
+Click **Add**.
 
 .. image:: ./images/add-yellow-blue-apps.png
   :align: center
@@ -575,7 +575,7 @@ The **REWRITE_VS** application should now show up in the application dashboard, 
   :align: center
   :scale: 100%
 
-Now test that the REWRITE_VS application has been migrated over to BIG-IP Next. You can either utilize the Windows jumphost and open a Chrome browser window, then enter in the following links to ensure you reach the back-end application. 
+Now test that the REWRITE_VS application has been migrated over to BIG-IP Next. You can either utilize the Windows jumphost and open a Chrome browser window, then enter in the following links to ensure you reach the back-end application.
 
 
 
@@ -592,7 +592,7 @@ Or, if you are unable to run RDP, you can use the built-in HMTL-based RDP client
   :align: center
   :scale: 50%
 
-From here you can open a Chrome browser window and enter in the following links to ensure reachability to the back-end application. 
+From here you can open a Chrome browser window and enter in the following links to ensure reachability to the back-end application.
 
 
 - REWRITE_VS
@@ -606,7 +606,7 @@ After connecting you should see the Next Lab page in the browser indicating succ
 .. image:: ./images/rewrite-apps-browser.png
   :align: center
 
-The REWRITE_VS application was flagged as yellow because the rewrite polices are not currently supported in BIG-IP Next. Click on this application to review the AS3 declaration, and notice the application will be deployed without the rewrite policies in the current release. 
+The REWRITE_VS application was flagged as yellow because the rewrite polices are not currently supported in BIG-IP Next. Click on this application to review the AS3 declaration, and notice the application will be deployed without the rewrite policies in the current release.
 
 .. image:: ./images/rewrite-as3.png
   :align: center
@@ -617,13 +617,13 @@ Click on Edit to see the AS3 declaration.
   :align: center
 
 Click on **Cancel & Exit** and then **Exit** to get back to the main applications screen.
- 
-Lastly, click on the **SSL_OFFLOAD_W_PASSWORD** Draft application and review the AS3 declaration. 
+
+Lastly, click on the **SSL_OFFLOAD_W_PASSWORD** Draft application and review the AS3 declaration.
 
 .. image:: ./images/ssl-offload-w-password-migrate.png
   :align: center
 
-Note that the certs and keys that are password-protected are not currently migrated automatically. You would need to add those certs and keys into Central Manager manually, and then reference them here as part of the AS3 declaration. 
+Note that the certs and keys that are password-protected are not currently migrated automatically. You would need to add those certs and keys into Central Manager manually, and then reference them here as part of the AS3 declaration.
 
 .. image:: ./images/ssl-offload-w-password-migrate-as3.png
   :align: center

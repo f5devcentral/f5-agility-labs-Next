@@ -13,7 +13,7 @@ Benefits
 ~~~~~~~~
 
 #. Central Management as standard management model, as compared to instance-by-instance management with optional bolt-on Central Management via BIG-IQ
-#. Simplified addition of new instances via Central Manager 
+#. Simplified addition of new instances via Central Manager
 #. Central Management can orchestrate upgrades of HA pairs (upgrade standby first, initiate failover, upgrade original active, automatic failback if desired); rollback if upgrade fails.
 
 Summary

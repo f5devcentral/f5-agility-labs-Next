@@ -17,7 +17,7 @@ When a template has been used to deploy an application it will enter a "Publishe
 #. Under the Applications menu click on **Application Templates**
 #. Select the checkbox next to the **HTTPS-Load-Balancing-Service** template
 #. Click on the **Clone** button
-    
+
     .. image:: fast-clone-template.png
         :scale: 50%
 
@@ -35,24 +35,24 @@ Now that you have cloned the template, you will make the following changes:
 #. Click on **clone_HTTPS-Load-Balancing-Service** and then click on the **Template** tab
 
 #. Search for "pools:"  (CTRL-F in your browser or scroll ~50% of the page)  and change the default to use an https monitor and connect on port 8443. The completed change should look like this:
-    
+
     .. code-block:: yaml
 
         pools: # Do not remove and do not change the property name. This is used to take pools information
             type: array
             default:
             -  {"loadBalancingMode": "round-robin","monitorType": ["https"],"poolName": "my_pool","servicePort": 8443}
-            
+
 #. Next, search for "enable_TLS_Server:" and change the default to "true". The stanza will begin with “enable_TLS_Server:” and look like the following once you have changed the value to true:
-    
+
     .. code-block:: yaml
 
         enable_TLS_Server:
           title: Enable Server-side TLS
           description: Enable TLS to encrypt server-side connections.
           type: boolean
-          default: true      
-     
+          default: true
+
 #. Click on **Save**
 
 3.3.3 - Verify the Cloned Template
@@ -66,12 +66,12 @@ Next we will verify that your changes are present in the cloned template.
 #. Click **Select Template**
 #. In the flyout window, under Application Template, select **clone_HTTPS-Load-Balancing-Service** template
 #. Click on **Start Creating**
-    
+
 #. Click on the **Pools** tab and verify that the monitor is now "https" and the service port is "8443"
-    
+
     .. image:: cloned-pools.png
         :scale: 75%
-    
+
 #. Click on **Cancel & Exit**
 #. Select the "https-re-encrypt" Application and select **Delete** under **Actions**
 

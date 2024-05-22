@@ -9,7 +9,7 @@ Active/standby (A/S) high availability (HA) is the deployment of redundant pairs
 
 To allow the tenant's management network floating IP address to work, each tenant must be on a separate VELOS chassis and the management network configured on both chassis must be on the same L2 network.
 
-Prerequisites 
+Prerequisites
 =============
 
 - Postman or a similar REST API client.
@@ -62,10 +62,10 @@ Procedure
 .. _Create a tenant:
 
 ---------------
-Create a tenant 
+Create a tenant
 ---------------
 1. Command using the API:
-   
+
 ``POST https://{{velos_partition_1_mgmt_ip}}:8888/restconf/data/f5-tenants:tenants``
 
 .. code-block:: json
@@ -101,8 +101,8 @@ Create a tenant
       }
     ]
   }
-    
-    
+
+
 Wait for ~4 minutes after creating a tenant to allow all the pods to be running in state.
 
 **Note**: For HA, the tenant name needs to be the same for both tenants in a single pair.
@@ -114,7 +114,7 @@ Wait for ~4 minutes after creating a tenant to allow all the pods to be running 
 .. _Reset the admin password:
 
 ------------------------
-Reset the admin password 
+Reset the admin password
 ------------------------
 
 On the primary node:
@@ -140,7 +140,7 @@ Command using the API:
 
 ``PUT https://{{bigip_next_1_mgmt_ip}}:5443/api/v1/login``
 
-**Example** 
+**Example**
 
 .. code-block:: json
 
@@ -155,7 +155,7 @@ Command using the API:
 
 An authorization header is automatically generated when you send the request. To display, below the command, click **Authorization**.
 
-After the call is sent, a token bearer is created (Type: Bearer Token). It is used to authenticate the calls that follow for the instance. 
+After the call is sent, a token bearer is created (Type: Bearer Token). It is used to authenticate the calls that follow for the instance.
 
 
 .. _Associate VLANs with the interface:
@@ -301,13 +301,13 @@ Create an HA cluster
 .. code-block::
 
    {
-     "clusterManagementIP": "{{bigip_next_mgmt_floating_ip}}", 
+     "clusterManagementIP": "{{bigip_next_mgmt_floating_ip}}",
      "clusterControlPlaneIP": "{{bigip_next_ha_cp_floating_ip}}",
      "dataPlaneVlan": "{{bigip_next_ha_dp_vlan_name}}",
      "controlPlanVlan": "{{bigip_next_ha_cp_vlan_name}}",
      "nodes": [
        {
-         "managementAddress": "{{bigip_next_1_mgmt_ip}}", 
+         "managementAddress": "{{bigip_next_1_mgmt_ip}}",
          "controlPlaneAddress": "{{bigip_next_1_ha_cp_ip}}/{{bigip_next_ha_cp_network_mask}}",
          "name": "node1",
          "dataPlanePrimaryAddress": "{{bigip_next_1_ha_dp_ip}}/{{bigip_next_ha_dp_network_mask}}",
@@ -315,10 +315,10 @@ Create an HA cluster
          "password": "{{bigip_next_admin_password}}"
        },
        {
-         "managementAddress": "{{bigip_next_2_mgmt_ip}}", 
+         "managementAddress": "{{bigip_next_2_mgmt_ip}}",
          "controlPlaneAddress": "{{bigip_next_2_ha_cp_ip}}/{{bigip_next_ha_cp_network_mask}}",
          "name": "node2",
-         "dataPlanePrimaryAddress": "{{bigip_next_2_ha_cp_ip}}/{{bigip_next_ha_cp_network_mask}}", 
+         "dataPlanePrimaryAddress": "{{bigip_next_2_ha_cp_ip}}/{{bigip_next_ha_cp_network_mask}}",
          "username": "{{bigip_next_admin_user}}",
          "password": "{{bigip_next_admin_password}}"
        }
@@ -329,7 +329,7 @@ Create an HA cluster
 - ``clusterControlPlaneIP``: A floating IP, which is always attached to the ACTIVE node. Use to set on the control plane HA VLAN, which is used by the BIG-IP Next HA control plane components to talk to the active node.
 - ``dataPlaneVlan``: A VLAN used by the data plane (TMM) to talk to the peer data plane (TMM).
 - ``controlPlaneAddress``: A self IP to set on the control plane HA VLAN, which is used by the BIG-IP Next control plane components to talk to the peer.
-- ``dataPlanePrimaryAddress`` and ``dataPlaneSecondaryAddress``: A self IP to set on the data plane HA VLAN. 
+- ``dataPlanePrimaryAddress`` and ``dataPlaneSecondaryAddress``: A self IP to set on the data plane HA VLAN.
 - ``dataPlaneVlan``: Used by the BIG-IP MA HA data plane components to talk to the peer data plane.
 
 **Important:** The control plane HA VLAN and data plane HA VLAN cannot be the same.
@@ -380,7 +380,7 @@ In the Body response, wait until ``isHealthy`` changes from  ``false`` to ``true
 .. code-block:: json
 
    {
-     "_embedded": {	
+     "_embedded": {
        "health": [
          {
            "id": "49ac95cc-21f6-12d6-f292-6da09c002d83",
@@ -395,7 +395,7 @@ In the Body response, wait until ``isHealthy`` changes from  ``false`` to ``true
            "systemId": "49ac95cc-51f6-12d6-f292-6da09c002d78",
            "state": "STANDBY",
            "address": "10.11.0.57",
-           "isHealthy": "true" 
+           "isHealthy": "true"
          }
        ]
      }
@@ -405,16 +405,16 @@ In the Body response, wait until ``isHealthy`` changes from  ``false`` to ``true
 .. _Create self IPs:
 
 ---------------
-Create self IPs 
+Create self IPs
 ---------------
 
 **Important**: Starting with this step, use the cluster management floating IP address for all API interactions.
 
 Create self-IPs on data plane VLANs:
 
- 
+
 ``PUT https://{{bigip_next_mgmt_floating_ip}}:5443/api/v1/L1-networks/{{L1_network_id}}``
- 
+
 .. code-block: json
 
    {
@@ -471,7 +471,7 @@ Create self-IPs on data plane VLANs:
 Create an application
 ---------------------
 
-Create an application using AS3 or FAST templates with or without BIG-IP Next Central Manager. Refer to the How to documents listed in the `Application Configuration and Management <https://techcomm.pages.gitswarm.f5net.com/f5-mbip-ve-docs/>`_ section. 
+Create an application using AS3 or FAST templates with or without BIG-IP Next Central Manager. Refer to the How to documents listed in the `Application Configuration and Management <https://techcomm.pages.gitswarm.f5net.com/f5-mbip-ve-docs/>`_ section.
 
 **Example** Create an application on BIG-IP Next using AS3 through BIG-IP Next Central Manager
 
@@ -555,5 +555,3 @@ Retrieve system health statistics
 ---------------------------------
 
 Refer to: `How to: Retrieve system health statistics <../support/ve_retrieve_health_statistics.md>`_
-
-

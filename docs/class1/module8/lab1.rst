@@ -44,17 +44,17 @@ Once connected to the Debug Session we will inspect some basic network configura
 
 #. Click on **Start Debug Session**
 
-    .. warning:: Only a single Debug Session can run on an instance at a time.  
+    .. warning:: Only a single Debug Session can run on an instance at a time.
 
 #. You should see a Prompt to SSH. We will be using the Putty SSH client to connect later in this lab from the Windows host in the lab environment.
 
     *You should see the following*
 
-    .. code-block:: 
+    .. code-block::
 
       ssh admin@10.1.1.10 -p 2222
 
-    
+
 8.1.2 - Connect to Windows Host
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -62,14 +62,14 @@ We will use a Putty SSH client that has been pre-configured with the SSH key tha
 
 To connect to the Windows Host there are two choices for clients that can be used, as not all attendees will be able to use Remote Desktop.
 
-**Option 1.)** Log into the Windows Jumphost using the **RDP** option in the main UDF screen. 
+**Option 1.)** Log into the Windows Jumphost using the **RDP** option in the main UDF screen.
 
 **Option 2.)** Use the Guacamole HTML based RDP client on the Ubuntu Jumphost (recommended for those that cannot install RDP).
 
 
 **For Windows RDP users:**
 
-Go to the UDF Deployment screen and select the **Access** dropdown for **Windows Jumphost**, then **RDP**. This will download an RDP shortcut to your machine. 
+Go to the UDF Deployment screen and select the **Access** dropdown for **Windows Jumphost**, then **RDP**. This will download an RDP shortcut to your machine.
 
 .. image:: ../module4/images/windows-jump-rdp.png
   :align: center
@@ -145,7 +145,7 @@ Then select the **Windows Jumphost** option.
 #. You should now see the following:
 
     .. code-block::
-      
+
       Using username "admin".
       Authenticating with public key "f5debuguser"
       Warning: Permanently added '[100.76.0.27]:2222' (ECDSA) to the list of known hosts.
@@ -164,7 +164,7 @@ The debug session runs in an isolated environment that has limited visibility to
 #. Run the command ``ps aux`` and you should see a limited number of processes.
 
     .. code-block:: bash
-      
+
       /ps aux
       USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
       f5docker       1  0.0  0.0 711900  1980 ?        Ssl  16:01   0:00 /init
@@ -194,7 +194,7 @@ The Debug Session has access to viewing information about the data-plane.
       .. note:: This is an interpretation of what the data-plane process sees and not all counters may reflect true values like MTU and state.
 
     .. code-block:: bash
-      
+
       /ip a
       ...
       5: vlan-3000: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UNKNOWN group default qlen 1000
@@ -238,9 +238,9 @@ In the following exercise we will review how you can use ping, tcpdump, and view
       /
 
 #. Run the command ``tcpdump -i vlan-3000 port 3000 -c 4``
-    
+
     .. code-block:: bash
-      
+
       /tcpdump -i vlan-3000 port 3000 -c 4
       tcpdump: verbose output suppressed, use -v[v]... for full protocol decode
       listening on vlan-3000, link-type EN10MB (Ethernet), snapshot length 65535 bytes
@@ -258,9 +258,9 @@ In the following exercise we will review how you can use ping, tcpdump, and view
 
     This will allow you to see the last 4 entries from the TMM log (/var/log/ltm)
 
-    The format is compatible with OpenTelemetry 
-    
-    .. code-block:: 
+    The format is compatible with OpenTelemetry
+
+    .. code-block::
 
       /tail -4 /logs/f5-fsm-tmm-0.log
       {"ts":"2023-09-15 19:40:54.167656 UTC","ct":"f5-fsm-tmm","stream":"0","scid":"unknown","sysid":"d38ea2dc-ac9a-4731-8618-b371d56ffb1d","log":"\u003c133\u003eSep 15 19:40:54 f5-fsm-tmm-569897896c-6wsnh tmm[8]: 013e0002:5: \"v\"=\"1.0\";\"lt\"=\"T\";\"l\"=\"notice\";\"LocalAddress\"=\"169.254.0.1\";\"LocalPort\"=\"2\";\"RemoteAddress\"=\"169.254.0.253\";\"RemotePort\"=\"46927\";\"m\"=\"Tcpdump stopping on 169.254.0.1:2 from 169.254.0.253:46927\""}

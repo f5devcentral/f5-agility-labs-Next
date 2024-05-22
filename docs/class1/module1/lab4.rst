@@ -11,7 +11,7 @@ application.
     .. image:: access-method-lab-progress.png
         :scale: 50%
 
-    You will see your progress highlighted in gray.  
+    You will see your progress highlighted in gray.
 
     .. image:: lab-progress-list.png
         :scale: 75%
@@ -40,4 +40,3 @@ application.
 
     .. image:: lab-progress-completed.png
         :scale: 75%
-

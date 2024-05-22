@@ -3,13 +3,13 @@ Lab 4.1 - Import App from UCS
 =============================
 
  **Login to BIG-IP Next Central Manager in UDF**
- 
-  Navigate to your UDF deployment and select the "GUI" ACCESS method for the "BIG-IP Next Central Manager" and login with the username/password provided under DETAILS.
-  
-   .. image:: ./cm_login.png
-        :scale: 25% 
 
-After logging into BIG-IP Next CM, click on  **"Application Workspace"** 
+  Navigate to your UDF deployment and select the "GUI" ACCESS method for the "BIG-IP Next Central Manager" and login with the username/password provided under DETAILS.
+
+   .. image:: ./cm_login.png
+        :scale: 25%
+
+After logging into BIG-IP Next CM, click on  **"Application Workspace"**
 
 .. image:: ./lab4-app-workspace.png
  :scale: 25%
@@ -53,19 +53,21 @@ The UCS file uploaded successful and you are redirected to the **Appllication Mi
 
 .. image:: ./lab4-ucs-upload.png
  :scale: 25%
+
 Select **"Add Application"** to import the applications from the UCS
 
 .. image:: ./lab4-add-app.png
  :scale: 25%
-Select the 2 applications and click on **"Add"** 
+
+Select the 2 applications and click on **"Add"**
 
 .. image:: ./lab4-select2-apps.png
  :scale: 25%
+
 At the Application Migration menu, verify the 2 applications and click on **"Next"**
 
 .. image:: ./lab4-app-migration-verify.png
  :scale: 25%
-
 
 For the 2 application services, make sure the "Deploy Location" is set for  **big-ip-next-03.f5demo.com**
 

@@ -1,4 +1,4 @@
-.. Paul Kent: How do you create, modify, or delete applications using BIG-IP Next Central Manager templates? 
+.. Paul Kent: How do you create, modify, or delete applications using BIG-IP Next Central Manager templates?
 
 ================================================================================
 How to: Manage applications using BIG-IP Next Central Manager and FAST templates
@@ -15,7 +15,7 @@ What role do templates play in deploying an application?
 
 When you deploy an application, you use a template that defines the parameters and values you want to specify for that application. BIG-IP Next Central Manager includes a set of default templates that are designed for a variety of use cases. These templates are not considered to be ready for production use; instead, they are intended as a place to start. To use these templates, choose one that includes definitions for most of the application objects you want to deploy and then modify a copy of that template so that it exactly defines the application you want to deploy. For details on how to make a copy of a template, refer to `Manage FAST templates <cm_manage_fast_templates>`_.
 
-One key thing to understand about what makes FAST templates so powerful is their ability to use customizable parameters to define an application. When you create a template that uses this feature, you replace static, hard coded parameters with  variables that you fill in when you use this template to deploy an application. 
+One key thing to understand about what makes FAST templates so powerful is their ability to use customizable parameters to define an application. When you create a template that uses this feature, you replace static, hard coded parameters with  variables that you fill in when you use this template to deploy an application.
 
 For more information on FAST templates, refer to `F5 Application Services Templates <https://clouddocs.f5.com/products/extensions/f5-appsvcs-templates/latest/>`_.
 
@@ -26,7 +26,7 @@ Prerequisites
 
 * Before you can create an application, you need to decide which template you’re going to use. There are three options:
 
-  * Select an existing template and revise it so it defines the application you want to create. 
+  * Select an existing template and revise it so it defines the application you want to create.
   * Clone an existing template and revise it so it defines the application you want to create.
   * Create a new template that defines the application you want to create.
 
@@ -48,7 +48,7 @@ Procedures
 .. _Create an application:
 
 ---------------------
-Create an application 
+Create an application
 ---------------------
 You can use either the user interface (UI) or the application programming interface (API) to create an application.
 
@@ -64,7 +64,7 @@ Use this procedure to deploy a new application to a managed BIG-IP Next instance
 #. Under Add Application, select **Create**.
 #. Under Create Application, For **Application Template** select the template you want to use for this application, and then click **Start Creating**.
 
-   The Properties tab for the Create Application screen opens. 
+   The Properties tab for the Create Application screen opens.
 #. For the **Location**, select the BIG-IP Next instance on which you want to deploy this application.
 #. Type an **Application Name** for this application.
 #. Type or select values (as appropriate) for the remaining parameters on this tab and click **Next**.
@@ -73,7 +73,7 @@ Use this procedure to deploy a new application to a managed BIG-IP Next instance
 
    BIG-IP Next Central Manager performs a test deployment of your application to test the validity of the specified parameter values.
 #. If the test deployment reveals any issues, resolve them and repeat the previous step.
-#. When the test deployment is completely valid, click **Deploy**. 
+#. When the test deployment is completely valid, click **Deploy**.
    BIG-IP Next Central Manager deploys the application.
 
 
@@ -83,7 +83,7 @@ Use this procedure to deploy a new application to a managed BIG-IP Next instance
 
 #. Authenticate with the BIG-IP Next Central Manager API. For details refer to `How to: Authenticate with the BIG-IP Next Central Manager API <../use_cm/cm_api_auth.html>`_.
 
-#. Create the application by sending a Post to the ``/mgmt/shared/fast/applications`` endpoint.     
+#. Create the application by sending a Post to the ``/mgmt/shared/fast/applications`` endpoint.
 
    ``POST https://<big-ip_next_cm_mgmt_ip>/mgmt/shared/fast/applications``
 
@@ -108,7 +108,7 @@ Use this procedure to deploy a new application to a managed BIG-IP Next instance
       }
     }
 
-Create an HTTPS application 
+Create an HTTPS application
 ---------------------------
 
 You can use either the user interface (UI) or the application programming interface (API) to create a secure application. In either case, all you do differently to make sure your application uses HTTPS is make sure to use the template named **HTTPS-Load-Balancing-Service**.
@@ -126,14 +126,14 @@ Use this procedure to deploy a new https application to a managed BIG-IP Next in
 
 Prerequisites
 -------------
-Before you can create an HTTPS application you must have an existing certificate. 
+Before you can create an HTTPS application you must have an existing certificate.
 
 #. Log in to BIG-IP Next Central Manager as admin, click the Workspace icon, and then click **Applications**.
 #. If this is the first application for this BIG-IP Next Central Manager, click **Start Adding Apps**. Otherwise, at the top of the screen, click **Add Application**.
 #. Under Add Application, select **Create**.
 #. Under Create Application, For **Application Template** select the template named **HTTPS-Load-Balancing-Service**, and then click **Start Creating**.
 
-   The Properties tab for the Create Application  screen opens. 
+   The Properties tab for the Create Application  screen opens.
 #. For the **Location**, select the BIG-IP Next instance on which you want to create this application.
 #. Type an **Application Name** for this application.
 #. For **Virtual Address**, click the plus sign, then type the IP address for the application server.
@@ -150,11 +150,11 @@ Before you can create an HTTPS application you must have an existing certificate
 #. For **Please choose a certificate**, select the certificate this application will use, then click **Next**.
 
    The Summary tab of the Create Application screen opens.
-#. Under Validate Deployment, click **Validate**; 
+#. Under Validate Deployment, click **Validate**;
 
    BIG-IP Next Central Manager performs a test deployment of your application deployment to test the validity of the specified parameter values.
 #. If the test deployment reveals any issues, resolve them and repeat the previous step.
-#. When the test deployment is completely valid, click **Deploy**. 
+#. When the test deployment is completely valid, click **Deploy**.
 
     BIG-IP Next Central Manager deploys the application.
 
@@ -167,14 +167,14 @@ Use this procedure to deploy a new https application to a managed BIG-IP Next in
 
 Prerequisites
 -------------
-Before you can create an HTTPS application you must have an existing certificate.  
+Before you can create an HTTPS application you must have an existing certificate.
 
 #. Authenticate with the BIG-IP Next Central Manager API. For details refer to `How to: Authenticate with the BIG-IP Next Central Manager API <../use_cm/cm_api_auth.html>`_.
-#. Create the application by sending a Post to the ``/mgmt/shared/fast/applications`` endpoint.     
+#. Create the application by sending a Post to the ``/mgmt/shared/fast/applications`` endpoint.
 
    ``POST https://<big-ip_next_cm_mgmt_ip>/mgmt/shared/fast/applications``
 
-   For the API body, use the following, substituting values appropriate for the application you want to create. 
+   For the API body, use the following, substituting values appropriate for the application you want to create.
 
    For the template name field, use a template that includes a certificate, for example **HTTPS-Load-Balancing-Service**. Here's a sample body that uses a secure template.
 
@@ -217,7 +217,7 @@ Using the BIG-IP Next Central Manager user interface
 #. At the top of the screen, click (!`Delete <../images/delete.png)>`_ **Delete**.
 #. In the Confirm Delete popup, click **Delete**.
 
-   BIG-IP Next Central Manager removes the selected application.  
+   BIG-IP Next Central Manager removes the selected application.
 
 
 -----------------------------------------
@@ -226,7 +226,7 @@ Using the BIG-IP Next Central Manager API
 To delete an application using the API, you send a Delete to the ``/mgmt/shared/fast/applications/<tenant-name>/<application-name>`` endpoint.
 
 #. Authenticate with the BIG-IP Next Central Manager API. For details refer to `How to: Authenticate with the BIG-IP Next Central Manager API <../use_cm/cm_api_auth.html>`_.
-#. Delete the application by sending a Delete to the ``/mgmt/shared/fast/applications/<tenant-name>/<application-name>`` endpoint. You must include the tenant name and application name in your post.     
+#. Delete the application by sending a Delete to the ``/mgmt/shared/fast/applications/<tenant-name>/<application-name>`` endpoint. You must include the tenant name and application name in your post.
 
    ``DELETE https://<big-ip_next_cm_mgmt_ip>/mgmt/shared/fast/applications/<tenant-name>/<application-name>``
 
@@ -254,7 +254,7 @@ Use the following procedure to modify an application using the BIG-IP Next Centr
 #. Under Validate Deployment, click **Validate**.
 #. When the test completes satisfactorily, click **Deploy** to complete your edits to this application.
 
-   BIG-IP Next Central Manager redeploys the application, using the revised parameters that you specified. 
+   BIG-IP Next Central Manager redeploys the application, using the revised parameters that you specified.
 
 
 -----------------------------------------
@@ -262,7 +262,7 @@ Using the BIG-IP Next Central Manager API
 -----------------------------------------
 Use the following procedure to modify an application using the BIG-IP Next Central Manager API.
 #. Authenticate with the BIG-IP Next Central Manager API. For details refer to `How to: Authenticate with the BIG-IP Next Central Manager API <../use_cm/cm_api_auth.html>`_.
-#. Modify the application by sending a PATCH to the ``/mgmt/shared/fast/applications/<tenant-name>/<application-name>`` endpoint.     
+#. Modify the application by sending a PATCH to the ``/mgmt/shared/fast/applications/<tenant-name>/<application-name>`` endpoint.
 
    ``PATCH https://<big-ip_next_cm_mgmt_ip>/mgmt/shared/fast/applications/<tenant-name>/<application-name>``
 
@@ -284,7 +284,7 @@ Use the following procedure to modify an application using the BIG-IP Next Centr
       "target": {
         "address": "10.4.5.6"
       }
-    }   
+    }
 
 
 .. _FAST templates on Central Manager:

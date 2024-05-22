@@ -16,20 +16,20 @@ Prerequisites
 =============
 - VMware ESXi version 7.x
 - Instance: 8 vCPUs, 16GB RAM
-- Disk resource: 
+- Disk resource:
 
   - BIG-IP Next: 80GB of disk per BIG-IP Next virtual machine (VM)
   - BIG-IP Next Central Manager (CM): 160GB of disk per BIG-IP Next CM VM
 
 - Access to the Early Access (EA) program on the `Beta portal <https://beta.f5.com>`_ to download an OVA file
-- Inputs for the setup script from your network; refer to sections for type inputs 
+- Inputs for the setup script from your network; refer to sections for type inputs
 
 **Important:** Known issue in v0.11.0: Installation may fail on networks that also provide IPv6 via SLAAC or DHCPv6.  Contact F5 before installing in these environments for workaround recommendations.
 
 
 .. _BIG-IP Next Central Manager:
 
-BIG-IP Next Central Manager 
+BIG-IP Next Central Manager
 ===========================
 
 -------
@@ -66,7 +66,7 @@ Install image (CM)
 **Deploy OVF template**
 
 #. Log in to the VMware vSphere Client.
-#. In the right pane, click **ACTIONS** -> **Deploy OVF Template**. 
+#. In the right pane, click **ACTIONS** -> **Deploy OVF Template**.
 #. Locate the previously downloaded OVA file to use to install a VM:
 
     #. Select **Local file** and then click **UPLOAD FILES**.
@@ -82,7 +82,7 @@ Install image (CM)
       #. From the list, click **Browse**.
          The Select Network window opens.
       #. Type a search team and then select from the list.
-      #. Click **OK**.     
+      #. Click **OK**.
 
 #. Review the settings for Customize hardware and click **NEXT**.
 #. Review the settings for Ready to complete and click **FINISH**.
@@ -125,7 +125,7 @@ Start the script and type inputs (CM)
 ::
 
    - Hostname (example.com) []:
-   - Management IP Address & Network Mask [192.168.1.245/24]: 
+   - Management IP Address & Network Mask [192.168.1.245/24]:
    - Management Network Default Gateway [192.168.1.1]:
    - Primary DNS nameserver (192.168.1.2) []:
    - Alternate DNS nameserver (192.168.1.3) (optional):
@@ -136,7 +136,7 @@ Start the script and type inputs (CM)
 ::
 
    At the prompt to review your settings, type ``y`` to confirm.
-   
+
 **Sample output**
 ::
 
@@ -167,7 +167,7 @@ Start the script and type inputs (CM)
 
 .. _BIG-IP Next:
 
-BIG-IP Next 
+BIG-IP Next
 ===========
 
 -------
@@ -195,14 +195,14 @@ Install image
 #. From the top menu, click the **BIG-IP Next EA Program** list and select **Documents & Builds**.
 #. Click a build number. **Example**: &lt;build number&gt; BIG-IP Next VE &lt;date&gt;.
 #. Scroll down to the list of files.
-#. Click an OVA file (or the download icon). **Example**: BIG-IP-Next-&lt;build number&gt;.ova 
+#. Click an OVA file (or the download icon). **Example**: BIG-IP-Next-&lt;build number&gt;.ova
    The file downloads.
 #. Move the OVA file to a desired location.
 
 **Deploy OVF template**
 
 #. Log in to the VMware vSphere Client.
-#. In the right pane, click **ACTIONS** &gt; **Deploy OVF Template**. 
+#. In the right pane, click **ACTIONS** &gt; **Deploy OVF Template**.
 #. Locate the previously downloaded OVA file to use to install a VM:
 
     #. Select **Local file** and then click **UPLOAD FILES**.
@@ -215,8 +215,8 @@ Install image
 #. For select clone options, click the **Customize this virtual machine's hardware** and **Power on virtual machine after creation** check boxes, and click **NEXT**.
 #. For the customize hardware settings, remove an error for **CD/DVD drive 1**:
 
-    #. Start with the **Virtual Hardware** tab selected (default). Click anywhere in the row for **CD/DVD drive 1** to highlight. 
-    #. To remove, click the icon that is a circle with an X. 
+    #. Start with the **Virtual Hardware** tab selected (default). Click anywhere in the row for **CD/DVD drive 1** to highlight.
+    #. To remove, click the icon that is a circle with an X.
 
 #. In the upper-right corner of the window, click **ADD NEW DEVICE** -> **Network Adapter**.
 #. For the **Network adapter 1** and **New Network** settings, make a selection for each.
@@ -224,7 +224,7 @@ Install image
       #. From the list, click **Browse**.
          The Select Network window opens.
       #. Type a search team and then select from the list.
-      #. Click **OK**.     
+      #. Click **OK**.
 
 #. Review the settings for Customize hardware and click **NEXT**.
 #. Review the settings for vApp properties and click **NEXT**.
@@ -237,7 +237,7 @@ Launch the console and login
 
 #. In the left pane, from the top menu, click the **VMs and Templates** icon.
    The icon is the second from the left.
-#. Expand the links to navigate to the correct link. 
+#. Expand the links to navigate to the correct link.
 #. To open the console for the VM, in the right pane, click inside the black box.
    The web console opens and the prompt displays.
 #. For both **login** and **Password**, type ``admin``.
@@ -255,7 +255,7 @@ environment and also assist in creating data plane networking configuration.
 Help text for the script:
 
 This script will help you initially configure the basic network settings for this instance.
-  
+
 Please answer the questions below. A default value for each parameter is indicated within the brackets. Example inputs are included within parentheses.
 
 #. At the prompt, type ``setup``.
@@ -274,7 +274,7 @@ Please answer the questions below. A default value for each parameter is indicat
 ::
 
    - Hostname:
-   - Management IP Address & Network Mask [192.168.1.245/24]: 
+   - Management IP Address & Network Mask [192.168.1.245/24]:
    - Management Network Default Gateway [192.168.1.1]:
    - Primary DNS nameserver (192.168.1.2):
    - Alternate DNS nameserver (192.168.1.3) (optional):
@@ -301,12 +301,12 @@ Please answer the questions below. A default value for each parameter is indicat
 
 **Admin Password**
 
-   There is a prompt to set an admin password used by both 
+   There is a prompt to set an admin password used by both
    the API and Linux console. SSH access to the admin account is blocked in the SSH server configuration.
 
-   - Please enter a new password for the 'admin' user: 
+   - Please enter a new password for the 'admin' user:
    - Please confirm the new password for the 'admin' user:
-  
+
 **Note:** The password must be a minimum of 12 characters and contain mixed-case letters and numbers.
 
 
@@ -353,7 +353,7 @@ Refer to: `How to: Add a BIG-IP Next instance to BIG-IP Next Central Manager <..
 
 .. _Troubleshooting\: BIG-IP Next data plane:
 
-Troubleshooting: BIG-IP Next data plane 
+Troubleshooting: BIG-IP Next data plane
 ---------------------------------------
 
 Optional tools to help verify your device is correctly connected to the network on BIG-IP Next devices:
@@ -424,7 +424,7 @@ setup --api [URI]
 
 It can be helpful to inspect/update the API elements of BIG-IP Next.
 
-There are utilities that can take your `admin` API password either as a file input or via an environment variable.  
+There are utilities that can take your `admin` API password either as a file input or via an environment variable.
 
 **Example:** Setting the password via environment variable
 ::
@@ -517,4 +517,3 @@ You can then perform ``GET`` requests on the API. The script will automatically 
             "1.1"
         ]
     }
-
