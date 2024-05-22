@@ -1,4 +1,4 @@
-Lab 3.2 - Deploy and Roll Over New iRule Version 
+Lab 3.2 - Deploy and Roll Over New iRule Version
 ================================================
 
 In this lab exercise you will learn about how to deploy and roll over a new iRule version.
@@ -19,34 +19,34 @@ First we will create a new version of our iRule
 
     .. image:: central-manager-menu.png
       :scale: 50%
-         
+
 #. Click on **iRules** followed by **insert_xff_iRule**
-    
+
     .. image:: irules-menu.png
         :scale: 50%
-            
+
 #. You will need to next click on the **v1** at the top of the screen and select **Stage from this version**
-    
+
     .. image:: irules-stage-from-this-version.png
         :scale: 50%
-            
+
 #. Using the built-in text editor, modify the iRule to add the following lines after the 4th line, and click **Commit Changes**
-    
+
     .. code-block:: text
 
             } else {
                 HTTP::header insert "X-Forwarded-For" [IP::client_addr]
-    
+
     .. image:: irules-v2.png
         :scale: 50%
-            
+
 #. Click on **More Commit options**
-    
+
     .. image:: irules-more-commit-options.png
         :scale: 50%
-            
+
 #. Click on **Commit without any attached applications.** then click on **Yes, Commit**
-    
+
     .. image:: irules-commit-with-any-attached-applications.png
         :scale: 50%
 
@@ -58,29 +58,29 @@ Congratulations! You have created a new version of your iRule.  Note that this i
 There are two different ways that you can attach an iRule to an application.  In this next exercise we will attach the iRule to the application from the iRule itself.
 
 #. Start on the **Properties** page of your iRule.  You should already be on this screen from the previous lab exercise.  If not, you can re-open the iRule as needed.
-    
+
     .. image:: irules-attach-v2-to-application.png
         :scale: 50%
 
     Please ensure the selected version is **v2** and that you can see **Attach Applications** (you may need to scroll the window to see the button).
-    
+
     Select **Attach Applications**
 
 #. You should only see one available application: "irule_demo_app".  Click on the checkbox next to the name and then select **Attach**
-    
+
     .. image:: irules-attach-v2-to-application-attach.png
         :scale: 50%
-    
+
 #. On the next screen you should see a warning and a button to **Deploy Changes**. Click on **Deploy Changes**.
-    
+
     .. image:: irules-v2-deploy-changes.png
         :scale: 50%
-    
+
 #. You will be asked to confirm the change. Click on **Yes, Continue**
 
     .. image:: irules-v2-attached-applications.png
         :scale: 50%
-    
+
 You will see a list of applications that currently have the v2 iRule attached and also it will display the version that was previouslly attached.
 
 Congratulations! You have deployed version 2 of your iRule.  Notice that you had the option to select which application(s) you wanted attached to the iRule.
@@ -120,37 +120,37 @@ In this exercise we will "roll over" a bad version.  This is not a "roll back"; 
    .. image:: irules-single-edit.png
        :scale: 50%
 
-#. Click on the **v1** at the top and select **Stage from this version**. This will base the new updates to the iRule on the original **v1** version. 
-    
+#. Click on the **v1** at the top and select **Stage from this version**. This will base the new updates to the iRule on the original **v1** version.
+
     .. image:: irules-v1-stage-from-version-to-v3.png
         :scale: 50%
-    
+
 #. Click on **Commit Changes**
-            
+
 #. Click on **More Commit options**
-    
+
     .. image:: irules-more-commit-options.png
         :scale: 50%
-            
+
 #. Click on **Commit without any attached applications**, then click on **Yes, Commit**
-    
+
     .. image:: irules-commit-with-any-attached-applications.png
         :scale: 50%
 
 #. You should now see **v3** (ignore any warnings about viewing an older version of the iRule)
-    
+
     .. image:: irules-v3.png
-    
+
 3.2.5 - Updating Application iRule version
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Previously we updated the application from the **iRules** menu.  We will next update the iRule version from the **My Apps** menu
 
 #. Click on **My Apps** under **Applications** and click on the **irule_demo_app** application
-    
+
     .. image:: irules-demo-app-new.png
         :scale: 50%
-    
+
 #. Click on edit icon in the top right of the screen to modify the Application Service Properties
 
    .. image:: irules_demo_app-edit-application-services-properties.png
@@ -160,7 +160,7 @@ Previously we updated the application from the **iRules** menu.  We will next up
     .. image:: irules-application-service-properties-edit-irule.png
 
 #. Change the version from **v2** to **v3** and click **Save**
-        
+
 #. Click on **Review & Deploy**
 
 #. Click on **Deploy Changes**

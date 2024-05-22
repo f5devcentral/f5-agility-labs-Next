@@ -41,7 +41,7 @@ Download the bundle file
 .. _Update the system controller software:
 
 -------------------------------------
-Update the system controller software 
+Update the system controller software
 -------------------------------------
 
 Update the system controller software (F5OS) to the required controller version: v1.4.x.
@@ -70,7 +70,7 @@ Create a chassis partition
 #. In the IPv4 section, type the values for **IP Address**, **Prefix Length**, and **Gateway**.
 #. In the IPv6 section, click **Bundled**. For the **ISO image**, select the previously uploaded software image to run on the chassis partition.
 #. Click **Save**.
-   In the chassis partition list, for the new parition, the Operational State goes from **Starting** to **Running**. 
+   In the chassis partition list, for the new parition, the Operational State goes from **Starting** to **Running**.
 
 You can now log into the chassis partition using its management IP address to access the partition webUI.
 
@@ -136,20 +136,20 @@ Upload with the **(1)** GUI, **(2)** API, or **(3)** SSH. --OR-- **(4)** Import 
    ``GET https://{{velos_partition_mgmt_ip}}:8888/api/data/f5-tenant-images:images``
 
 
-For detailed usage of the VELOS API, refer to: `F5OS/VELOS - API <https://clouddocs.f5.com/api/velos-api/>`_. 
+For detailed usage of the VELOS API, refer to: `F5OS/VELOS - API <https://clouddocs.f5.com/api/velos-api/>`_.
 
 **(3)** SSH
 
 Upload a tenant image using SCP directly to the chassis partition. From a client machine to the IP address of the partition using the IMAGES directory.
 
-**Example** 
+**Example**
 
 ``scp f5-mov-tarball-vx.x.x.tgz.bundle admin@10.255.0.148:IMAGES``
 
 
 **(4)** Import from the CLI
 
-#. Login to the CLI for the chassis partition using an account with admin access. 
+#. Login to the CLI for the chassis partition using an account with admin access.
 #. Import a tenant image to the chassis partition.
    ``file import remote-port <port-number> username <user> password <password> remote-host <ip-address-or-fqdn> remote-file <remote-file-path> remote-url <full-remote-url> local-file images```
 
@@ -157,9 +157,9 @@ Upload a tenant image using SCP directly to the chassis partition. From a client
 
    Import a tenant image from server.company.com:
 
-  .. code-block:: none
+   .. code-block:: bash
 
-    default-1(config)# file import username admin password remote-url \
+      default-1(config)# file import username admin password remote-url \
       https://server.company.com/images/f5-mov-tarball-vx.x.x.tgz.bundle \
       local-file images
 
@@ -179,13 +179,13 @@ Create VLANs with: **(1)** the CLI or **(2)** GUI.
 #. Use SSH to access the chassis partition. This requires an account with admin access.
 #. Create VLANs with the appropriate interface on the blade and VLAN tags:
 
-   .. code-block:: none
+   .. code-block:: bash
 
       default-1(config)# interfaces interface 1/1.0 ethernet switched-vlan config trunk-vlans 2001
       default-1(config)# interfaces interface 1/1.0 ethernet switched-vlan config trunk-vlans 3001
       default-1(config)# interfaces interface 1/1.0 ethernet switched-vlan config trunk-vlans 4001
       default-1(config)# interfaces interface 1/1.0 ethernet switched-vlan config trunk-vlans 5001
- 
+
    **Note:** Make sure the VLANs names match the VLANs names defined in the VELOS chassis partition.
 
 **(2)** GUI:
@@ -210,12 +210,12 @@ You can now deploy a tenant using the same chassis partition webUI.
 Create a tenant
 ---------------
 
-Before starting, decide on which slots to deploy the tenant. 
-You must have first created a VLAN in the chassis partition. 
+Before starting, decide on which slots to deploy the tenant.
+You must have first created a VLAN in the chassis partition.
 
 **Note:**
-- A tenant name may only be a maximum of twelve characters. 
-- For high availability (HA): A tenant name needs to be the same for both tenants in a single HA pair, and created on two different chassis. 
+- A tenant name may only be a maximum of twelve characters.
+- For high availability (HA): A tenant name needs to be the same for both tenants in a single HA pair, and created on two different chassis.
 - There is support for multi-tenancy; deploying more than one tenant per plade. For more information: `How to: Configure multi-tenancy - BIG-IP Next on VELOS <../install/velos_configure_multi_tenancy.md>`_
 
 Create the tenant with: **(1)** the CLI, **(2)** the API or **(3)** GUI.
@@ -225,12 +225,12 @@ If you are deploying HA, create one BIG-IP Next tenant on each chassis partition
 
 **Example**
 
-.. code-block:: none
+.. code-block:: bash
 
-  tenants tenant tenant-bigip-ma1 config type BIG-IP-Next \
-    image f5-mov-tarball-vx.x.x deployment-file f5-mov-tarball-vx.x.x.yaml \
-    mgmt-ip 10.1.1.7 gateway 10.1.1.1 prefix-length 24 vcpu-cores-per-node 22 \
-    memory 79360 running-state deployed vlans [ 5001 2001 3001 ] nodes 2
+   tenants tenant tenant-bigip-ma1 config type BIG-IP-Next \
+   image f5-mov-tarball-vx.x.x deployment-file f5-mov-tarball-vx.x.x.yaml \
+   mgmt-ip 10.1.1.7 gateway 10.1.1.1 prefix-length 24 vcpu-cores-per-node 22 \
+   memory 79360 running-state deployed vlans [ 5001 2001 3001 ] nodes 2
 
 Wait for ~4 minutes after creating a tenant to allow all the pods to be running in state.
 
@@ -288,7 +288,7 @@ For detailed usage of the VELOS CLI, refer to the `F5OS/VELOS - API <https://clo
    The Tenant Deployment screen displays showing the existing tenant deployments and associated details.
 #. To add a tenant deployment, click **Add**.
    The Add Tenant Deployment screen displays.
-#. For **Name**, type a name for the tenant deployment (up to 12 characters).   
+#. For **Name**, type a name for the tenant deployment (up to 12 characters).
    **Note:** The first character in the name cannot be a number. After that, only lowercase alphanumeric characters and hyphens are allowed.
 #. Leave **Type** set to the default.
 #. For **Image**, select a software image.

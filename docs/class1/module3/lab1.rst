@@ -10,9 +10,9 @@ Step 1:
 
 Start by selecting a template, which will determine what type of features you will need (i.e. HTTPS, WAF, etc...). Some templates can be built to allow you to toggle features on/off (the template that ships with Central Manager includes the ability to toggle on/off WAF, iRules, etc...).
 
-Once you have selected your template, you will need to define the name of your virtual server (destination of where you want your clients to connect) and information about the pools (backend servers).  This includes information such as the port numbers that should be used.  
+Once you have selected your template, you will need to define the name of your virtual server (destination of where you want your clients to connect) and information about the pools (backend servers).  This includes information such as the port numbers that should be used.
 
-Step 2: 
+Step 2:
 
 After you have defined the properties for your application, you will need to select the location of where you would like to deploy your applications.  You will then be prompted for the IP addresses for that specific location.
 
@@ -30,7 +30,7 @@ After you have defined the properties for your application, you will need to sel
       :scale: 50%
 
 #. Create Application
-    
+
     From **My Application Services** click on **+ Add Application**
 
     .. image:: add-application.png
@@ -71,10 +71,10 @@ After you have defined the properties for your application, you will need to sel
 #. Client-Side TLS
 
   Under RSA certificate, enter a name of "www", select the certificate "www.example.com" (use RSA Certificate), and leave "Use Default Server" selected.
-  
+
   .. image:: add-client-tls-cert.png
-    :scale: 50% 
-  
+    :scale: 50%
+
   Then click on "Save" and "Save" again to return to the Application Service Properties screen.
 
 #. Review and Deploy
@@ -104,7 +104,7 @@ After you have defined the properties for your application, you will need to sel
     You can now enter your Virtual Address.  Use the IP Address "10.1.10.200"
 
     .. image:: deploy-to-virtual-address.png
-    
+
     Then click on the down arrow next to "members" to open the Pool Members screen
 
 #. Pool Members
@@ -117,7 +117,7 @@ After you have defined the properties for your application, you will need to sel
     On the Pool Members screen click on the **Add Row** that is in the lower right
 
     .. image:: deploy-to-pool-members-add-row.png
-    
+
     Use the following values to add two rows
 
     =========================== ==========================
@@ -178,4 +178,3 @@ After you have defined the properties for your application, you will need to sel
 #. You should now see the demo app
 
     .. image:: https-app-deployed.png
-    

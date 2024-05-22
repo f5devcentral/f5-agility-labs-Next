@@ -1,5 +1,5 @@
 Lab 5.1 - Add Security Policy to Application (Basic WAF Lab)
-=================================================================
+============================================================
 
 .. note:: This is the start of part 2 of the lab.  If you have not previously completed part 1 of the lab with your current deployment, please click on the Module 2 link on the left hand side of the page and complete discovery of big-ip-next-01.example.com as it is required to complete module 5.
 
@@ -7,7 +7,7 @@ Lab 5.1 - Add Security Policy to Application (Basic WAF Lab)
 
 
 Deploy an Application with a WAF Policy Using a FAST Template
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 This part of the lab covers how to create and deploy an application and protect it with a WAF policy using the FAST template and the WAF violation rating based template, with the focus on ease of use.
 
@@ -30,13 +30,13 @@ Backend web apps available on the internal network running on the **Ubuntu Jump 
   * 10.1.20.103:8080
 
 Deploy an HTTPS Load Balancer with a WAF Policy
-**********************************************
+***********************************************
 
 1. Log in to BIG-IP Next Central Manager in UDF
- 
+
  Navigate to your UDF deployment and select the **GUI** Access method for **BIG-IP Next Central Manager** and log in with the username/password provided within Details.
-  
- .. image:: ./pictures/cm_login.png 
+
+ .. image:: ./pictures/cm_login.png
 
 
 2. From **My Apps** click on **+ Add Application"**
@@ -47,8 +47,8 @@ Deploy an HTTPS Load Balancer with a WAF Policy
 3. Provide an *Application Service Name* of "waf-app".  Select **Standard** and then click on **Start Creating**.
 
   .. note:: The Standard template is a unified template that allows you to enable/disable capabilities
-  
- .. image:: ./pictures/create-application.png
+
+  .. image:: ./pictures/create-application.png
 
 4. Then select "Start Creating" under the "No Virtual Servers Configured" to start creating a new virtual server.
 
@@ -69,7 +69,7 @@ Deploy an HTTPS Load Balancer with a WAF Policy
 		3000
 
    * Leave other options as is
-  
+
      .. image:: ./pictures/waf-app-pool.png
 
 6. Navigate back to the **Virtual Servers** tab and enter the following values in the template wizard for Properties as shown in the picture below, then select **Next**
@@ -94,7 +94,7 @@ Deploy an HTTPS Load Balancer with a WAF Policy
 
    .. image:: ./pictures/waf-app-virtual-addition.png
 
-7. Select the edit button under the "Protocols and Profiles" column (adjacent to "SNAT" and "MIRRORING").  
+7. Select the edit button under the "Protocols and Profiles" column (adjacent to "SNAT" and "MIRRORING").
 
   .. image:: ./pictures/edit-protocols.png
 
@@ -112,9 +112,9 @@ Deploy an HTTPS Load Balancer with a WAF Policy
 
   .. note::
      The Deploy stage is the first place you'll actually define a virtual server. The process leading up to deployment involved defining things like virtual server and pool names, which will be consistent as you deploy across infrastructure.
-   
+
      Imagine a globally-deployed app and you add a new site. The application service definition will already be in Central Manager and all you will need to define is a small subset of data (IP and pool members) in order to have a functional application that matches exactly the rest of your infrastructure.
- 
+
  .. image:: ./pictures/instances-add-to-list.png
   :scale: 50%
 
@@ -125,9 +125,9 @@ Deploy an HTTPS Load Balancer with a WAF Policy
 12. Click on **+ Add Row** and fill in "m_10.1.20.100" for the Name and "10.1.20.100" for the IP Address. Select **Save**.
 
  .. image:: ./pictures/pool_member_add.png
-   
+
 13. Click on **Validate All** to run the deployment validation. When the validation is complete, you will see an icon and status next to the deployment, such as the green icon and "Validated" in the picture below
- 
+
  .. image:: ./pictures/validate.png
 
 14. Click on **View Results** to show the declaration
@@ -139,7 +139,7 @@ Deploy an HTTPS Load Balancer with a WAF Policy
 15. Finally, click on **Deploy Changes**, after which you will be prompted to confirm or cancel the deployment.  Select **Yes, Deploy** and you should see the application and the WAF policy deployed.
 
  .. image:: ./pictures/successful_deployed.png
-  
+
 
 17. Let's validate the application through Firefox in UDF. From within the UDF lab components, select **Access** under the **Ubuntu Jump Host** and then **Firefox**. Within this proxied Firefox browser, go to https://waf-app.example.com and you should see the Juice Shop app.
 
@@ -150,7 +150,7 @@ Deploy an HTTPS Load Balancer with a WAF Policy
  URL:
 
  .. code-block:: console
-  
+
     https://waf-app.example.com/a=<script>
 
  .. image:: ./pictures/block_check.png
@@ -164,7 +164,7 @@ From the WAF Dashboard under the **Policies** box, click on the three dots next 
 
  .. image:: ./pictures/waf-dashboard-select-policy.png
 
-You can now view your "good" and "bad" requests 
+You can now view your "good" and "bad" requests
 
 .. note:: The "Lab Progress" app will also make "bad" requests in the background
 
@@ -177,7 +177,7 @@ The Firefox copy and paste function doesn't often work, so remember the first fe
  .. image:: ./pictures/get-support-id.png
 
 Next you will need to expand the built-in "copy to clipboard" feature by clicking on the 3 dots to the left.
-  
+
 
  .. image:: ./pictures/get-support-id2.png
 
@@ -193,4 +193,3 @@ Next click **Event Logs** and enter the *Support ID* into the filter text box.
 You can then click on the URI to view more details.
 
  .. image:: ./pictures/waf-events-details.png
-

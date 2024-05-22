@@ -2,7 +2,7 @@
 Overview: Application observability
 ===================================
 
-Application observability allows you to measure the current state of your application endpoints based on the data metrics generated, whether by traffic or by the 
+Application observability allows you to measure the current state of your application endpoints based on the data metrics generated, whether by traffic or by the
 communication between a BIG-IP Next instance and the application server.
 
 Observability helps you to detect and analyze the significance of events by providing visibility into the traffic, connection patterns, security (if applicable), and

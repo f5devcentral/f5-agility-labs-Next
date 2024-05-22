@@ -7,4 +7,3 @@ The "Basic WAF Lab" (Lab 5.1 that is part of this lab) covers the steps of enabl
    :titlesonly:
 
    lab1.rst
-

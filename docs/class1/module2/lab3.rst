@@ -40,4 +40,3 @@ Procedure
 #. Click on "Activate".  The status should change to "Active". Click **Cancel & Exit** to return to My Instances.
 
     .. image:: ./central-manager-active-license.png
-

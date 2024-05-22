@@ -3,7 +3,7 @@ Lab 7.1 - Bootstrap
 
 * UDF
   * Setup Script Central Manager
-  * Setup script Node    
+  * Setup script Node
 * VMWare
 * VELOS
 * rSeries

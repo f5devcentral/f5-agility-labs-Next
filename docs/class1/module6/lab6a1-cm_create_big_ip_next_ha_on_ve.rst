@@ -50,6 +50,7 @@ Procedure
 
    .. image:: ./lab6_add_ha_vlan_config.png
       :scale: 25%
+
    Use the name "ctl-plane-vlan" for this and Tag "3999". The Network Interface selection is inoperative and can be left unchanged.
 
    VLAN Name:
@@ -66,11 +67,14 @@ Procedure
 
    .. image:: ./lab6_add_ha_create_control_plane_vlan.png
       :scale: 25%
+
    Click **Done**
+
 #. From the **Data Plane VLAN** list for this BIG-IP Next HA instance, you'll need to create a new Data Plane VLAN by clicking the **Create VLAN** link.
 
    .. image:: ./lab6_add_ha_vlan_config_needs_dataplane_vlan.png
       :scale: 25%
+
    Use the name "data-plane-vlan" for this and select Untagged Interface: "1.3"
 
    VLAN Name:
@@ -87,11 +91,14 @@ Procedure
 
    .. image:: ./lab6_add_ha_create_data_plane_vlan.png
       :scale: 25%
+
    Click **Done**
+
 #. After you select the VLANs, click the **Next** button.
 
    .. image:: ./lab6_add_ha_vlan_configuration_complete.png
       :scale: 25%
+
 #. The HA Properties panel opens.
 #. Enter the **HA Name** (example: ha1) for this high availability pair of nodes. This name should be unique for each pair managed by the Next Central Manager instance.
 
@@ -140,11 +147,14 @@ Procedure
 
    .. image:: ./lab6_add_ha_ha_properties_configured.png
       :scale: 25%
+
 #. Click **Next**.
+
 #. The Traffic VLANs panel opens and displays the VLANs you specified for traffic.
 
    .. image:: ./lab6_add_ha_traffic_vlans_unconfigured.png
       :scale: 25%
+
 #. You can have only one IP address for each active and standby node, but you can add additional floating IP addresses by clicking on the VLAN name.
 #. Click each VLAN to open a panel to add the respective Active, Standby, and Floating IP addresses. You may need to reassign the IP address that shows up when you first enter the page from a Floating Self-IP to the Active Self-IP. You will need to click the "+" next to the address twice to add two more address fields (for the standby node and floating IP addresses).
 
@@ -193,23 +203,30 @@ Procedure
       10.1.20.9/24
 
    Click **Save**
+
 #. When each VLAN displays a green check mark, you can proceed.
 
    .. image:: ./lab6_add_ha_traffic_vlans_complete.png
       :scale: 25%
+
    Click **Next**.
+
 #. The Summary screen opens to display the BIG-IP Next HA configuration you specified.
 
    .. image:: ./lab6_add_ha_summary.png
       :scale: 25%
+
    Click **Deploy to HA**.
 
 #. You'll be prompted to confirm the deployment.
 
    .. image:: ./lab6_add_ha_deploy_to_ha_confirm.png
       :scale: 25%
+
    Click **Yes, Deploy**
+
    It may take several minutes for the HA Deployment process to complete
+
 #. Assuming a successful deployment, you'll see the properties of the HA instance you just created.
 
    .. image:: ./lab6_ha_instance_upgrade.png

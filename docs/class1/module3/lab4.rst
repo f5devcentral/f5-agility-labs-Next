@@ -17,10 +17,10 @@ Now we will verify our application is deployed with DNS
     .. image:: access-method-firefox.png
         :scale: 50%
 
-#. Inside the Firefox browser session go to https://gr.example.com 
+#. Inside the Firefox browser session go to https://gr.example.com
 
 #. You should now see your application
-    
+
     .. image:: gr-app-firefox.png
         :scale: 50%
 
@@ -31,9 +31,9 @@ We will use the "dig" utility to verify our DNS records
 
 #. Within your UDF Deployment, go to the **WEB SHELL** access method that is under the **Ubuntu Jump Host**
 #. Type the following command
-    
+
     .. code-block:: shell
-      
+
       dig @10.1.10.153 gr.example.com +short
 
     You should see `10.1.10.154` being returned
@@ -55,9 +55,9 @@ Lab 3.4.3 - Edit Application
 
     .. image:: central-manager-menu.png
       :scale: 50%
-    
-#. Click on "gr_app" 
-    
+
+#. Click on "gr_app"
+
     In the upper right click on "Edit"
 
     .. image:: gr-app-edit.png
@@ -69,20 +69,20 @@ Lab 3.4.3 - Edit Application
         :scale: 25%
 
 #. Add Instance
-    
+
     Under "Add Instance/Locations" select "big-ip-next-01" and click "+ Add to list"
 
     .. image:: gr-app-edit-add-instance.png
         :scale: 50%
-    
+
 #. Enter a Virtual Address
-    
+
     Enter the Virtual Address of "10.1.10.155"
 
 #. Under "Members" for big-ip-next-01 click on the down arrow and select "+Pool Members"
 #. Click on "+ Add Row"
-    
-    Use the following values 
+
+    Use the following values
 
     =============================== ==========================
     Property                        Value
@@ -95,8 +95,8 @@ Lab 3.4.3 - Edit Application
     Click on "Save" to return to the "Deploy" screen
 
 #. Click on "Deploy Changes"
-#. When prompted, press "Yes, Deploy"    
-    
+#. When prompted, press "Yes, Deploy"
+
     .. image:: gr-edit-yes-deploy.png
         :scale: 25%
 
@@ -107,13 +107,13 @@ We will use the "dig" utility to verify our DNS records
 
 #. Within your UDF Deployment, go to the **WEB SHELL** access method that is under the **Ubuntu Jump Host**
 #. Type the following command
-    
+
     .. code-block:: shell
-      
+
       dig @10.1.10.153 gr.example.com +short
 
 #. repeat the command (you can use the up arrow to auto-complete) several times
-    
+
     You should see both `10.1.10.154` and `10.1.10.155` being returned
 
 We can see that we are getting a round robin response of DNS records

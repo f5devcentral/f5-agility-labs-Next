@@ -2,17 +2,17 @@
 How to: Create or modify iRules on BIG-IP Next Central Manager
 ==============================================================
 
-The following describes how to create a new, edit, or delete iRules using BIG-IP Next Central Manager. 
+The following describes how to create a new, edit, or delete iRules using BIG-IP Next Central Manager.
 
-iRules are created using the programming language Tcl. To create or modify an iRule you need to have familiarity with 
-Tcl and iRule commands. 
+iRules are created using the programming language Tcl. To create or modify an iRule you need to have familiarity with
+Tcl and iRule commands.
 
-For more information about iRule structure, uses, and traffic management customizations see 
+For more information about iRule structure, uses, and traffic management customizations see
 F5 iRule documentation `iRules Home <https://clouddocs.f5.com/api/irules/>`_.
 
 
-* :ref:`Create a new iRule` 
-* :ref:`Clone an iRule` 
+* :ref:`Create a new iRule`
+* :ref:`Clone an iRule`
 * :ref:`Edit an iRule`
 
   Make general changes to an existing iRule without staging changes.
@@ -34,7 +34,7 @@ F5 iRule documentation `iRules Home <https://clouddocs.f5.com/api/irules/>`_.
 ------------------
 Create a new iRule
 ------------------
-Create an iRule using the UI or API. Once you create an iRule, you can add it 
+Create an iRule using the UI or API. Once you create an iRule, you can add it
 to one of your applications, or create a new application using a iRule application template.
 
 See `Example iRules <cm_irules_example_irules_reference.md>`_ provided in BIG-IP Next Central Manager. These are commonly applied iRules
@@ -61,15 +61,15 @@ Create a new iRule - UI
    With any list-selected input, you can hover over the schema element to view details and use case examples for that selection.
    See a `sample iRule procedure <#sample-irule-in-editor>`_ in the GIF below.
 
-   #. Begin typing the iRule function <!--declaration??--> and select from the provided list. 
+   #. Begin typing the iRule function <!--declaration??--> and select from the provided list.
    #. Press the SPACE bar to view a list of all valid `events <https://clouddocs.f5.com/api/irules/Events.html>`_. You can type key words to filter the event list.
-   #. Enter the conditions and `commands <https://clouddocs.f5.com/api/irules/Commands.html>`_. 
+   #. Enter the conditions and `commands <https://clouddocs.f5.com/api/irules/Commands.html>`_.
 
 #. To copy the iRule click the copy button in the top right of the editor.
 
    .. image:: ../images/cm_copy_icon_button.png
 
-#. Click **Save**. 
+#. Click **Save**.
 
 The new iRule is added to the iRules list. To deploy iRules to a secure FAST application, see `How to: Deploy iRules to an application on BIG-IP Next Central Manager <cm_irules_deploy_how_to.rst>`_.
 
@@ -87,13 +87,13 @@ Sample iRule in editor
 ------------------------
 Create a new iRule - API
 ------------------------
-Use the following procedure to create a new iRule. 
+Use the following procedure to create a new iRule.
 
-Send a POST request using the iRule OpenAPI.       
+Send a POST request using the iRule OpenAPI.
 
 ``POST https://{{bigip_next_cm_mgmt_ip}}/api/irule/v1/irule``
 
-The body of the POST must include: 
+The body of the POST must include:
    * ``name``- iRule name
    * ``content`` - The iRule schema in Tcl
    * ``description`` - (optional)Additional information about the iRule.
@@ -108,7 +108,7 @@ The body of the POST must include:
 --------------
 Clone an iRule
 --------------
-Clone an iRule to work with an existing iRules contents, without creating a new iRule from scratch using the BIG-IP Next Central Manager UI. 
+Clone an iRule to work with an existing iRules contents, without creating a new iRule from scratch using the BIG-IP Next Central Manager UI.
 (See :ref:`Create a new iRule - API` to create an iRule using the API.)
 
 
@@ -125,22 +125,22 @@ Clone an iRule - UI
    A panel for the iRules properties and content editor is displayed.
 #. To the top right of the panel, click **Clone**.
 
-   The Clone iRule panel opens. **Name** is automatically populated with original iRule's name and the prefix `clone`. 
+   The Clone iRule panel opens. **Name** is automatically populated with original iRule's name and the prefix `clone`.
 #. (Optional) Update the **Name** and add a **Description**.
 #. From the panel menu click **iRule Editor**.
 
-   The editor contains the iRule script from the original iRule.  
-#. When you have completed changes to the iRule, click **Save**. 
+   The editor contains the iRule script from the original iRule.
+#. When you have completed changes to the iRule, click **Save**.
 
 The cloned iRule is added to the iRules list. To deploy iRules to a secure FAST application, see `How to: Deploy iRules to an application on BIG-IP Next Central Manager <cm_irules_deploy_how_to.rst>`_.
 
 
-Use the following procedure to create a new iRule. 
+Use the following procedure to create a new iRule.
 
-Send a POST request using the iRule OpenAPI.       
+Send a POST request using the iRule OpenAPI.
 ``POST https://{{bigip_next_cm_mgmt_ip}}/api/irule/v1/irule``
 
-The body of the POST must include: 
+The body of the POST must include:
    * ``name``- iRule name
    * ``content`` - The iRule schema in Tcl
    * ``description`` - (optional)Additional information about the iRule.
@@ -155,7 +155,7 @@ The body of the POST must include:
 Edit an iRule
 -------------
 
-You can edit the contents of an iRule configured on you BIG-IP Next Central Manager. Use the following procedures to 
+You can edit the contents of an iRule configured on you BIG-IP Next Central Manager. Use the following procedures to
 make changes.
 
 * :ref:`Edit an iRule - UI`
@@ -181,7 +181,7 @@ Edit an iRule - UI
    The iRule content schema is displayed in the panel
 #. Edit the iRule schema. For more information about editing iRules, see `iRules Home <https://clouddocs.f5.com/api/irules/>`_.
 
-   Note: If you are editing a staged iRule, the editor automatically saves your changes. 
+   Note: If you are editing a staged iRule, the editor automatically saves your changes.
 #. Click **Save**.
 
 
@@ -194,14 +194,14 @@ Edit an iRule - UI
 -------------------
 Edit an iRule - API
 -------------------
-Use the following procedure to edit an existing iRule. 
+Use the following procedure to edit an existing iRule.
 
-You will need the name (``nameOrID``) of the iRule. Use the following GET request to see a full list of iRules on BIG-IP 
+You will need the name (``nameOrID``) of the iRule. Use the following GET request to see a full list of iRules on BIG-IP
 Next Central Manager and their details:
 
 ``GET https://{{bigip_next_cm_mgmt_ip}}/api/irule/v1/irule``
 
-Send a PUT request with changes to the iRule ``content`` using the iRule OpenAPI.       
+Send a PUT request with changes to the iRule ``content`` using the iRule OpenAPI.
 
 ``PUT https://{{bigip_next_cm_mgmt_ip}}/api/irule/v1/irules/{nameOrID}``
 
@@ -217,7 +217,7 @@ One user can create one staged iRule
 
 .. _Attach iRule version to applications:
 
-Attach iRule version to applications 
+Attach iRule version to applications
 ------------------------------------
 
 .. _Compare iRules:
@@ -226,14 +226,14 @@ Compare iRule versions
 ----------------------
 You can compare iRule versions to view differences and decide whether to attach staged iRules to a production environment.
 
-iRules in staging can only be edited by the login owner. 
+iRules in staging can only be edited by the login owner.
 
 #. Click the Workspace icon next to the F5 icon, and click **Applications**.
 #. Click **iRules** from the left menu.
 #. Click the iRule name.
 
    A panel for the iRules properties and content editor is displayed.
-#. Select the version to the right of the iRule name. 
+#. Select the version to the right of the iRule name.
 
    Note: You can click **Show Version History** to view a full version list. Then select 2 versions and click **Compare**. This option limits is a view-only editor.
 #. From the panel menu click **iRule Editor**.
@@ -273,13 +273,13 @@ The iRule is deleted from the iRules list.
 ---------------------
 Delete an iRule - API
 ---------------------
-Use the following procedure to delete an iRule. 
+Use the following procedure to delete an iRule.
 
-You will need the name (``nameOrID``) of the iRule. Use the following GET request to see a full list of iRules on BIG-IP 
+You will need the name (``nameOrID``) of the iRule. Use the following GET request to see a full list of iRules on BIG-IP
 Next Central Manager and their details:
 
 ``GET https://{{bigip_next_cm_mgmt_ip}}/api/irule/v1/irule``
 
-Send a DELETE request with changes to the iRule ``content`` using the iRule OpenAPI.       
+Send a DELETE request with changes to the iRule ``content`` using the iRule OpenAPI.
 
 ``DELETE https://{{bigip_next_cm_mgmt_ip}}/api/irule/v1/irules/{nameOrID}``

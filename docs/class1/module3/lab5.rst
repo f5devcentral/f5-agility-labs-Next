@@ -17,15 +17,15 @@ Now we will verify our application is deployed with DNS
     .. image:: access-method-firefox.png
         :scale: 50%
 
-#. Inside the Firefox browser session go to https://signed.example.com 
+#. Inside the Firefox browser session go to https://signed.example.com
 
 #. Login user username: user1@f5access.onmicrosoft.com and password user1
-    
+
     .. image:: okta-login.png
         :scale: 50%
 
 #. You should now be logged in
-    
+
     .. image:: signed-example-logged-in.png
         :scale: 50%
 
@@ -40,9 +40,9 @@ Now we will verify our application is deployed with DNS
 
     .. image:: central-manager-menu-security.png
       :scale: 50%
-         
+
 #. Click on "Access Dashboard"
-    
+
     You will see your session
 
     .. image:: access-dashboard.png
