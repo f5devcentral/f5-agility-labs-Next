@@ -35,7 +35,7 @@ Before you add an instance to BIG-IP Next Central Manager, please confirm BIG-IP
 
 	.. code-block:: console
 
-		Welcome123!
+		Welcome1234567!
 
 Procedure
 ~~~~~~~~~
@@ -77,7 +77,7 @@ Procedure
 
     .. code-block:: console
 
-      Welcome123!
+      Welcome1234567!
 
     .. image:: ./lab2_next_cm_login_to_instance.png
       :scale: 25%
@@ -94,7 +94,7 @@ Procedure
 
     .. code-block:: console
 
-      Welcome123!
+      Welcome1234567!
 
     .. image:: ./lab2_next_cm_add_instance_management_credentials.png
       :scale: 25%

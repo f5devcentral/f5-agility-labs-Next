@@ -18,7 +18,7 @@ Procedure
     .. image:: ./lab2_img03_navigation_to_infrastructure2.png
         :scale: 25%
 
-#. Click on the Name of the instance that you previously added ("big-ip-next-01.f5demo.com").
+#. Click on the Name of the instance that you previously added ("big-ip-next-01.example.com").
 
     .. image:: ./click-on-big-ip-next-01.png
         :scale: 50%
