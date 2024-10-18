@@ -1,180 +1,195 @@
-Lab 3.1 - Deploy and operate Applications
-=========================================
+Lab 3.1 - Add Security Policy to Application (Basic WAF Lab)
+============================================================
 
-This section of the lab will utilize the "Applications" section of BIG-IP Next Central Manager.
+.. note:: This is the start of part 2 of the lab.  If you have not previously completed part 1 of the lab with your current deployment, please click on the Module 2 link on the left hand side of the page and complete discovery of big-ip-next-01.example.com as it is required to complete module 5.
 
-When creating an application service, it happens in two steps.
+  .. image:: ./pictures/side_nav_mod_2.png
 
-Step 1:
-Step 1:
 
-Start by selecting a template, which will determine what type of features you will need (i.e. HTTPS, WAF, etc...). Some templates can be built to allow you to toggle features on/off (the template that ships with Central Manager includes the ability to toggle on/off WAF, iRules, etc...).
+Deploy an Application with a WAF Policy Using a FAST Template
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Once you have selected your template, you will need to define the name of your virtual server (destination of where you want your clients to connect) and information about the pools (backend servers).  This includes information such as the port numbers that should be used.
+This part of the lab covers how to create and deploy an application and protect it with a WAF policy using the FAST template and the WAF violation rating based template, with the focus on ease of use.
 
-Step 2:
+.. note:: The violation rating based template follows the same concept as you may know already from NGINX App Protect, which is low false positives with little policy maintenance and therefore the Policy Builder is not supported with the violation rating based template.
 
-After you have defined the properties for your application, you will need to select the location of where you would like to deploy your applications.  You will then be prompted for the IP addresses for that specific location.
+Backend web apps available on the internal network running on the **Ubuntu Jump Host**:
 
-#. Navigate to Applications
+* OWASP Juice Shop:
 
+  * 10.1.20.100:3000
+  * 10.1.20.101:3000
+  * 10.1.20.102:3000
+  * 10.1.20.103:3000
 
-    Navigate to Applications by clicking the workspace switcher next to the F5 icon
+* Simple F5 demo web app:
 
-    .. image:: top-left.png
-      :scale: 50%
+  * 10.1.20.100:8080
+  * 10.1.20.101:8080
+  * 10.1.20.102:8080
+  * 10.1.20.103:8080
 
-    Then click on **Applications**
+Deploy an HTTPS Load Balancer with a WAF Policy
+***********************************************
 
-    .. image:: central-manager-menu.png
-      :scale: 50%
+1. Log in to BIG-IP Next Central Manager in UDF
 
-#. Create Application
+ Navigate to your UDF deployment and select the **GUI** Access method for **BIG-IP Next Central Manager** and log in with the username/password provided within Details.
 
-    From **My Application Services** click on **+ Add Application**
+ .. image:: ./pictures/cm_login.png
 
-    .. image:: add-application.png
-      :scale: 25%
 
-    Enter an application name of "https-app" and select **From Template**
+2. From **My Apps** click on **+ Add Application"**
 
-    .. image:: app-create-inone.png
-      :scale: 75%
+ .. image:: ./pictures/add-application.png
 
-    Click on **Select Template**
 
-#. Select **HTTPS-Load-Balancing-Service**
+3. Provide an *Application Service Name* of "waf-app".  Select **Standard** and then click on **Start Creating**.
 
-    .. note:: This is a customized template that was created specifically for this lab.  It is not included in a default installation of Central Manager
+  .. note:: The Standard template is a unified template that allows you to enable/disable capabilities
 
-    .. image:: select-https-app.png
-      :scale: 50%
+  .. image:: ./pictures/create-application.png
 
-    Then click on **Start Creating**
+4. Then select "Start Creating" under the "No Virtual Servers Configured" to start creating a new virtual server.
 
-#. Application Service Properties
+ .. image:: ./pictures/waf-app_add_VS.png
 
-    .. image:: application-service-properties.png
-      :scale: 25%
+5. From within the "waf-app" application service, click the **Pools** tab, then click **+ Create**, and enter the following values in the template wizard as shown in the picture below:
 
-    You will see the default Application Service Properties for this template (these have been pre-populated by the template; in a later lab you will need to fill these in)
+	Pool Name:
 
-    Click on the edit icon next to "HTTPS" to view further details of the HTTPS configuration
+	.. code-block:: console
 
-#. Protocols and Profiles
+		waf-app-pool
 
-    Here you can see the TLS options, click on "Add" under "No Client-Side TLS"
+	Service Port:
 
-    .. image:: add-client-tls.png
-      :scale: 50%
+	.. code-block:: console
 
-#. Client-Side TLS
+		3000
 
-  Under RSA certificate, enter a name of "www", select the certificate "www.example.com" (use RSA Certificate), and leave "Use Default Server" selected.
+   * Leave other options as is
 
-  .. image:: add-client-tls-cert.png
-    :scale: 50%
+     .. image:: ./pictures/waf-app-pool.png
 
-  Then click on "Save" and "Save" again to return to the Application Service Properties screen.
+6. Navigate back to the **Virtual Servers** tab and enter the following values in the template wizard for Properties as shown in the picture below, then select **Next**
 
-#. Review and Deploy
+	Virtual Server Name:
 
-    Click on **Review and Deploy**
+	.. code-block:: console
 
-    .. image:: review-and-deploy.png
+		waf-app-vs
 
-#. You will now see the Deploy-to screen
+	Pool:
 
-    .. image:: deploy-to-main.png
-      :scale: 25%
+	.. code-block:: console
 
-    Click on the **Start Adding** button in the middle of the screen.
+		waf-app-pool
 
-#. Select Location
+	Port:
 
-    You will need to select **big-ip-next-01.example.com** and then click on **Add to List**
+	.. code-block:: console
 
-    .. warning:: You may need to adjust the zoom setting on your browser window to see the "Add to List" button
+		443
 
-    .. image:: deploy-add-to-list.png
-      :scale: 75%
+   .. image:: ./pictures/waf-app-virtual-addition.png
 
-#. Virtual Address
+7. Select the edit button under the "Protocols and Profiles" column (adjacent to "SNAT" and "MIRRORING").
 
-    You can now enter your Virtual Address.  Use the IP Address "10.1.10.200"
+  .. image:: ./pictures/edit-protocols.png
 
-    .. image:: deploy-to-virtual-address.png
+  This is a new dialog for adding a TLS certificate to a virtual server.   Click on **Enable HTTPS (Client-Side TLS)**.  Below click on "Add" under the "No Client-Side TLS" text.
 
-    Then click on the down arrow next to "members" to open the Pool Members screen
+  .. image:: ./pictures/waf-app_clientssl_add.png
 
-#. Pool Members
+8.  For the name of the Client-Side TLS, name is "waf-app.example.com" and under the RSA Certificate, choose the "wildcard.example.com" certificate.  Leave "Use Default Server" under TLS Servers and then push "Save"
 
-    Click on the **+ Pool Members** to add pool members
+ .. image:: ./pictures/choose_cert.png
 
-    .. image:: deploy-to-pool-members-plus.png
-      :scale: 75%
+9. Select the edit button under **Security Policies**. Next, select **Use a WAF Policy**. Click on **+ Create**. Provide a name of "waf-policy", leave all other items as default, click **Save**, and then **Save** again.
 
-    On the Pool Members screen click on the **Add Row** that is in the lower right
+10. Clicking **Review and Deploy** will take you to the **Deploy** page.  Select **Start Adding**, then select "big-ip-next-03.example.com" as the instance for deployment and click **+ Add to List**
 
-    .. image:: deploy-to-pool-members-add-row.png
+  .. note::
+     The Deploy stage is the first place you'll actually define a virtual server. The process leading up to deployment involved defining things like virtual server and pool names, which will be consistent as you deploy across infrastructure.
 
-    Use the following values to add two rows
+     Imagine a globally-deployed app and you add a new site. The application service definition will already be in Central Manager and all you will need to define is a small subset of data (IP and pool members) in order to have a functional application that matches exactly the rest of your infrastructure.
 
-    =========================== ==========================
-    Name                        IP Address
-    --------------------------- --------------------------
-    node1                       10.1.20.100
-    --------------------------- --------------------------
-    node2                       10.1.20.101
-    =========================== ==========================
+ .. image:: ./pictures/instances-add-to-list.png
+  :scale: 50%
 
-    .. image:: deploy-to-pool-members-nodes.png
+11. Add the IP of "10.1.10.203" to the **Virtual Address** box, then click the down arrow and select **+ Pool Members.**
 
-    Then click on **Save**
+ .. image:: ./pictures/IP_for_VIP.png
 
-#. Validate
+12. Click on **+ Add Row** and fill in "m_10.1.20.100" for the Name and "10.1.20.100" for the IP Address. Select **Save**.
 
-    You can now validate your changes before deploying them.
+ .. image:: ./pictures/pool_member_add.png
 
-    Click on **Validate All**
+13. Click on **Validate All** to run the deployment validation. When the validation is complete, you will see an icon and status next to the deployment, such as the green icon and "Validated" in the picture below
 
-    .. image:: deploy-to-validate-all.png
+ .. image:: ./pictures/validate.png
 
-    After it completes click on **View Results**
+14. Click on **View Results** to show the declaration
 
-    .. image:: deploy-to-validate-all-view-results.png
-      :scale: 75%
+ .. image:: ./pictures/declaration.png
 
-    You can inspect the AS3 declaration that will be deployed to your BIG-IP Next instance.
+ Select "Exit" to go back to the previous screen.
 
-    .. image:: deploy-to-validation-results.png
+15. Finally, click on **Deploy Changes**, after which you will be prompted to confirm or cancel the deployment.  Select **Yes, Deploy** and you should see the application and the WAF policy deployed.
 
-    Click on **Exit** to leave the preview of the AS3 declaration
+ .. image:: ./pictures/successful_deployed.png
 
-#. Deploy Changes
 
-    You are now ready to deploy your application to the desired location.
+17. Let's validate the application through Firefox in UDF. From within the UDF lab components, select **Access** under the **Ubuntu Jump Host** and then **Firefox**. Within this proxied Firefox browser, go to https://waf-app.example.com and you should see the Juice Shop app.
 
-    Click on **Deploy Changes**
+ .. image:: ./pictures/final_check.png
 
-    .. image:: deploy-to-deploy-changes.png
+ Browse to the URL shown below and you should see the blocking page.
 
-#. Confirm that you would like to deploy
+ URL:
 
-    You will be prompted to confirm, click on **Yes, Deploy**
+ .. code-block:: console
 
-    .. image:: deploy-to-confirmation.png
+    https://waf-app.example.com/a=<script>
 
-#. Within your UDF Deployment, go to the **Firefox** access method that is under the **Ubuntu Jump Host**
+ .. image:: ./pictures/block_check.png
 
-    This will open an embedded Firefox browser session that is running inside the lab environment.
+18. You can see your block requested by visiting the WAF dashboard. From Central Manager, click on the top left menu to select the **Security** menu. Then click **WAF Dashboards** under Monitoring in the Security menu on the right.
 
-    .. image:: access-method-firefox.png
+ .. image:: ./pictures/security-menu.png
+  :scale: 50%
 
-#. Inside the Firefox browser session go to https://www.example.com
+From the WAF Dashboard under the **Policies** box, click on the three dots next to "waf-policy" and select **Filter by Policy Name**.
 
-    .. image:: access-method-firefox-url.png
+ .. image:: ./pictures/waf-dashboard-select-policy.png
 
-#. You should now see the demo app
+You can now view your "good" and "bad" requests
 
-    .. image:: https-app-deployed.png
+.. note:: The "Lab Progress" app will also make "bad" requests in the background
+
+19. (Optional)  WAF Event Logs
+
+.. note:: This next exercise is optional (if you are doing this as part of internal F5 training and are part of the "Security" track, please skip in favor of your dedicated "Security" lab)
+
+The Firefox copy and paste function doesn't often work, so remember the first few digits of the blocking "Support ID" when you triggered a WAF block or use the built-in Firefox copy to clipboard option.
+
+ .. image:: ./pictures/get-support-id.png
+
+Next you will need to expand the built-in "copy to clipboard" feature by clicking on the 3 dots to the left.
+
+
+ .. image:: ./pictures/get-support-id2.png
+
+You will then be able to copy the support ID into your browser.
+
+ .. image:: ./pictures/get-support-id3.png
+
+
+Next click **Event Logs** and enter the *Support ID* into the filter text box.
+
+ .. image:: ./pictures/waf-events-search-support-id.png
+
+You can then click on the URI to view more details.
+
+ .. image:: ./pictures/waf-events-details.png

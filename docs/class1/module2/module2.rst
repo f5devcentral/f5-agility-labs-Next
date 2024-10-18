@@ -1,4 +1,4 @@
-Module 3: Deploy and operate Applications
+Module 2: Deploy and operate Applications
 =========================================
 
 In this lab you will utilize BIG-IP Next Central Manager to deploy and operate applications.

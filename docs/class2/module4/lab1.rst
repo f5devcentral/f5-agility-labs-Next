@@ -1,4 +1,4 @@
-Lab 8.1 - Debug BIG-IP Next Instance
+Lab 4.1 - Debug BIG-IP Next Instance
 ====================================
 
 You can enable a Debug Session that will allow you to SSH to a BIG-IP Next instance to run network troubleshooting tools like ping and tcpdump.
@@ -7,7 +7,7 @@ In this lab exercise we will use a pre-created SSH key to configure a Debug Sess
 
 Once connected to the Debug Session we will inspect some basic network configuration, examine the isolation of the data plane process, and run some commands to observe live network traffic and logs.
 
-8.1.1 - Start Debug Session
+4.1.1 - Start Debug Session
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 #. Click the workspace switcher next to the F5 icon, and click **Infrastructure**.
@@ -55,7 +55,7 @@ Once connected to the Debug Session we will inspect some basic network configura
       ssh admin@10.1.1.10 -p 2222
 
 
-8.1.2 - Connect to Windows Host
+4.1.2 - Connect to Windows Host
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 We will use a Putty SSH client that has been pre-configured with the SSH key that was previously used to start the Debug Session
@@ -125,7 +125,7 @@ Then select the **Windows Jumphost** option.
   :align: center
   :scale: 50%
 
-8.1.3 - Connect to Debug Session
+4.1.3 - Connect to Debug Session
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 #. Launch Putty. The Putty SSH client should be located on the bottom left of the screen.
@@ -156,7 +156,7 @@ Then select the **Windows Jumphost** option.
       ****************************************
       /
 
-8.1.3 - Debug Session Isolation
+4.1.3 - Debug Session Isolation
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The debug session runs in an isolated environment that has limited visibility to the platform.
@@ -182,7 +182,7 @@ The debug session runs in an isolated environment that has limited visibility to
       debugus+      74  0.0  0.0   7060  1548 pts/0    R+   19:02   0:00 ps aux
       /
 
-8.1.3 - Debug Session View Config
+4.1.3 - Debug Session View Config
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The Debug Session has access to viewing information about the data-plane.
@@ -214,7 +214,7 @@ The Debug Session has access to viewing information about the data-plane.
           inet6 fe80::6c2c:25ff:fefe:3dd4/64 scope link
             valid_lft forever preferred_lft forever
 
-8.1.4 - Debug Session Basic Commands
+4.1.4 - Debug Session Basic Commands
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 In the following exercise we will review how you can use ping, tcpdump, and view logs from the data-plane (TMM)
@@ -270,7 +270,7 @@ In the following exercise we will review how you can use ping, tcpdump, and view
 
     .. tip:: You could also use ``tail -f`` to see a live / streaming view of the logs
 
-8.1.5 - Stop Debug Session
+4.1.5 - Stop Debug Session
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 #. Go back to Central Manager and click on **Stop Debug Session**

@@ -1,4 +1,4 @@
-Module 1: Introduction to the lab
+Introduction to the lab
 =================================
 
 In this lab we will be utilizing the Unified Demo Framework (UDF) to learn about BIG-IP Next and

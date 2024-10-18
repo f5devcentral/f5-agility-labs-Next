@@ -1,4 +1,4 @@
-Module 8: Operations
+Module 4: Operations
 ====================
 
 .. toctree::

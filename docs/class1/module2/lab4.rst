@@ -1,11 +1,11 @@
-Lab 3.4 - Global Resiliency
+Lab 2.4 - Global Resiliency
 ===========================
 
 BIG-IP Next DNS can provide Global Resiliency, the ability to steer clients to available services using DNS.
 
 In this exercise we will extend the existing "gr.example.com" to run across multiple instances simultaneously.
 
-Lab 3.4.1 Open Firefox
+Lab 2.4.1 Open Firefox
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Now we will verify our application is deployed with DNS
@@ -24,7 +24,7 @@ Now we will verify our application is deployed with DNS
     .. image:: gr-app-firefox.png
         :scale: 50%
 
-Lab 3.4.2 - Open Web Shell
+Lab 2.4.2 - Open Web Shell
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 We will use the "dig" utility to verify our DNS records
@@ -40,7 +40,7 @@ We will use the "dig" utility to verify our DNS records
 
 In this example we were connecting directly to the DNS listeners on BIG-IP Next to query the DNS records
 
-Lab 3.4.3 - Edit Application
+Lab 2.4.3 - Edit Application
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 #. Navigate to Applications
@@ -100,7 +100,7 @@ Lab 3.4.3 - Edit Application
     .. image:: gr-edit-yes-deploy.png
         :scale: 25%
 
-Lab 3.4.4 - Open Web Shell
+Lab 2.4.4 - Open Web Shell
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 We will use the "dig" utility to verify our DNS records

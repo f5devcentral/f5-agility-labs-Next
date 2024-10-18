@@ -1,4 +1,4 @@
-Module 6: Node Lifecycle
+Module 3: Node Lifecycle
 ========================
 
 .. toctree::

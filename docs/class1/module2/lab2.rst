@@ -1,9 +1,9 @@
-Lab 3.2 - Deploy and Roll Over New iRule Version
+Lab 2.2 - Deploy and Roll Over New iRule Version
 ================================================
 
 In this lab exercise you will learn about how to deploy and roll over a new iRule version.
 
-3.2.1 - Create iRule v2
+2.2.1 - Create iRule v2
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 First we will create a new version of our iRule
@@ -52,7 +52,7 @@ First we will create a new version of our iRule
 
 Congratulations! You have created a new version of your iRule.  Note that this iRule has not been deployed yet. Continue the lab to learn about how to deploy your new version.
 
-3.2.2 - Deploying a New iRule Version from iRules
+2.2.2 - Deploying a New iRule Version from iRules
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 There are two different ways that you can attach an iRule to an application.  In this next exercise we will attach the iRule to the application from the iRule itself.
@@ -85,7 +85,7 @@ You will see a list of applications that currently have the v2 iRule attached an
 
 Congratulations! You have deployed version 2 of your iRule.  Notice that you had the option to select which application(s) you wanted attached to the iRule.
 
-3.2.3 - Viewing the differences between versions of an iRule
+2.2.3 - Viewing the differences between versions of an iRule
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 When troubleshooting an iRule, it can be useful to compare it to a previous version. This can also be done prior to deploying as a peer review step.
@@ -108,7 +108,7 @@ In this view you are able to identify exact changes within the iRule from **v1**
 
 In the next exercise we will learn how to "roll over" a bad version if there was a change you were not expecting.
 
-3.2.4 - Rolling Over Bad Changes
+2.2.4 - Rolling Over Bad Changes
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 In this exercise we will "roll over" a bad version.  This is not a "roll back"; instead we will update the latest version with the last known "good" version.
@@ -141,7 +141,7 @@ In this exercise we will "roll over" a bad version.  This is not a "roll back"; 
 
     .. image:: irules-v3.png
 
-3.2.5 - Updating Application iRule version
+2.2.5 - Updating Application iRule version
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Previously we updated the application from the **iRules** menu.  We will next update the iRule version from the **My Apps** menu
