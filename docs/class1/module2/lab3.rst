@@ -1,78 +1,138 @@
-Lab 3.3 - Customizing a Template
+Lab 3.3 - AS3 Editor
 ================================
 
-In this exercise we will modify our previous HTTPS-Load-Balancing-Service template to perform TLS re-encryption to the backend server.
+In this exercise we will modify an application created using the AS3 editor from an HTTP to an HTTPS application.
 
-* Change the pool member monitor from http to https
-* Change the pool member port from 8080 to 8443
-* Enable TLS encryption between the BIG-IP Next instance and the backend pool members
+In the previous exercise we used the "Standard" template to deploy our applications.  This template is useful when we want to deploy an application that uses common input parameter, but it can be limiting if we need to modify a setting that is not exposed (like persistence).
 
-3.3.1 - Clone the Template
-~~~~~~~~~~~~~~~~~~~~~~~~~~
+Using the "AS3 Editor" we can deploy an application that can take advantage of the full scope of settings that are available in AS3.
 
-When a template has been used to deploy an application it will enter a "Published" state.  This makes the template a read-only object.  To make edits to the template you can either remove any applications that are using the template to revert it into "Draft" mode, or clone the template.  In this lab exercise we will clone the template.
+3.3.1 - View AS3 Application
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. note:: The "http" app is shipped with Central Manager.  We have loaded a custom HTTPS-Load-Balancing-Service application into this lab environment.  It is a modified version of the provided "http" template.
+First we will view an application created using the AS3 Editor.
 
-#. Under the Applications menu click on **Application Templates**
-#. Select the checkbox next to the **HTTPS-Load-Balancing-Service** template
-#. Click on the **Clone** button
+#. Within your UDF Deployment, go to the **Firefox** access method that is under the **Ubuntu Jump Host**
 
-    .. image:: fast-clone-template.png
+    This will open an embedded Firefox browser session that is running inside the lab environment.
+
+    .. image:: access-method-firefox.png
         :scale: 50%
 
-#. Click on **Save**
+#. Inside the Firefox browser session go to http://as3-demo-app.example.com (make sure you go to "http" and not "https")
 
-3.3.2 - Modify the Cloned Template
+#. You should see the HTTP version of the as3-demo-app application
+
+    .. image:: as3-demo-app-firefox.png
+        :scale: 50%
+
+3.3.2 - Modify AS3 Application
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Now that you have cloned the template, you will make the following changes:
+#. Navigate to Applications
 
-* Change virtual server port from 443 to 8443 (to avoid port conflicts in the lab environment)
-* Change the pool member monitor from http to https
-* Enable TLS re-encryption to the backend pool member
 
-#. Click on **clone_HTTPS-Load-Balancing-Service** and then click on the **Template** tab
+    Navigate to Applications by clicking the workspace switcher next to the F5 icon
 
-#. Search for "pools:"  (CTRL-F in your browser or scroll ~50% of the page)  and change the default to use an https monitor and connect on port 8443. The completed change should look like this:
+    .. image:: top-left.png
+      :scale: 50%
 
-    .. code-block:: yaml
+    Then click on **Applications**
 
-        pools: # Do not remove and do not change the property name. This is used to take pools information
-            type: array
-            default:
-            -  {"loadBalancingMode": "round-robin","monitorType": ["https"],"poolName": "my_pool","servicePort": 8443}
+    .. image:: central-manager-menu.png
+      :scale: 50%
 
-#. Next, search for "enable_TLS_Server:" and change the default to "true". The stanza will begin with “enable_TLS_Server:” and look like the following once you have changed the value to true:
+#. Click on "as3-demo-app"
 
-    .. code-block:: yaml
+    In the upper right click on "Edit"
 
-        enable_TLS_Server:
-          title: Enable Server-side TLS
-          description: Enable TLS to encrypt server-side connections.
-          type: boolean
-          default: true
+    .. image:: as3-demo-app-edit.png
+        :scale: 25%
 
-#. Click on **Save**
+#. Replace with 
 
-3.3.3 - Verify the Cloned Template
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    This is an example of an HTTPS application that is referencing certificates that are managed by Central Manager.
 
-Next we will verify that your changes are present in the cloned template.
+    .. code-blocK:: json
 
-#. Under Applications go back to **My Application Services** and click on **+ Add Application**
-#. Enter the Application Service name of "https-re-encrypt"
-#. Select **From Template**
-#. Click **Select Template**
-#. In the flyout window, under Application Template, select **clone_HTTPS-Load-Balancing-Service** template
-#. Click on **Start Creating**
+        {
+        "class": "ADC",
+        "id": "id-https-canonical",
+        "mytenant": {
+            "as3-demo-app": {
+            "class": "Application",
+            "my_pool": {
+                "class": "Pool",
+                "loadBalancingMode": "least-connections-member",
+                "members": [
+                {
+                    "serverAddresses": [
+                    "10.1.20.100",
+                    "10.1.20.101"
+                    ],
+                    "servicePort": 8443
+                }
+                ],
+                "monitors": [
+                "http"
+                ]
+            },
+            "my_service": {
+                "class": "Service_HTTPS",
+                "pool": "my_pool",
+                "clientTLS": "client_tls",
+                "serverTLS": "server_tls",
+                "snat": "auto",
+                "virtualAddresses": [
+                "10.1.10.113"
+                ],
+                "virtualPort": 443
+            },
+            "client_tls": {
+                "ciphers": "RSA",
+                "class": "TLS_Client",
+                "tls1_1Enabled": true,
+                "tls1_2Enabled": true,
+                "tls1_3Enabled": false
+            },
+            "server_tls": {
+                "certificates": [
+                {
+                    "certificate": "webcert"
+                }
+                ],
+                "ciphers": "RSA",
+                "class": "TLS_Server",
+                "tls1_1Enabled": true,
+                "tls1_2Enabled": true,
+                "tls1_3Enabled": false
+            },
+            "webcert": {
+                "certificate": {
+                "cm": "wildcard.example.com.crt"
+                },
+                "class": "Certificate",
+                "privateKey": {
+                "cm": "wildcard.example.com.pem"
+                }
+            }
+            },
+            "class": "Tenant"
+        },
+        "schemaVersion": "3.0.0"
+        }
+                
 
-#. Click on the **Pools** tab and verify that the monitor is now "https" and the service port is "8443"
+#. Click on "Review & Deploy"
 
-    .. image:: cloned-pools.png
-        :scale: 75%
+#. Click on "Deploy"
 
-#. Click on **Cancel & Exit**
-#. Select the "https-re-encrypt" Application and select **Delete** under **Actions**
+3.3.3 - View modified AS3 Application
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. note:: If you run into any issues modifying your template, you can delete the "https-re-encrypt" application to make the template editable again.
+#. Inside the Firefox browser session go to https://as3-demo-app.example.com (make sure you go to "https" and not "http")
+
+#. You should see the HTTPS version of the as3-demo-app application
+
+    .. image:: as3-demo-app-https-firefox.png
+        :scale: 50%
