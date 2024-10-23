@@ -1,4 +1,4 @@
-Lab 3.3 - AS3 Editor
+Lab 2.3 - AS3 Editor
 ================================
 
 In this exercise we will modify an application created using the AS3 editor from an HTTP to an HTTPS application.
@@ -7,7 +7,7 @@ In the previous exercise we used the "Standard" template to deploy our applicati
 
 Using the "AS3 Editor" we can deploy an application that can take advantage of the full scope of settings that are available in AS3.
 
-3.3.1 - View AS3 Application
+2.3.1 - View AS3 Application
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 First we will view an application created using the AS3 Editor.
@@ -26,7 +26,7 @@ First we will view an application created using the AS3 Editor.
     .. image:: as3-demo-app-firefox.png
         :scale: 50%
 
-3.3.2 - Modify AS3 Application
+2.3.2 - Modify AS3 Application
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 #. Navigate to Applications
@@ -127,7 +127,7 @@ First we will view an application created using the AS3 Editor.
 
 #. Click on "Deploy"
 
-3.3.3 - View modified AS3 Application
+2.3.3 - View modified AS3 Application
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 #. Inside the Firefox browser session go to https://as3-demo-app.example.com (make sure you go to "https" and not "http")
@@ -136,3 +136,61 @@ First we will view an application created using the AS3 Editor.
 
     .. image:: as3-demo-app-https-firefox.png
         :scale: 50%
+
+2.3.4 - (Optional) Create FastL4 AS3 Application
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The following is an example of creating a FastL4 AS3 application
+
+.. code-block:: json
+
+    {
+        "class": "ADC",
+        "id": "adc-service-fastl4-canonical",
+        "schemaVersion": "3.0.0",
+        "my_tenant": {
+            "class": "Tenant",
+            "as3-demo-app2": {
+                "class": "Application",
+                "l4Profile": {
+                    "class": "L4_Profile",
+                    "idleTimeout": 600,
+                    "looseClose": true,
+                    "looseInitialization": true,
+                    "resetOnTimeout": true,
+                    "tcpCloseTimeout": 43200,
+                    "tcpHandshakeTimeout": 43200
+                },
+                "my_pool": {
+                    "class": "Pool",
+                    "loadBalancingMode": "least-connections-member",
+                    "members": [
+                        {
+                            "serverAddresses": [
+                                "10.1.20.100",
+                                "10.1.20.101"
+                            ],
+                            "servicePort": 8080
+                        }
+                    ],
+                    "monitors": [
+                        "icmp"
+                    ],
+                    "serviceDownAction": "none",
+                    "slowRampTime": 10
+                },
+                "my_service": {
+                    "class": "Service_L4",
+                    "pool": "my_pool",
+                    "profileL4": {
+                        "use": "l4Profile"
+                    },
+                    "snat": "auto",
+                    "virtualAddresses": [
+                        "10.1.10.113"
+                    ],
+                    "virtualPort": 80
+                }
+            }
+        }
+    }

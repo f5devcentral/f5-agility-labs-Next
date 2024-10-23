@@ -70,7 +70,7 @@ Lab 2.4.3 - Edit Application
 
 #. Add Instance
 
-    Under "Add Instance/Locations" select "big-ip-next-01" and click "+ Add to list"
+    Under "Add Instance/Locations" select "big-ip-next-04.example.com" and click "+ Add to list"
 
     .. image:: gr-app-edit-add-instance.png
         :scale: 50%
