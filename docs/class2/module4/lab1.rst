@@ -71,7 +71,7 @@ To connect to the Windows Host there are two choices for clients that can be use
 
 Go to the UDF Deployment screen and select the **Access** dropdown for **Windows Jumphost**, then **RDP**. This will download an RDP shortcut to your machine.
 
-.. image:: ../module4/images/windows-jump-rdp.png
+.. image:: ../../class1/module4/images/windows-jump-rdp.png
   :align: center
   :scale: 50%
 
@@ -89,7 +89,7 @@ Password
 
     user
 
-.. image:: ../module4/images/f5access-user.png
+.. image:: ../../class1/module4/images/f5access-user.png
   :align: center
   :scale: 75%
 
@@ -97,7 +97,7 @@ Password
 
 Go to the UDF Deployment screen, and select the **Access** dropdown for **Ubuntu Jumphost**, then **Guacamole**. This will open an HTML-based RDP client.
 
-.. image:: ../module4/images/guacamole.png
+.. image:: ../../class1/module4/images/guacamole.png
   :align: center
   :scale: 50%
 
@@ -115,13 +115,13 @@ Password
 
     user
 
-.. image:: ../module4/images/guacamole-login.png
+.. image:: ../../class1/module4/images/guacamole-login.png
   :align: center
   :scale: 50%
 
 Then select the **Windows Jumphost** option.
 
-.. image:: ../module4/images/guacamole-windows.png
+.. image:: ../../class1/module4/images/guacamole-windows.png
   :align: center
   :scale: 50%
 

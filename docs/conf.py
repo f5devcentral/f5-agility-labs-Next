@@ -88,7 +88,7 @@ extensions = [
     "sphinx_copybutton",
     # "sphinxcontrib.nwdiag",
     # "sphinxcontrib.blockdiag",
-    # "sphinx.ext.autosectionlabel"
+    "sphinx.ext.autosectionlabel"
 ]
 
 graphviz_output_format = "svg"
