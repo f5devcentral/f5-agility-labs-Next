@@ -98,6 +98,10 @@ After you have defined the properties for your application, you will need to sel
 
  .. image:: ./choose-cert.png
 
+#. Click on "Continue"
+
+#. Click on "Save"
+
 #. Click on "Save"
 
 #. Review and Deploy

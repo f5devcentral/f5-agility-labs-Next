@@ -1,12 +1,8 @@
 Lab 3.1 - Add Security Policy to Application (Basic WAF Lab)
 ============================================================
 
-.. note:: This is the start of part 2 of the lab.  If you have not previously completed part 1 of the lab with your current deployment, please click on the Module 2 link on the left hand side of the page and complete discovery of big-ip-next-01.example.com as it is required to complete module 5.
 
-  .. image:: ./pictures/side_nav_mod_2.png
-
-
-Deploy an Application with a WAF Policy Using a FAST Template
+Update an Application with a WAF Policy Using a FAST Template
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 This part of the lab covers how to create and deploy an application and protect it with a WAF policy using the FAST template and the WAF violation rating based template, with the focus on ease of use.
@@ -80,17 +76,17 @@ Deploy an HTTPS Load Balancer with a WAF Policy
 
 		waf-app-vs
 
-	Pool:
-
-	.. code-block:: console
-
-		waf-app-pool
-
-	Port:
+	Virtual Port:
 
 	.. code-block:: console
 
 		443
+
+	Pool:
+
+	.. code-block:: console
+
+		waf-app-pool    
 
    .. image:: ./pictures/waf-app-virtual-addition.png
 
@@ -105,8 +101,12 @@ Deploy an HTTPS Load Balancer with a WAF Policy
 8.  For the name of the Client-Side TLS, name is "waf-app.example.com" and under the RSA Certificate, choose the "wildcard.example.com" certificate.  Leave "Use Default Server" under TLS Servers and then push "Save"
 
  .. image:: ./pictures/choose_cert.png
+  :scale: 50%
 
-9. Select the edit button under **Security Policies**. Next, select **Use a WAF Policy**. Click on **+ Create**. Provide a name of "waf-policy", leave all other items as default, click **Save**, and then **Save** again.
+9. Select the edit button under **Security Policies**. Next, select **Use a WAF Policy**. Click on **+ Create**. Provide a name of "waf-policy", leave all other items as default, click **Continue**, **Save**, and then **Save** again.
+
+ .. image:: ./pictures/create-waf-policy.png
+  :scale: 50%
 
 10. Clicking **Review and Deploy** will take you to the **Deploy** page.  Select **Start Adding**, then select "big-ip-next-03.example.com" as the instance for deployment and click **+ Add to List**
 
@@ -118,11 +118,11 @@ Deploy an HTTPS Load Balancer with a WAF Policy
  .. image:: ./pictures/instances-add-to-list.png
   :scale: 50%
 
-11. Add the IP of "10.1.10.203" to the **Virtual Address** box, then click the down arrow and select **+ Pool Members.**
+11. Add the IP of "10.1.10.203" to the **Virtual Address** box, then click the edit button to the right of the pool name.
 
  .. image:: ./pictures/IP_for_VIP.png
 
-12. Click on **+ Add Row** and fill in "m_10.1.20.100" for the Name and "10.1.20.100" for the IP Address. Select **Save**.
+12. Click on **+ Add Row** and fill in "node1" for the Name and "10.1.20.100" for the IP Address. Select **Save**.
 
  .. image:: ./pictures/pool_member_add.png
 
@@ -193,3 +193,4 @@ Next click **Event Logs** and enter the *Support ID* into the filter text box.
 You can then click on the URI to view more details.
 
  .. image:: ./pictures/waf-events-details.png
+  :scale: 75%
