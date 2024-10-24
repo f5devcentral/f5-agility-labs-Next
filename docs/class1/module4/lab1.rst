@@ -395,6 +395,19 @@ Then click on "Deploy"
 
 To verify the applications migrated successfully, go back to the Windows jumphost and re-run the curl commands to ensure the applications are live again, but only for the green applications that have just migrated.  Repeat this fo all the "Draft" applications.
 
+.. warning:: There is a known issue that some of the monitors are not being migrated correctly.  If you are unable to connect to a service make sure your monitor looks like the following    
+    example.
+    
+    .. code-block:: json
+
+      "monitor_http_default_v15_dup": {
+        "class": "Monitor",
+        "interval": 5,
+        "monitorType": "http",
+        "receive": "",
+        "send": "GET /\\r\\n",
+        "timeout": 16
+      },
 
 - FAST_L4
 	.. code-block:: console
