@@ -79,7 +79,7 @@ Lab 2.4.3 - Edit Application
 
     Enter the Virtual Address of "10.1.10.155"
 
-#. Under "Members" for big-ip-next-01 click on the down arrow and select "+Pool Members"
+#. Under "Members" for big-ip-next-04 click on the down arrow and select "+Pool Members"
 #. Click on "+ Add Row"
 
     Use the following values
@@ -99,6 +99,8 @@ Lab 2.4.3 - Edit Application
 
     .. image:: gr-edit-yes-deploy.png
         :scale: 25%
+
+.. warning:: If you encounter the error "FAST-0002: Internal Server Error: Unable to render template Examples/http: Request error: parameter virtuals[0].auto_last_hop should be equal to one of the allowed values" you may need to remove and re-add big-ip-next-04.example.com
 
 Lab 2.4.4 - Open Web Shell
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
