@@ -2,8 +2,8 @@
   Tami Skelton
   Updated: 10/10/2022.
 
-Review: BIG-IP Next Instance Lifecycle with Central Manager
-===========================================================
+Lab 3.3 - Review: BIG-IP Next Instance Lifecycle with Central Manager
+=====================================================================
 
 Overview
 ~~~~~~~~

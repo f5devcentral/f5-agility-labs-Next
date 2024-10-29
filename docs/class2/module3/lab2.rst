@@ -2,7 +2,7 @@
   Tami Skelton
   Updated: 10/10/2022.
 
-How to: Upgrade a BIG-IP Next Standalone Instance on VE from BIG-IP Next Central Manager
+Lab 3.2 - How to: Upgrade a BIG-IP Next Standalone Instance on VE from BIG-IP Next Central Manager
 =====================================================================================================
 
 Overview

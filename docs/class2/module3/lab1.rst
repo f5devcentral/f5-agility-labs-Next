@@ -1,7 +1,7 @@
 ..  Author: Tami Skelton 09/15/2022
 
-How to: Create a BIG-IP Next HA Instance on VE from BIG-IP Next Central Manager
-===============================================================================
+Lab 3.1 - How to: Create a BIG-IP Next HA Instance on VE from BIG-IP Next Central Manager
+=========================================================================================
 
 Overview
 ~~~~~~~~
@@ -25,11 +25,11 @@ Procedure
 
    .. image:: ./lab6_img01_add_second_instance.png
       :scale: 25%
-#. Follow procedure that was used to onboard initial device with instance 2 (10.1.1.8). Upon completion you should have four total instances as shown in below screenshot.
+#. Follow procedure that was used to onboard initial device with instance 2 (10.1.1.8). Upon completion you should have five total instances as shown in below screenshot.
 
    .. image:: ./lab6_next_cm_instances_list_4_instances.png
       :scale: 25%
-#. Click the **Mode** link (the word "Standalone" under the "Mode" column) of the standalone BIG-IP Next instance (big-ip-next-01.f5demo.com) you want to become the active node in the BIG-IP Next HA instance.
+#. Click the **Mode** link (the word "Standalone" under the "Mode" column) of the standalone BIG-IP Next instance (big-ip-next-01.example.com) you want to become the active node in the BIG-IP Next HA instance.
 
    .. image:: ./lab6_next_cm_enable_ha_on_instance1.png
       :scale: 25%
@@ -100,13 +100,13 @@ Procedure
       :scale: 25%
 
 #. The HA Properties panel opens.
-#. Enter the **HA Name** (example: ha1) for this high availability pair of nodes. This name should be unique for each pair managed by the Next Central Manager instance.
+#. Enter the **HA Name** "ha.example.com" for this high availability pair of nodes. This name should be unique for each pair managed by the Next Central Manager instance.
 
    Name:
 
    .. code-block:: console
 
-      ha1
+      ha.example.com
 
 #. Enter the **HA Management (Floating) IP Address** (should be 10.1.1.9) for use when failing over to the standby node.
 
