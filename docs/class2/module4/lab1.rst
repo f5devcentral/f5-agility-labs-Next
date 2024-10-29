@@ -15,7 +15,7 @@ Once connected to the Debug Session we will inspect some basic network configura
     .. image:: ../module2/lab2_img03_navigation_to_infrastructure2.png
 		:scale: 25%
 
-#. Click on the Name of BIG-IP Next instance "big-ip-next-03.f5demo.com"
+#. Click on the Name of BIG-IP Next instance "big-ip-next-03.example.com"
 
 #. Click on the **Debug** tab (you may need to scroll the window down to see Debug)
 
@@ -163,7 +163,7 @@ The debug session runs in an isolated environment that has limited visibility to
 
 #. Run the command ``ps aux`` and you should see a limited number of processes.
 
-    .. code-block:: bash
+    .. code-block:: text
 
       /ps aux
       USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
@@ -193,26 +193,27 @@ The Debug Session has access to viewing information about the data-plane.
 
       .. note:: This is an interpretation of what the data-plane process sees and not all counters may reflect true values like MTU and state.
 
-    .. code-block:: bash
+    .. code-block:: text
 
       /ip a
       ...
-      5: vlan-3000: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UNKNOWN group default qlen 1000
-          link/ether 52:54:00:05:55:cc brd ff:ff:ff:ff:ff:ff
-          inet 10.1.20.10/24 brd 10.1.20.255 scope global vlan-3000
-            valid_lft forever preferred_lft forever
-          inet6 fe80::5054:ff:fe05:55cc/64 scope link
-            valid_lft forever preferred_lft forever
-          inet6 fe80::841d:11ff:fe41:1d5d/64 scope link
-            valid_lft forever preferred_lft forever
-      6: vlan-4000: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UNKNOWN group default qlen 1000
+      7: external-vlan: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UNKNOWN group default qlen 1000
           link/ether 52:54:00:e3:b3:76 brd ff:ff:ff:ff:ff:ff
-          inet 10.1.10.10/24 brd 10.1.10.255 scope global vlan-4000
+          inet 10.1.10.10/24 brd 10.1.10.255 scope global external-vlan
             valid_lft forever preferred_lft forever
           inet6 fe80::5054:ff:fee3:b376/64 scope link
             valid_lft forever preferred_lft forever
-          inet6 fe80::6c2c:25ff:fefe:3dd4/64 scope link
+          inet6 fe80::10d6:64ff:fe01:85b2/64 scope link
             valid_lft forever preferred_lft forever
+      8: internal-vlan: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UNKNOWN group default qlen 1000
+          link/ether 52:54:00:05:55:cc brd ff:ff:ff:ff:ff:ff
+          inet 10.1.20.10/24 brd 10.1.20.255 scope global internal-vlan
+            valid_lft forever preferred_lft forever
+          inet6 fe80::5054:ff:fe05:55cc/64 scope link
+            valid_lft forever preferred_lft forever
+          inet6 fe80::f435:efff:fe1a:7c78/64 scope link
+            valid_lft forever preferred_lft forever
+
 
 4.1.4 - Debug Session Basic Commands
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -223,7 +224,7 @@ In the following exercise we will review how you can use ping, tcpdump, and view
 
     You should see the following output.  The traffic is originating from the 10.1.20.10 self-ip.
 
-    .. code-block:: bash
+    .. code-block:: text
 
       /ping -c 4 10.1.20.4
       PING 10.1.20.4 (10.1.20.4) 56(84) bytes of data.
@@ -237,22 +238,53 @@ In the following exercise we will review how you can use ping, tcpdump, and view
       rtt min/avg/max/mdev = 1.503/2.584/4.758/1.277 ms
       /
 
-#. Run the command ``tcpdump -i vlan-3000 port 3000 -c 4``
+#. Run the command ``tcpdump -i external-vlan port 3000 -c 4``
 
-    .. code-block:: bash
+    .. code-block:: text
 
-      /tcpdump -i vlan-3000 port 3000 -c 4
+      /tcpdump -i internal-vlan port 3000 -c 4
       tcpdump: verbose output suppressed, use -v[v]... for full protocol decode
-      listening on vlan-3000, link-type EN10MB (Ethernet), snapshot length 65535 bytes
-      19:41:01.486963 IP 10.1.20.10.58506 > 10.1.20.101.3000: Flags [S], seq 2794701663, win 23360, options [mss 1460,nop,wscale 0,sackOK,TS val 2589746862 ecr 0], length 0 out slot1/tmm2 lis=mon_ivs_http port=1.2 trunk=
-      19:41:01.488439 IP 10.1.20.101.3000 > 10.1.20.10.58506: Flags [S.], seq 3304685922, ack 2794701664, win 65160, options [mss 1460,sackOK,TS val 501170450 ecr 2589746862,nop,wscale 7], length 0 in slot1/tmm2 lis=mon_ivs_http port=1.2 trunk=
-      19:41:01.488548 IP 10.1.20.10.58506 > 10.1.20.101.3000: Flags [.], ack 1, win 23360, options [nop,nop,TS val 2589746863 ecr 501170450], length 0 out slot1/tmm2 lis=mon_ivs_http port=1.2 trunk=
-      19:41:01.488577 IP 10.1.20.10.58506 > 10.1.20.101.3000: Flags [P.], seq 1:46, ack 1, win 23360, options [nop,nop,TS val 2589746863 ecr 501170450], length 45 out slot1/tmm2 lis=mon_ivs_http port=1.2 trunk=
+      listening on internal-vlan, link-type EN10MB (Ethernet), snapshot length 65535 bytes
+      15:42:47.001476 IP 10.1.20.10.52838 > 10.1.20.101.3000: Flags [S], seq 2494263057, win 23360, options [mss 1460,nop,wscale 0,sackOK,TS val 3639714009 ecr 0], length 0 out slot1/tmm2 lis=7a4dfdac-f956-5f51-9507-c9ef76d3eb81 port=1.2 trunk=
+      15:42:47.002178 IP 10.1.20.101.3000 > 10.1.20.10.52838: Flags [S.], seq 723916070, ack 2494263058, win 65160, options [mss 1460,sackOK,TS val 3741029176 ecr 3639714009,nop,wscale 7], length 0 in slot1/tmm2 lis=7a4dfdac-f956-5f51-9507-c9ef76d3eb81 port=1.2 trunk=
+      15:42:47.002208 IP 10.1.20.10.52838 > 10.1.20.101.3000: Flags [.], ack 1, win 23360, options [nop,nop,TS val 3639714010 ecr 3741029176], length 0 out slot1/tmm2 lis=7a4dfdac-f956-5f51-9507-c9ef76d3eb81 port=1.2 trunk=
+      15:42:47.002224 IP 10.1.20.10.52838 > 10.1.20.101.3000: Flags [P.], seq 1:19, ack 1, win 23360, options [nop,nop,TS val 3639714010 ecr 3741029176], length 18 out slot1/tmm2 lis=7a4dfdac-f956-5f51-9507-c9ef76d3eb81 port=1.2 trunk=
       4 packets captured
       4 packets received by filter
       0 packets dropped by kernel
 
+
     .. tip:: You can also use 0.0 to listen on all interfaces or the interface name (1.2)
+
+#. Run the command ``curl 10.1.20.100:8080/txt``
+
+    .. code-block:: text
+      
+      /curl 10.1.20.100:8080/txt
+      ================================================
+      ___ ___   ___                    _
+      | __| __| |   \ ___ _ __  ___    /_\  _ __ _ __
+      | _||__ \ | |) / -_) '  \/ _ \  / _ \| '_ \ '_ \
+      |_| |___/ |___/\___|_|_|_\___/ /_/ \_\ .__/ .__/
+                                            |_|  |_|
+      ================================================
+
+            Node Name: BIG-IP Next Lab
+          Short Name: ubuntu
+
+            Server IP: 10.1.20.100
+          Server Port: 8080
+
+            Client IP: 10.1.20.10
+          Client Port: 28616
+
+      Client Protocol: HTTP
+      Request Method: GET
+          Request URI: /txt
+
+          host_header: 10.1.20.100
+          user-agent: curl/8.5.0
+
 
 #. Run the command ``tail -4 /logs/f5-fsm-tmm-0.log``
 
@@ -260,7 +292,7 @@ In the following exercise we will review how you can use ping, tcpdump, and view
 
     The format is compatible with OpenTelemetry
 
-    .. code-block::
+    .. code-block:: text
 
       /tail -4 /logs/f5-fsm-tmm-0.log
       {"ts":"2023-09-15 19:40:54.167656 UTC","ct":"f5-fsm-tmm","stream":"0","scid":"unknown","sysid":"d38ea2dc-ac9a-4731-8618-b371d56ffb1d","log":"\u003c133\u003eSep 15 19:40:54 f5-fsm-tmm-569897896c-6wsnh tmm[8]: 013e0002:5: \"v\"=\"1.0\";\"lt\"=\"T\";\"l\"=\"notice\";\"LocalAddress\"=\"169.254.0.1\";\"LocalPort\"=\"2\";\"RemoteAddress\"=\"169.254.0.253\";\"RemotePort\"=\"46927\";\"m\"=\"Tcpdump stopping on 169.254.0.1:2 from 169.254.0.253:46927\""}

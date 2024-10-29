@@ -9,6 +9,8 @@ Overview
 ~~~~~~~~
 Use this procedure to upgrade the software for a BIG-IP Next Standalone instance from BIG-IP Next Central Manager.
 
+.. note:: Currently you need to upgrade your BIG-IP instances prior to upgrading Central Manager.  In this lab environment we are emulating that experience by upgrading the same release version, but normally you would be upgrading between release versions (i.e. 20.2.1 -> 20.3.0)
+
 Procedure
 ~~~~~~~~~
 #. Log in to BIG-IP Next Central Manager as *admin*, click the Workspace icon next to the F5 logo, and click **Infrastructure**.
@@ -41,3 +43,5 @@ After the upgrade process, the BIG-IP Next instance displays with the new versio
 
 .. image:: ./lab6_upgrade_img05_instances_list_upgrading_instance4.png
    :scale: 25%
+
+You can continue to the next lab exercise while the upgrade completes in the background.
