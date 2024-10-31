@@ -52,38 +52,36 @@ First we will create a new version of our iRule
 
 Congratulations! You have created a new version of your iRule.  Note that this iRule has not been deployed yet. Continue the lab to learn about how to deploy your new version.
 
-2.2.2 - Deploying a New iRule Version from iRules
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+2.2.2 - Updating Application iRule version
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-There are two different ways that you can attach an iRule to an application.  In this next exercise we will attach the iRule to the application from the iRule itself.
+We will next update the iRule version from the **My Application Services** menu
 
-#. Start on the **Properties** page of your iRule.  You should already be on this screen from the previous lab exercise.  If not, you can re-open the iRule as needed.
+#. Click on **My Application Services** under **Applications** and click on the **irule-demo-app** application
 
-    .. image:: irules-attach-v2-to-application.png
+    .. image:: irules-demo-app-new.png
         :scale: 50%
 
-    Please ensure the selected version is **v2** and that you can see **Attach Applications** (you may need to scroll the window to see the button).
+#. Click on edit icon in the top right of the screen to modify the Application Service Properties
 
-    Select **Attach Applications**
+   .. image:: irules_demo_app-edit-application-services-properties.png
 
-#. You should only see one available application: "irule_demo_app".  Click on the checkbox next to the name and then select **Attach**
+#. Click on the edit icon next to **iRules**
 
-    .. image:: irules-attach-v2-to-application-attach.png
-        :scale: 50%
+    .. image:: irules-application-service-properties-edit-irule.png
 
-#. On the next screen you should see a warning and a button to **Deploy Changes**. Click on **Deploy Changes**.
+#. Change the version from **v1** to **v2** and click **Save**
 
-    .. image:: irules-v2-deploy-changes.png
-        :scale: 50%
+    .. image:: irules-v1-to-v2.png
+    
 
-#. You will be asked to confirm the change. Click on **Yes, Continue**
+#. Click on **Review & Deploy**
 
-    .. image:: irules-v2-attached-applications.png
-        :scale: 50%
+#. Click on **Deploy Changes**
 
-You will see a list of applications that currently have the v2 iRule attached and also it will display the version that was previouslly attached.
+#. You will be prompted to confirm your changes. Click on **Yes, Deploy**
 
-Congratulations! You have deployed version 2 of your iRule.  Notice that you had the option to select which application(s) you wanted attached to the iRule.
+You have now changed from **v1** to **v2**.  If you encounter problems in later portions of the lab please revert the iRule back to version **v1**
 
 2.2.3 - Viewing the differences between versions of an iRule
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
