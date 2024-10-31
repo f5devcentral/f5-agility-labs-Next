@@ -1,26 +1,25 @@
 <!DOCTYPE html>
 {% extends "basic/layout.html" %}
-{{ super() }}
+  {{ super() }}
 
 
 
 {% set css_files = css_files +
-[ "_static/css/bootstrap.min.css",
-"_static/css/f5.css",
-"_static/css/f5-theme.css",
-"_static/css/CoveoFullSearch.css",
-"_static/css/custom.css",
-"https://use.fontawesome.com/21fb8a09c3.css" ] %}
+  [ "_static/css/bootstrap.min.css",
+    "_static/css/f5.css",
+    "_static/css/f5-theme.css",
+    "_static/css/CoveoFullSearch.css",
+    "_static/css/custom.css",
+    "https://use.fontawesome.com/21fb8a09c3.css" ] %}
 
 {% set script_files = script_files + [
-"https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.js"
-]%}
+  "https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.js"
+  ]%}
 
-{% include "header.html" %}
+{% include "head.html" %}
 
 <!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PPZPQ6" height="0" width="0"
-    style="display:none;visibility:hidden"></iframe></noscript>
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PPZPQ6" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 
 {# Do not create the standard relbars and sidebars #}
@@ -30,29 +29,18 @@
 {%- block sidebar2 %}{% endblock %}
 
 {%- block header %}
-<div id="clouddocs-header"></div>
+  <div id="clouddocs-header"></div>
 {% endblock %}
 
 <div class="wrapper">
 
-  <div id="docs-wrapper" itemscope itemtype="http://schema.org/Article">
+<div id="docs-wrapper" itemscope itemtype="http://schema.org/Article">
 
-    {% block content %}
+{% block content %}
 
-    {%- if sidebars != None %}
+  {%- if sidebars != None %}
     {%- block f5sidebar %}
     <div id="sidebar" class="section-nav">
-      <!-- javascript code to maintain the sidebar scroll positon when loaded -->
-      <script type="text/javascript">
-        $(function () {
-          if (localStorage.tempScrollTop) {
-            $('#sidebar').scrollTop(localStorage.tempScrollTop);
-          }
-        });
-        $('#sidebar').on("scroll", function () {
-          localStorage.setItem("tempScrollTop", $('#sidebar').scrollTop());
-        });
-      </script>
       {% if (theme_version_selector) %}
       <!--  version selector ------------------>
       <div id="version_selector_wrapper">
@@ -60,175 +48,99 @@
       {%- endif %}
       <nav class="nav-sidebartoc">
 
-        {% if theme_show_project %}
         {% if release %}
         <h5>{{ project }} {{ release }} </h5>
         {% else %}
-        <h5>{{ project }} {{ version }} </h5>
-        {% endif %}
-        {% endif %}
-
-        {% if theme_dropdown | length != 0 %}
-        <div class="dropdown">
-          <button class="dropbtn">{{ theme_dropdown["name"] }}<span class="downarrow"> &#8250;</span></button>
-          <div class="dropdown-content">
-            {% for name, link in theme_dropdown["links"].items() %}
-            <a href={{link}}>{{name}}</a>
-            {% endfor %}
-          </div>
-        </div>
+         <h5>{{ project }} {{ version }} </h5>
         {% endif %}
 
-<!---        {%- include "searchbox.html" %} -->
         <hr>
         <span class="nav-sidebartoc">
-          {{ toctree(includehidden=True, collapse=True, maxdepth=theme_sidebar_toc_maxdepth|int) }}
+            {{ toctree(includehidden=True, collapse=True) }}
         </span>
-        {%- include "extralinks.html" %}
+      {%- include "extralinks.html" %}
       </nav>
     </div>
 
-    {%- if not theme_hide_right_menu and not (theme_hide_right_menu_home and pagename == 'index') %}
+
     <div id="right-sidebar">
       <h7 style="font-weight:normal">On this page:</h7>
       <nav class="nav-sidebartoc">
         <span class="nav-sidebartoc">
-          {{ toc }}
-        </span>
+            {{ toc }}
+         </span>
       </nav>
     </div>
-    {%- endif %}
+
 
     {%- endblock %}
-    {%- endif %}
+  {%- endif %}
 
 
 
 
 
-    {% block main %}
+  {% block main %}
+  <div class="main active" id="content" >
+    <article class="docs-container site-article-inner">
 
-    <div class="main active" id="content" {% if theme_hide_right_menu %}hide-right-menu{% endif %}>
-
-      <article class="docs-container site-article-inner">
-
-        {%- if theme_banner_msg %}
-        <div class="clouddocs-banner">
-          <p>{{ theme_banner_msg }}</p>
-        </div>
-        {%- endif %}
-
-        {%- block breadcrumb %}
-        {% include "breadcrumb.html" %}
-        {% endblock %}
+      {%- block breadcrumb %}
+      {% include "breadcrumb.html" %}
+      {% endblock %}
 
 
-        <!--a title="Export PDF" id="export-pdf" class="btn btn btn-link pull-right">View PDF</a-->
-        <button type="button" id="export-pdf" class="btn btn-link right">PDF</button>
+    <!--a title="Export PDF" id="export-pdf" class="btn btn btn-link pull-right">View PDF</a-->
+    <button type="button" id="export-pdf" class="btn btn-link right">PDF</button>
 
 
-        {% if (theme_version_selector) %}
-        {% if (theme_enable_version_warning_banner) %}
-        <div class="sidebar" id="version-warning" style="display: none;">
-          <p class="first sidebar-title">
-            <span class="icon fa fa-info-circle fa-lg"></span> Version notice:
-          </p>
-          <p class="last" id="currentVersion"></p>
-        </div>
-        {%- endif %}
-        {%- endif %}
-
-
-        <div role="main">
-          {%- if last_updated and theme_display_last_updated %}
-          {% trans last_updated=last_updated|e %}Last updated on: {{ last_updated }}.{% endtrans %}
-          {%- endif %}
-          {% block body %}{% endblock %}
-        </div>
-        {% set pagename_list = pagename.split('/') %}
-        {% if (next or prev) and
-        (theme_next_prev_link) and
-        not (theme_next_prev_link_skip_index and 'index' in pagename_list ) %}
-        <div class="row next-prev-btn-row">
-          <div class="col-lg-12">
-            {% if prev %}
-            <a href="{{ prev.link|e }}" title="{{ prev.title|striptags|e }}" accesskey="p"
-              class="btn btn-primary left"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i> Previous</a>
-            {% endif %}
-            {% if next %}
-            <a href="{{ next.link|e }}" title="{{ next.title|striptags|e }}" accesskey="n"
-              class="btn btn-primary right">Next <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></a>
-            {% endif %}
+    {% if (theme_version_selector) %}
+     {% if (theme_enable_version_warning_banner) %}
+         <div class="sidebar" id="version-warning" style="display: none;">
+           <p class="first sidebar-title">
+           <span class="icon fa fa-info-circle fa-lg"></span> Version notice:</p>
+           <p class="last" id="currentVersion"></p>
           </div>
-        </div>
-        {% endif %}
-        {% if theme_medallia_embed_url and not ((pagename+file_suffix) in theme_feedback_exclude_pages) %}
-        <hr>
-        <div id="{{ theme_medallia_id }}" class="medallia_survey">
-        </div>
-        <script type="text/javascript" src="{{ theme_medallia_embed_url }}" async></script>
-        {% endif %}
-        {% if theme_surveymonkey_url and not ((pagename+file_suffix) in theme_feedback_exclude_pages) %}
-        <hr>
-        <div id="survey-sm-div" survey-sm-url="{{ theme_surveymonkey_url }}">
-          <a id="survey-sm" target="_blank" rel="noopener noreferrer">Click here to provide feedback</a>
-        </div>
-        {% endif %}
-        {%- if theme_qualtrics_id and theme_qualtrics_url and not ((pagename+file_suffix) in
-        theme_feedback_exclude_pages)
-        %}
-        <!-- Qualtrics -->
-        <div id="{{theme_qualtrics_id}}">
-          <!--DO NOT REMOVE-CONTENTS PLACED HERE-->
-        </div>
-        <!-- Qualtrics -->
-        {%- endif %}
-      </article>
-    </div>
-    {%- endblock %}
+     {%- endif %}
+    {%- endif %}
 
+
+     <div role="main">
+        {% block body %}{% endblock %}
+     </div>
+    {% if (next or prev) and (theme_next_prev_link) %}
+     <div class="row next-prev-btn-row">
+       <div class="col-lg-12">
+       {% if prev %}
+        <a href="{{ prev.link|e }}" title="{{ prev.title|striptags|e }}" accesskey="p" class="btn btn-primary left"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i> Previous</a>
+       {% endif %}
+       {% if next %}
+          <a href="{{ next.link|e }}" title="{{ next.title|striptags|e }}" accesskey="n" class="btn btn-primary right">Next <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></a>
+       {% endif %}
+     </div>
+     </div>
+    {% endif %}
+
+    </article>
   </div>
+  {%- endblock %}
 
-  {% endblock %}
+</div>
+
+{% endblock %}
 </div>
 
 {%- block footer %}
-<div id="clouddocs-footer"></div>
-<!-- Bootstrap core JavaScript
+  <div id="clouddocs-footer"></div>
+  <!-- Bootstrap core JavaScript
   ================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
+  <!-- Placed at the end of the document so the pages load faster -->
 {% if (theme_version_selector) %}
-<script src="{{ pathto('_static/js/index.js', 1) }}"></script>
+  <script src="{{ pathto('_static/js/index.js', 1) }}"></script>
 {%- endif %}
-{% if (theme_surveymonkey_url or theme_medallia_embed_url) and not ((pagename+file_suffix) in
-theme_feedback_exclude_pages) %}
-<script src="{{ pathto('_static/js/feedback.js', 1) }}"></script>
-{%- endif %}
-<script src="{{ pathto('_static/js/jquery.appear.js', 1) }}"></script>
-<script src="{{ pathto('_static/js/printThis.js', 1) }}"></script>
-<script src="{{ pathto('_assets/js/bootstrap.min.js', 1) }}"></script>
-<script src="{{ pathto('_assets/js/clouddocs.js', 1) }}"></script>
-<script src="{{ pathto('_assets/js/CoveoJsSearch.Lazy.min.js', 1) }}"></script>
-
-{%- if theme_qualtrics_id and theme_qualtrics_url and not ((pagename+file_suffix) in theme_feedback_exclude_pages) %}
-<!--BEGIN QUALTRICS WEBSITE FEEDBACK SNIPPET-->
-<a href="javascript:void(0)" id="qualtrics_popup_survey">Leave Feedback [+]</a>
-
-<script type="text/javascript">
-  (function () {
-    var g = function (e, h, f, g) {
-      this.get = function (a) { for (var a = a + "=", c = document.cookie.split(";"), b = 0, e = c.length; b < e; b++) { for (var d = c[b]; " " == d.charAt(0);)d = d.substring(1, d.length); if (0 == d.indexOf(a)) return d.substring(a.length, d.length) } return null };
-      this.set = function (a, c) { var b = "", b = new Date; b.setTime(b.getTime() + 6048E5); b = "; expires=" + b.toGMTString(); document.cookie = a + "=" + c + b + "; path=/; " };
-      this.check = function () { var a = this.get(f); if (a) a = a.split(":"); else if (100 != e) "v" == h && (e = Math.random() >= e / 100 ? 0 : 100), a = [h, e, 0], this.set(f, a.join(":")); else return !0; var c = a[1]; if (100 == c) return !0; switch (a[0]) { case "v": return !1; case "r": return c = a[2] % Math.floor(100 / c), a[2]++, this.set(f, a.join(":")), !c }return !0 };
-      this.go = function () { if (this.check()) { var a = document.createElement("script"); a.type = "text/javascript"; a.src = g; document.body && document.body.appendChild(a) } };
-      this.start = function () { var t = this; "complete" !== document.readyState ? window.addEventListener ? window.addEventListener("load", function () { t.go() }, !1) : window.attachEvent && window.attachEvent("onload", function () { t.go() }) : t.go() };
-    };
-
-    try { (new g(100, "r", "QSI_S_{{theme_qualtrics_id}}", "{{theme_qualtrics_url}}")).start() } catch (i) { }
-  })();
-</script>
-
-<!--END WEBSITE FEEDBACK SNIPPET-->
-{%- endif %}
+  <script src="{{ pathto('_static/js/jquery.appear.js', 1) }}"></script>
+  <script src="{{ pathto('_static/js/printThis.js', 1) }}"></script>
+  <script src="{{ pathto('_static/js/bootstrap.min.js', 1) }}"></script>
+  <script src="{{ pathto('_static/js/clouddocs.js', 1) }}"></script>
+  <script src="{{ pathto('_static/js/CoveoJsSearch.Lazy.min.js', 1) }}"></script>
 
 {%- endblock %}
