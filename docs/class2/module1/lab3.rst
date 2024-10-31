@@ -1,36 +1,42 @@
-Lab 1.3 - Accessing Central Manager
-===================================
+Lab 1.3 - Lab Progress
+======================
 
-During this lab we will primarily be using BIG-IP Next Central Manager
+During this lab you can track your progress, along with your peers, via the "Lab Progress"
+application.
 
-.. warning:: It can take 10-15 minutes for Central Manager to completely start after you start the lab.  If you see a connection error, please try waiting.
+#. Open the "Lab Progress Application"
 
+    It is accessible under the "Ubuntu Jump Host" device Access methods
 
-Accessing Central Manager from Access Method
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-We recommend that you use Google Chrome within this lab environment.
-
-#. Find the "BIG-IP Next Central Manager" component under your "Deployments" and click on "Access" followed by "GUI"
-
-    .. image:: central-manager-access-method.png
-      :scale: 50%
-
-#. Log in to Central Manager
-
-    Please use the following credentials:
-
-        Username:
-            .. code-block:: console
-
-                admin
-
-        Password:
-            .. code-block:: console
-
-                Welcome123!
-
-    .. image:: central-manager-login-screen.png
+    .. image:: access-method-lab-progress.png
         :scale: 50%
 
-    .. image:: central-manager-home-screen.png
+    You will see your progress highlighted in gray.
+
+    .. image:: lab-progress-list.png
+        :scale: 75%
+
+#. Change your userid to your name
+
+
+    You optionally change the unique userid to your name by clicking on "Profile"
+
+    .. image:: lab-progress-profile.png
+        :scale: 40%
+
+#. View your detailed progress
+
+
+    To see your detailed progress click on "Status" or "View" from the Home page next to your userid
+
+    .. image:: lab-progress-details.png
+        :scale: 40%
+
+    Your progress is updated every 10 minutes.  If you would like to refresh your status faster, select "Check Status"
+
+#. Completing the lab
+
+    Once you complete the lab, you will have our utmost respect and admiration!
+
+    .. image:: lab-progress-completed.png
+        :scale: 75%

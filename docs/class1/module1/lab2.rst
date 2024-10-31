@@ -1,48 +1,36 @@
-Lab 1.2 - Accessing the Lab Environment
-=======================================
+Lab 1.2 - Accessing Central Manager
+===================================
 
-This is a multi-step process that will involve:
+During this lab we will primarily be using BIG-IP Next Central Manager
 
-1. Finding email invite to lab
-2. Creating F5 account (If you don't have one already)
-3. Setting up MFA for your F5 account (If you haven't already)
-4. Signing into the lab environment
+.. warning:: It can take 10-15 minutes for Central Manager to completely start after you start the lab.  If you see a connection error, please try waiting.
 
-You should have received an email invitation to join the lab
 
-.. image:: email-invite.png
-    :scale: 25%
+Accessing Central Manager from Access Method
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Click on the link below "You can login to the UDF here"
+We recommend that you use Google Chrome within this lab environment.
 
-If you do not already have an F5 account you, will be prompted to create one.
+#. Find the "BIG-IP Next Central Manager" component under your "Deployments" and click on "Access" followed by "GUI"
 
-.. image:: create-account.png
-    :scale: 25%
+    .. image:: central-manager-access-method.png
+      :scale: 50%
 
-You should receive a new email to activate your account.
+#. Log in to Central Manager
 
-.. image:: activate-account.png
-    :scale: 25%
+    Please use the following credentials:
 
-After you click on 'Activate Account' you should see the following screen.
+        Username:
+            .. code-block:: console
 
-.. image:: account-activated.png
-    :scale: 25%
+                admin
 
-You should next go to https://udf.f5.com (Yes, I know this is a lot of steps, sorry!)
+        Password:
+            .. code-block:: console
 
-.. image:: udf-login.png
-    :scale: 25%
+                Welcome1234567!
 
-Click on "Invited Users"
+    .. image:: central-manager-login-screen.png
+        :scale: 50%
 
-You will now be prompted to set up MFA access to the lab environment (required)
-
-.. image:: mfa-setup.png
-    :scale: 25%
-
-After you complete your setup by selecting "Finish", you will be able to launch this course.
-
-.. image:: launch-course.png
-    :scale: 25%
+    .. image:: central-manager-home-screen.png
