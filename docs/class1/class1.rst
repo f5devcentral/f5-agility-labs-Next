@@ -1,7 +1,7 @@
-Class 1: Introduction to BIG-IP Next
-====================================
+Introduction to BIG-IP Next Application Management
+===================================================
 
-Introduction to BIG-IP Next
+Introduction to BIG-IP Next Application Management
 
 .. toctree::
    :maxdepth: 1
@@ -10,7 +10,4 @@ Introduction to BIG-IP Next
    module1/module*
    module2/module*
    module3/module*
-   #module4/module*
-   module5/module*
-   module6/module*
-   module8/module*
+   module4/module*   
