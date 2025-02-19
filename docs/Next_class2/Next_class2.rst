@@ -1,7 +1,7 @@
-Introduction to BIG-IP Next for Kubernetes
+Introduction to BIG-IP Next Application Management
 ===================================================
 
-Introduction to BIG-IP Next for Kubernetes
+Introduction to BIG-IP Next Application Management
 
 .. toctree::
    :maxdepth: 1
