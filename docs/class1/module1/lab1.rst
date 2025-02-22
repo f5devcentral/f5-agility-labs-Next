@@ -203,9 +203,9 @@ The output should look like this:
 
 In addition you can see all the Kubernetes pods deployed. Notice you have one Calico controller for our cluster and a Calico node agent in each node ready to create network interfaces for pods and assign pod IP addresses.
 
-You will also notice that Multus has a deployed on each one of a nodes. When a pod gets deployed on every node, this is called a `DaemonSet` deployment in Kubernetes.
+You will also notice that Multus has a deployed on each one of a nodes. When a pod gets deployed on every node, this is called a **DaemonSet** deployment in Kubernetes.
 
-#### Run: `kubectl get pods -A`
+Let's list all the pods, regardless of namespace:
 
 .. code-block:: bash
    :caption: Get Kubernetes pods
@@ -296,7 +296,7 @@ We've created lab networks for the client (`infra_client-net`) and MACVLAN netwo
 
 Each of these network gets attached to all of our KinD Kubernetes nodes. This is our analog to adding network interfaces to physical servers. 
 
-#### Run: `docker network ls`
+Let's list the docker networks again:
 
 .. code-block:: bash
    :caption: List Docker networks
@@ -368,6 +368,7 @@ You'll now run the script to create the Multus network attachments:
 
    ./create-bigip-network-attachements.sh
 
+The output should look like this:
 
 .. code-block:: bash
    :caption: Multus Output
@@ -428,6 +429,7 @@ We will orchestrate the creation of these containers with *docker-compose*.
 
    ./create-router-and-client-containers.sh
 
+FRR output:
 
 .. code-block:: bash
    :caption: FRR Output
