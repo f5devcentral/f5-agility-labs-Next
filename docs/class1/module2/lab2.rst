@@ -151,7 +151,9 @@ Enable access to FAR
 
 It's time to download the BIG-IP Next for Kubernetes product.
 
-Cloud native apps are downloaded from various software registries. The most familiar one was introduced when docker introduced container orchestration to world, [dockerhub](https://hub.docker.com). Kubernetes distribution vendors maintain registries, like [Red Hat Quay](https://quay.io/). The hyperscale cloud providers maintain their registries. 
+Cloud native apps are downloaded from various software registries. The most familiar one was introduced when docker introduced container orchestration 
+to the world, `dockerhub <https://hub.docker.com>`_. Kubernetes distribution vendors maintain registries, like `Red Hat Quay <https://quay.io/>`_. 
+The hyperscale cloud providers maintain their registries. 
 
 Private corporate or product registries use mTLS based authentication and authorization to control access to software resources. 
 
