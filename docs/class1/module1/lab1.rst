@@ -55,7 +55,9 @@ Explore what containers are deployed on you lab virtual machine:
 
 
 There should not be any. 
-### Note:  What is Kind?
+
+.. note::  What is Kind?
+
 Kind stands for Kubernetes in Docker. It is a tool for running local Kubernetes clusters using Docker containers as "nodes". It is particularly useful for development, testing, and continuous integration environments.
 
 To find out more about Kind and Kubernetes control plane tools we will use in the lab, like kubectl and helm, please visit:
@@ -72,11 +74,13 @@ To find out more about Kind and Kubernetes control plane tools we will use in th
 
 `Find Out More about Helm - Kubernetes Package Manage r<https://helm.sh/>`_
 
-#### Run: `create-cluster.sh`
+You will now create your Kubernetes cluster by running:
 
-```
-./create-cluster.sh
-```
+.. code-block:: bash
+   :caption: Create Kubernetes Cluster
+
+    ./create-cluster.sh
+
 
 Here is what this script does:
 
@@ -94,12 +98,12 @@ You should see 4 containers.
 
 At this point we access our Kubernetes API and ask it what nodes have been added to the cluster and their status:
 
-#### Run: `kubectl get nodes`
-
 .. code-block:: bash
    :caption: Get Kubernetes nodes
 
     kubectl get nodes
+
+The outpus should look like this:
 
 .. code-block:: bash
    :caption: Kubernetes nodes
@@ -111,7 +115,8 @@ At this point we access our Kubernetes API and ask it what nodes have been added
     bnk-worker3         NotReady   <none>          9m35s   v1.32.0
 
 
-### Class Discuss: Kubernetes Networking Model
+Class Discuss: Kubernetes Networking Model
+------------------------------------------
 
 `Kubernetes networking <https://kubernetes.io/docs/concepts/cluster-administration/networking/>`_ is designed to facilitate highly agile deployment of containers inside 'pods'. Each pod gets its own IP address and all pods in the same cluster can communicate with each other directly. 
 
@@ -126,6 +131,7 @@ Kubernetes defines 'services' to assign static IP which load balance to `Endpoin
 `Ingress <https://kubernetes.io/docs/concepts/services-networking/ingress/>`_: an external reachable service which provide L7 HTTP based load balancing which directs traffic to internal cluster services
 
 `Gateway <https://kubernetes.io/docs/concepts/services-networking/gateway/>`_: NEW! CNCF service where NetOps infrastructure admins defined listeners and DevOps application admins defined routes. These can be L4 `TCPRoute`, `UDPRoute`, L6 `TLSRoute`, L7 `HTTPRoute` which handles HTTP/1.0 and HTTP/2.0 gRPC traffic. Gateway is extensible for custom routes support advanced application delivery needs.
+
 ## Todo: Deploy network plugins
 
 So how do pods have their network interfaces created and IP addresses assigned? This is the role of a CNI (container network interface) plugins. We need to 'install a CNI' which will watch when Kubernetes schedules a pod and then create the new pod's network connection to the host and give it an IP address which works in the 'pod network' for the cluster.
@@ -148,44 +154,52 @@ We will also deploy an additional CNI plugin called Multus.  Multus controls the
 
 `Find out more about Multus CNI Plugin <https://github.com/k8snetworkplumbingwg/multus-cni/blob/master/README.md>`_
 
-#### Run: `deploy-cni.sh`
+You will now deploy the Calico and Multus CNI plugins by running:
 
-```
-./deploy-cni.sh
-```
+.. code-block:: bash
+   :caption: Deploy CNI and Multus
 
-```
-Create CNI and Multus ...
-poddisruptionbudget.policy/calico-kube-controllers created
-serviceaccount/calico-kube-controllers created
-serviceaccount/calico-node created
-configmap/calico-config created
-...
-clusterrole.rbac.authorization.k8s.io/multus created
-clusterrolebinding.rbac.authorization.k8s.io/multus created
-serviceaccount/multus created
-configmap/multus-cni-config created
-daemonset.apps/kube-multus-ds created
-configmap/cni-install-sh created
-daemonset.apps/install-cni-plugins created
+    ./deploy-cni.sh
 
-Waiting for Kubernetes control plane to get ready ...
-```
+.. code-block:: bash
+   :caption: CNI Deployment
 
-Now we gotten this far, our Kubernetes nodes should be ready
-#### Run: `kubectl get nodes`
+    Create CNI and Multus ...
+    poddisruptionbudget.policy/calico-kube-controllers created
+    serviceaccount/calico-kube-controllers created
+    serviceaccount/calico-node created
+    configmap/calico-config created
+    ...
+    clusterrole.rbac.authorization.k8s.io/multus created
+    clusterrolebinding.rbac.authorization.k8s.io/multus created
+    serviceaccount/multus created
+    configmap/multus-cni-config created
+    daemonset.apps/kube-multus-ds created
+    configmap/cni-install-sh created
+    daemonset.apps/install-cni-plugins created
 
-```
-kubectl get nodes
-```
+    Waiting for Kubernetes control plane to get ready ...
 
-```
-NAME                STATUS   ROLES           AGE   VERSION
-bnk-control-plane   Ready    control-plane   54m   v1.32.0
-bnk-worker          Ready    <none>          54m   v1.32.0
-bnk-worker2         Ready    <none>          54m   v1.32.0
-bnk-worker3         Ready    <none>          54m   v1.32.0
-```
+
+Now we gotten this far, our Kubernetes nodes should be ready, let's check the cluster nodes again:
+
+
+.. code-block:: bash
+   :caption: Get Kubernetes nodes
+
+    kubectl get nodes
+
+The output should look like this:
+
+.. code-block:: bash
+    :caption: Kubernetes nodes
+
+     NAME                STATUS   ROLES           AGE   VERSION
+     bnk-control-plane   Ready    control-plane   54m   v1.32.0
+     bnk-worker          Ready    <none>          54m   v1.32.0
+     bnk-worker2         Ready    <none>          54m   v1.32.0
+     bnk-worker3         Ready    <none>          54m   v1.32.0
+
 
 In addition you can see all the Kubernetes pods deployed. Notice you have one Calico controller for our cluster and a Calico node agent in each node ready to create network interfaces for pods and assign pod IP addresses.
 
@@ -193,57 +207,66 @@ You will also notice that Multus has a deployed on each one of a nodes. When a p
 
 #### Run: `kubectl get pods -A`
 
-```
-kubectl get pods -A
-```
+.. code-block:: bash
+   :caption: Get Kubernetes pods
 
-```
-NAMESPACE   NAME                                   READY  STATUS   RESTARTS   AGE
-kube-system calico-kube-controllers-8599ff4595-4z656 1/1  Running   0          108s
-kube-system calico-node-dh7br                        1/1  Running   0          108s
-kube-system calico-node-f2tvc                        1/1  Running   0          108s
-kube-system calico-node-sqc7z                        1/1  Running   0          108s
-kube-system calico-node-vdx8d                        1/1  Running   0          108s
-kube-system coredns-668d6bf9bc-4xsb6                 1/1  Running   0          54m
-kube-system coredns-668d6bf9bc-tj78s                 1/1  Running   0          54m
-kube-system etcd-bnk-control-plane                   1/1  Running   0          54m
-kube-system install-cni-plugins-b4zkx                1/1  Running   0          108s
-kube-system install-cni-plugins-hxzdh                1/1  Running   0          108s
-kube-system install-cni-plugins-jgwgm                1/1  Running   0          108s
-kube-system install-cni-plugins-xsbn7                1/1  Running   0          108s
-kube-system kube-apiserver-bnk-control-plane         1/1  Running   0          54m
-kube-system kube-controller-manager-bnk-control-plane 1/1 Running   0          54m
-kube-system kube-multus-ds-4bvff                     1/1  Running   0          108s
-kube-system kube-multus-ds-hhvqm                     1/1  Running   0          108s
-kube-system kube-multus-ds-hkxq7                     1/1  Running   0          108s
-kube-system kube-multus-ds-qj82g                     1/1  Running   0          108s
-kube-system kube-proxy-4tl67                         1/1  Running   0          54m
-kube-system kube-proxy-7vtf9                         1/1  Running   0          54m
-kube-system kube-proxy-8l7n4                         1/1  Running   0          54m
-kube-system kube-proxy-zdpb8                         1/1  Running   0          54m
-kube-system kube-scheduler-bnk-control-plane         1/1  Running   0          54m
-local-path-storage   local-path-provisioner-58cc7856b6-ctsl2 1/1 Running 0     54m
-```
+    kubectl get pods -A
+
+
+.. code-block:: bash
+   :caption: Pods
+
+   NAMESPACE   NAME                                   READY  STATUS   RESTARTS   AGE
+   kube-system calico-kube-controllers-8599ff4595-4z656 1/1  Running   0          108s
+   kube-system calico-node-dh7br                        1/1  Running   0          108s
+   kube-system calico-node-f2tvc                        1/1  Running   0          108s
+   kube-system calico-node-sqc7z                        1/1  Running   0          108s
+   kube-system calico-node-vdx8d                        1/1  Running   0          108s
+   kube-system coredns-668d6bf9bc-4xsb6                 1/1  Running   0          54m
+   kube-system coredns-668d6bf9bc-tj78s                 1/1  Running   0          54m
+   kube-system etcd-bnk-control-plane                   1/1  Running   0          54m
+   kube-system install-cni-plugins-b4zkx                1/1  Running   0          108s
+   kube-system install-cni-plugins-hxzdh                1/1  Running   0          108s
+   kube-system install-cni-plugins-jgwgm                1/1  Running   0          108s
+   kube-system install-cni-plugins-xsbn7                1/1  Running   0          108s
+   kube-system kube-apiserver-bnk-control-plane         1/1  Running   0          54m
+   kube-system kube-controller-manager-bnk-control-plane 1/1 Running   0          54m
+   kube-system kube-multus-ds-4bvff                     1/1  Running   0          108s
+   kube-system kube-multus-ds-hhvqm                     1/1  Running   0          108s
+   kube-system kube-multus-ds-hkxq7                     1/1  Running   0          108s
+   kube-system kube-multus-ds-qj82g                     1/1  Running   0          108s
+   kube-system kube-proxy-4tl67                         1/1  Running   0          54m
+   kube-system kube-proxy-7vtf9                         1/1  Running   0          54m
+   kube-system kube-proxy-8l7n4                         1/1  Running   0          54m
+   kube-system kube-proxy-zdpb8                         1/1  Running   0          54m
+   kube-system kube-scheduler-bnk-control-plane         1/1  Running   0          54m
+   local-path-storage   local-path-provisioner-58cc7856b6-ctsl2 1/1 Running 0     54m
+
 
 Notice that KinD added its own network to connect the Kubernetes node containers which has its own bridge on the virtual machine host.
 
 #### Run: `docker network ls`
 
-```
-docker network ls
-```
+.. code-block:: bash
+   :caption: List Docker networks
 
-```
-NETWORK ID     NAME      DRIVER    SCOPE
-938d048cb58f   bridge    bridge    local
-a7e18706eb7a   host      host      local
-01c75852c676   kind      bridge    local
-3ac8b0046fd9   none      null      local
-```
+    docker network ls
+
+The output should look like this:
+
+.. code-block:: bash
+   :caption: Docker networks
+
+   NETWORK ID     NAME      DRIVER    SCOPE
+   938d048cb58f   bridge    bridge    local
+   a7e18706eb7a   host      host      local
+   01c75852c676   kind      bridge    local
+   3ac8b0046fd9   none      null      local
+
 
 Here is where we are now:
 
-![[KinD Deployed Lab Environment.png]]
+.. image:: images/KinDDeployedLabEnvironment.png
 
 ## Todo: Create the lab networks in our virtual machine
 
