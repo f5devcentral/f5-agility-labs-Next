@@ -127,20 +127,23 @@ Kubernetes defines 'services' to assign static IP which load balance to `Endpoin
 
 So how do pods have their network interfaces created and IP addresses assigned? This is the role of a CNI (container network interface) plugins. We need to 'install a CNI' which will watch when Kubernetes schedules a pod and then create the new pod's network connection to the host and give it an IP address which works in the 'pod network' for the cluster.
 
-![[CNI.png]]
-[Find out more about CNI Plugins](https://www.cni.dev/)
+.. image:: images/CNI.png
+
+`Find out more about CNI Plugins <https://www.cni.dev/>`_
 
 Our nodes will not become ready for use because, so far, because they do not have a network provider CNI installed to meet their networking requirements. Let's deploy Calico CNI, a popular network plugin which provides network interfaces and IP addresses to containers as Kubernetes schedules them.
 
-![[Calico.png]]
-[Find out more about Calico CNI Plugin](https://docs.tigera.io/calico/latest/about)
+.. image:: images/Calico.png
+
+`Find out more about Calico CNI Plugin <https://docs.tigera.io/calico/latest/about>`_
 
 By default, a pod will get only one network interface, `eth0`, and one pod network IP address. What do we do if we ant to add additional network interfaces to our pods for things like BIG-IP proxies to handle traffic?
 
 We will also deploy an additional CNI plugin called Multus.  Multus controls the creation of additional network interfaces to Kubernetes pods and how they attachment to host networking. Multus abstracts what kind and the name of the host network to attach to through a `NetworkAttachementDefinition` resource declaration. 
 
-![[Multus.png]]
-[Find out more about Multus CNI Plugin](https://github.com/k8snetworkplumbingwg/multus-cni/blob/master/README.md)
+.. image:: images/Multus.png
+
+`Find out more about Multus CNI Plugin <https://github.com/k8snetworkplumbingwg/multus-cni/blob/master/README.md>`_
 #### Run: `deploy-cni.sh`
 
 ```
