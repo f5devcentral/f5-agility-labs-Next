@@ -30,7 +30,7 @@ You will now run the below command to install cert-manager:
 .. code-block:: bash
    :caption: Cert Manager Output
 
-   Install cert-manager and clustr issuer to manage pod-to-pod certs ...
+   Install cert-manager and cluster issuer to manage pod-to-pod certs ...
    "jetstack" has been added to your repositories
    Release "cert-manager" does not exist. Installing it now.
    NAME: cert-manager
@@ -106,7 +106,7 @@ All of these components are installed with the below script command:
    customresourcedefinition.apiextensions.k8s.io/tlsroutes.gateway.networking.k8s.io created
    customresourcedefinition.apiextensions.k8s.io/udproutes.gateway.networking.k8s.io created
    
-   Install Promethues and Grafana ...
+   Install Prometheus and Grafana ...
    certificate.cert-manager.io/prometheus created
    deployment.apps/prometheus created
    configmap/prometheus-config created
