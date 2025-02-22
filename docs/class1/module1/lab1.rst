@@ -2,13 +2,13 @@ BIG-IP Next for Kubernetes is modular and can be deployed at various scales in .
 
 Our lab network diagram will look like this when we are done:
 
-.. image:: images/Completed Lab Environment.png
+.. image:: images/CompletedLabEnvironment.png
 
 
 
 We will access the lab through web console user interfaces supplied per student. The link to your web console will be provided in the lab. 
 
-.. image:: USD Web Console UI.png
+.. image:: USDWebConsoleUI.png
 
 ## Todo: Connect to your lab instance web console
 
