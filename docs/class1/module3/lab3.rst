@@ -144,6 +144,7 @@ How did it get there? Let's see what the router container infra-frr-1 between th
 
    docker exec -ti infra-frr-1 vtysh -c "show bgp summary"
 
+BGP Summary Output:
 
 .. code-block:: bash 
    :caption: Show BGP Summary
@@ -213,7 +214,7 @@ Your output should look like this:
    C>* 198.51.100.0/24 is directly connected, eth0, 03:26:14
 
 
-### Class Discuss: ECMP based ingress routing with BIG-IP Next to pod IP Endpoints with routing to node IPs
+**Class Discuss:** ECMP based ingress routing with BIG-IP Next to pod IP Endpoints with routing to node IPs
 
 Our virtual server address, set by our NetOps user, can be reached at all BIG-IP Next instances peered to the router (we only have two).  
 What happens then?
@@ -228,6 +229,7 @@ Let's run the below command to see the Red service allocated IP address:
 
    kubectl get service -n red
 
+Red Service Output:
 
 .. code-block:: bash
    :caption: Red Service Output
@@ -328,6 +330,7 @@ We'll run a **curl** web client request through Kubernetes with the below comman
 
    kubectl exec -ti -n red deploy/nginx-deployment -- curl http://198.51.100.100/txt
 
+Curl output:
 
 .. code-block:: bash
    :caption: Curl Output
@@ -371,6 +374,7 @@ file we can deploy with one command. Please run the below command:
 
    kubectl apply -f ./resources/nginx-blue-deployment.yaml
 
+Your output should look like this:
 
 .. code-block:: bash
    :caption: Blue Deployment Output
@@ -388,6 +392,7 @@ Let's see what the SNAT pool for blue looks like by running:
 
    kubectl describe f5-spk-snatpool blue-snat
 
+Describe Output:
 
 .. code-block:: bash
    :caption: Describe blue-snat Output
@@ -439,6 +444,7 @@ So we should see the blue tenant make requests from 192.168.2.110 or 192.168.2.1
 
    kubectl exec -ti -n blue deploy/nginx-deployment -- curl http://198.51.100.100/txt
 
+Curl output:
 
 .. code-block:: bash
    :caption: Curl Output

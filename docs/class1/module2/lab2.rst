@@ -26,6 +26,7 @@ You will now run the below command to install cert-manager:
 
    ./create-cert-manager.sh
 
+Your output will look like this:
 
 .. code-block:: bash
    :caption: Cert Manager Output
@@ -90,6 +91,7 @@ All of these components are installed with the below script command:
 
    ./deploy-gatewayapi-telemetry.sh
 
+Your output will look like this:
 
 .. code-block:: bash
    :caption: Gateway API and Telemetry Output
@@ -135,6 +137,7 @@ Now execute the below script command to create a namespace for F5 utilities:
 
    ./create-f5util-namespace.sh
 
+Completed output will look like this:
 
 .. code-block:: bash
    :caption: F5 Utilities Namespace Output
@@ -161,13 +164,14 @@ We have written up how to get FAR credential for all BIG-IP Next products. The p
 `Read How to Download FAR credentials <https://clouddocs.f5.com/bigip-next-for-kubernetes/2.0.0-LA/far.html#download-the-service-account-key>`_
 
 Because we can't be sure that everyone has access to my.f5.com already, we have copied the FAR authentication credentials to the 
-lab virtual machine already and can be viewed with the below command:
+lab virtual machine already and you can verify by running the list command:
 
 .. code-block:: bash
    :caption: View FAR Credentials
 
    ls far/f5-far-auth-key.tgz
 
+Verify output:
 
 .. code-block:: bash
    :caption: View FAR Credentials Output
@@ -186,6 +190,7 @@ We will now add the F5 Artifacts Registry and test our login with the below scri
 
    ./add-far-registry.sh
 
+Your output will look like this:
 
 .. code-block:: bash
    :caption: Add FAR Registry and test Output
@@ -214,6 +219,7 @@ We need to create these credentials before we install everything for BIG-IP Next
 
    ./install-cwc.sh
 
+Your output should look like this:
 
 .. code-block:: bash
    :caption: Install Cluster Wide Controller Output
@@ -258,6 +264,7 @@ components. That's why operators are cool. They are orchestrators which run cons
 
    ./install-bnk.sh
 
+Installation output:
 
 .. code-block:: bash
    :caption: Install BIG-IP Next for Kubernetes Output
@@ -287,6 +294,7 @@ by checking the pods in the default namespace.
 
    kubectl get pod | grep orchestrator
 
+Pod output:
 
 .. code-block:: bash
    :caption: Check Orchestrator Pod Output
@@ -319,6 +327,7 @@ You will now create the tenant networks for the blue and red tenants by running:
 
    ./create-tenants.sh
 
+Viewed output:
 
 .. code-block:: bash
    :caption: Tenant Networks Output
