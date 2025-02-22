@@ -80,13 +80,12 @@ Here is what this script does:
 1) It downloads the Kind node container images
 2) Runs the 4 containers to and builds them into a Kubernetes cluster
 
-Look at what containers are now running on your virtual machine:
+Look at what containers are now running on your virtual machine by running:
 
-#### Run: `docker ps`
+.. code-block:: bash
+   :caption: List Docker containers
 
-```
-docker ps
-```
+    docker ps
 
 You should see 4 containers. 
 
@@ -94,17 +93,20 @@ At this point we access our Kubernetes API and ask it what nodes have been added
 
 #### Run: `kubectl get nodes`
 
-```
-kubectl get nodes
-```
+.. code-block:: bash
+   :caption: Get Kubernetes nodes
 
-```
-NAME                STATUS     ROLES           AGE     VERSION
-bnk-control-plane   NotReady   control-plane   9m46s   v1.32.0
-bnk-worker          NotReady   <none>          9m35s   v1.32.0
-bnk-worker2         NotReady   <none>          9m35s   v1.32.0
-bnk-worker3         NotReady   <none>          9m35s   v1.32.0
-```
+    kubectl get nodes
+
+.. code-block:: bash
+   :caption: Kubernetes nodes
+
+    NAME                STATUS     ROLES           AGE     VERSION
+    bnk-control-plane   NotReady   control-plane   9m46s   v1.32.0
+    bnk-worker          NotReady   <none>          9m35s   v1.32.0
+    bnk-worker2         NotReady   <none>          9m35s   v1.32.0
+    bnk-worker3         NotReady   <none>          9m35s   v1.32.0
+
 
 ### Class Discuss: Kubernetes Networking Model
 
@@ -112,15 +114,15 @@ bnk-worker3         NotReady   <none>          9m35s   v1.32.0
 
 Kubernetes defines 'services' to assign static IP which load balance to `Endpoints` which typically represent internal pod IP addresses and ports. Common 'service' types include:
 
-[`ClusterIP`](https://kubernetes.io/docs/concepts/services-networking/service/#type-clusterip): service IP and port reachable throughout a cluster
+`ClusterIP <https://kubernetes.io/docs/concepts/services-networking/service/#type-clusterip>`_: service IP and port reachable throughout a cluster
 
-[`NodePort`](https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport): service available from the data center on a Kubernetes node IP address and a port
+`NodePort <https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport>`_: service available from the data center on a Kubernetes node IP address and a port
 
-[`LoadBalancer`](https://kubernetes.io/docs/concepts/services-networking/service/#loadbalancer): an external reachable service which provides L4 load balancing which directs traffic to internal cluster services
+`LoadBalancer <https://kubernetes.io/docs/concepts/services-networking/service/#loadbalancer>`_: an external reachable service which provides L4 load balancing which directs traffic to internal cluster services
 
-[`Ingress`](https://kubernetes.io/docs/concepts/services-networking/ingress/): an external reachable service which provide L7 HTTP based load balancing which directs traffic to internal cluster services
+`Ingress <https://kubernetes.io/docs/concepts/services-networking/ingress/>`_: an external reachable service which provide L7 HTTP based load balancing which directs traffic to internal cluster services
 
-[`Gateway`](https://kubernetes.io/docs/concepts/services-networking/gateway/): NEW! CNCF service where NetOps infrastructure admins defined listeners and DevOps application admins defined routes. These can be L4 `TCPRoute`, `UDPRoute`, L6 `TLSRoute`, L7 `HTTPRoute` which handles HTTP/1.0 and HTTP/2.0 gRPC traffic. Gateway is extensible for custom routes support advanced application delivery needs.
+`Gateway <https://kubernetes.io/docs/concepts/services-networking/gateway/>`_: NEW! CNCF service where NetOps infrastructure admins defined listeners and DevOps application admins defined routes. These can be L4 `TCPRoute`, `UDPRoute`, L6 `TLSRoute`, L7 `HTTPRoute` which handles HTTP/1.0 and HTTP/2.0 gRPC traffic. Gateway is extensible for custom routes support advanced application delivery needs.
 ## Todo: Deploy network plugins
 
 So how do pods have their network interfaces created and IP addresses assigned? This is the role of a CNI (container network interface) plugins. We need to 'install a CNI' which will watch when Kubernetes schedules a pod and then create the new pod's network connection to the host and give it an IP address which works in the 'pod network' for the cluster.
