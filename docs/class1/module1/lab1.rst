@@ -43,13 +43,16 @@ We won't use these networks, but rather build our own lab networks.
 
 Our initial lab network diagram is BLANK! Nothing.. Zilch.. Nada..  We better fix that.
 
-## Todo: Deploy a Kubernetes cluster
+Deploy a Kubernetes cluster
+---------------------------
 
 Explore what containers are deployed on you lab virtual machine:
 
-```
-docker ps
-```
+.. code-block:: bash
+   :caption: List Docker containers
+
+   docker ps
+
 
 There should not be any. 
 ### Note:  What is Kind?
@@ -144,6 +147,7 @@ We will also deploy an additional CNI plugin called Multus.  Multus controls the
 .. image:: images/Multus.png
 
 `Find out more about Multus CNI Plugin <https://github.com/k8snetworkplumbingwg/multus-cni/blob/master/README.md>`_
+
 #### Run: `deploy-cni.sh`
 
 ```
