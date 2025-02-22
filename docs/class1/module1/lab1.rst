@@ -161,6 +161,8 @@ You will now deploy the Calico and Multus CNI plugins by running:
 
     ./deploy-cni.sh
 
+The output should look like this:
+
 .. code-block:: bash
    :caption: CNI Deployment
 
@@ -212,6 +214,7 @@ Let's list all the pods, regardless of namespace:
 
     kubectl get pods -A
 
+Pods output:
 
 .. code-block:: bash
    :caption: Pods
@@ -279,6 +282,7 @@ So far docker has just one network used by our Kubernetes cluster, the network b
 
    ./create-lab-networks.sh
 
+Script output:
 
 .. code-block:: bash
    :caption: Networks Output
@@ -302,6 +306,8 @@ Let's list the docker networks again:
    :caption: List Docker networks
 
    docker network ls
+
+Docker network list output:
 
 .. code-block:: bash
    :caption: List Docker networks
@@ -409,7 +415,8 @@ BIG-IP Next for Kubernetes can be connected in multiple ways.
    
    .. image:: images/BIG-IPonLinuxNetdev.png
 
-## Todo: Create a router and a client container in our virtual machine
+Create a router and a client container in our virtual machine
+------------------------------------------------------------
 
 All we need to do is build a router and connect it to the right networks and build a client connecting it to the right networks. 
 
@@ -419,10 +426,11 @@ We will deploy the open source Free Range Routing (FRR), **infra-frr-1**, a coll
 
 `Find out more about FRRouting <https://docs.frrouting.org/>`_
 
-We will deploy a simple nginx demo container, `infra-client-1`, which will function as both our client and a simple way to observe egress traffic. 
+We will deploy a simple nginx demo container, **infra-client-1**, which will function as both our client and a simple way to observe egress traffic. 
 
 We will orchestrate the creation of these containers with *docker-compose*.
-#### Run: `create-router-and-client-containers.sh`
+
+You'll now run the script to create them:
 
 .. code-block:: bash
    :caption: Create Router and Client Containers
