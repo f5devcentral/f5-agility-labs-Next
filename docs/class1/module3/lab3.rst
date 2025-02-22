@@ -1,202 +1,242 @@
-The whole point of BIG-IP Next for Kubernetes is the ability to control application delivery to Kubernetes services. Let's create a service in our red tenant.
-## Todo: Create a red tenant Deployment and Service
+The whole point of BIG-IP Next for Kubernetes is the ability to control application delivery to Kubernetes services. Let's create a service 
+in our red tenant.
 
-We will deploy a nginx TCP demonstration pod as a Kubernetes `Deployment` and then create a simple `Service` pointing to our `Deployment` give it a stable IP address. 
+Create a red tenant Deployment and Service
+------------------------------------------
 
-#### Run: `kubectl apply -f resources/nginx-red-deployment.yaml`
+We will deploy a nginx TCP demonstration pod as a Kubernetes **Deployment** and then create a simple **Service** pointing to our **Deployment** 
+give it a stable IP address. 
 
-```
-kubectl apply -f resources/nginx-red-deployment.yaml
-```
+Let's deploy by running the command below:
 
-```
-deployment.apps/nginx-deployment created
-service/nginx-app-svc created
-```
+.. code-block:: bash 
+    :caption: Red Deployment
 
-## Todo: Create ingress GatewayType, Gateway, and TCPRoute
+    kubectl apply -f resources/nginx-red-deployment.yaml
 
-Now the fun part. Put on your NetOps hat and create a Gateway API `GatewayClass` and `Gateway` resources for our service. The NetOps user gets to decided what BIG-IP Next for Kubernetes instance to associate `Gateway`s by creating a `GatewayClass`.
+Your output should look like this:
 
-Next the NetOps user get to decide data center addresses and listener port to expose our `Service` to the outside world on red's VLAN. 
-### Show: resources/nginx-red-gw-api.yaml NetOps Part 
+.. code-block:: bash 
+    :caption: Red Deployment Output
+    
+    deployment.apps/nginx-deployment created
+    service/nginx-app-svc created
 
-```
-apiVersion: gateway.networking.k8s.io/v1
-kind: GatewayClass
-metadata:
-  name: f5-gateway-class
-  namespace: red
-spec:
-  controllerName: "f5.com/f5-gateway-controller"
-  description: "F5 BIG-IP Kubernetes Gateway"
-```
 
-```
-apiVersion: gateway.k8s.f5net.com/v1
-kind: Gateway
-metadata:
-  name: my-l4route-tcp-gateway
-  namespace: red
-spec:
-  addresses:
-  - type: "IPAddress"
-    value: 198.19.19.100
-  gatewayClassName: f5-gateway-class
-  listeners:
-  - name: nginx
-    protocol: TCP
-    port: 80
-    allowedRoutes:
-      kinds:
-      - kind: L4Route
-```
+Create ingress GatewayType, Gateway, and TCPRoute
+------------------------------------------------
 
-Then as a DevOps person, we create a Gateway `L4Route` and use its `parentRefs` attribute to say what `Gateway` it should use. 
-### Show: resources/resources/nginx-red-gw-api.yaml DevOps Part 
+Now the fun part. Put on your NetOps hat on and create a Gateway API **GatewayClass** and **Gateway** resources for our service. The NetOps 
+user gets to decided what BIG-IP Next for Kubernetes instance to associate **Gateway`s** by creating a **GatewayClass**.
 
-```
-apiVersion: gateway.k8s.f5net.com/v1
-kind: L4Route
-metadata:
-  name: l4-tcp-app
-  namespace: red
-spec:
-  protocol: TCP
-  parentRefs:
-  - name: my-l4route-tcp-gateway
-    sectionName: nginx
-  rules:
-  - backendRefs:
-    - name: nginx-app-svc
-      namespace: red
-      port: 80
-```
+Next the NetOps user get to decide data center addresses and listener port to expose our **Service** to the outside world on red's VLAN. 
 
-Let's deploy these resources in Kubernetes.
-#### Run: `kubectl apply -f `resources/nginx-red-gw-api.yaml
+We can review the resources in the below YAML files:
 
-```
-kubectl apply -f resources/nginx-red-gw-api.yaml
-```
+.. code-block:: yaml 
+   :caption: Gateway Class
 
-```
-gatewayclass.gateway.networking.k8s.io/f5-gateway-class created
-gateway.gateway.k8s.f5net.com/my-l4route-tcp-gateway created
-l4route.gateway.k8s.f5net.com/l4-tcp-app created
-```
+   apiVersion: gateway.networking.k8s.io/v1
+   kind: GatewayClass
+   metadata:
+     name: f5-gateway-class
+     namespace: red
+   spec:
+     controllerName: "f5.com/f5-gateway-controller"
+     description: "F5 BIG-IP Kubernetes Gateway"
 
-## Todo: Test BIG-IP Next for Kubernetes ingress
 
-We are going to run a `curl` web client command from our docker deployed infra-client-1 container and see if we can hit the virtual server we created in BIG-IP for 198.19.19.100 in our `Gateway` resource in the last step.
+.. code-block:: yaml 
+   :caption: Gateway 
+
+   apiVersion: gateway.k8s.f5net.com/v1
+   kind: Gateway
+   metadata:
+     name: my-l4route-tcp-gateway
+     namespace: red
+   spec:
+     addresses:
+     - type: "IPAddress"
+       value: 198.19.19.100
+     gatewayClassName: f5-gateway-class
+     listeners:
+     - name: nginx
+       protocol: TCP
+       port: 80
+       allowedRoutes:
+         kinds:
+         - kind: L4Route
+
+
+Then as a DevOps person, we create a Gateway **L4Route** and use its **parentRefs** attribute to say what **Gateway** it should use as seen below. 
+
+.. code-block:: yaml
+   :caption: Red L4Route
+
+   apiVersion: gateway.k8s.f5net.com/v1
+   kind: L4Route
+   metadata:
+     name: l4-tcp-app
+     namespace: red
+   spec:
+     protocol: TCP
+     parentRefs:
+     - name: my-l4route-tcp-gateway
+       sectionName: nginx
+     rules:
+     - backendRefs:
+       - name: nginx-app-svc
+         namespace: red
+         port: 80
+
+
+Let's deploy these resources in Kubernetes by running the apply command:
+
+.. code-block:: bash
+   :caption: Red Gateway Deployment
+
+   kubectl apply -f resources/nginx-red-gw-api.yaml
+
+Your output should look like this:
+
+.. code-block:: bash
+   :caption: Gateway Output
+
+   gatewayclass.gateway.networking.k8s.io/f5-gateway-class created
+   gateway.gateway.k8s.f5net.com/my-l4route-tcp-gateway created
+   l4route.gateway.k8s.f5net.com/l4-tcp-app created
+
+
+Test BIG-IP Next for Kubernetes ingress
+---------------------------------------
+
+We are going to run a **curl** web client command from our docker deployed infra-client-1 container and see if we can hit the virtual server 
+we created in BIG-IP for 198.19.19.100 in our **Gateway** resource in the last step.
 
 .. image:: images/TestingIngressforred.png
 
-#### Run: `docker exec -ti infra-client-1 curl -I http://198.19.19.100
 
-```
-docker exec -ti infra-client-1 curl -I http://198.19.19.100
-```
+.. code-block:: bash
+   :caption: Curl
 
-```
-HTTP/1.1 200 OK
-Server: nginx/1.27.4
-Date: Thu, 20 Feb 2025 18:04:34 GMT
-Content-Type: text/html
-Content-Length: 615
-Last-Modified: Wed, 05 Feb 2025 11:06:32 GMT
-Connection: keep-alive
-ETag: "67a34638-267"
-Accept-Ranges: bytes
-```
+   docker exec -ti infra-client-1 curl -I http://198.19.19.100
 
-How did it get there? Let's see what the router container infra-frr-1 between the infra-client-1 and the BIG-IP Next instances has been peered with.
+Your output should look like this:
 
-#### Run: `docker exec -ti infra-frr-1 vtysh -c "show bgp summary"`
+.. code-block:: bash 
+   :caption: Curl Output
 
-```
-docker exec -ti infra-frr-1 vtysh -c "show bgp summary"
-```
+   HTTP/1.1 200 OK
+   Server: nginx/1.27.4
+   Date: Thu, 20 Feb 2025 18:04:34 GMT
+   Content-Type: text/html
+   Content-Length: 615
+   Last-Modified: Wed, 05 Feb 2025 11:06:32 GMT
+   Connection: keep-alive
+   ETag: "67a34638-267"
+   Accept-Ranges: bytes
 
-```
-IPv4 Unicast Summary (VRF default):
-BGP router identifier 192.0.2.250, local AS number 65500 vrf-id 0
-BGP table version 7
-RIB entries 11, using 2112 bytes of memory
-Peers 3, using 2151 KiB of memory
-Peer groups 1, using 64 bytes of memory
 
-Neighbor           V         AS   MsgRcvd   MsgSent   TblVer  InQ OutQ  Up/Down State/PfxRcd   PfxSnt Desc
-*192.0.2.201       4      64443       376       379        0    0    0 03:06:11            3        6 N/A
-*192.0.2.202       4      64443       376       379        0    0    0 03:06:18            3        6 N/A
-*2001::192:0:2:202 4      64443        13        14        0    0    0 00:05:06        NoNeg    NoNeg N/A
+How did it get there? Let's see what the router container infra-frr-1 between the infra-client-1 and the BIG-IP Next instances has been peered with by running:
 
-Total number of neighbors 3
-* - dynamic neighbor
-3 dynamic neighbor(s), limit 100
+.. code-block:: bash
+   :caption: Show BGP Summary
 
-IPv6 Unicast Summary (VRF default):
-BGP router identifier 192.0.2.250, local AS number 65500 vrf-id 0
-BGP table version 2
-RIB entries 3, using 576 bytes of memory
-Peers 3, using 2151 KiB of memory
-Peer groups 1, using 64 bytes of memory
+   docker exec -ti infra-frr-1 vtysh -c "show bgp summary"
 
-Neighbor           V         AS   MsgRcvd   MsgSent   TblVer  InQ OutQ  Up/Down State/PfxRcd   PfxSnt Desc
-*192.0.2.201       4      64443       376       379        0    0    0 03:06:11        NoNeg    NoNeg N/A
-*192.0.2.202       4      64443       376       379        0    0    0 03:06:18        NoNeg    NoNeg N/A
-*2001::192:0:2:202 4      64443        13        14        0    0    0 00:05:06            2        2 N/A
 
-Total number of neighbors 3
-* - dynamic neighbor
-3 dynamic neighbor(s), limit 100
-```
+.. code-block:: bash 
+   :caption: Show BGP Summary
+
+   IPv4 Unicast Summary (VRF default):
+   BGP router identifier 192.0.2.250, local AS number 65500 vrf-id 0
+   BGP table version 7
+   RIB entries 11, using 2112 bytes of memory
+   Peers 3, using 2151 KiB of memory
+   Peer groups 1, using 64 bytes of memory
+   
+   Neighbor           V         AS   MsgRcvd   MsgSent   TblVer  InQ OutQ  Up/Down State/PfxRcd   PfxSnt Desc
+   *192.0.2.201       4      64443       376       379        0    0    0 03:06:11            3        6 N/A
+   *192.0.2.202       4      64443       376       379        0    0    0 03:06:18            3        6 N/A
+   *2001::192:0:2:202 4      64443        13        14        0    0    0 00:05:06        NoNeg    NoNeg N/A
+   
+   Total number of neighbors 3
+   * - dynamic neighbor
+   3 dynamic neighbor(s), limit 100
+   
+   IPv6 Unicast Summary (VRF default):
+   BGP router identifier 192.0.2.250, local AS number 65500 vrf-id 0
+   BGP table version 2
+   RIB entries 3, using 576 bytes of memory
+   Peers 3, using 2151 KiB of memory
+   Peer groups 1, using 64 bytes of memory
+   
+   Neighbor           V         AS   MsgRcvd   MsgSent   TblVer  InQ OutQ  Up/Down State/PfxRcd   PfxSnt Desc
+   *192.0.2.201       4      64443       376       379        0    0    0 03:06:11        NoNeg    NoNeg N/A
+   *192.0.2.202       4      64443       376       379        0    0    0 03:06:18        NoNeg    NoNeg N/A
+   *2001::192:0:2:202 4      64443        13        14        0    0    0 00:05:06            2        2 N/A
+   
+   Total number of neighbors 3
+   * - dynamic neighbor
+   3 dynamic neighbor(s), limit 100
+
 
 Notice both BIG-IP Next instances, 192.168.2.201 and 192.168.2.202 are peered to our router!
 
-What did our BIG-IP Next instances advertise for our red service virtual service?
-#### Run: `docker exec -ti infra-frr-1 vtysh -c "show ip route"`
+What did our BIG-IP Next instances advertise for our red service virtual service? Let's review the routing table on the router:
 
-```
-docker exec -ti infra-frr-1 vtysh -c "show ip route"
-```
+.. code-block:: bash 
+   :caption: Show IP Route
 
-```
-Codes: K - kernel route, C - connected, S - static, R - RIP,
-       O - OSPF, I - IS-IS, B - BGP, E - EIGRP, N - NHRP,
-       T - Table, v - VNC, V - VNC-Direct, A - Babel, F - PBR,
-       f - OpenFabric,
-       > - selected route, * - FIB route, q - queued, r - rejected, b - backup
-       t - trapped, o - offload failure
+   docker exec -ti infra-frr-1 vtysh -c "show ip route"
 
-K>* 0.0.0.0/0 [0/0] via 198.51.100.1, eth0, 03:26:14
-C>* 192.0.2.0/24 is directly connected, eth1, 03:26:14
-B>* 192.0.2.100/32 [20/0] via 192.0.2.201, eth1, weight 1, 03:08:51
-B>* 192.0.2.101/32 [20/0] via 192.0.2.202, eth1, weight 1, 03:09:04
-B>* 192.0.2.110/32 [20/0] via 192.0.2.201, eth1, weight 1, 03:08:51
-B>* 192.0.2.111/32 [20/0] via 192.0.2.202, eth1, weight 1, 03:09:04
-B>* 198.19.19.100/32 [20/0] via 192.0.2.201, eth1, weight 1, 00:14:18
-  *                         via 192.0.2.202, eth1, weight 1, 00:14:18
-C>* 198.51.100.0/24 is directly connected, eth0, 03:26:14
-```
+Your output should look like this:
 
-### Class Discuss: ECMP base ingress routing with BIG-IP Next to pod IP Endpoints with routing to node IPs
+.. code-block:: bash
+   :caption: Show IP Route Output
 
-Our virtual server address, set by our NetOps user, can be reached at all BIG-IP Next instances peered to the router (we only have two).  What happens then?
-
-The BIG-IP Next instances could build pool members from `ClusterIP` addresses representing our service, forward to one of them and let the `kube-proxy` instance on a node proxy through to a `Endpoint` pod IP as it does for requests made inside the cluster.  
+   Codes: K - kernel route, C - connected, S - static, R - RIP,
+          O - OSPF, I - IS-IS, B - BGP, E - EIGRP, N - NHRP,
+          T - Table, v - VNC, V - VNC-Direct, A - Babel, F - PBR,
+          f - OpenFabric,
+          > - selected route, * - FIB route, q - queued, r - rejected, b - backup
+          t - trapped, o - offload failure
+   
+   K>* 0.0.0.0/0 [0/0] via 198.51.100.1, eth0, 03:26:14
+   C>* 192.0.2.0/24 is directly connected, eth1, 03:26:14
+   B>* 192.0.2.100/32 [20/0] via 192.0.2.201, eth1, weight 1, 03:08:51
+   B>* 192.0.2.101/32 [20/0] via 192.0.2.202, eth1, weight 1, 03:09:04
+   B>* 192.0.2.110/32 [20/0] via 192.0.2.201, eth1, weight 1, 03:08:51
+   B>* 192.0.2.111/32 [20/0] via 192.0.2.202, eth1, weight 1, 03:09:04
+   B>* 198.19.19.100/32 [20/0] via 192.0.2.201, eth1, weight 1, 00:14:18
+     *                         via 192.0.2.202, eth1, weight 1, 00:14:18
+   C>* 198.51.100.0/24 is directly connected, eth0, 03:26:14
 
 
-```
-kubectl get service -n red
-```
+### Class Discuss: ECMP based ingress routing with BIG-IP Next to pod IP Endpoints with routing to node IPs
 
-```
-NAME            TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)   AGE
-nginx-app-svc   ClusterIP   10.96.157.55   <none>        80/TCP    4m
-```
+Our virtual server address, set by our NetOps user, can be reached at all BIG-IP Next instances peered to the router (we only have two).  
+What happens then?
 
-However, if we did that, it would mean our solution would be wasting CPU resources watching **kube-proxy** use linux kernel **netfilter** table 
+The BIG-IP Next instances could build pool members from **ClusterIP** addresses representing our service, forward to one of them and 
+let the **kube-proxy** instance on a node proxy through to a **Endpoint** pod IP as it does for requests made inside the cluster.  
+
+Let's run the below command to see the Red service allocated IP address:
+
+.. code-block:: bash
+   :caption: Red Service
+
+   kubectl get service -n red
+
+
+.. code-block:: bash
+   :caption: Red Service Output
+
+   NAME            TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)   AGE
+   nginx-app-svc   ClusterIP   10.96.157.55   <none>        80/TCP    4m
+
+
+However, if we did that, it would mean our solution would be wasting CPU resources watching **kube-proxy**, use linux kernel **netfilter** table 
 NAT rules (**iptables**) to get you to the pod hosting an instance of your application **Endpoint**. 
 
 BIG-IP Next for Kubernetes instead discovers the **Endpoint** pod IPs associated with the **Service**, builds a pool of pod IP address, 
@@ -435,8 +475,8 @@ Think how important this type of traffic network segmentation is when we are try
 a cluster, but making request for objects as part of a AI RAG (retrieval augmented generation) pulling in data from a particular corpus of 
 policy documents. You need the network segmentation to guarantee security.
 
-Explore BIG-IP Next telemetry through Kabana
---------------------------------------------
+Explore BIG-IP Next telemetry through Grafana
+----------------------------------------------
 
 We will access the deployed Grafana web user interface through the link provided as part of the lab. Open a browser to your lab Grafana URL.
 
