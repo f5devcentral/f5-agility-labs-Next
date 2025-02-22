@@ -101,7 +101,7 @@ At this point we access our Kubernetes API and ask it what nodes have been added
 
     kubectl get nodes
 
-The outpus should look like this:
+The output should look like this:
 
 .. code-block:: bash
    :caption: Kubernetes nodes
