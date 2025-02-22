@@ -72,7 +72,7 @@ To find out more about Kind and Kubernetes control plane tools we will use in th
 
 .. image:: images/Helm.png
 
-`Find Out More about Helm - Kubernetes Package Manage r<https://helm.sh/>`_
+`Find Out More about Helm - Kubernetes Package Manager<https://helm.sh/>`_
 
 You will now create your Kubernetes cluster by running:
 
@@ -388,7 +388,7 @@ BIG-IP Next for Kubernetes can be connected in multiple ways.
    
    .. image:: images/BIG-IPonDPU.png
    
-   A full installation guide for the host node and the NVIDIA BlueField-3 DPU for use with BIG-IP Next for Kubernetes has been create [here](https://f5devcentral.github.io/f5-bnk-nvidia-bf3-installations/).
+   A full installation guide for the host node and the NVIDIA BlueField-3 DPU for use with BIG-IP Next for Kubernetes has been create `here <https://f5devcentral.github.io/f5-bnk-nvidia-bf3-installations/>`_.
    
 2) Running on a host system with DPDK
    
@@ -412,7 +412,7 @@ We will deploy the open source Free Range Routing (FRR), `infra-frr-1`, a collec
 
 .. image:: images/FRRouter.png
 
-`Find out more about FRRouting<https://docs.frrouting.org/`_
+`Find out more about FRRouting <https://docs.frrouting.org/>`_
 
 We will deploy a simple nginx demo container, `infra-client-1`, which will function as both our client and a simple way to observe egress traffic. 
 
@@ -434,6 +434,6 @@ Deploy FRR and client docker container ...
 
 Now our lab environment looks like this.
 
-![[Infrastructure Router and Client in Lab Environment.png]]
+.. image:: images/InfrastructureRouterandClientinLabEnvironment.png
 
 Our lab environment is complete. It mirrors all the standard components of a Kubernetes environment. It is now time to deploy BIG-IP Next for Kubernetes.
