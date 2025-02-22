@@ -120,7 +120,7 @@ Class Discuss: Kubernetes Networking Model
 
 `Kubernetes networking <https://kubernetes.io/docs/concepts/cluster-administration/networking/>`_ is designed to facilitate highly agile deployment of containers inside 'pods'. Each pod gets its own IP address and all pods in the same cluster can communicate with each other directly. 
 
-Kubernetes defines 'services' to assign static IP which load balance to `Endpoints` which typically represent internal pod IP addresses and ports. Common 'service' types include:
+Kubernetes defines 'services' to assign static IP which load balance to **Endpoints** which typically represent internal pod IP addresses and ports. Common 'service' types include:
 
 `ClusterIP <https://kubernetes.io/docs/concepts/services-networking/service/#type-clusterip>`_: service IP and port reachable throughout a cluster
 
@@ -130,7 +130,7 @@ Kubernetes defines 'services' to assign static IP which load balance to `Endpoin
 
 `Ingress <https://kubernetes.io/docs/concepts/services-networking/ingress/>`_: an external reachable service which provide L7 HTTP based load balancing which directs traffic to internal cluster services
 
-`Gateway <https://kubernetes.io/docs/concepts/services-networking/gateway/>`_: NEW! CNCF service where NetOps infrastructure admins defined listeners and DevOps application admins defined routes. These can be L4 `TCPRoute`, `UDPRoute`, L6 `TLSRoute`, L7 `HTTPRoute` which handles HTTP/1.0 and HTTP/2.0 gRPC traffic. Gateway is extensible for custom routes support advanced application delivery needs.
+`Gateway <https://kubernetes.io/docs/concepts/services-networking/gateway/>`_: NEW! CNCF service where NetOps infrastructure admins defined listeners and DevOps application admins defined routes. These can be L4 **TCPRoute**, **UDPRoute**, L6 **TLSRoute**, L7 **HTTPRoute** which handles HTTP/1.0 and HTTP/2.0 gRPC traffic. Gateway is extensible for custom routes support advanced application delivery needs.
 
 ## Todo: Deploy network plugins
 
@@ -245,7 +245,7 @@ You will also notice that Multus has a deployed on each one of a nodes. When a p
 
 Notice that KinD added its own network to connect the Kubernetes node containers which has its own bridge on the virtual machine host.
 
-#### Run: `docker network ls`
+Let's look at the docker networks now:
 
 .. code-block:: bash
    :caption: List Docker networks
@@ -255,7 +255,7 @@ Notice that KinD added its own network to connect the Kubernetes node containers
 The output should look like this:
 
 .. code-block:: bash
-   :caption: Docker networks
+   :caption: Docker networks Output
 
    NETWORK ID     NAME      DRIVER    SCOPE
    938d048cb58f   bridge    bridge    local
@@ -270,7 +270,7 @@ Here is where we are now:
 
 ## Todo: Create the lab networks in our virtual machine
 
-So far docker has just one network used by our Kubernetes cluster, the network bridge, `kind` all our KinD Kubernetes nodes are attached to. In our network diagram we need to create the rest of the networks in our lab: `infra_client-net`, `external-net` and `egress-net`.
+So far docker has just one network used by our Kubernetes cluster, the network bridge, **kind** all our KinD Kubernetes nodes are attached to. In our network diagram we need to create the rest of the networks in our lab: **infra_client-net**, **external-net** and **egress-net**.
 
 #### Run: `create-lab-networks.sh`
 
@@ -320,8 +320,12 @@ Our lab network now looks like this
 .. image:: images/AllDockerNetworksinLabEnvironment.png
 
 
-We'll use Multus `NetworkAttachmentDefinition` to connect our BIG-IP pods to the `external` and `internal` networks in the diagram above. We define `NetworkAttachmentDefinition` so when pods are created on nodes which are supposed to have Multus attach additional network interfaces, the Multus process on each node knows what type of network and what network name to give it inside our pod. Think of `NetworkAttachmentDefinition` as our policy to figure out how to create these interfaces in our pods.
-### Show: `resources/networks.yaml` Network Attachments
+We'll use Multus **NetworkAttachmentDefinition** to connect our BIG-IP pods to the **external** and **internal** networks in the diagram above. We 
+define `NetworkAttachmentDefinition` so when pods are created on nodes which are supposed to have Multus attach additional network interfaces, 
+the Multus process on each node knows what type of network and what network name to give it inside our pod. Think of **NetworkAttachmentDefinition** 
+as our policy to figure out how to create these interfaces in our pods.
+
+Review: **resources/networks.yaml** Network Attachments
 
 .. code-block:: yaml
    :caption: External Network
@@ -357,7 +361,7 @@ We'll use Multus `NetworkAttachmentDefinition` to connect our BIG-IP pods to the
         }'
 
 
-#### Run: `create-bigip-network-attachments.sh`
+You'll now run the script to create the Multus network attachments:
 
 .. code-block:: bash
    :caption: Create Multus Network Attachments
@@ -366,7 +370,7 @@ We'll use Multus `NetworkAttachmentDefinition` to connect our BIG-IP pods to the
 
 
 .. code-block:: bash
-   :caption: Output
+   :caption: Multus Output
 
    Create Multus Network Attachments ...
    networkattachmentdefinition.k8s.cni.cncf.io/external-net created
@@ -408,7 +412,7 @@ BIG-IP Next for Kubernetes can be connected in multiple ways.
 
 All we need to do is build a router and connect it to the right networks and build a client connecting it to the right networks. 
 
-We will deploy the open source Free Range Routing (FRR), `infra-frr-1`, a collection of open source daemons which create a router.  There is a community containerized version. We will attach it to the `external-net` and `infra_client-net` docker networks.
+We will deploy the open source Free Range Routing (FRR), **infra-frr-1**, a collection of open source daemons which create a router.  There is a community containerized version. We will attach it to the `external-net` and `infra_client-net` docker networks.
 
 .. image:: images/FRRouter.png
 
@@ -416,21 +420,24 @@ We will deploy the open source Free Range Routing (FRR), `infra-frr-1`, a collec
 
 We will deploy a simple nginx demo container, `infra-client-1`, which will function as both our client and a simple way to observe egress traffic. 
 
-We will orchestrate the creation of these containers with `docker-compose`.
+We will orchestrate the creation of these containers with *docker-compose*.
 #### Run: `create-router-and-client-containers.sh`
 
-```
-./create-router-and-client-containers.sh
-```
+.. code-block:: bash
+   :caption: Create Router and Client Containers
 
-```
-Deploy FRR and client docker container ...
-[+] Running 4/4
- ✔ Network infra_client-net  Created  0.2s
- ✔ Container infra-frr-1     Started  0.5s
- ✔ Container infra-client-1  Started  0.5s
- ✔ Container syslog-server   Started  0.5s
-```
+   ./create-router-and-client-containers.sh
+
+
+.. code-block:: bash
+   :caption: FRR Output
+
+   Deploy FRR and client docker container ...
+   [+] Running 4/4
+    ✔ Network infra_client-net  Created  0.2s
+    ✔ Container infra-frr-1     Started  0.5s
+    ✔ Container infra-client-1  Started  0.5s
+    ✔ Container syslog-server   Started  0.5s
 
 Now our lab environment looks like this.
 
