@@ -8,7 +8,7 @@ Our lab network diagram will look like this when we are done:
 
 We will access the lab through web console user interfaces supplied per student. The link to your web console will be provided in the lab. 
 
-.. image:: USDWebConsoleUI.png
+.. image:: images/USDWebConsoleUI.png
 
 ## Todo: Connect to your lab instance web console
 
