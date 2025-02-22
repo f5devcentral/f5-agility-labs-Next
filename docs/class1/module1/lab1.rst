@@ -10,8 +10,6 @@ We will access the lab through web console user interfaces supplied per student.
 
 .. image:: images/USDWebConsoleUI.png
 
-## Todo: Connect to your lab instance web console
-
 Login to the web user interface, change to the ubuntu non-privileged user.
 
 .. code-block:: bash
@@ -132,7 +130,8 @@ Kubernetes defines 'services' to assign static IP which load balance to **Endpoi
 
 `Gateway <https://kubernetes.io/docs/concepts/services-networking/gateway/>`_: NEW! CNCF service where NetOps infrastructure admins defined listeners and DevOps application admins defined routes. These can be L4 **TCPRoute**, **UDPRoute**, L6 **TLSRoute**, L7 **HTTPRoute** which handles HTTP/1.0 and HTTP/2.0 gRPC traffic. Gateway is extensible for custom routes support advanced application delivery needs.
 
-## Todo: Deploy network plugins
+Deploy network plugins
+----------------------
 
 So how do pods have their network interfaces created and IP addresses assigned? This is the role of a CNI (container network interface) plugins. We need to 'install a CNI' which will watch when Kubernetes schedules a pod and then create the new pod's network connection to the host and give it an IP address which works in the 'pod network' for the cluster.
 
@@ -271,11 +270,13 @@ Here is where we are now:
 
 .. image:: images/KinDDeployedLabEnvironment.png
 
-## Todo: Create the lab networks in our virtual machine
+Create the lab networks in our virtual machine
+----------------------------------------------
 
-So far docker has just one network used by our Kubernetes cluster, the network bridge, **kind** all our KinD Kubernetes nodes are attached to. In our network diagram we need to create the rest of the networks in our lab: **infra_client-net**, **external-net** and **egress-net**.
+So far docker has just one network used by our Kubernetes cluster, the network bridge, **kind** all our KinD Kubernetes nodes are attached to. 
+In our network diagram we need to create the rest of the networks in our lab: **infra_client-net**, **external-net** and **egress-net**.
 
-#### Run: `create-lab-networks.sh`
+We will create these networks using the **create-lab-networks.sh** script.
 
 .. code-block:: bash
    :caption: Create Lab Networks
