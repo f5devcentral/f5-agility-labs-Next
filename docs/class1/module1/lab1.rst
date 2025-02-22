@@ -274,19 +274,23 @@ So far docker has just one network used by our Kubernetes cluster, the network b
 
 #### Run: `create-lab-networks.sh`
 
-```
-./create-lab-networks.sh
-```
+.. code-block:: bash
+   :caption: Create Lab Networks
 
-```
-Creating docker networks external-net and egress-net and attach both to worker nodes ...
-9fbe21d0d55bddd34a04dc41aa5261961e4780046729c515609b0d7d5fb4c28e
-65fd7b73f6042d14a4e900c94f45df836c9ecff311fe88685f6c5e5c3d6dffd3
-node/bnk-worker annotated
-node/bnk-worker2 annotated
-node/bnk-worker3 annotated
-Flush IP on eth1 in each worker node, the node won't use it, only TMM will
-```
+   ./create-lab-networks.sh
+
+
+.. code-block:: bash
+   :caption: Networks Output
+
+   Creating docker networks external-net and egress-net and attach both to worker nodes ...
+   9fbe21d0d55bddd34a04dc41aa5261961e4780046729c515609b0d7d5fb4c28e
+   65fd7b73f6042d14a4e900c94f45df836c9ecff311fe88685f6c5e5c3d6dffd3
+   node/bnk-worker annotated
+   node/bnk-worker2 annotated
+   node/bnk-worker3 annotated
+   Flush IP on eth1 in each worker node, the node won't use it, only TMM will
+
 
 We've created lab networks for the client (`infra_client-net`) and MACVLAN networks `external-net` for BIG-IP to host ingress virtual servers, and `egress-net` for BIG-IP to capture outbound packets from pods and route them to the correct network with appropriate SNAT (source network address translation) pools.
 
@@ -310,8 +314,7 @@ c23770001ba1   kind               bridge    local
 ```
 
 Our lab network now looks like this
-
-![[All Docker Networks in Lab Environment.png]]
+.. image:: images/AllDockerNetworksinLabEnvironment.png
 
 
 We'll use Multus `NetworkAttachmentDefinition` to connect our BIG-IP pods to the `external` and `internal` networks in the diagram above. We define `NetworkAttachmentDefinition` so when pods are created on nodes which are supposed to have Multus attach additional network interfaces, the Multus process on each node knows what type of network and what network name to give it inside our pod. Think of `NetworkAttachmentDefinition` as our policy to figure out how to create these interfaces in our pods.
