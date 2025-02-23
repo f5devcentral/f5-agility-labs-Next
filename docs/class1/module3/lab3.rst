@@ -5,7 +5,7 @@ Create a red tenant Deployment and Service
 ------------------------------------------
 
 We will deploy a nginx TCP demonstration pod as a Kubernetes **Deployment** and then create a simple **Service** pointing to our **Deployment** 
-give it a stable IP address. 
+to give it a stable IP address. 
 
 Let's deploy by running the command below:
 
@@ -26,10 +26,10 @@ Your output should look like this:
 Create ingress GatewayType, Gateway, and TCPRoute
 ------------------------------------------------
 
-Now the fun part. Put on your NetOps hat on and create a Gateway API **GatewayClass** and **Gateway** resources for our service. The NetOps 
+Now the fun part, put on your NetOps hat on and create a Gateway API **GatewayClass** and **Gateway** resources for our service. The NetOps 
 user gets to decided what BIG-IP Next for Kubernetes instance to associate **Gateway`s** by creating a **GatewayClass**.
 
-Next the NetOps user get to decide data center addresses and listener port to expose our **Service** to the outside world on red's VLAN. 
+Next the NetOps user gets to decide data center addresses and listener port to expose our **Service** to the outside world on red's VLAN. 
 
 We can review the resources in the below YAML files:
 
@@ -137,7 +137,9 @@ Your output should look like this:
    Accept-Ranges: bytes
 
 
-How did it get there? Let's see what the router container infra-frr-1 between the infra-client-1 and the BIG-IP Next instances has been peered with by running:
+How did it get there? 
+
+Let's see what the router container *infra-frr-1* between the *infra-client-1* and the *BIG-IP Next* instances has been peered with by running:
 
 .. code-block:: bash
    :caption: Show BGP Summary
@@ -316,7 +318,7 @@ Your output should look like this:
    Events:                    <none>
 
 
-If we did our job right we can generate traffic from the pod in the red namespace and it should show up at the infra-client-1 container 
+If we did our job right we can generate traffic from the pod in the red namespace and it should show up at the *infra-client-1* container 
 from either 192.0.2.100 or 192.0.2.101. 
 
 .. image:: images/EgressTenancy.png
@@ -360,12 +362,12 @@ Curl output:
         user-agent: curl/7.88.1
 
 
-Yeah! We have egress requests from pods in our 'red' tenant namespace are having their traffic SNAT applied appropriately! 
+Yeah! We have egress requests from pods in our *red* tenant namespace are having their traffic SNAT applied appropriately! 
 
 If we wanted to see the address shift to 192.0.2.101, we can continue to make request, but we will have to wait for the ECMP packet 
 flow to send us through a new forwarding virtual server on the BIG-IP. You can repeat the above command until you see it shift.
 
-Let's try our blue tenant. We have the complete deployment for the blue tenant, pod `Deployment`, `Service`, `Gateway`, `TCPRoute` in one YAML 
+Let's try our blue tenant. We have the complete deployment for the blue tenant, pod **Deployment**, **Service**, **Gateway**, **TCPRoute** in one YAML 
 file we can deploy with one command. Please run the below command:
 
 
@@ -474,11 +476,11 @@ Curl output:
         user-agent: curl/7.88.1
 
 
-Logging, observability, and firewall rules can now identify our Kubernetes 'red' and 'blue' tenants by simply checking the source IPs of 
+Logging, observability, and firewall rules can now identify our Kubernetes *red* and *blue* tenants by simply checking the source IPs of 
 the egress traffic coming from their workloads.
 
 Think how important this type of traffic network segmentation is when we are trying to secure traffic from tenant sharing expensive GPUs in 
-a cluster, but making request for objects as part of a AI RAG (retrieval augmented generation) pulling in data from a particular corpus of 
+a cluster, but making request for objects as part of a AI RAG (Retrieval Augmented Generation) pulling in data from a particular corpus of 
 policy documents. You need the network segmentation to guarantee security.
 
 Explore BIG-IP Next telemetry through Grafana
@@ -495,7 +497,7 @@ password: **admin**
 
 You will be prompted to change the password. Go ahead and do that or Skip it. 
 
-Navigate to Dashboard and then load the F5 BNK Dashboard.  You will see there are some example Visualization defined for TMM (data path), ACLs, and then per 'Red' and 'Blue' tenants. 
+Navigate to Dashboard and then load the F5 BNK Dashboard.  You will see there are some example Visualization defined for TMM (data path), ACLs, and then per *Red* and *Blue* tenants. 
 
 You've already seen the commands to generate traffic which ingresses and egress Red and Blue tenants. 
 
