@@ -1,6 +1,6 @@
 .. important:: We are taking you through a painful path to instruct. 
 
-BIG-IP Next for Kubernetes in GA (general availability) is organizing the installation into the OLM (operator lifecycle manager) compliant operator you will see in these steps. 
+BIG-IP Next for Kubernetes in General Availability (GA)) is organizing the installation into the Operator Lifecycle Manager (OLM) compliant operator you will see in these steps. 
 
 *STAY CALM and Lab On!*
 
@@ -91,7 +91,7 @@ All of these components are installed with the below script command:
 
    ./deploy-gatewayapi-telemetry.sh
 
-Your output will look like this:
+Your output should look like this:
 
 .. code-block:: bash
    :caption: Gateway API and Telemetry Output
@@ -157,7 +157,7 @@ The hyperscale cloud providers maintain their registries.
 
 Private corporate or product registries use mTLS based authentication and authorization to control access to software resources. 
 
-F5 runs a artifact (containers images, orchestration files, manifest files for component versioning, utilities files) named creatively FAR (F5 artifact registry). In order to authenticate to FAR, we need certificate based credentials.
+F5 runs a artifact (containers images, orchestration files, manifest files for component versioning, utilities files) named creatively F5 Artifact Registry (FAR). In order to authenticate to FAR, we need certificate based credentials.
 
 .. note:: How do you get FAR credentials?
 
@@ -165,7 +165,7 @@ We have written up how to get FAR credential for all BIG-IP Next products. The p
 
 `Read How to Download FAR credentials <https://clouddocs.f5.com/bigip-next-for-kubernetes/2.0.0-LA/far.html#download-the-service-account-key>`_
 
-Because we can't be sure that everyone has access to my.f5.com already, we have copied the FAR authentication credentials to the 
+Because we can't be sure that everyone has access to *my.f5.com* already, we have copied the FAR authentication credentials to the 
 lab virtual machine already and you can verify by running the list command:
 
 .. code-block:: bash
@@ -208,9 +208,11 @@ Your output will look like this:
 Enable BIG-IP Next debug service access
 ---------------------------------------
 
-We need to create a way for clients outside the cluster to create secured communications for debug services inside the cluster. This external access will allow you do get product information, do licensing reporting, collect qkviews for support, and have access to debug traffic.
+We need to create a way for clients outside the cluster to create secured communications for debug services inside the cluster. This 
+external access will allow you do get product information, do licensing reporting, collect qkviews for support, and have access to debug traffic.
 
-These credentials will be stored in Kubernetes secrets, but we will also copy the credentials to files in the virtual machine host so we can use them for a demonstration an debug API access. We will do this in lab three.
+These credentials will be stored in Kubernetes secrets, but we will also copy the credentials to files in the virtual machine host so we can 
+use them for a demonstration an debug API access. We will do this in lab three.
 
 .. image:: images/CWCAuthgenerationfordebugAPI.png
 
@@ -252,14 +254,15 @@ Your output should look like this:
     configmap/cwc-qkview-cm created
 
 
-That's the last prerequisite environment resource we needed. Let's install BIG-IP!
+That's the last prerequisite environment resource we need. Let's install BIG-IP!
 
 Install a BIG-IP Next for Kubernetes deployment
 -----------------------------------------------
 
 We will use Helm to install our OLM compliant operator which will then orchestrate dynamically the lifecycle of the BIG-IP Next for Kubernetes 
 components. That's why operators are cool. They are orchestrators which run constantly in your Kubernetes clusters doing their job for you.
-#### Run: `install-bnk.sh`
+
+Let's run the script for installation:
 
 .. code-block:: bash
    :caption: Install BIG-IP Next for Kubernetes
