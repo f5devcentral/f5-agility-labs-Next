@@ -72,7 +72,7 @@ To find out more about Kind and Kubernetes control plane tools we will use in th
 
 .. image:: images/Helm.png
 
-`Find Out More about Helm - Kubernetes Package Manager<https://helm.sh/>`_
+`Find Out More about Helm - Kubernetes Package Manager <https://helm.sh/>`_
 
 You will now create your Kubernetes cluster by running:
 
@@ -405,7 +405,7 @@ We can now create pods and declare that we want them connected to **egress-net**
 standard pod network, Multus will create **eth1** for **external-net** and **eth2** for **egress-net**.
 
 Class Discuss: BIG-IP Next for Kubernetes Network Options
---------------------------------------------------------
+---------------------------------------------------------
 
 BIG-IP Next for Kubernetes can be connected in multiple ways. 
 
@@ -433,7 +433,7 @@ BIG-IP Next for Kubernetes can be connected in multiple ways.
    .. image:: images/BIG-IPonLinuxNetdev.png
 
 Create a router and a client container in our virtual machine
-------------------------------------------------------------
+-------------------------------------------------------------
 
 All we need to do is build a router and connect it to the right networks and build a client connecting it to the right networks. 
 

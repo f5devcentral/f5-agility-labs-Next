@@ -24,7 +24,7 @@ Your output should look like this:
 
 
 Create ingress GatewayType, Gateway, and TCPRoute
-------------------------------------------------
+-------------------------------------------------
 
 Now the fun part, put on your NetOps hat on and create a Gateway API **GatewayClass** and **Gateway** resources for our service. The NetOps 
 user gets to decide what BIG-IP Next for Kubernetes instance to associate **Gateway`s** by creating a **GatewayClass**.
