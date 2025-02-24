@@ -26,7 +26,7 @@ You will now run the below command to install cert-manager:
 
    ./create-cert-manager.sh
 
-Your output will look like this:
+Your output should look like this:
 
 .. code-block:: bash
    :caption: Cert Manager Output
@@ -84,7 +84,7 @@ We will create a certificate for the BIG-IP Next OTEL service so it can communic
 
 `Learn more about OTEL <https://opentelemetry.io/>`_
 
-All of these components are installed with the below script command:
+All of these components are installed with the below script, please run:
 
 .. code-block:: bash
    :caption: Deploy Gateway API and Telemetry
@@ -151,7 +151,7 @@ Enable access to FAR
 
 It's time to download the BIG-IP Next for Kubernetes product.
 
-Cloud native apps are downloaded from various software registries. The most familiar one was introduced when docker introduced container orchestration 
+Cloud native apps are downloaded from various software registries. The most familiar one was when docker introduced container orchestration 
 to the world, `dockerhub <https://hub.docker.com>`_. Kubernetes distribution vendors maintain registries, like `Red Hat Quay <https://quay.io/>`_. 
 The hyperscale cloud providers maintain their registries. 
 
