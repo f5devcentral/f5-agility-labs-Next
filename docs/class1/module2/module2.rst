@@ -1,13 +1,10 @@
-Module 2: Deploy and operate Applications
-=========================================
+Module 2: Installation of BIG-IP Next for Kubernetes
+=====================================================
 
-In this lab you will utilize BIG-IP Next Central Manager to deploy and operate applications.
+In this lab you will install all the necessay components to have BIG-IP Next for Kubernetes running in your lab environment.
 
 .. toctree::
-   :titlesonly:
+   :maxdepth: 1
+   :glob:
 
-   lab1.rst
-   lab2.rst
-   lab3.rst
-   lab4.rst
-   lab5.rst
+   lab*

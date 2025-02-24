@@ -1,9 +1,10 @@
-Module 3: Create a WAF Security Policy
-=================================================
+Module 3: Using BIG-IP Next for Kubernetes
+===========================================
 
-The "Basic WAF Lab" covers the steps of enabling a WAF policy for users that are not familiar with WAF.
+In this lab you will deploy Gateways to be used by your multi-tenant services.
 
 .. toctree::
-   :titlesonly:
+   :maxdepth: 1
+   :glob:
 
-   lab1.rst
+   lab*
