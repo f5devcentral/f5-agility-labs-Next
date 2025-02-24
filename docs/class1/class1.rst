@@ -8,9 +8,9 @@ external firewalls are required for each network, without a way to manage those 
 for a zero-trust architecture and a single point for **ingress and egress** to the Kubernetes clusters for firewall and DDoS security. 
 It significantly simplifies security implementation which otherwise would need to take place at multiple locations throughout the network.
 
-- Secure Ingress and Egress BIG-IP Next for Kubernetes enables security services applied at ingress and egress such as firewalling and DDoS.
+- Secure Ingress and Egress BIG-IP Next for Kubernetes enables security services applied at ingress and egress such as fire-walling and DDoS.
 
-- Hide Topology Topology hiding at ingress obscures the internal structure within the cluster.
+- Hide Topology hiding at ingress obscures the internal structure within the cluster.
 
 - Visibility of Traffic As a central point of control, per-subscriber traffic visibility at ingress and egress allows traceability for compliance tracking and billing.
 
