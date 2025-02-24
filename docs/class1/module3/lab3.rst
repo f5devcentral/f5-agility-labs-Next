@@ -27,9 +27,9 @@ Create ingress GatewayType, Gateway, and TCPRoute
 ------------------------------------------------
 
 Now the fun part, put on your NetOps hat on and create a Gateway API **GatewayClass** and **Gateway** resources for our service. The NetOps 
-user gets to decided what BIG-IP Next for Kubernetes instance to associate **Gateway`s** by creating a **GatewayClass**.
+user gets to decide what BIG-IP Next for Kubernetes instance to associate **Gateway`s** by creating a **GatewayClass**.
 
-Next the NetOps user gets to decide data center addresses and listener port to expose our **Service** to the outside world on red's VLAN. 
+Next the NetOps user gets to decide data center addresses and listener ports to expose our **Service** to the outside world on red's VLAN. 
 
 We can review the resources in the below YAML files:
 
