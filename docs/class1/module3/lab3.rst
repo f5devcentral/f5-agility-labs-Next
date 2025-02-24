@@ -240,7 +240,7 @@ Red Service Output:
    nginx-app-svc   ClusterIP   10.96.157.55   <none>        80/TCP    4m
 
 
-However, if we did that, it would mean our solution would be wasting CPU resources watching **kube-proxy**, use linux kernel **netfilter** table 
+However, if we did that, it would mean our solution would be wasting CPU resources watching **kube-proxy**, use Linux kernel **netfilter** table 
 NAT rules (**iptables**) to get you to the pod hosting an instance of your application **Endpoint**. 
 
 BIG-IP Next for Kubernetes instead discovers the **Endpoint** pod IPs associated with the **Service**, builds a pool of pod IP address, 
