@@ -1,6 +1,6 @@
 .. important:: We are taking you through a painful path to instruct. 
 
-BIG-IP Next for Kubernetes in General Availability (GA)) is organizing the installation into the Operator Lifecycle Manager (OLM) compliant operator you will see in these steps. 
+BIG-IP Next for Kubernetes in General Availability (GA) is organizing the installation into the Operator Lifecycle Manager (OLM) compliant operator you will see in these steps. 
 
 *STAY CALM and Lab On!*
 
