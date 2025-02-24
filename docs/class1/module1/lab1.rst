@@ -135,7 +135,7 @@ Kubernetes defines 'services' to assign static IP which load balance to **Endpoi
 Deploy network plugins
 ----------------------
 
-So how do pods have their network interfaces created and IP addresses assigned? This is the role of a Container Network Nnterface (CNI)) 
+So how do pods have their network interfaces created and IP addresses assigned? This is the role of a Container Network Interface (CNI)) 
 plugins. We need to 'install a CNI' which will watch when Kubernetes schedules a pod and then create the new pod's network connection to the 
 host and give it an IP address which works in the 'pod network' for the cluster.
 
@@ -424,7 +424,7 @@ BIG-IP Next for Kubernetes can be connected in multiple ways.
    
    .. image:: images/BIG-IPonDPDK.png
    
-3) Connecting through a host linux kernel networking
+3) Connecting through a host Linux kernel networking
    
    Linux networking has various virtual network devices and socket API layers. BIG-IP Next can use 'raw sockets' to provide data queues, which is the lowest place in the kernel networking stack which will still fully share a network interface with the host. Both the performance and latency suffer when compared to dedicating network interfaces and compute resources. 
    
