@@ -1,4 +1,4 @@
-BIG-IP Next for Kubernetes is modular and can be deployed at various scales in . Our lab development environment with take advantage of KinD to build a Kubernetes cluster in a single virtual machine.
+BIG-IP Next for Kubernetes is modular and can be deployed at various scales. Our lab development environment will take advantage of KinD to build a Kubernetes cluster in a single virtual machine.
 
 Our lab network diagram will look like this when we are done:
 
