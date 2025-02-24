@@ -27,9 +27,9 @@ Create ingress GatewayType, Gateway, and TCPRoute
 ------------------------------------------------
 
 Now the fun part, put on your NetOps hat on and create a Gateway API **GatewayClass** and **Gateway** resources for our service. The NetOps 
-user gets to decided what BIG-IP Next for Kubernetes instance to associate **Gateway`s** by creating a **GatewayClass**.
+user gets to decide what BIG-IP Next for Kubernetes instance to associate **Gateway`s** by creating a **GatewayClass**.
 
-Next the NetOps user gets to decide data center addresses and listener port to expose our **Service** to the outside world on red's VLAN. 
+Next the NetOps user gets to decide data center addresses and listener ports to expose our **Service** to the outside world on red's VLAN. 
 
 We can review the resources in the below YAML files:
 
@@ -110,7 +110,7 @@ Your output should look like this:
 Test BIG-IP Next for Kubernetes ingress
 ---------------------------------------
 
-We are going to run a **curl** web client command from our docker deployed infra-client-1 container and see if we can hit the virtual server 
+We are going to run a **curl** web client command from our docker deployed *infra-client-1* container and see if we can hit the virtual server 
 we created in BIG-IP for 198.19.19.100 in our **Gateway** resource in the last step.
 
 .. image:: images/TestingIngressforred.png
@@ -240,7 +240,7 @@ Red Service Output:
    nginx-app-svc   ClusterIP   10.96.157.55   <none>        80/TCP    4m
 
 
-However, if we did that, it would mean our solution would be wasting CPU resources watching **kube-proxy**, use linux kernel **netfilter** table 
+However, if we did that, it would mean our solution would be wasting CPU resources watching **kube-proxy**, use Linux kernel **netfilter** table 
 NAT rules (**iptables**) to get you to the pod hosting an instance of your application **Endpoint**. 
 
 BIG-IP Next for Kubernetes instead discovers the **Endpoint** pod IPs associated with the **Service**, builds a pool of pod IP address, 
@@ -362,9 +362,9 @@ Curl output:
         user-agent: curl/7.88.1
 
 
-Yeah! We have egress requests from pods in our *red* tenant namespace are having their traffic SNAT applied appropriately! 
+Yeah! We have egress requests from pods in our *red* tenant namespace and are having their traffic SNAT applied appropriately! 
 
-If we wanted to see the address shift to 192.0.2.101, we can continue to make request, but we will have to wait for the ECMP packet 
+If we wanted to see the address shift to 192.0.2.101, we can continue to make requests, but we will have to wait for the ECMP packet 
 flow to send us through a new forwarding virtual server on the BIG-IP. You can repeat the above command until you see it shift.
 
 Let's try our blue tenant. We have the complete deployment for the blue tenant, pod **Deployment**, **Service**, **Gateway**, **TCPRoute** in one YAML 

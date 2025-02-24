@@ -1,4 +1,4 @@
-BIG-IP Next for Kubernetes is modular and can be deployed at various scales in . Our lab development environment with take advantage of KinD to build a Kubernetes cluster in a single virtual machine.
+BIG-IP Next for Kubernetes is modular and can be deployed at various scales. Our lab development environment will take advantage of KinD to build a Kubernetes cluster in a single virtual machine.
 
 Our lab network diagram will look like this when we are done:
 
@@ -135,7 +135,7 @@ Kubernetes defines 'services' to assign static IP which load balance to **Endpoi
 Deploy network plugins
 ----------------------
 
-So how do pods have their network interfaces created and IP addresses assigned? This is the role of a Container Network Nnterface (CNI)) 
+So how do pods have their network interfaces created and IP addresses assigned? This is the role of a Container Network Interface (CNI)) 
 plugins. We need to 'install a CNI' which will watch when Kubernetes schedules a pod and then create the new pod's network connection to the 
 host and give it an IP address which works in the 'pod network' for the cluster.
 
@@ -155,7 +155,7 @@ By default, a pod will get only one network interface, **eth0**, and one pod net
 interfaces to our pods for things like BIG-IP proxies to handle traffic?
 
 We will also deploy an additional CNI plugin called Multus.  Multus controls the creation of additional network interfaces to Kubernetes 
-pods and how they attachment to host networking. Multus abstracts what kind and the name of the host network to attach to through a **NetworkAttachementDefinition** resource declaration. 
+pods and how they attach to host networking. Multus abstracts what kind and the name of the host network to attach to through a **NetworkAttachementDefinition** resource declaration. 
 
 .. image:: images/Multus.png
 
@@ -424,7 +424,7 @@ BIG-IP Next for Kubernetes can be connected in multiple ways.
    
    .. image:: images/BIG-IPonDPDK.png
    
-3) Connecting through a host linux kernel networking
+3) Connecting through a host Linux kernel networking
    
    Linux networking has various virtual network devices and socket API layers. BIG-IP Next can use 'raw sockets' to provide data queues, which is the lowest place in the kernel networking stack which will still fully share a network interface with the host. Both the performance and latency suffer when compared to dedicating network interfaces and compute resources. 
    
