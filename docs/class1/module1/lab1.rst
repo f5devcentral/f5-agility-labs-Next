@@ -155,7 +155,7 @@ By default, a pod will get only one network interface, **eth0**, and one pod net
 interfaces to our pods for things like BIG-IP proxies to handle traffic?
 
 We will also deploy an additional CNI plugin called Multus.  Multus controls the creation of additional network interfaces to Kubernetes 
-pods and how they attachment to host networking. Multus abstracts what kind and the name of the host network to attach to through a **NetworkAttachementDefinition** resource declaration. 
+pods and how they attach to host networking. Multus abstracts what kind and the name of the host network to attach to through a **NetworkAttachementDefinition** resource declaration. 
 
 .. image:: images/Multus.png
 
