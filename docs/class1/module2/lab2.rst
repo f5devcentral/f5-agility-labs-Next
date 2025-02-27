@@ -386,6 +386,9 @@ Viewed output:
    f5bigloghslpub.k8s.f5net.com/logpublisher created
    f5biglogprofile.k8s.f5net.com/logprofile created
 
+   Install Grafana dashboard
+   {"folderUid":"","id":1,"slug":"f5-bnk-dashboard","status":"success","uid":"fee6f31b9si68b","url":"/d/fee6f31b9si68b/f5-bnk-dashboard","version":1}
+
 
 We just created ingress and egress network for blue and red tenants.
 
