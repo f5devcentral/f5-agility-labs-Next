@@ -336,6 +336,7 @@ Docker network list output:
 
 
 Our lab network now looks like this
+
 .. image:: images/AllDockerNetworksinLabEnvironment.png
 
 
