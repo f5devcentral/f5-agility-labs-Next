@@ -330,7 +330,6 @@ Docker network list output:
    65fd7b73f604   egress-net         macvlan   local
    9fbe21d0d55b   external-net       macvlan   local
    a7e18706eb7a   host               host      local
-   4f6963ba7d7d   infra_client-net   bridge    local
    c23770001ba1   kind               bridge    local
    3ac8b0046fd9   none               null      local
 
