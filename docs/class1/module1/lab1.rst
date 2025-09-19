@@ -284,7 +284,7 @@ Create the lab networks in our virtual machine
 ----------------------------------------------
 
 So far docker has just one network used by our Kubernetes cluster, the network bridge, **kind** all our KinD Kubernetes nodes are attached to. 
-In our network diagram we need to create the rest of the networks in our lab: **infra_client-net**, **external-net** and **egress-net**.
+In our network diagram we need to create the rest of the networks in our lab: **external-net** and **egress-net**.
 
 We will create these networks using the **create-lab-networks.sh** script.
 
@@ -307,7 +307,7 @@ Script output:
    Flush IP on eth1 in each worker node, the node won't use it, only TMM will
 
 
-We've created lab networks for the client (**infra_client-net**) and MACVLAN networks **external-net** for BIG-IP to host ingress virtual servers, 
+We've created lab networks for the MACVLAN networks **external-net** for BIG-IP to host ingress virtual servers, 
 and **egress-net** for BIG-IP to capture outbound packets from pods and route them to the correct network with appropriate 
 SNAT (source network address translation) pools.
 
