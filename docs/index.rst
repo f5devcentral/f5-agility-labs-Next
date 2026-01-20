@@ -1,5 +1,5 @@
-F5 BIG-IP Next
-===========================
+BIG IP NEXT on Kubernetes
+=========================
 
 Welcome to the |classbold| lab!
 
