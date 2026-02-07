@@ -30,10 +30,9 @@ The output should look like this:
    :caption: Docker networks
 
    NETWORK ID     NAME      DRIVER    SCOPE
-   938d048cb58f   bridge    bridge    local
-   a7e18706eb7a   host      host      local
-   3ac8b0046fd9   none      null      local
-
+   d3219dc56d0d   bridge    bridge    local
+   21f48c045418   host      host      local
+   dfba4d624d40   none      null      local
 
 We've done nothing but install docker. We see the default types of network docker will allow you to connect containers to, **bridge** (separate host network),
 **host** (directly connected to the host existing network interface), **null** (no networking). 
@@ -85,7 +84,7 @@ You will now create your Kubernetes cluster by running:
 Here is what this script does:
 
 1) It downloads the Kind node container images
-2) Runs the 4 containers and puts them in a Kubernetes cluster
+2) Runs the 5 containers and puts them in a Kubernetes cluster
 
 Look at what containers are now running on your virtual machine by running:
 
@@ -94,7 +93,7 @@ Look at what containers are now running on your virtual machine by running:
 
     docker ps
 
-You should see 4 containers. 
+You should see 5 containers. 
 
 At this point we access our Kubernetes API and ask it what nodes have been added to the cluster and their status:
 
@@ -108,11 +107,12 @@ The output should look like this:
 .. code-block:: bash
    :caption: Kubernetes nodes
 
-    NAME                STATUS     ROLES           AGE     VERSION
-    bnk-control-plane   NotReady   control-plane   9m46s   v1.32.0
-    bnk-worker          NotReady   <none>          9m35s   v1.32.0
-    bnk-worker2         NotReady   <none>          9m35s   v1.32.0
-    bnk-worker3         NotReady   <none>          9m35s   v1.32.0
+   NAME                STATUS     ROLES           AGE   VERSION
+   bnk-control-plane   NotReady   control-plane   98s   v1.35.0
+   bnk-worker          NotReady   <none>          83s   v1.35.0
+   bnk-worker2         NotReady   <none>          83s   v1.35.0
+   bnk-worker3         NotReady   <none>          83s   v1.35.0
+   bnk-worker4         NotReady   <none>          83s   v1.35.0
 
 
 Class Discuss: Kubernetes Networking Model
@@ -203,11 +203,12 @@ The output should look like this:
 .. code-block:: bash
     :caption: Kubernetes nodes
 
-     NAME                STATUS   ROLES           AGE   VERSION
-     bnk-control-plane   Ready    control-plane   54m   v1.32.0
-     bnk-worker          Ready    <none>          54m   v1.32.0
-     bnk-worker2         Ready    <none>          54m   v1.32.0
-     bnk-worker3         Ready    <none>          54m   v1.32.0
+     NAME                STATUS   ROLES           AGE     VERSION
+     bnk-control-plane   Ready    control-plane   5m13s   v1.35.0
+     bnk-worker          Ready    <none>          4m58s   v1.35.0
+     bnk-worker2         Ready    <none>          4m58s   v1.35.0
+     bnk-worker3         Ready    <none>          4m58s   v1.35.0
+     bnk-worker4         Ready    <none>          4m58s   v1.35.0
 
 
 In addition you can see all the Kubernetes pods deployed. Notice you have one Calico controller for our cluster and a Calico node agent 
@@ -228,31 +229,35 @@ Pods output:
 .. code-block:: bash
    :caption: Pods
 
-   NAMESPACE   NAME                                   READY  STATUS   RESTARTS   AGE
-   kube-system calico-kube-controllers-8599ff4595-4z656 1/1  Running   0          108s
-   kube-system calico-node-dh7br                        1/1  Running   0          108s
-   kube-system calico-node-f2tvc                        1/1  Running   0          108s
-   kube-system calico-node-sqc7z                        1/1  Running   0          108s
-   kube-system calico-node-vdx8d                        1/1  Running   0          108s
-   kube-system coredns-668d6bf9bc-4xsb6                 1/1  Running   0          54m
-   kube-system coredns-668d6bf9bc-tj78s                 1/1  Running   0          54m
-   kube-system etcd-bnk-control-plane                   1/1  Running   0          54m
-   kube-system install-cni-plugins-b4zkx                1/1  Running   0          108s
-   kube-system install-cni-plugins-hxzdh                1/1  Running   0          108s
-   kube-system install-cni-plugins-jgwgm                1/1  Running   0          108s
-   kube-system install-cni-plugins-xsbn7                1/1  Running   0          108s
-   kube-system kube-apiserver-bnk-control-plane         1/1  Running   0          54m
-   kube-system kube-controller-manager-bnk-control-plane 1/1 Running   0          54m
-   kube-system kube-multus-ds-4bvff                     1/1  Running   0          108s
-   kube-system kube-multus-ds-hhvqm                     1/1  Running   0          108s
-   kube-system kube-multus-ds-hkxq7                     1/1  Running   0          108s
-   kube-system kube-multus-ds-qj82g                     1/1  Running   0          108s
-   kube-system kube-proxy-4tl67                         1/1  Running   0          54m
-   kube-system kube-proxy-7vtf9                         1/1  Running   0          54m
-   kube-system kube-proxy-8l7n4                         1/1  Running   0          54m
-   kube-system kube-proxy-zdpb8                         1/1  Running   0          54m
-   kube-system kube-scheduler-bnk-control-plane         1/1  Running   0          54m
-   local-path-storage   local-path-provisioner-58cc7856b6-ctsl2 1/1 Running 0     54m
+   NAMESPACE            NAME                                        READY   STATUS    RESTARTS   AGE
+   kube-system          calico-kube-controllers-6d79687f6f-rfnml    1/1     Running   0          2m43s
+   kube-system          calico-node-gv8rt                           1/1     Running   0          2m43s
+   kube-system          calico-node-k8nqw                           1/1     Running   0          2m43s
+   kube-system          calico-node-lkvjx                           1/1     Running   0          2m43s
+   kube-system          calico-node-nxklb                           1/1     Running   0          2m43s
+   kube-system          calico-node-xdd2d                           1/1     Running   0          2m43s
+   kube-system          coredns-7d764666f9-jrxj6                    1/1     Running   0          6m38s
+   kube-system          coredns-7d764666f9-kfctv                    1/1     Running   0          6m38s
+   kube-system          etcd-bnk-control-plane                      1/1     Running   0          6m47s
+   kube-system          install-cni-plugins-2c9fd                   1/1     Running   0          2m43s
+   kube-system          install-cni-plugins-d8wd5                   1/1     Running   0          2m43s
+   kube-system          install-cni-plugins-pdsdv                   1/1     Running   0          2m43s
+   kube-system          install-cni-plugins-pdzgm                   1/1     Running   0          2m43s
+   kube-system          install-cni-plugins-xmwtk                   1/1     Running   0          2m43s
+   kube-system          kube-apiserver-bnk-control-plane            1/1     Running   0          6m46s
+   kube-system          kube-controller-manager-bnk-control-plane   1/1     Running   0          6m46s
+   kube-system          kube-multus-ds-4wv8d                        1/1     Running   0          2m43s
+   kube-system          kube-multus-ds-59p78                        1/1     Running   0          2m43s
+   kube-system          kube-multus-ds-b2l66                        1/1     Running   0          2m43s
+   kube-system          kube-multus-ds-dqxxg                        1/1     Running   0          2m43s
+   kube-system          kube-multus-ds-vnb8s                        1/1     Running   0          2m43s
+   kube-system          kube-proxy-64rfm                            1/1     Running   0          6m33s
+   kube-system          kube-proxy-8pxgn                            1/1     Running   0          6m38s
+   kube-system          kube-proxy-8szx6                            1/1     Running   0          6m33s
+   kube-system          kube-proxy-bft5h                            1/1     Running   0          6m33s
+   kube-system          kube-proxy-kqdjn                            1/1     Running   0          6m33s
+   kube-system          kube-scheduler-bnk-control-plane            1/1     Running   0          6m46s
+   local-path-storage   local-path-provisioner-67b8995b4b-pdrmw     1/1     Running   0          6m38s
 
 
 Notice that KinD added its own network to connect the Kubernetes node containers which has its own bridge on the virtual machine host.
@@ -270,10 +275,10 @@ The output should look like this:
    :caption: Docker networks Output
 
    NETWORK ID     NAME      DRIVER    SCOPE
-   938d048cb58f   bridge    bridge    local
-   a7e18706eb7a   host      host      local
-   01c75852c676   kind      bridge    local
-   3ac8b0046fd9   none      null      local
+   d3219dc56d0d   bridge    bridge    local
+   21f48c045418   host      host      local
+   bb8fb0816f15   kind      bridge    local
+   dfba4d624d40   none      null      local
 
 
 Here is where we are now:
@@ -299,11 +304,12 @@ Script output:
    :caption: Networks Output
 
    Creating docker networks external-net and egress-net and attach both to worker nodes ...
-   9fbe21d0d55bddd34a04dc41aa5261961e4780046729c515609b0d7d5fb4c28e
-   65fd7b73f6042d14a4e900c94f45df836c9ecff311fe88685f6c5e5c3d6dffd3
+   34428e6964d0c38f8cbdbed757789493042e2eb8cf84095b92335be3cd7157dd
+   ab5a022e36e0fb2f0479859682fadbf2dcc14c7d5f64f54ff266daec38f89ad5
    node/bnk-worker annotated
    node/bnk-worker2 annotated
    node/bnk-worker3 annotated
+   node/bnk-worker4 annotated
    Flush IP on eth1 in each worker node, the node won't use it, only TMM will
 
 
@@ -325,17 +331,40 @@ Docker network list output:
 .. code-block:: bash
    :caption: List Docker networks
 
-   NETWORK ID     NAME               DRIVER    SCOPE
-   a749e9e46e78   bridge             bridge    local
-   65fd7b73f604   egress-net         macvlan   local
-   9fbe21d0d55b   external-net       macvlan   local
-   a7e18706eb7a   host               host      local
-   c23770001ba1   kind               bridge    local
-   3ac8b0046fd9   none               null      local
+   NETWORK ID     NAME           DRIVER    SCOPE
+   d3219dc56d0d   bridge         bridge    local
+   ab5a022e36e0   egress-net     macvlan   local
+   34428e6964d0   external-net   macvlan   local
+   21f48c045418   host           host      local
+   bb8fb0816f15   kind           bridge    local
+   dfba4d624d40   none           null      local
 
 
 Our lab network now looks like this
 .. image:: images/AllDockerNetworksinLabEnvironment.png
+
+
+Adding a cluster tenant for F5 utilities
+----------------------------------------
+
+We are going to put all of the shared utility components for BIG-IP Next for Kubernetes into a proper namespace. This allows 
+us to properly protect access to these resources in a the cluster.
+
+Now execute the below script command to create a namespace for F5 utilities:
+
+.. code-block:: bash
+   :caption: Create F5 Utilities Namespace
+
+   ./create-f5-namespaces.sh
+
+Completed output will look like this:
+
+.. code-block:: bash
+   :caption: F5 Utilities Namespace Output
+
+   Create cne-core and bnk-app namespaces for BNK supporting software
+   namespace/cne-core created
+   namespace/bnk-app created
 
 
 We'll use Multus **NetworkAttachmentDefinition** to connect our BIG-IP pods to the **external** and **internal** networks in the diagram above. We 
