@@ -340,7 +340,8 @@ Docker network list output:
    dfba4d624d40   none           null      local
 
 
-Our lab network now looks like this
+Our lab network now looks like this:
+
 .. image:: images/AllDockerNetworksinLabEnvironment.png
 
 
