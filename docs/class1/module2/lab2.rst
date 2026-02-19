@@ -274,12 +274,14 @@ Installation output:
    pod/flo-f5-lifecycle-operator-6669f6ccf7-msvmf condition met
    
 It will take approximately 5 minutes for BNK to install within the cluster.  You can manually check the status by running:
+
 .. code-block:: bash
-   :caption: Install BNK
+   :caption: Check BNK Install Status
    kubectl get pods -n bnk-app
 
 
 When BNK is fully installed you should see two pods named f5-tmm that are in the running state:
+
 .. code-block:: bash
    :caption: BNK Pod Output
    NAME                                 READY   STATUS    RESTARTS   AGE
@@ -299,11 +301,13 @@ When BNK is fully installed you should see two pods named f5-tmm that are in the
 Wait for the f5-tmm pods to be in a Running state before proceeding.
 
 Next verify that BNK has a valid license:
+
 .. code-block:: bash
    :caption: Verify BNK License
    ./check-cwc-lic.sh
 
 The output should look similar to:
+
 .. code-block:: yaml
    :caption: License Output
    
