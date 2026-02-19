@@ -277,6 +277,7 @@ It will take approximately 5 minutes for BNK to install within the cluster.  You
 
 .. code-block:: bash
    :caption: Check BNK Install Status
+
    kubectl get pods -n bnk-app
 
 
@@ -284,6 +285,7 @@ When BNK is fully installed you should see two pods named f5-tmm that are in the
 
 .. code-block:: bash
    :caption: BNK Pod Output
+
    NAME                                 READY   STATUS    RESTARTS   AGE
    f5-afm-579bc64c84-gjtcz              1/1     Running   0          3m45s
    f5-cne-controller-6d488df544-dxgq8   4/4     Running   0          3m44s
@@ -304,6 +306,7 @@ Next verify that BNK has a valid license:
 
 .. code-block:: bash
    :caption: Verify BNK License
+   
    ./check-cwc-lic.sh
 
 The output should look similar to:
