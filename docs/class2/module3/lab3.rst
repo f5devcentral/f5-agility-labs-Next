@@ -102,11 +102,9 @@ Your output should look like this:
 .. code-block:: bash
    :caption: Gateway Output
 
-  gatewayclass.gateway.networking.k8s.io/f5-gateway-class created
-  f5bnkgateway.k8s.f5net.com/f5-bnkgateway created
-  gateway.gateway.networking.k8s.io/my-l4route-tcp-gateway created
-  l4route.gateway.k8s.f5net.com/l4-tcp-app created
-
+   gatewayclass.gateway.networking.k8s.io/f5-gateway-class created
+   gateway.gateway.k8s.f5net.com/my-l4route-tcp-gateway created
+   l4route.gateway.k8s.f5net.com/l4-tcp-app created
 
 
 Test BIG-IP Next for Kubernetes ingress
@@ -129,13 +127,13 @@ Your output should look like this:
    :caption: Curl Output
 
    HTTP/1.1 200 OK
-   Server: nginx/1.29.5
-   Date: Sat, 07 Feb 2026 00:00:14 GMT
+   Server: nginx/1.27.4
+   Date: Thu, 20 Feb 2025 18:04:34 GMT
    Content-Type: text/html
    Content-Length: 615
-   Last-Modified: Wed, 04 Feb 2026 15:12:20 GMT
+   Last-Modified: Wed, 05 Feb 2025 11:06:32 GMT
    Connection: keep-alive
-   ETag: "698361d4-267"
+   ETag: "67a34638-267"
    Accept-Ranges: bytes
 
 
@@ -157,32 +155,33 @@ BGP Summary Output:
    BGP router identifier 192.0.2.250, local AS number 65500 vrf-id 0
    BGP table version 7
    RIB entries 11, using 2112 bytes of memory
-   Peers 2, using 1434 KiB of memory
+   Peers 3, using 2151 KiB of memory
    Peer groups 1, using 64 bytes of memory
    
-   Neighbor        V         AS   MsgRcvd   MsgSent   TblVer  InQ OutQ  Up/Down State/PfxRcd   PfxSnt Desc
-   *192.0.2.201    4      64443        12        15        0    0    0 00:04:16            3        6 N/A
-   *192.0.2.202    4      64443        13        16        0    0    0 00:04:49            3        6 N/A
+   Neighbor           V         AS   MsgRcvd   MsgSent   TblVer  InQ OutQ  Up/Down State/PfxRcd   PfxSnt Desc
+   *192.0.2.201       4      64443       376       379        0    0    0 03:06:11            3        6 N/A
+   *192.0.2.202       4      64443       376       379        0    0    0 03:06:18            3        6 N/A
+   *2001::192:0:2:202 4      64443        13        14        0    0    0 00:05:06        NoNeg    NoNeg N/A
    
-   Total number of neighbors 2
+   Total number of neighbors 3
    * - dynamic neighbor
-   2 dynamic neighbor(s), limit 100
+   3 dynamic neighbor(s), limit 100
    
    IPv6 Unicast Summary (VRF default):
    BGP router identifier 192.0.2.250, local AS number 65500 vrf-id 0
-   BGP table version 0
-   RIB entries 0, using 0 bytes of memory
-   Peers 2, using 1434 KiB of memory
+   BGP table version 2
+   RIB entries 3, using 576 bytes of memory
+   Peers 3, using 2151 KiB of memory
    Peer groups 1, using 64 bytes of memory
    
-   Neighbor        V         AS   MsgRcvd   MsgSent   TblVer  InQ OutQ  Up/Down State/PfxRcd   PfxSnt Desc
-   *192.0.2.201    4      64443        12        15        0    0    0 00:04:16        NoNeg    NoNeg N/A
-   *192.0.2.202    4      64443        13        16        0    0    0 00:04:49        NoNeg    NoNeg N/A
+   Neighbor           V         AS   MsgRcvd   MsgSent   TblVer  InQ OutQ  Up/Down State/PfxRcd   PfxSnt Desc
+   *192.0.2.201       4      64443       376       379        0    0    0 03:06:11        NoNeg    NoNeg N/A
+   *192.0.2.202       4      64443       376       379        0    0    0 03:06:18        NoNeg    NoNeg N/A
+   *2001::192:0:2:202 4      64443        13        14        0    0    0 00:05:06            2        2 N/A
    
-   Total number of neighbors 2
+   Total number of neighbors 3
    * - dynamic neighbor
-   2 dynamic neighbor(s), limit 100
-
+   3 dynamic neighbor(s), limit 100
 
 
 Notice both BIG-IP Next instances, 192.168.2.201 and 192.168.2.202 are peered to our router!
@@ -206,15 +205,15 @@ Your output should look like this:
           > - selected route, * - FIB route, q - queued, r - rejected, b - backup
           t - trapped, o - offload failure
    
-   K>* 0.0.0.0/0 [0/0] via 198.51.100.1, eth1, 00:38:46
-   C>* 192.0.2.0/24 is directly connected, eth0, 00:38:46
-   B>* 192.0.2.100/32 [20/0] via 192.0.2.201, eth0, weight 1, 00:05:09
-   B>* 192.0.2.101/32 [20/0] via 192.0.2.202, eth0, weight 1, 00:05:45
-   B>* 192.0.2.110/32 [20/0] via 192.0.2.201, eth0, weight 1, 00:05:09
-   B>* 192.0.2.111/32 [20/0] via 192.0.2.202, eth0, weight 1, 00:05:45
-   B>* 198.19.19.100/32 [20/0] via 192.0.2.201, eth0, weight 1, 00:02:33
-     *                         via 192.0.2.202, eth0, weight 1, 00:02:33
-   C>* 198.51.100.0/24 is directly connected, eth1, 00:38:46
+   K>* 0.0.0.0/0 [0/0] via 198.51.100.1, eth0, 03:26:14
+   C>* 192.0.2.0/24 is directly connected, eth1, 03:26:14
+   B>* 192.0.2.100/32 [20/0] via 192.0.2.201, eth1, weight 1, 03:08:51
+   B>* 192.0.2.101/32 [20/0] via 192.0.2.202, eth1, weight 1, 03:09:04
+   B>* 192.0.2.110/32 [20/0] via 192.0.2.201, eth1, weight 1, 03:08:51
+   B>* 192.0.2.111/32 [20/0] via 192.0.2.202, eth1, weight 1, 03:09:04
+   B>* 198.19.19.100/32 [20/0] via 192.0.2.201, eth1, weight 1, 00:14:18
+     *                         via 192.0.2.202, eth1, weight 1, 00:14:18
+   C>* 198.51.100.0/24 is directly connected, eth0, 03:26:14
 
 
 **Class Discuss:** ECMP based ingress routing with BIG-IP Next to pod IP Endpoints with routing to node IPs
@@ -237,8 +236,8 @@ Red Service Output:
 .. code-block:: bash
    :caption: Red Service Output
 
-   NAME            TYPE        CLUSTER-IP    EXTERNAL-IP   PORT(S)   AGE
-   nginx-app-svc   ClusterIP   10.96.70.44   <none>        80/TCP    4m9s
+   NAME            TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)   AGE
+   nginx-app-svc   ClusterIP   10.96.157.55   <none>        80/TCP    4m
 
 
 However, if we did that, it would mean our solution would be wasting CPU resources watching **kube-proxy**, use Linux kernel **netfilter** table 
@@ -252,7 +251,7 @@ of the pod IP pool member.
 .. code-block:: bash
    :caption: Endpoints 
 
-   kubectl get endpointslice -n red
+   kubectl get endpoints -n red
 
 
 Your output should look like this:
@@ -260,8 +259,8 @@ Your output should look like this:
 .. code-block:: bash
    :caption: Get Endpoints Output
 
-   NAME                  ADDRESSTYPE   PORTS   ENDPOINTS        AGE
-   nginx-app-svc-pdp4q   IPv4          80      10.244.227.213   6m13s
+   NAME            ENDPOINTS           AGE
+   nginx-app-svc   10.244.227.201:80   5m
 
 
 This removes the **kube-proxy** overhead for our ingress traffic. We keep telling everyone that we are saving significant CPU cycles. 
@@ -275,7 +274,7 @@ Let's see what SNAT IP we put on traffic coming from our red tenant by running:
 .. code-block:: bash
    :caption: Describe red-snat
 
-   kubectl describe f5-spk-snatpool red-snat -n bnk-app
+   kubectl describe f5-spk-snatpool red-snat
 
 Your output should look like this:
 
@@ -283,18 +282,18 @@ Your output should look like this:
    :caption: Describe red-snat Output
 
    Name:         red-snat
-   Namespace:    bnk-app
+   Namespace:    default
    Labels:       <none>
    Annotations:  <none>
    API Version:  k8s.f5net.com/v1
    Kind:         F5SPKSnatpool
    Metadata:
-     Creation Timestamp:  2026-02-06T23:56:11Z
+     Creation Timestamp:  2025-02-20T15:05:18Z
      Finalizers:
        handletmmconfig_inconsistency
      Generation:        1
-     Resource Version:  11833
-     UID:               867bd4c0-43c4-4645-96c6-9e349d1b239a
+     Resource Version:  6173
+     UID:               923fe787-13bc-44c0-bf19-678ca38ab198
    Spec:
      Address List:
        [192.0.2.100 2001::192:0:2:100]
@@ -303,23 +302,20 @@ Your output should look like this:
      Shared Snat Address Enabled:  false
    Status:
      Conditions:
-       Last Transition Time:  2026-02-06T23:56:11Z
-       Message:               
+       Last Transition Time:  2025-02-20T15:05:18Z
+       Message:
        Observed Generation:   0
        Reason:                Accepted
        Status:                True
        Type:                  Accepted
-       Last Transition Time:  2026-02-06T23:56:11Z
+       Last Transition Time:  2025-02-20T15:05:18Z
        Message:               CR config sent to all grpc endpoints
        Observed Generation:   2
        Reason:                Programmed
        Status:                True
        Type:                  Programmed
      Generation Id:           0
-   Events:
-     Type    Reason         Age   From               Message
-     ----    ------         ----  ----               -------
-     Normal  Added/Updated  12m   f5-cne-controller  F5Snatpool bnk-app/red-snat was added/updated
+   Events:                    <none>
 
 
 If we did our job right we can generate traffic from the pod in the red namespace and it should show up at the *infra-client-1* container 
@@ -363,7 +359,7 @@ Curl output:
        Request URI: /txt
    
        host_header: 198.51.100.100
-        user-agent: curl/8.14.1
+        user-agent: curl/7.88.1
 
 
 Yeah! We have egress requests from pods in our *red* tenant namespace and are having their traffic SNAT applied appropriately! 
@@ -387,9 +383,8 @@ Your output should look like this:
 
    deployment.apps/nginx-deployment created
    service/nginx-app-svc created
-   gateway.gateway.networking.k8s.io/my-l4route-tcp-gateway created
+   gateway.gateway.k8s.f5net.com/my-l4route-tcp-gateway created
    l4route.gateway.k8s.f5net.com/l4-tcp-app created
-
 
 
 Let's see what the SNAT pool for blue looks like by running:
@@ -397,7 +392,7 @@ Let's see what the SNAT pool for blue looks like by running:
 .. code-block:: bash
    :caption: Describe blue-snat 
 
-   kubectl describe f5-spk-snatpool blue-snat -n bnk-app
+   kubectl describe f5-spk-snatpool blue-snat
 
 Describe Output:
 
@@ -405,18 +400,18 @@ Describe Output:
    :caption: Describe blue-snat Output
 
    Name:         blue-snat
-   Namespace:    bnk-app
+   Namespace:    default
    Labels:       <none>
    Annotations:  <none>
    API Version:  k8s.f5net.com/v1
    Kind:         F5SPKSnatpool
    Metadata:
-     Creation Timestamp:  2026-02-06T23:56:11Z
+     Creation Timestamp:  2025-02-20T23:53:05Z
      Finalizers:
        handletmmconfig_inconsistency
      Generation:        1
-     Resource Version:  11834
-     UID:               90cc16ff-e9fe-4a9a-8b6c-9c7a47e1e5a3
+     Resource Version:  4936
+     UID:               20ddfd35-adcc-4d38-8efb-4a7beaeef442
    Spec:
      Address List:
        [192.0.2.110 2001::192:0:2:110]
@@ -425,13 +420,13 @@ Describe Output:
      Shared Snat Address Enabled:  false
    Status:
      Conditions:
-       Last Transition Time:  2026-02-06T23:56:11Z
-       Message:               
+       Last Transition Time:  2025-02-20T23:53:05Z
+       Message:
        Observed Generation:   0
        Reason:                Accepted
        Status:                True
        Type:                  Accepted
-       Last Transition Time:  2026-02-06T23:56:11Z
+       Last Transition Time:  2025-02-20T23:53:06Z
        Message:               CR config sent to all grpc endpoints
        Observed Generation:   2
        Reason:                Programmed
@@ -439,9 +434,9 @@ Describe Output:
        Type:                  Programmed
      Generation Id:           0
    Events:
-     Type    Reason         Age   From               Message
-     ----    ------         ----  ----               -------
-     Normal  Added/Updated  16m   f5-cne-controller  F5Snatpool bnk-app/blue-snat was added/updated
+     Type    Reason         Age   From            Message
+     ----    ------         ----  ----            -------
+     Normal  Added/Updated  20m   spk-controller  F5Snatpool default/blue-snat was added/updated
 
 
 So we should see the blue tenant make requests from 192.168.2.110 or 192.168.2.111. Let's test by running the curl command:
@@ -502,7 +497,7 @@ password: **admin**
 
 You will be prompted to change the password. Go ahead and do that or Skip it. 
 
-Navigate to Dashboard and then load the F5 BNK Dashboard 2.  You will see there are some example Visualization defined for TMM (data path), ACLs, and then per *Red* and *Blue* tenants. 
+Navigate to Dashboard and then load the F5 BNK Dashboard.  You will see there are some example Visualization defined for TMM (data path), ACLs, and then per *Red* and *Blue* tenants. 
 
 You've already seen the commands to generate traffic which ingresses and egress Red and Blue tenants. 
 

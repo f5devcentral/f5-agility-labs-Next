@@ -35,7 +35,7 @@ Your output should look like this:
    "jetstack" has been added to your repositories
    Release "cert-manager" does not exist. Installing it now.
    NAME: cert-manager
-   LAST DEPLOYED: Fri Feb 6 07:28:10 2026
+   LAST DEPLOYED: Thu Feb 20 07:28:10 2025
    NAMESPACE: cert-manager
    STATUS: deployed
    REVISION: 1
@@ -56,15 +56,19 @@ Your output should look like this:
    documentation:
    
    https://cert-manager.io/docs/usage/ingress/
-   pod/cert-manager-797c9cdb86-t975j condition met
-   pod/cert-manager-cainjector-558fd876c9-m56h6 condition met
-   pod/cert-manager-webhook-56d7979558-hmtvb condition met
+   pod/cert-manager-74b7f6cbbc-fblj8 condition met
+   pod/cert-manager-cainjector-58c9d76cb8-4qcdk condition met
+   pod/cert-manager-webhook-5875b545cf-bp5cn condition met
    clusterissuer.cert-manager.io/selfsigned-cluster-issuer created
    certificate.cert-manager.io/bnk-ca created
    clusterissuer.cert-manager.io/bnk-ca-cluster-issuer created
 
 
-We will install Prometheus and Grafana so we can collect metrics and look at some telemetry dashboards in the next lab. 
+BIG-IP Next for Kubernetes uses the CNCF Gateway APIs. We need to install the resource definitions for the Gateway API. 
+
+`Learn more about Gateway API <https://gateway-api.sigs.k8s.io/>`_
+
+We will also install Prometheus and Grafana so we can collect metrics and look at some telemetry dashboards in the next lab. 
 
 .. image:: images/Prometheus.png
 
@@ -85,14 +89,26 @@ All of these components are installed with the below script, please run:
 .. code-block:: bash
    :caption: Deploy Gateway API and Telemetry
 
-   ./deploy-telemetry.sh
+   ./deploy-gatewayapi-telemetry.sh
 
 Your output should look like this:
 
 .. code-block:: bash
-   :caption: Telemetry Output
+   :caption: Gateway API and Telemetry Output
 
-   Install Promethues and Grafana ...
+   Install Gateway API CRDs ...
+   customresourcedefinition.apiextensions.k8s.io/backendlbpolicies.gateway.networking.k8s.io created
+   customresourcedefinition.apiextensions.k8s.io/backendtlspolicies.gateway.networking.k8s.io created
+   customresourcedefinition.apiextensions.k8s.io/gatewayclasses.gateway.networking.k8s.io created
+   customresourcedefinition.apiextensions.k8s.io/gateways.gateway.networking.k8s.io created
+   customresourcedefinition.apiextensions.k8s.io/grpcroutes.gateway.networking.k8s.io created
+   customresourcedefinition.apiextensions.k8s.io/httproutes.gateway.networking.k8s.io created
+   customresourcedefinition.apiextensions.k8s.io/referencegrants.gateway.networking.k8s.io created
+   customresourcedefinition.apiextensions.k8s.io/tcproutes.gateway.networking.k8s.io created
+   customresourcedefinition.apiextensions.k8s.io/tlsroutes.gateway.networking.k8s.io created
+   customresourcedefinition.apiextensions.k8s.io/udproutes.gateway.networking.k8s.io created
+   
+   Install Prometheus and Grafana ...
    certificate.cert-manager.io/prometheus created
    deployment.apps/prometheus created
    configmap/prometheus-config created
@@ -102,10 +118,32 @@ Your output should look like this:
    deployment.apps/grafana created
    configmap/grafana-datasources created
    service/grafana created
-
+   
    Install OTEL prerequired cert ...
    certificate.cert-manager.io/external-otelsvr created
    certificate.cert-manager.io/external-f5ingotelsvr created
+
+
+Adding a cluster tenant for F5 utilities
+----------------------------------------
+
+We are going to put all of the shared utility components for BIG-IP Next for Kubernetes into a proper namespace. This allows 
+us to properly protect access to these resources in a the cluster.
+
+Now execute the below script command to create a namespace for F5 utilities:
+
+.. code-block:: bash
+   :caption: Create F5 Utilities Namespace
+
+   ./create-f5util-namespace.sh
+
+Completed output will look like this:
+
+.. code-block:: bash
+   :caption: F5 Utilities Namespace Output
+
+   Create f5-utils namespace for BNK supporting software
+   namespace/f5-utils created
 
 
 Enable access to FAR
@@ -191,17 +229,16 @@ Your output should look like this:
    :caption: Install Cluster Wide Controller Output
 
     Install Cluster Wide Controller (CWC) to manage license and debug API ...
-    Pulled: repo.f5.com/utils/f5-cert-gen:0.9.3
-    Digest: sha256:698ba32ae610751534f86d0fe4b78e620093bd3283d769d89295f56bbf1e9079
-    Error: failed to untar: a file or directory with the name /home/ubuntu/cwc/f5-cert-gen already exists
-    mv: cannot overwrite '/home/ubuntu/cwc/cert-gen/f5-cert-gen': Directory not empty
+    Pulled: repo.f5.com/utils/f5-cert-gen:0.9.1
+    Digest: sha256:89d283a7b2fef651a29baf1172c590d45fbd1e522fa90207ecd73d440708ad34
     ~/cwc ~
     ------------------------------------------------------------------
     Service                   = api-server
-    Subject Alternate Name    = f5-spk-cwc.cne-core
+    Subject Alternate Name    = f5-spk-cwc.f5-utils
     Working directory         = /home/ubuntu/cwc/api-server-secrets
     ------------------------------------------------------------------
-    Generating Secrets ...
+    ...
+    Creating 1 client extensions...
     ...
     Copying secrets ...
     Generating /home/ubuntu/cwc/cwc-license-certs.yaml
@@ -212,9 +249,9 @@ Your output should look like this:
     ~/cwc ~
     ~
     
-    Adding name for CWC service name for client access ...
-    172.18.0.2  f5-spk-cwc.cne-core
-
+    Install cwc-reqs ...
+    configmap/cpcl-key-cm created
+    configmap/cwc-qkview-cm created
 
 
 That's the last prerequisite environment resource we need. Let's install BIG-IP!
@@ -238,103 +275,36 @@ Installation output:
    :caption: Install BIG-IP Next for Kubernetes Output
 
    Install BNK ...
-   configmap/f5-tmm-dynamic-routing-template created
+   configmap/bnk-bgp created
    node/bnk-worker2 labeled
    node/bnk-worker3 labeled
-
-   taint bnk-worker2 and bnk-worker3 to make them explicitly dedicated to TMM
-   node/bnk-worker2 tainted
-   node/bnk-worker3 tainted
-
-   disable tx checksum on vxlan interfaces
-
-   bnk-worker2
-
-   bnk-worker4
-
-   bnk-worker
-
-   bnk-worker3
    ...
    
-   Release "flo" does not exist. Installing it now.
-   Pulled: repo.f5.com/charts/f5-lifecycle-operator:v2.9.27-0.2.10
-   Digest: sha256:8feeb375e1681c7b46baaebf0ecab043989b8e5c7f9747015b26b463621a4e5c
-   NAME: flo
-   LAST DEPLOYED: Fri Feb  6 23:37:53 2026
-   NAMESPACE: cne-core
+   Install orchestrator ...
+   Release "orchestrator" does not exist. Installing it now.
+   NAME: orchestrator
+   LAST DEPLOYED: Thu Feb 20 14:31:25 2025
+   NAMESPACE: default
    STATUS: deployed
    REVISION: 1
-   DESCRIPTION: Install complete
    TEST SUITE: None
-   pod/flo-f5-lifecycle-operator-6669f6ccf7-msvmf condition met
-
-   Install CNI instance for Kubernetes ...
-   cneinstance.k8s.f5.com/bnkgatewayclass-sample created
-   pod/flo-f5-lifecycle-operator-6669f6ccf7-msvmf condition met
+   ..../create
    
-It will take approximately 5 minutes for BNK to install within the cluster.  You can manually check the status by running:
+
+The orchestrator stays running and watches for addition or changes to resources it needs to then orchestrate on BIG-IP. We can verify this
+by checking the pods in the default namespace.
 
 .. code-block:: bash
-   :caption: Check BNK Install Status
+   :caption: Check Orchestrator Pod
 
-   kubectl get pods -n bnk-app
+   kubectl get pod | grep orchestrator
 
-
-When BNK is fully installed you should see two pods named f5-tmm that are in the running state:
-
-.. code-block:: bash
-   :caption: BNK Pod Output
-
-   NAME                                 READY   STATUS    RESTARTS   AGE
-   f5-afm-579bc64c84-gjtcz              1/1     Running   0          3m45s
-   f5-cne-controller-6d488df544-dxgq8   4/4     Running   0          3m44s
-   f5-downloader-f67bc64fc-hspvg        2/2     Running   0          3m44s
-   f5-dssm-db-0                         2/2     Running   0          3m45s
-   f5-dssm-db-1                         2/2     Running   0          2m48s
-   f5-dssm-db-2                         2/2     Running   0          2m10s
-   f5-dssm-sentinel-0                   2/2     Running   0          3m45s
-   f5-dssm-sentinel-1                   2/2     Running   0          2m42s
-   f5-dssm-sentinel-2                   2/2     Running   0          116s
-   f5-tmm-qjx94                         6/6     Running   0          3m44s
-   f5-tmm-tzvg5                         6/6     Running   0          3m44s
-
-
-Wait for the f5-tmm pods to be in a Running state before proceeding.
-
-Next verify that BNK has a valid license:
+Pod output:
 
 .. code-block:: bash
-   :caption: Verify BNK License
-   
-   ./check-cwc-lic.sh
+   :caption: Check Orchestrator Pod Output
 
-The output should look similar to:
-
-.. code-block:: yaml
-   :caption: License Output
-   
-   Status: '{ 
-      ClusterDetails: '{
-         "Name": "My Cluster"
-      }',
-      LicenseDetails: '{
-         "DigitalAssetID": "17430375-1058-4eda-bb9e-c0785fb75acf",
-         "EntitlementType": "paid",
-         "LicenseExpiryDate": "2026-08-05T23:41:29Z",
-         "LicenseExpiryInDays": "179"
-      }',
-      LicenseStatus: '{
-         "State": "Verification Complete"
-      }' 
-   },
-   TelemetryStatus: '{
-      "NextReport": '{
-         "StartDate": "2026-02-07 23:41:41 +0000 UTC",
-         "EndDate": "2026-02-28 23:41:41 +0000 UTC",
-         "State": "Telemetry In Progress"
-      }'
-   }
+   orchestrator-f5cbc78cf-kfgxx        1/1     Running   0          1m
 
 
 Wow.. label nodes for BIG-IP Next installation.. install the orchestration.. BOOM.. Install. 
@@ -368,15 +338,22 @@ Viewed output:
    :caption: Tenant Networks Output
 
    Create red tenant namespace...
-   namespace/red created
+   Error from server (AlreadyExists): namespaces "red" already exists
    
    Create blue tenant namespace...
-   namespace/blue created
+   Error from server (AlreadyExists): namespaces "blue" already exists
    
    Creating VLANs for tenant ingress
    f5spkvlan.k8s.f5net.com/external created
    f5spkvlan.k8s.f5net.com/egress created
-   error: no matching resources found
+   f5spkvlan.k8s.f5net.com/egress condition met
+   f5spkvlan.k8s.f5net.com/external condition met
+   
+   Install vxlan for tenant egress
+   f5spkvxlan.k8s.f5net.com/red created
+   f5spkvxlan.k8s.f5net.com/blue created
+   f5spkvxlan.k8s.f5net.com/blue condition met
+   f5spkvxlan.k8s.f5net.com/red condition met
    
    Install SNAT Pools to be selected on egress for tenant namespaces
    f5spksnatpool.k8s.f5net.com/red-snat created
@@ -387,20 +364,6 @@ Viewed output:
    Little lab hack to disable TX offload capabilities on egress vxlans
    
    bnk-worker2
-   
-   bnk-worker4
-   Actual changes:
-   tx-checksum-ip-generic: off
-   tx-tcp-segmentation: off [not requested]
-   tx-tcp-ecn-segmentation: off [not requested]
-   tx-tcp-mangleid-segmentation: off [not requested]
-   tx-tcp6-segmentation: off [not requested]
-   Actual changes:
-   tx-checksum-ip-generic: off
-   tx-tcp-segmentation: off [not requested]
-   tx-tcp-ecn-segmentation: off [not requested]
-   tx-tcp-mangleid-segmentation: off [not requested]
-   tx-tcp6-segmentation: off [not requested]
    
    bnk-worker
    Actual changes:
@@ -419,12 +382,9 @@ Viewed output:
    bnk-worker3
    
    Install a global logging profile for all tenants
-   f5bigglobaloptions.k8s.f5net.com/global-options created
+   f5bigcontextglobal.k8s.f5net.com/global-context configured
    f5bigloghslpub.k8s.f5net.com/logpublisher created
    f5biglogprofile.k8s.f5net.com/logprofile created
-   
-   Install Grafana dashboard
-   {"folderUid":"","id":1,"slug":"f5-bnk-dashboard-2","status":"success","uid":"dc183bf8-3c81-4658-92f3-25c5bdf9004f","url":"/d/dc183bf8-3c81-4658-92f3-25c5bdf9004f/f5-bnk-dashboard-2","version":1}
 
    Install Grafana dashboard
    {"folderUid":"","id":1,"slug":"f5-bnk-dashboard","status":"success","uid":"fee6f31b9si68b","url":"/d/fee6f31b9si68b/f5-bnk-dashboard","version":1}
