@@ -509,7 +509,7 @@ You've already seen the commands to generate traffic which ingresses and egress 
 See if you can use **docker exec** to generate traffic from the **infra-client-1** ingressing the cluster to your red (http://198.19.19.100/txt) or 
 blue (http://198.20.20.100/txt) virtual servers. Observe  their traffic visualizations. 
 
-See if you can use **kubectl exec** to generate traffic from the 'red' and 'blue' pods to your egressing towards your **infra-client-1** (http:/http://198.51.100.100/txt) web services. 
+See if you can use **kubectl exec** to generate traffic from the 'red' and 'blue' pods to your egressing towards your **infra-client-1** (http://198.51.100.100/txt) web services. 
 Observe their traffic visualizations. 
 
 In our lab we demonstrated a few things:
