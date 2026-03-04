@@ -445,7 +445,7 @@ BIG-IP Next for Kubernetes can be connected in multiple ways.
    
    .. image:: images/BIG-IPonDPU.png
    
-   A full installation guide for the host node and the NVIDIA BlueField-3 DPU for use with BIG-IP Next for Kubernetes has been create `here <https://f5devcentral.github.io/f5-bnk-nvidia-bf3-installations/>`_.
+   A full installation guide for NVIDIA BlueField-3 DPU for use with BIG-IP Next for Kubernetes has been create `here <https://clouddocs.f5.com/bigip-next-for-kubernetes/latest/installing-bnk-dpu-using-f5-lifecycle-operator//>`_.
    
 2) Running on a host system with DPDK
    
